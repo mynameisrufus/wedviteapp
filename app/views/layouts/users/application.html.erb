@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WeddingInvitor</title>
+    <%= stylesheet_link_tag    "users/application" %>
+    <%= javascript_include_tag "users/application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <%= render partial: "layouts/users/nav" %>
+    <div class="container">
+      <%= render partial: "layouts/users/flash" %>
+      <%= yield %>
+      <%= render partial: 'layouts/users/footer' %>
+    </div>
+  </body>
+</html>

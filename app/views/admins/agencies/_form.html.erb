@@ -1,0 +1,28 @@
+<%= form_for(@agency) do |f| %>
+  <% if @agency.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@agency.errors.count, "error") %> prohibited this agency from being saved:</h2>
+
+      <ul>
+      <% @agency.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :taxation_reference %>
+    <%= f.text_field :taxation_reference %>
+  </div>
+  <div>
+    <%= f.label :account_number %>
+    <%= f.text_field :account_number %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

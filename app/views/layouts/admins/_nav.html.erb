@@ -1,0 +1,18 @@
+<div class="topbar">
+  <div class="fill">
+    <div class="container">
+      <a class="brand" href="/">Wed Vite</a>
+      <ul class="nav">
+        <li><%= link_to "Dashboard", root_path %></li>
+        <li class="dropdown" data-dropdown="dropdown">
+          <a href="#" class="dropdown-toggle">Design</a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Agencies", agencies_path %></li>
+            <li><%= link_to "Designers", designers_path %></li>
+          </ul>
+        </li>
+        <li><%= link_to "Sign out", destroy_admin_session_path, method: 'delete' %></li>
+      </ul>
+    </div>
+  </div>
+</div>

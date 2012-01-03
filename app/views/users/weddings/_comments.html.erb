@@ -1,0 +1,21 @@
+<% unless guest.comments.empty? %>
+  <% guest.comments.each do |comment| %>
+    <div class="row">
+      <div class="span12">
+        <% if comment.user.nil? %>
+          <%= guest.who %>:
+        <% else %>
+          <%= comment.user.name || comment.user.email %>:
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span16 alert-message">
+        <%= comment.text %>
+        <!--
+        <%= link_to 'reply', wedding_guest_comment_reply_path(@wedding, guest, comment) %>
+        -->
+      </div>
+    </div>
+  <% end %>
+<% end %>

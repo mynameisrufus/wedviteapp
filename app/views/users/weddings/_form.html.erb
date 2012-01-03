@@ -1,0 +1,48 @@
+<%= form_for(@wedding) do |f| %>
+  <% if @wedding.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@wedding.errors.count, "error") %> prohibited this invitation from being saved:</h2>
+
+      <ul>
+      <% @wedding.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :wedding_when %>
+    <%= f.datetime_select :wedding_when %>
+  </div>
+  <div>
+    <%= f.label :wedding_where %>
+    <%= f.text_field :wedding_where %>
+  </div>
+  <div>
+    <%= f.label :wedding_how %>
+    <%= f.text_area :wedding_how %>
+  </div>
+  <div>
+    <%= f.label :has_reception %>
+    <%= f.check_box :has_reception %>
+  </div>
+  <div>
+    <%= f.label :reception_when %>
+    <%= f.datetime_select :reception_when %>
+  </div>
+  <div>
+    <%= f.label :reception_where %>
+    <%= f.text_field :reception_where %>
+  </div>
+  <div>
+    <%= f.label :reception_how %>
+    <%= f.text_area :reception_how %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

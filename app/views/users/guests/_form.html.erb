@@ -1,0 +1,47 @@
+<%= form_for @guest, url: @guest.new_record? ? wedding_guests_path(@wedding) : wedding_guest_path(@wedding, @guest) do |f| %>
+  <% if @guest.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@guest.errors.count, "error") %> prohibited this invitation from being saved:</h2>
+
+      <ul>
+      <% @guest.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
+  <div>
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </div>
+  <div>
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+  </div>
+  <div>
+    <%= f.label :adults %>
+    <%= f.text_field :adults, type: :number %>
+  </div>
+  <div>
+    <%= f.label :children %>
+    <%= f.text_field :children, type: :number %>
+  </div>
+  <% if @wedding.has_reception? %>
+    <div>
+      <%= f.label :attending_reception %>
+      <%= f.check_box :attending_reception %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

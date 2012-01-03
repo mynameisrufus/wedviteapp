@@ -1,0 +1,34 @@
+<p><%= @agency.taxation_reference %></p>
+<p><%= @agency.account_number %></p>
+
+<div class="row">
+  <div class="span4">
+    <h2><%= @agency.name %></h2>
+    <%= link_to "+ Add designer to agency", new_agency_agency_designer_path(@agency), class: 'btn' %>
+  </div>
+  <div class="span12">
+    <table class="zebra-striped">
+      <thead>
+        <tr>
+          <th class="header">#</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @agency.designers.each do |designer| %> 
+          <tr>
+            <td><%= designer.id %></td>
+            <td><%= designer.name %></td>
+            <td><%= designer.email %></td>
+            <td>
+              <%= link_to "remove", agency_agency_designer_path(@agency, designer) %>
+              <%= link_to "open", designer_path(designer) %>
+            </td>
+          </tr>
+        <% end -%>
+      </tbody>
+    </table>
+  </div>
+</div>

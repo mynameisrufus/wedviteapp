@@ -1,0 +1,49 @@
+<h1><%= @wedding.name %></h1>
+<h2>Approved Adults <%= @total_approved_adults %></h2>
+<h2>Approved Children <%= @total_approved_children %></h2>
+<div class="row">
+  <div class="span12">
+    <%= link_to "Edit wedding", edit_wedding_path(@wedding), class: 'btn' %>
+    <%= link_to "+ Add guest", new_wedding_guest_path(@wedding), class: 'btn' %>
+  </div>
+</div>
+
+<% @guests.each do |guest| %>
+  <div class="row">
+    <div class="span12">
+      <h3><%= guest.name %></h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span2">
+      <%
+        css = case guest.state
+        when 'approved'
+          'success'
+        when 'rejected'
+          'error'
+        when 'tentative'
+          'info'
+        end
+      %>
+      <span class="alert-message <%= css %>"><%= guest.state %></span>
+    </div>
+    <div class="span4">
+      <span>Adults: <%= guest.adults %> |</span>
+      <span>Children: <%= guest.children %></span>
+    </div>
+  </div>
+  <div class="row guest actions">
+    <div class="span16">
+      <%= render partial: 'state', locals: { guest: guest } %>
+      <%= link_to 'update', edit_wedding_guest_path(@wedding, guest), class: 'btn' %>
+      <%= link_to 'Comment', new_wedding_guest_comment_path(@wedding, guest), class: 'btn' %>
+    </div>
+  </div>
+  <div class="row">
+    <%= render partial: 'comments', locals: { guest: guest } %>
+  </div>
+<% end %>
+<div class="row actions">
+  <%= link_to "Checkout and send invitations", "#", class: 'btn success' %>
+</div>
