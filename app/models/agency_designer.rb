@@ -1,20 +1,18 @@
 class AgencyDesigner < ActiveRecord::Base
+  ROLES = %w(manage publish edit)
+
   belongs_to :agency
   belongs_to :designer
 
-  validates_presence_of :designer_id, :agency_id, :role
+  validates :agency_id, presence: true
 
-  def self.add_or_invite_designer_to_agency(options)
-    email    = options.delete :email
-    agency   = options.delete :agency
-    admin    = options.delete :admin
-    designer = Designer.where(email: email).first || Designer.invite!(email: email)
-    agency_designer = self.class.create! admin: (admin || false), designer: designer, agency: agency
-    if agency_designer
-      AgencyDesignerMailer.added_to_account_email(agency_designer).deliver
-      agency_designer
-    else
+  validates :role, inclusion: {
+    in: ROLES,
+    message: "%{value} is not a valid role"
+  }
 
-    end
-  end
+  validates :designer_id, presence: true,  uniqueness: {
+    scope: :agency_id,
+    message: "already a designer at this agency"
+  }
 end

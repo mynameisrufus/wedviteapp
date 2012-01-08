@@ -8,5 +8,8 @@ class CreateAgencyDesigners < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :agency_designers, :agency_id
+    add_index :agency_designers, :designer_id
   end
 end

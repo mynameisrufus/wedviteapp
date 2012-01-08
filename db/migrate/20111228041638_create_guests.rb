@@ -13,15 +13,13 @@ class CreateGuests < ActiveRecord::Migration
       t.datetime :replyed_on
 
       t.references :wedding
-      t.references :created_by_user
-      t.references :updated_by_user
 
-      t.string :uid, length: 32, null: false
+      t.string :token, null: false
 
       t.timestamps
     end
 
     add_index :guests, :wedding_id
-    add_index :guests, :uid, unique: true
+    add_index :guests, :token, unique: true
   end
 end

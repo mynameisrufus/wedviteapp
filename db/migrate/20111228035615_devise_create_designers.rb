@@ -5,7 +5,6 @@ class DeviseCreateDesigners < ActiveRecord::Migration
       t.recoverable
       t.rememberable
       t.trackable
-      t.invitable
       
       t.string :first_name
       t.string :last_name

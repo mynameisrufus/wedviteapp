@@ -1,20 +1,42 @@
-<%= form_for @comment, url: wedding_guest_comments_path(@wedding, @guest) do |f| %>
-  <% if @comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this invitation from being saved:</h2>
 
-      <ul>
-      <% @comment.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+<div class="row">
+  <div class="span4">
+    <h2>Comment</h2>
+    <p>Information about this action.</p>
+  </div>
+  <div class="span12">
+    <%= form_for @comment, url: wedding_guest_comments_path(@wedding, @guest) do |f| %>
+      <% if @comment.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this invitation from being saved:</h2>
+
+          <ul>
+          <% @comment.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
+      <fieldset>
+        <legend>Example form legend</legend>
+
+        <div class="clearfix">
+          <%= f.label :text %>
+          <div class="input">
+            <%= f.text_area :text, class: 'xxlarge', rows: 3 %>
+            <span class="help-block">
+              Block of help text to describe the field above if need be.
+            </span>
+          </div>
+        </div>
+        <div class="actions">
+          <% if @comment.new_record? %>
+            <%= f.submit 'Create comment', class: 'btn primary' %>&nbsp;<%= link_to 'Cancel', wedding_path(@wedding), class: 'btn' %>
+          <% else %>
+            <%= f.submit 'Update comment', class: 'btn primary' %>&nbsp;<%= link_to 'Cancel', wedding_path(@wedding), class: 'btn' %>
+          <% end %>
+        </div>
+      </fieldset>
+    <% end %>
   <div>
-    <%= f.label :text %>
-    <%= f.text_area :text %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111230043602) do
+ActiveRecord::Schema.define(:version => 20120106234949) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -44,29 +44,66 @@ ActiveRecord::Schema.define(:version => 20111230043602) do
     t.datetime "updated_at"
   end
 
-  create_table "agency_designers", :force => true do |t|
-    t.integer  "agency_id"
-    t.integer  "designer_id"
-    t.boolean  "admin",       :default => false
+  add_index "agencies", ["designer_id"], :name => "index_agencies_on_designer_id"
+
+  create_table "agency_designer_tokens", :force => true do |t|
+    t.string   "role"
+    t.string   "email"
+    t.integer  "agency_id",  :null => false
+    t.string   "token",      :null => false
+    t.datetime "claimed_on"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "agency_designer_tokens", ["agency_id"], :name => "index_agency_designer_tokens_on_agency_id"
+  add_index "agency_designer_tokens", ["token"], :name => "index_agency_designer_tokens_on_token", :unique => true
+
+  create_table "agency_designers", :force => true do |t|
+    t.integer  "agency_id"
+    t.integer  "designer_id"
+    t.string   "role"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "agency_designers", ["agency_id"], :name => "index_agency_designers_on_agency_id"
+  add_index "agency_designers", ["designer_id"], :name => "index_agency_designers_on_designer_id"
+
+  create_table "collaboration_tokens", :force => true do |t|
+    t.string   "role"
+    t.string   "email"
+    t.integer  "wedding_id", :null => false
+    t.string   "token",      :null => false
+    t.datetime "claimed_on"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "collaboration_tokens", ["token"], :name => "index_collaboration_tokens_on_token", :unique => true
+  add_index "collaboration_tokens", ["wedding_id"], :name => "index_collaboration_tokens_on_wedding_id"
+
   create_table "collaborators", :force => true do |t|
+    t.string   "role"
     t.integer  "user_id"
     t.integer  "wedding_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "collaborators", ["user_id"], :name => "index_collaborators_on_user_id"
+  add_index "collaborators", ["wedding_id"], :name => "index_collaborators_on_wedding_id"
+
   create_table "comments", :force => true do |t|
     t.text     "text"
     t.integer  "guest_id"
     t.integer  "user_id"
-    t.integer  "comment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "comments", ["guest_id"], :name => "index_comments_on_guest_id"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "designers", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -79,12 +116,6 @@ ActiveRecord::Schema.define(:version => 20111230043602) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "invitation_token",       :limit => 60
-    t.datetime "invitation_sent_at"
-    t.datetime "invitation_accepted_at"
-    t.integer  "invitation_limit"
-    t.integer  "invited_by_id"
-    t.string   "invited_by_type"
     t.string   "first_name"
     t.string   "last_name"
     t.text     "biography"
@@ -107,14 +138,12 @@ ActiveRecord::Schema.define(:version => 20111230043602) do
     t.datetime "invited_on"
     t.datetime "replyed_on"
     t.integer  "wedding_id"
-    t.integer  "created_by_user_id"
-    t.integer  "updated_by_user_id"
-    t.string   "uid",                                   :null => false
+    t.string   "token",                                 :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "guests", ["uid"], :name => "index_guests_on_uid", :unique => true
+  add_index "guests", ["token"], :name => "index_guests_on_token", :unique => true
   add_index "guests", ["wedding_id"], :name => "index_guests_on_wedding_id"
 
   create_table "stationaries", :force => true do |t|
@@ -127,6 +156,8 @@ ActiveRecord::Schema.define(:version => 20111230043602) do
     t.boolean  "print",       :default => false
     t.boolean  "published",   :default => false
     t.integer  "popularity"
+    t.float    "price"
+    t.float    "commision"
     t.integer  "agency_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -134,6 +165,7 @@ ActiveRecord::Schema.define(:version => 20111230043602) do
 
   add_index "stationaries", ["agency_id"], :name => "index_stationaries_on_agency_id"
   add_index "stationaries", ["popularity"], :name => "index_stationaries_on_popularity"
+  add_index "stationaries", ["price"], :name => "index_stationaries_on_price"
   add_index "stationaries", ["style"], :name => "index_stationaries_on_style"
 
   create_table "stationary_assets", :force => true do |t|
@@ -163,12 +195,6 @@ ActiveRecord::Schema.define(:version => 20111230043602) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "invitation_token",         :limit => 60
-    t.datetime "invitation_sent_at"
-    t.datetime "invitation_accepted_at"
-    t.integer  "invitation_limit"
-    t.integer  "invited_by_id"
-    t.string   "invited_by_type"
     t.string   "first_name"
     t.string   "last_name"
     t.boolean  "can_invite",                              :default => false
@@ -185,23 +211,27 @@ ActiveRecord::Schema.define(:version => 20111230043602) do
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["invitation_token"], :name => "index_users_on_invitation_token", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "weddings", :force => true do |t|
     t.string   "name"
+    t.text     "title"
     t.datetime "wedding_when"
     t.string   "wedding_where"
     t.text     "wedding_how"
+    t.text     "wedding_what"
     t.boolean  "has_reception",   :default => true
     t.datetime "reception_when"
     t.string   "reception_where"
     t.text     "reception_how"
+    t.text     "reception_what"
     t.boolean  "payment_made"
     t.datetime "payment_date"
     t.integer  "stationary_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "weddings", ["stationary_id"], :name => "index_weddings_on_stationary_id"
 
 end

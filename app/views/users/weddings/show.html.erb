@@ -5,16 +5,18 @@
   <div class="span12">
     <%= link_to "Edit wedding", edit_wedding_path(@wedding), class: 'btn' %>
     <%= link_to "+ Add guest", new_wedding_guest_path(@wedding), class: 'btn' %>
+    <%= link_to "Manage collaborators", wedding_collaborators_path(@wedding), class: 'btn' %>
   </div>
 </div>
 
 <% @guests.each do |guest| %>
+<div class="guest-container">
   <div class="row">
     <div class="span12">
       <h3><%= guest.name %></h3>
     </div>
   </div>
-  <div class="row">
+  <div class="row guest headline">
     <div class="span2">
       <%
         css = case guest.state
@@ -28,22 +30,30 @@
       %>
       <span class="alert-message <%= css %>"><%= guest.state %></span>
     </div>
-    <div class="span4">
+    <div class="span14">
       <span>Adults: <%= guest.adults %> |</span>
       <span>Children: <%= guest.children %></span>
+      <span class="btn small show-actions" data-toggle="toggle" style="float: right">Show actions</span>
+      <% if guest.comments.size >= 1 %>
+        <span class="btn small comments" data-toggle="toggle" style="float: right">Show comments (<%= guest.comments.size %>)</span>
+      <% end %>
     </div>
   </div>
   <div class="row guest actions">
-    <div class="span16">
+    <div class="span13">
       <%= render partial: 'state', locals: { guest: guest } %>
-      <%= link_to 'update', edit_wedding_guest_path(@wedding, guest), class: 'btn' %>
+      <%= link_to 'Edit guest', edit_wedding_guest_path(@wedding, guest), class: 'btn' %>
       <%= link_to 'Comment', new_wedding_guest_comment_path(@wedding, guest), class: 'btn' %>
     </div>
   </div>
-  <div class="row">
-    <%= render partial: 'comments', locals: { guest: guest } %>
+  <div class="row guest comments">
+    <div class="span16">
+      <%= render partial: 'comments', locals: { guest: guest } %>
+    </div>
   </div>
-<% end %>
-<div class="row actions">
-  <%= link_to "Checkout and send invitations", "#", class: 'btn success' %>
 </div>
+<% end %>
+
+<script>
+  new GuestList;
+</script>

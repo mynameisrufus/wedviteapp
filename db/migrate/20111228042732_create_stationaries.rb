@@ -22,5 +22,6 @@ class CreateStationaries < ActiveRecord::Migration
     add_index :stationaries, :popularity
     add_index :stationaries, :style
     add_index :stationaries, :agency_id
+    add_index :stationaries, :price
   end
 end

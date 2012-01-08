@@ -1,27 +1,20 @@
+require 'friendly_token'
+
 class Guest < ActiveRecord::Base
   belongs_to :wedding
   has_many :comments
 
-  validates_presence_of :wedding_id, :name, :email, :adults, :children
+  validates_presence_of :wedding_id, :name, :adults, :children, :token, :state
 
-  before_create :set_initial_state
-  before_create :set_uid
+  validates :email, presence: true,  uniqueness: {
+    scope: :wedding_id,
+    message: "is already used in this list."
+  }
 
-  def set_initial_state
+  before_validation on: :create do
     self.state = 'review'
+    self.token = ::FriendlyToken.make
   end
-
-  def generate_uid
-    Array.new(32).map{ UID_CHARS[rand(UID_CHARS.size)].chr }.join
-  end
-
-  def set_uid
-    uid = generate_uid
-    not_unique = self.class.where(uid: uid).first
-    not_unique.nil? ? self.uid = uid : set_uid
-  end
-
-  UID_CHARS = (48..57).to_a + (65..90).to_a + (97..122).to_a
 
   STATES = [
     { verb: :approve, noun: :approved },
@@ -43,6 +36,10 @@ class Guest < ActiveRecord::Base
     define_method "#{state[:noun]}?" do
       self.state == state[:noun].to_s
     end
+  end
+
+  def total_guests
+    adults + children
   end
 
   def update_state(state)

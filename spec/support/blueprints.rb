@@ -9,7 +9,10 @@ require 'machinist/active_record'
 #   end
 
 User.blueprint do
-  # Attributes here
+  email { Faker::Internet.email }
+  password { Faker::Name.name }
+  first_name { Faker::Name.first_name }
+  last_name { Faker::Name.last_name }
 end
 
 Admin.blueprint do
@@ -21,20 +24,18 @@ Designer.blueprint do
 end
 
 Guest.blueprint do
-  # Attributes here
-end
-
-# when is a reserved word so does not work with machinist
-class Wedding
-  def _when=(datetime)
-    self.when = datetime
-  end
+  name { Faker::Name.name }
+  email { Faker::Internet.email }
+  address { Faker::Address.street_address }
+  phone { Faker::PhoneNumber.phone_number }
+  adults { rand(5) }
+  children { rand(5) }
 end
 
 Wedding.blueprint do
   name { "The Wedding of #{Faker::Name.first_name} and #{Faker::Name.first_name}" }
-  _when { Time.now + 5.weeks }
-  where { Faker::Address.street_address }
+  wedding_when { Time.now + 5.weeks }
+  wedding_where { Faker::Address.street_address }
   has_reception { true }
   reception_when { Time.now + 5.weeks }
   reception_where { Faker::Address.street_address }
@@ -45,7 +46,9 @@ Comment.blueprint do
 end
 
 Collaborator.blueprint do
-  # Attributes here
+  user_id { 1 }
+  wedding_id { 1 }
+  role { Collaborator::ROLES.shuffle.first }
 end
 
 Stationary.blueprint do
@@ -67,4 +70,17 @@ end
 AgencyDesigner.blueprint do
   designer_id { 1 }
   agency_id { 1 }
+  role { AgencyDesigner::ROLES.shuffle.first }
+end
+
+CollaborationToken.blueprint do
+  wedding_id { 1 }
+  role { Collaborator::ROLES.shuffle.first }
+  email { Faker::Internet.email }
+end
+
+AgencyDesignerToken.blueprint do
+  agency_id { 1 }
+  role { AgencyDesigner::ROLES.shuffle.first }
+  email { Faker::Internet.email }
 end

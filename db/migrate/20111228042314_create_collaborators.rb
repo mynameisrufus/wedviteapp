@@ -8,5 +8,8 @@ class CreateCollaborators < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :collaborators, :user_id
+    add_index :collaborators, :wedding_id
   end
 end

@@ -67,7 +67,7 @@ class Users::GuestsController < Users::BaseController
 
     respond_to do |format|
       if @guest.save
-        format.html { redirect_to @wedding, notice: 'Guest was successfully created.' }
+        format.html { redirect_to @wedding, notice: "#{@guest.name} #{@guest.total_guests > 1 ? "have" : "has"} been added to the list."  }
         format.json { render json: @guest, status: :created, location: @guest }
       else
         format.html { render action: "new" }
@@ -83,7 +83,7 @@ class Users::GuestsController < Users::BaseController
 
     respond_to do |format|
       if @guest.update_attributes(params[:guest])
-        format.html { redirect_to @wedding, notice: 'Guest was successfully updated.' }
+        format.html { redirect_to @wedding, notice: "#{@guest.name} #{@guest.total_guests > 1 ? "have" : "has"} been updated."  }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -117,10 +117,10 @@ class Users::GuestsController < Users::BaseController
   def change_state(state)
     respond_to do |format|
       if @guest.send state
-        format.html { redirect_to @wedding, notice: 'Guest was successfully updated.' }
+        format.html { redirect_to @wedding, notice: "#{@guest.name} #{@guest.total_guests > 1 ? "are" : "is"} now #{@guest.state}."  }
         format.json { head :ok }
       else
-        format.html { redirect_to @wedding, notice: 'Could not change the guests status.' }
+        format.html { redirect_to @wedding, notice: "Could not change the guests state." }
         format.json { render json: @guest.errors, status: :unprocessable_entity }
       end
     end

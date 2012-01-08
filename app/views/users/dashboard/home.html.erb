@@ -1,11 +1,17 @@
-<% if current_user.weddings.empty? %>
-  <h1>Welcome <%= current_user.name %></h1>
-  <%= link_to 'Start a new wedding invitation plan', new_wedding_path %>
-<% else %>
-  <ul>
-    <% current_user.weddings.each do |wedding| %>
-      <li><%= link_to wedding.name, wedding_path(wedding) %></li>
-    <% end %>
-  </ul>
-  <%= link_to 'Start a new wedding invitation plan', new_wedding_path %>
-<% end %>
+<section class="weddings edit">
+  <div class="row">
+    <div class="span16">
+      <% if current_user.weddings.empty? %>
+        <h1>Welcome <%= current_user.name %></h1>
+        <%= link_to 'Start a new wedding invitation plan', new_wedding_path, class: 'btn large primary' %>
+      <% else %>
+          <% current_user.weddings.each do |wedding| %>
+            <h3><%= link_to wedding.name, wedding_path(wedding) %></h3>
+          <% end %>
+          <div class="actions">
+            <%= link_to 'Start a new wedding invitation plan', new_wedding_path, class: 'btn primary' %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</section>

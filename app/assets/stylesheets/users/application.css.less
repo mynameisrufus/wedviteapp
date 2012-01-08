@@ -1,7 +1,22 @@
 @import "twitter/bootstrap";
 
+@font-face {
+  font-family: 'EdwardianScriptITCRegular';
+  src: url("/assets/itcedscr-webfont.eot");
+  src: local("☺"), url("/assets/itcedscr-webfont.woff") format("woff"), url("/assets/itcedscr-webfont.ttf") format("truetype"), url("/assets/itcedscr-webfont.svg#webfont5FK5mWTJ") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
-  padding-top: 60px;
+  padding-top: 90px;
+  background-image: image-url("bg-parchment.jpg");
+}
+
+.guest-container {
+  border-bottom: 1px dashed #999;
+  padding-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .row {
@@ -11,7 +26,33 @@ body {
       form {
         display: inline;
       }
+    }
+    &.comments {
+      .comment {
+        padding: 5px;
+        margin: 5px 0;
+        background-color: whiteSmoke;
+        border: 1px solid #DCDFE1;
+        .title {
+          font-weight: bold;
+          margin-bottom: 5px;
+        }
+        .text {
+          color: #333;
+        }
+      }
     }   
   }
+}
 
+.topbar {
+  height: 72px;
+  .brand {
+    font-family: 'EdwardianScriptITCRegular', sans-serif;
+    font-size: 4em;
+    margin-right: 35px;
+  }
+  div > ul a {
+    line-height: 50px;
+  }
 }

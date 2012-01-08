@@ -1,20 +1,15 @@
 <% unless guest.comments.empty? %>
   <% guest.comments.each do |comment| %>
-    <div class="row">
-      <div class="span12">
+    <div class="comment">
+      <div class="title">
         <% if comment.user.nil? %>
-          <%= guest.who %>:
+          <%= guest.who %>
         <% else %>
-          <%= comment.user.name || comment.user.email %>:
+          <%= comment.user.name %> <% if current_user == comment.user %> | <%= link_to 'edit', edit_wedding_guest_comment_path(@wedding, guest, comment) %> <% end %>
         <% end %>
       </div>
-    </div>
-    <div class="row">
-      <div class="span16 alert-message">
+      <div class="text">
         <%= comment.text %>
-        <!--
-        <%= link_to 'reply', wedding_guest_comment_reply_path(@wedding, guest, comment) %>
-        -->
       </div>
     </div>
   <% end %>

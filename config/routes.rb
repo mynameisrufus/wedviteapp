@@ -1,7 +1,7 @@
 WeddingInvitor::Application.routes.draw do
 
-  constraints subdomain: 'planner' do
-    devise_for :users
+  constraints subdomain: 'plan' do
+    devise_for :users, controllers: { sessions: "users/sessions" }
 
     root to: 'users/dashboard#home'
     scope module: 'users' do
@@ -9,6 +9,8 @@ WeddingInvitor::Application.routes.draw do
         post 'use'
       end
       resources :weddings do
+        get 'collaborators/collaborate/:token', action: :collaborate, controller: :collaborators, as: :collaborate
+        resources :collaborators, except: %w(edit show)
         resources :guests do
           get 'preview'
           post 'approve'
@@ -16,9 +18,7 @@ WeddingInvitor::Application.routes.draw do
           post 'tentative'
           post 'accept'
           post 'decline'
-          resources :comments do
-            get 'reply'
-          end
+          resources :comments
         end
       end
     end

@@ -1,0 +1,27 @@
+<%= form_tag wedding_collaborators_path(@wedding) do %>
+  <% if @invitor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@invitor.errors.count, "error") %> prohibited this collaborator from being added:</h2>
+
+      <ul>
+      <% @invitor.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div>
+    <%= label_tag :email %>
+    <%= text_field_tag :email %>
+  </div>
+  <div>
+    <%= label_tag :role %>
+    <% Collaborator::ROLES.each do |role| %>
+        <%= role %>
+        <%= radio_button_tag :role, role %>
+    <% end %>
+  </div>
+  <div class="actions">
+    <%= submit_tag 'Add collaborator' %>
+  </div>
+<% end %>

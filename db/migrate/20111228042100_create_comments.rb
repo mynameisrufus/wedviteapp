@@ -5,9 +5,11 @@ class CreateComments < ActiveRecord::Migration
 
       t.references :guest
       t.references :user
-      t.references :comment
 
       t.timestamps
     end
+    
+    add_index :comments, :user_id
+    add_index :comments, :guest_id
   end
 end

@@ -1,7 +1,7 @@
 class Wedding < ActiveRecord::Base
   has_one :stationary
   has_many :guests
-  has_many :collaborators
+  has_many :collaborators, dependent: :destroy
   has_many :users, through: :collaborators
 
   validates_presence_of :name, :wedding_when, :wedding_where

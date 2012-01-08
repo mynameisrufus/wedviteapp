@@ -5,7 +5,6 @@ gem 'rails', '3.1.2'
 gem 'pg'
 
 gem 'devise',                '~> 1.5.1'
-gem 'devise_invitable',      '~> 0.6.0'
 gem 'kaminari',              '~> 0.12.4'
 gem 'sorted',                '~> 0.4.0'
 
@@ -14,8 +13,8 @@ group :assets do
   gem 'less-rails',           '~> 2.1.1'
   gem 'less-rails-bootstrap', '~> 1.4.1'
 
-  gem 'coffee-rails', '~> 3.1.1'
-  gem 'uglifier', '>= 1.0.3'
+  gem 'coffee-rails',         '~> 3.1.1'
+  gem 'uglifier',             '>= 1.0.3'
 end
 
 group :development, :test do
@@ -25,14 +24,15 @@ group :development, :test do
   gem 'ffaker'
   gem 'database_cleaner'
   gem 'awesome_print'
-  gem 'rspec-mocks'
+  gem "steak",                '~> 2.0.0'
+  gem "launchy"
 end
 
 group :development do
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-livereload'
-  gem 'rb-inotify', :require => false
-  gem 'rb-fsevent', :require => false
-  gem 'rb-fchange', :require => false
+  gem 'rb-inotify', require: false
+  gem 'rb-fsevent', require: false
+  gem 'rb-fchange', require: false
 end

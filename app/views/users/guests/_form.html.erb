@@ -1,47 +1,93 @@
-<%= form_for @guest, url: @guest.new_record? ? wedding_guests_path(@wedding) : wedding_guest_path(@wedding, @guest) do |f| %>
-  <% if @guest.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@guest.errors.count, "error") %> prohibited this invitation from being saved:</h2>
+<div class="row">
+  <div class="span4">
+    <h2>Wedding</h2>
+    <p>Information about this action.</p>
+  </div>
+  <div class="span12">
+    <%= form_for @guest, url: @guest.new_record? ? wedding_guests_path(@wedding) : wedding_guest_path(@wedding, @guest) do |f| %>
+      <% if @guest.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@guest.errors.count, "error") %> prohibited this invitation from being saved:</h2>
 
-      <ul>
-      <% @guest.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+          <ul>
+          <% @guest.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-  <div>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
-  </div>
-  <div>
-    <%= f.label :address %>
-    <%= f.text_field :address %>
-  </div>
-  <div>
-    <%= f.label :phone %>
-    <%= f.text_field :phone %>
-  </div>
-  <div>
-    <%= f.label :adults %>
-    <%= f.text_field :adults, type: :number %>
-  </div>
-  <div>
-    <%= f.label :children %>
-    <%= f.text_field :children, type: :number %>
-  </div>
-  <% if @wedding.has_reception? %>
-    <div>
-      <%= f.label :attending_reception %>
-      <%= f.check_box :attending_reception %>
-    </div>
-  <% end %>
+      <fieldset>
+        <legend>Example form legend</legend>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+        <div class="clearfix">
+          <%= f.label :name %>
+          <div class="input">
+            <%= f.text_field :name, class: 'xlarge', size: 30 %>
+          </div>
+        </div>
+
+        <div class="clearfix">
+          <%= f.label :email %>
+          <div class="input">
+            <%= f.email_field :email, class: 'xlarge', size: 30 %>
+          </div>
+        </div>
+
+        <div class="clearfix">
+          <%= f.label :address %>
+          <div class="input">
+            <%= f.text_field :address, class: 'xlarge', size: 30 %>
+          </div>
+        </div>
+
+        <div class="clearfix">
+          <%= f.label :phone %>
+          <div class="input">
+            <%= f.phone_field :phone, class: 'xlarge', size: 30 %>
+          </div>
+        </div>
+
+        <div class="clearfix">
+          <%= f.label :adults %>
+          <div class="input">
+            <%= f.text_field :adults, class: 'xlarge', size: 30, type: :number %>
+          </div>
+        </div>
+
+        <div class="clearfix">
+          <%= f.label :children %>
+          <div class="input">
+            <%= f.text_field :children, class: 'xlarge', size: 30, type: :number %>
+          </div>
+        </div>
+
+        <% if @wedding.has_reception? %>
+          <div class="clearfix">
+            <%= f.label :attending_reception %>
+            <div class="input">
+              <ul class="inputs-list">
+                <li>
+                  <label>
+                    <%= f.check_box :attending_reception %>
+                    <span>Option one is this and that—be sure to include why it’s great</span>
+                  </label>
+                </li>
+              </ul>
+              <span class="help-block">
+                <strong>Note:</strong> Labels surround all the options for much larger click areas and a more usable form.
+              </span>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="actions">
+          <% if @guest.new_record? %>
+            <%= f.submit 'Add guest', class: 'btn primary' %>&nbsp;<%= link_to 'Cancel', wedding_path(@wedding), class: 'btn' %>
+          <% else %>
+            <%= f.submit 'Update guest', class: 'btn primary' %>&nbsp;<%= link_to 'Cancel', wedding_path(@wedding), class: 'btn' %>
+          <% end %>
+        </div>
+      </fieldset>
+    <% end %>
+  <div>
+<div>
