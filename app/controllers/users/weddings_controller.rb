@@ -48,8 +48,8 @@ class Users::WeddingsController < Users::BaseController
 
     respond_to do |format|
       if @wedding.save
-        @wedding.users << current_user
-        format.html { redirect_to @wedding, notice: 'Wedding was successfully created.' }
+        Collaborator.create! user: current_user, wedding: @wedding, role: 'invite'
+        format.html { redirect_to @wedding, notice: 'Wedding created.' }
         format.json { render json: @wedding, status: :created, location: @wedding }
       else
         format.html { render action: "new" }

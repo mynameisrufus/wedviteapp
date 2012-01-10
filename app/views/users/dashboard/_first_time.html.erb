@@ -1,0 +1,16 @@
+<header class="jumbotron masthead" id="overview">
+  <div class="inner">
+    <div class="container">
+      <h1>Welcome to WedVite <%= current_user.name %></h1>
+      <p class="lead">
+        You are now ready to start planning your wedding invitation list.
+      </p>
+    </div><!-- /container -->
+  </div>
+</header>
+<div class="row">
+  <div class="span16">
+    <%= link_to 'Get started!', new_wedding_path, class: 'btn large primary' %>
+  </div>
+</div>
+

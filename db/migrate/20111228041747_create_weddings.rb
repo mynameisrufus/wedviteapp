@@ -2,7 +2,9 @@ class CreateWeddings < ActiveRecord::Migration
   def change
     create_table :weddings do |t|
       t.string :name
-      t.text :title
+      t.text :wording
+      t.text :ceremony_only_wording
+      t.datetime :respond_deadline
       t.datetime :wedding_when
       t.string :wedding_where
       t.text :wedding_how

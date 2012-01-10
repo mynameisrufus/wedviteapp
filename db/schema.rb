@@ -215,12 +215,14 @@ ActiveRecord::Schema.define(:version => 20120106234949) do
 
   create_table "weddings", :force => true do |t|
     t.string   "name"
-    t.text     "title"
+    t.text     "wording"
+    t.text     "ceremony_only_wording"
+    t.datetime "respond_deadline"
     t.datetime "wedding_when"
     t.string   "wedding_where"
     t.text     "wedding_how"
     t.text     "wedding_what"
-    t.boolean  "has_reception",   :default => true
+    t.boolean  "has_reception",         :default => true
     t.datetime "reception_when"
     t.string   "reception_where"
     t.text     "reception_how"

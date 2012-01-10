@@ -1,0 +1,23 @@
+<div class="page-header">
+  <h1>My Weddings</h1>
+</div>
+<div class="row">
+  <div class="span4">
+    <h3>More than one wedding?</h3>
+    <p>
+      After you create a wedding you can invite others to collaborate.
+      You can also be invited to collaborate on a friends wedding list.
+    </p>
+    <p>
+      Don't worry you can set what collaborators can and can't do
+    </p>
+    <%= link_to 'Create another wedding plan', new_wedding_path, class: 'btn' %>
+  </div>
+  <div class="span12">
+    <ul>
+      <% current_user.weddings.each do |wedding| %>
+        <li><%= link_to wedding.name, wedding_path(wedding) %></li>
+      <% end %>
+    <ul>
+  </div>
+</div>

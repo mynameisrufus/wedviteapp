@@ -29,7 +29,7 @@ class Users::CollaboratorsController < Users::BaseController
   # GET /collaborators/new.json
   def new
     @invitor = Invitor::Collaborator.new
-    @collaborator = Collaborator.new
+    @collaborator = Collaborator.new role: 'read'
 
     respond_to do |format|
       format.html # new.html.erb

@@ -1,27 +1,50 @@
-<%= form_tag wedding_collaborators_path(@wedding) do %>
-  <% if @invitor.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@invitor.errors.count, "error") %> prohibited this collaborator from being added:</h2>
+<div class="row">
+  <div class="span4">
+    <h3>Collaborators</h3>
+    <p>You can add as many collaborators as you want. The default role is 'read' which only lets the collaborator view guest and wedding details.</p>
+    <p><strong>Note:</strong> It is recomended that only the Bride and Groom have the invite role as this means you can send the invites!<p>
+    <p>Maybe just the Bride should have the invite role ;)</p>
+  </div>
+  <div class="span12">
+    <%= form_tag wedding_collaborators_path(@wedding) do %>
+      <% if @invitor.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@invitor.errors.count, "error") %> prohibited this collaborator from being added:</h2>
 
-      <ul>
-      <% @invitor.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+          <ul>
+          <% @invitor.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div>
-    <%= label_tag :email %>
-    <%= text_field_tag :email %>
-  </div>
-  <div>
-    <%= label_tag :role %>
-    <% Collaborator::ROLES.each do |role| %>
-        <%= role %>
-        <%= radio_button_tag :role, role %>
+      <fieldset>
+        <div class="clearfix">
+          <%= label_tag :email %>
+          <div class="input">
+            <%= email_field_tag :email, nil, class: 'xlarge', size: 30 %>
+          </div>
+        </div>
+        <div class="clearfix">
+          <%= label_tag :role %>
+          <div class="input">
+            <ul class="inputs-list">
+              <% Collaborator::ROLES.each do |role| %>
+                <li>
+                  <label>
+                    <%= radio_button_tag :role, role, @collaborator.role == role %>
+                    <span><%= role %></span>
+                  </label>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+        <div class="actions">
+          <%= submit_tag 'Add collaborator', class: 'btn primary' %>
+          <%= link_to 'Back', wedding_collaborators_path(@wedding), class: 'btn' %>
+        </div>
+      </fieldset>
     <% end %>
-  </div>
-  <div class="actions">
-    <%= submit_tag 'Add collaborator' %>
-  </div>
-<% end %>
+  <div>
+<div>

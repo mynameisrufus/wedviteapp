@@ -4,8 +4,8 @@ class Wedding < ActiveRecord::Base
   has_many :collaborators, dependent: :destroy
   has_many :users, through: :collaborators
 
-  validates_presence_of :name, :wedding_when, :wedding_where
-  validates_presence_of :reception_when, :reception_where, if: :has_reception
+  validates_presence_of :name, :wedding_when
+  validates_presence_of :reception_when, if: :has_reception
   validate :can_change_stationary
 
   def can_change_stationary

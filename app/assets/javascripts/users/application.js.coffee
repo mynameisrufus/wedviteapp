@@ -24,3 +24,11 @@ class window.GuestList
         else
           $(this).html('Hide comments')
           div.show()
+
+class window.WeddingForm
+  constructor: ->
+    $("#wedding_has_reception").bind 'click', (evt) ->
+      if $(this).is(':checked')
+        $("#reception").fadeIn()
+      else
+        $("#reception").fadeOut()

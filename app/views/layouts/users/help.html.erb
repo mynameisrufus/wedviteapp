@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WedVite Help</title>
+    <%= stylesheet_link_tag    "users/application" %>
+    <style>
+      body {
+        padding: 30px 0px 30px 0px;
+      }
+    </style>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
+</html>
