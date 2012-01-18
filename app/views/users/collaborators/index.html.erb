@@ -1,6 +1,40 @@
-<div class="row">
-  <div class="span12">
-    <%= link_to "+ Add collaborator", new_wedding_collaborator_path(@wedding), class: 'btn' %>
-    <%= link_to "back", wedding_path(@wedding) %>
-  </div>
-</div>
+<section class="collaborators index">
+  <% if @wedding.collaborators.size == 1 %>
+    <div class="row">
+      <div class="page-header">
+        <h1>Start collaborating!</h1>
+      </div>
+      <div class="span12">
+        <p>There is no one collaborating on this wedding.</p>
+      </div>
+      <div class="span12">
+        <%= link_to "Add collaborator", new_wedding_collaborator_path(@wedding), class: 'btn primary large' %>
+      </div>
+    </div>
+  <% else %>
+    <div class="page-header">
+      <h1>Collaborators</h1>
+    </div>
+    <% @wedding.collaborators.each do |collaborator| %>
+      <% next if collaborator.user == current_user %>
+      <div class="row collaborator">
+        <div class="span6">
+          <p><%= collaborator.user.name %></p>
+        </div>
+        <div class="span5">
+          <p><strong><%= collaborator.role %></strong></p>
+        </div>
+        <div class="span2">
+          <p><%= link_to 'change role', edit_wedding_collaborator_path(@wedding, collaborator), class: 'btn small' %></p>
+        </div>
+        <div class="span2">
+          <p><%= link_to 'remove', wedding_collaborator_path(@wedding, collaborator), method: :delete, class: 'btn small danger' %></p>
+        </div>
+      </div>
+    <% end %>
+    <div class="actions">
+      <%= link_to "Add collaborator", new_wedding_collaborator_path(@wedding), class: 'btn primary' %>
+      <%= link_to "Back to wedding", wedding_path(@wedding), class: 'btn' %>
+    </div>
+  <% end %>
+</section>

@@ -146,6 +146,23 @@ ActiveRecord::Schema.define(:version => 20120106234949) do
   add_index "guests", ["token"], :name => "index_guests_on_token", :unique => true
   add_index "guests", ["wedding_id"], :name => "index_guests_on_wedding_id"
 
+  create_table "locations", :force => true do |t|
+    t.text     "address_components"
+    t.text     "types"
+    t.string   "formatted_address"
+    t.string   "formatted_phone_number"
+    t.string   "international_phone_number"
+    t.string   "name"
+    t.string   "vicinity"
+    t.string   "website"
+    t.string   "google_url"
+    t.string   "google_id"
+    t.decimal  "lat",                        :precision => 16, :scale => 13
+    t.decimal  "lng",                        :precision => 16, :scale => 13
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "stationaries", :force => true do |t|
     t.string   "name"
     t.string   "style"
@@ -216,20 +233,21 @@ ActiveRecord::Schema.define(:version => 20120106234949) do
   create_table "weddings", :force => true do |t|
     t.string   "name"
     t.text     "wording"
+    t.text     "save_the_date_wording"
     t.text     "ceremony_only_wording"
     t.datetime "respond_deadline"
-    t.datetime "wedding_when"
-    t.string   "wedding_where"
-    t.text     "wedding_how"
-    t.text     "wedding_what"
+    t.datetime "ceremony_when"
+    t.text     "ceremony_how"
+    t.text     "ceremony_what"
     t.boolean  "has_reception",         :default => true
     t.datetime "reception_when"
-    t.string   "reception_where"
     t.text     "reception_how"
     t.text     "reception_what"
     t.boolean  "payment_made"
     t.datetime "payment_date"
     t.integer  "stationary_id"
+    t.integer  "ceremony_location_id"
+    t.integer  "reception_location_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

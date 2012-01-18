@@ -18,7 +18,7 @@ feature 'Guest feature', %q{
   scenario 'add a guest to wedding' do
     visit root_path
     click_link @wedding.name
-    click_link "+ Add guest"
+    click_link "Add guest"
     fill_in 'Name', with: "Roger and Sally"
     fill_in 'Email', with: "roger@aol.com"
     fill_in 'Address', with: "1 White Picket Fench lane"

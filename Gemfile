@@ -7,6 +7,7 @@ gem 'pg'
 gem 'devise',                '~> 1.5.1'
 gem 'kaminari',              '~> 0.12.4'
 gem 'sorted',                '~> 0.4.0'
+gem 'rdiscount',             '~> 1.6.8'
 
 group :assets do
   gem 'jquery-rails',         '~> 1.0.19'
@@ -26,6 +27,7 @@ group :development, :test do
   gem 'awesome_print'
   gem "steak",                '~> 2.0.0'
   gem "launchy"
+  gem "heroku"
 end
 
 group :development do

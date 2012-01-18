@@ -1,4 +1,9 @@
 class Users::WeddingsController < Users::BaseController
+  before_filter :find_wedding, only: %w(
+    wording ceremony_only_wording save_the_date_wording
+    ceremony_how ceremony_what reception_how reception_what
+  )
+
   # GET /weddings
   # GET /weddings.json
   def index

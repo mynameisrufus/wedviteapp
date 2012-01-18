@@ -3,15 +3,14 @@ class CreateWeddings < ActiveRecord::Migration
     create_table :weddings do |t|
       t.string :name
       t.text :wording
+      t.text :save_the_date_wording
       t.text :ceremony_only_wording
       t.datetime :respond_deadline
-      t.datetime :wedding_when
-      t.string :wedding_where
-      t.text :wedding_how
-      t.text :wedding_what
+      t.datetime :ceremony_when
+      t.text :ceremony_how
+      t.text :ceremony_what
       t.boolean :has_reception, default: true
       t.datetime :reception_when
-      t.string :reception_where
       t.text :reception_how
       t.text :reception_what
 
@@ -19,6 +18,8 @@ class CreateWeddings < ActiveRecord::Migration
       t.datetime :payment_date
       
       t.references :stationary
+      t.references :ceremony_location
+      t.references :reception_location
 
       t.timestamps
     end

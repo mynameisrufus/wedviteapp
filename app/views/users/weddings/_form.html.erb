@@ -5,17 +5,7 @@
   </div>
   <div class="span12">
     <%= form_for(@wedding) do |f| %>
-      <% if @wedding.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@wedding.errors.count, "error") %> prohibited this invitation from being saved:</h2>
-
-          <ul>
-          <% @wedding.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-          </ul>
-        </div>
-      <% end %>
+      <%= error_messages_on(@wedding) %>
       <fieldset>
         <legend>Wedding and reception details</legend>
 
@@ -38,50 +28,12 @@
         </div>
 
         <div class="clearfix">
-          <%= f.label :wording %>
-          <div class="input">
-            <%= f.text_area :wording, class: 'xxlarge', rows: 3 %>
-            <span class="help-block">
-              Wording that people will see on their invitations, you can leave this until later.
-            </span>
-          </div>
-        </div>
-
-        <div class="clearfix">
-          <%= f.label :wedding_when %>
+          <%= f.label :ceremony_when %>
           <div class="input">
             <div class="inline-inputs">
-              <%= f.datetime_select :wedding_when, {}, class: 'small' %>
+              <%= f.datetime_select :ceremony_when, {}, class: 'small' %>
               <span class="help-block">This is your local time</span>
             </div>
-          </div>
-        </div>
-
-        <div class="clearfix">
-          <%= f.label :wedding_where %>
-          <div class="input">
-            <%= f.text_field :wedding_where, class: 'xlarge', size: 30 %>
-            <span class="help-block">Street address of the wedding</span>
-          </div>
-        </div>
-
-        <div class="clearfix">
-          <%= f.label :wedding_how %>
-          <div class="input">
-            <%= f.text_area :wedding_how, class: 'xxlarge', rows: 3 %>
-            <span class="help-block">
-              Any special instructions for getting to the wedding and where to stay go here.
-            </span>
-          </div>
-        </div>
-
-        <div class="clearfix">
-          <%= f.label :wedding_what %>
-          <div class="input">
-            <%= f.text_area :wedding_what, class: 'xxlarge', rows: 3 %>
-            <span class="help-block">
-              Put details about your wedding here - links to present suggestions etc.
-            </span>
           </div>
         </div>
 
@@ -100,50 +52,12 @@
         
         <div id="reception">
           <div class="clearfix">
-            <%= f.label :ceremony_only_wording %>
-            <div class="input">
-              <%= f.text_area :ceremony_only_wording, class: 'xxlarge', rows: 3 %>
-              <span class="help-block">
-                <strong>Optional: </strong>wording for people who are only invited to the ceremony.
-              </span>
-            </div>
-          </div>
-
-          <div class="clearfix">
             <%= f.label :reception_when %>
             <div class="input">
               <div class="inline-inputs">
                 <%= f.datetime_select :reception_when, {}, class: 'small' %>
                 <span class="help-block">This is your local time</span>
               </div>
-            </div>
-          </div>
-
-          <div class="clearfix">
-            <%= f.label :reception_where %>
-            <div class="input">
-              <%= f.text_field :reception_where, class: 'xlarge', size: 30 %>
-              <span class="help-block">Street address of the reception</span>
-            </div>
-          </div>
-
-          <div class="clearfix">
-            <%= f.label :reception_how %>
-            <div class="input">
-              <%= f.text_area :reception_how, class: 'xxlarge', rows: 3 %>
-              <span class="help-block">
-                Any special instructions for getting to the reception go here.
-              </span>
-            </div>
-          </div>
-
-          <div class="clearfix">
-            <%= f.label :reception_what %>
-            <div class="input">
-              <%= f.text_area :reception_what, class: 'xxlarge', rows: 3 %>
-              <span class="help-block">
-                Details of the reception, any theme or other special detail.
-              </span>
             </div>
           </div>
         </div>

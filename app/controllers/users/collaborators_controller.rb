@@ -28,12 +28,11 @@ class Users::CollaboratorsController < Users::BaseController
   # GET /collaborators/new
   # GET /collaborators/new.json
   def new
-    @invitor = Invitor::Collaborator.new
-    @collaborator = Collaborator.new role: 'read'
+    @invitor = Invitor::Collaborator.new role: 'read'
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @collaborator }
+      format.json { render json: @invitor }
     end
   end
 
@@ -68,7 +67,7 @@ class Users::CollaboratorsController < Users::BaseController
     @collaborator = @wedding.collaborators.find(params[:id])
 
     respond_to do |format|
-      if @collaborator.update_attributes(params[:collaborator])
+      if @collaborator.update_attributes(role: params[:role])
         format.html { redirect_to @collaborator, notice: 'Collaborator was successfully updated.' }
         format.json { head :ok }
       else
@@ -100,17 +99,13 @@ class Users::CollaboratorsController < Users::BaseController
         format.html { redirect_to root_path, notice: 'This link has now expired.' }
         format.json { head :ok }
       else
-        @collaboration_token.update_attributes claimed_on: Time.now
-        @collaborator = Collaborator.create! wedding: @wedding, user: current_user, role: @collaboration_token.role
+        @collaborator = Collaborator.new wedding: @wedding, user: current_user, role: @collaboration_token.role
+        if @collaborator.save
+          @collaboration_token.update_attributes claimed_on: Time.now
+        end
         format.html { redirect_to @wedding, notice: 'You are now collaborating on this wedding.' }
         format.json { head :ok }
       end
     end
-  end
-
-  protected
-
-  def find_wedding
-    @wedding = current_user.weddings.find(params[:wedding_id])
   end
 end

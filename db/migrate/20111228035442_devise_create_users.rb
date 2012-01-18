@@ -8,7 +8,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       t.string :first_name
       t.string :last_name
-      t.boolean :can_invite, default: false
 
       t.string :billing_name
       t.string :billing_address

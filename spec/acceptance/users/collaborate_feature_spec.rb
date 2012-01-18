@@ -17,7 +17,7 @@ feature 'Collaborate feature', %q{
     sign_in_with email: @user.email, password: @user.password
     visit wedding_path(@wedding)
     click_link 'Manage collaborators' 
-    click_link '+ Add collaborator'
+    click_link 'Add collaborator'
     fill_in 'email', with: 'user@example.com'
     choose 'role_invite'
     click_button 'Add collaborator'

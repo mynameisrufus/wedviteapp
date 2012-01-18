@@ -34,11 +34,9 @@ end
 
 Wedding.blueprint do
   name { "The Wedding of #{Faker::Name.first_name} and #{Faker::Name.first_name}" }
-  wedding_when { Time.now + 5.weeks }
-  wedding_where { Faker::Address.street_address }
+  ceremony_when { Time.now + 5.weeks }
   has_reception { true }
   reception_when { Time.now + 5.weeks }
-  reception_where { Faker::Address.street_address }
 end
 
 Comment.blueprint do
@@ -83,4 +81,8 @@ AgencyDesignerToken.blueprint do
   agency_id { 1 }
   role { AgencyDesigner::ROLES.shuffle.first }
   email { Faker::Internet.email }
+end
+
+Location.blueprint do
+
 end

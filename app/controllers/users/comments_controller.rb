@@ -88,10 +88,6 @@ class Users::CommentsController < Users::BaseController
 
   protected
 
-  def find_wedding
-    @wedding = current_user.weddings.find params[:wedding_id]
-  end
-
   def find_guest
     @guest = @wedding.guests.find(params[:guest_id])
   end

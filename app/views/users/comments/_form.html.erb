@@ -5,18 +5,8 @@
     <p>Information about this action.</p>
   </div>
   <div class="span12">
-    <%= form_for @comment, url: wedding_guest_comments_path(@wedding, @guest) do |f| %>
-      <% if @comment.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this invitation from being saved:</h2>
-
-          <ul>
-          <% @comment.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-          </ul>
-        </div>
-      <% end %>
+    <%= form_for @comment, url: url do |f| %>
+      <%= error_messages_on @comment %>
       <fieldset>
         <legend>Example form legend</legend>
 
@@ -30,11 +20,7 @@
           </div>
         </div>
         <div class="actions">
-          <% if @comment.new_record? %>
-            <%= f.submit 'Create comment', class: 'btn primary' %>&nbsp;<%= link_to 'Cancel', wedding_path(@wedding), class: 'btn' %>
-          <% else %>
-            <%= f.submit 'Update comment', class: 'btn primary' %>&nbsp;<%= link_to 'Cancel', wedding_path(@wedding), class: 'btn' %>
-          <% end %>
+          <%= f.submit 'Save comment', class: 'btn primary' %>&nbsp;<%= link_to 'Cancel', wedding_path(@wedding), class: 'btn' %>
         </div>
       </fieldset>
     <% end %>

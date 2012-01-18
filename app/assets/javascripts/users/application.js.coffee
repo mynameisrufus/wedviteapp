@@ -1,7 +1,6 @@
 #= require jquery
 #= require jquery_ujs
 #= require twitter/bootstrap
-#= require_tree .
 
 class window.GuestList
   constructor: ->
@@ -32,3 +31,6 @@ class window.WeddingForm
         $("#reception").fadeIn()
       else
         $("#reception").fadeOut()
+
+$ ->
+  $("#menu").dropdown()

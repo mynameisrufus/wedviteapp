@@ -14,7 +14,7 @@ class Users::Mailer < ActionMailer::Base
     @url       = wedding_collaborate_url(@wedding, @token, subdomain: subdomain)
 
     mail to: @email,
-         from: @requestor.email,
+         from: "#{@requestor.name} <noreply@wedvite.net>",
          subject: "You are invited to collaborate on #{@wedding.name}"
   end
 
@@ -26,7 +26,7 @@ class Users::Mailer < ActionMailer::Base
     @url       = wedding_url(@wedding, subdomain: subdomain)
 
     mail to: @user.email,
-         from: @requestor.email,
+         from: "#{@requestor.name} <noreply@wedvite.net>",
          subject: "You are now collaborating on #{@wedding.name}"
   end
 end

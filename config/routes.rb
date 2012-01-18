@@ -1,7 +1,7 @@
 WeddingInvitor::Application.routes.draw do
 
   constraints subdomain: 'plan' do
-    devise_for :users, controllers: { sessions: "users/sessions" }
+    devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations" }
 
     root to: 'users/dashboard#home'
     scope module: 'users' do
@@ -10,7 +10,18 @@ WeddingInvitor::Application.routes.draw do
       end
       resources :weddings do
         get 'collaborators/collaborate/:token', action: :collaborate, controller: :collaborators, as: :collaborate
-        resources :collaborators, except: %w(edit show)
+        %w(wording ceremony_only_wording save_the_date_wording ceremony_what ceremony_how reception_what reception_how).each do |markup_action|
+          get markup_action
+        end
+        resource :locations, only: [] do
+          get 'ceremony'
+          get 'reception'
+          post 'ceremony',   action: :create_ceremony
+          post 'reception', action: :create_reception
+          put 'ceremony',    action: :update_ceremony
+          put 'reception',  action: :update_reception
+        end
+        resources :collaborators, except: %w(show)
         resources :guests do
           get 'preview'
           post 'approve'

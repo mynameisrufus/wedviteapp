@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   
   has_many :collaborations, class_name: 'Collaborator', dependent: :destroy
   has_many :weddings, through: :collaborations
-
+ 
   def name
     if first_name.nil? && last_name.nil?
       email
