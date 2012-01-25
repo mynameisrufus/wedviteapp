@@ -25,7 +25,8 @@
     <a href="#" class="btn secondary">Secondary</a>
   </div>
 </div>
-
-<% content_for :head do %>
-  <%= javascript_include_tag 'users/weddings/show' %>
-<% end %>
+<script>
+  $(function(){
+    weddings();
+  });
+</script>

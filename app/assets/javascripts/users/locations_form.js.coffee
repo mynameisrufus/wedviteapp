@@ -111,7 +111,7 @@ updateElements = (elements, parts) ->
         else
           el.value = partValue
 
-$ ->
+window.locations = ->
   elements     = getElements()
   startLat     = if elements.lat.value == "" then cords.lat else elements.lat.value
   startLng     = if elements.lng.value == "" then cords.lng else elements.lng.value

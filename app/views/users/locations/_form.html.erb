@@ -1,5 +1,4 @@
 <% content_for :head do %>
-  <%= javascript_include_tag 'users/locations/form' %>
   <%= javascript_include_tag 'http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places' %>
 <% end %>
 
@@ -78,3 +77,9 @@
     </div>
   </fieldset>
 <% end %>
+
+<script>
+  $(function(){
+    locations();
+  });
+</script>

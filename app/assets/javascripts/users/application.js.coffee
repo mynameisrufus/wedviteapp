@@ -1,6 +1,8 @@
 #= require jquery
 #= require jquery_ujs
 #= require twitter/bootstrap
+#= require users/locations_form
+#= require users/weddings_show
 
 class window.GuestList
   constructor: ->
