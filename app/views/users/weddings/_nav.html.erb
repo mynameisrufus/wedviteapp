@@ -1,0 +1,19 @@
+<h2>Percent Complete <%= @wedding.percent_complete.round %>%</h2>
+<sub><%= @wedding.outstanding_attributes.map{|a| content_tag(:span, a.to_s.humanize, class: "label") }.join(' ').html_safe %></sub>
+<h2>Approved Adults <%= @total_approved_adults %></h2>
+<h2>Approved Children <%= @total_approved_children %></h2>
+<h2>Total <%= @total_approved_children + @total_approved_adults  %></h2>
+<%= link_to "Edit wedding", edit_wedding_path(@wedding), class: 'btn' %>
+<%= link_to "Add guest", new_wedding_guest_path(@wedding), class: 'btn' %>
+<%= link_to "Manage collaborators", wedding_collaborators_path(@wedding), class: 'btn' %>
+<%= link_to "Ceremony location", ceremony_wedding_locations_path(@wedding), class: 'btn' %>
+  <%= link_to "Ceremony how", wedding_ceremony_how_path(@wedding), class: 'btn' %>
+  <%= link_to "Ceremony what", wedding_ceremony_what_path(@wedding), class: 'btn' %>
+<% if @wedding.has_reception? %>
+  <%= link_to "Reception location", reception_wedding_locations_path(@wedding), class: 'btn' %>
+  <%= link_to "Ceremony only wording", wedding_ceremony_only_wording_path(@wedding), class: 'btn' %>
+  <%= link_to "Reception how", wedding_reception_how_path(@wedding), class: 'btn' %>
+  <%= link_to "Reception what", wedding_reception_what_path(@wedding), class: 'btn' %>
+<% end %>
+<%= link_to "Wording", wedding_wording_path(@wedding), class: 'btn' %>
+<%= link_to "Save the date wording", wedding_save_the_date_wording_path(@wedding), class: 'btn' %>

@@ -13,4 +13,90 @@ module ApplicationHelper
       end
     end
   end
+
+  def state_icon(state)
+    sh = get_state_hash state
+    html_options = {
+      class: ["state", "icon", sh[:css]],
+      title: sh[:title],
+      rel: 'twipsy'
+    }
+    content_tag :span, sh[:label], html_options, false
+  end
+
+  def get_state_hash(state)
+    sh = state_hash.detect do |sh|
+      sh[:state] == state
+    end
+    sh.nil? ? state_hash.last : sh
+  end
+
+  def guest_array
+    state_hash.sort do |x, y|
+      x[:order] <=> y[:order]
+    end.map do |sh|
+      sh.merge guests: @guests.select{|g| g.state == sh[:state]}
+    end
+  end
+
+  def state_hash
+    [
+      {
+        state: "review",
+        label: "?",
+        title: "Suggested",
+        css:   "silver",
+        color: "#57A957",
+        order: 3
+      },
+      {
+        state: "approved",
+        label: "&#10003;",
+        title: "Approved for invitation",
+        css:   "green",
+        color: "#57A957",
+        order: 4
+      },
+      {
+        state: "rejected",
+        label: "&#215;",
+        title: "Rejected",
+        css:   "red",
+        color: "#C43C35",
+        order: 5
+      },
+      {
+        state: "tentative",
+        label: "~",
+        title: "Tentative",
+        css:   "aqua",
+        color: "#339BB9",
+        order: 6
+      },
+      {
+        state: "accepted",
+        label: "R",
+        title: "RSVP",
+        css:   "gold",
+        color: "silver",
+        order: 1
+      },
+      {
+        state: "declined",
+        label: "D",
+        title: "Invitation declined",
+        css:   "black",
+        color: "#000000",
+        order: 2
+      },
+      {
+        state: "default",
+        label:   "-",
+        title: "unknown",
+        css:   "unknown",
+        color: "pink",
+        order: 0
+      }
+    ]
+  end
 end

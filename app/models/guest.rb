@@ -1,20 +1,6 @@
-require 'friendly_token'
-
 class Guest < ActiveRecord::Base
   belongs_to :wedding
   has_many :comments
-
-  validates_presence_of :wedding_id, :name, :adults, :children, :token, :state
-
-  validates :email, presence: true,  uniqueness: {
-    scope: :wedding_id,
-    message: "is already used in this list."
-  }
-
-  before_validation on: :create do
-    self.state = 'review'
-    self.token = ::FriendlyToken.make
-  end
 
   STATES = [
     { verb: :approve, noun: :approved },
@@ -36,6 +22,27 @@ class Guest < ActiveRecord::Base
     define_method "#{state[:noun]}?" do
       self.state == state[:noun].to_s
     end
+  end
+
+  validates_presence_of :wedding_id, :name, :adults, :children, :token
+
+  validates :state, presence: {
+    in: STATES.map{|s| s[:noun].to_s}
+  }
+
+  validates :partner_number, presence: {
+    in: [1,2],
+    message: "Must choose what side the guest is on"
+  }
+
+  validates :email, presence: true, email: true, uniqueness: {
+    scope: :wedding_id,
+    message: "is already used in this list."
+  }
+
+  before_validation on: :create do
+    self.state = 'review'
+    self.token = ::FriendlyToken.make
   end
 
   def total_guests

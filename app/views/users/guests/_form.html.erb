@@ -61,6 +61,26 @@
           </div>
         </div>
 
+        <div class="clearfix">
+          <%= f.label :partner_number, "Side" %>
+          <div class="input">
+            <ul class="inputs-list">
+              <li>
+                <label>
+                  <%= f.radio_button :partner_number, 1 %>
+                  <span><%= @wedding.partner_one_name %></span>
+                </label>
+              </li>
+              <li>
+                <label>
+                  <%= f.radio_button :partner_number, 2 %>
+                  <span><%= @wedding.partner_two_name %></span>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+
         <% if @wedding.has_reception? %>
           <div class="clearfix">
             <%= f.label :attending_reception %>

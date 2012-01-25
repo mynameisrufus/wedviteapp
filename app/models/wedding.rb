@@ -1,13 +1,20 @@
 class Wedding < ActiveRecord::Base
-  has_one :stationary
+  has_one :stationary, counter_cache: :popularity
   has_many :guests, dependent: :destroy
   belongs_to :ceremony_where, class_name: 'Location', foreign_key: 'ceremony_location_id', dependent: :destroy
   belongs_to :reception_where, class_name: 'Location', foreign_key: 'reception_location_id', dependent: :destroy
   has_many :collaborators, dependent: :destroy
   has_many :users, through: :collaborators
 
+  validates :partner_one_name, presence: true
+  validates :partner_two_name, presence: true
   validates :name, presence: true
   validate :can_change_stationary
+
+  before_validation on: :create do
+    self.partner_one_name = 'Bride'
+    self.partner_two_name = 'Groom'
+  end
 
   def can_change_stationary
     errors.add :stationary_id, "You can no longer change your stationary as the invitations have been sent" if

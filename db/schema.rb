@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(:version => 20120106234949) do
 
   create_table "comments", :force => true do |t|
     t.text     "text"
+    t.string   "commenter"
     t.integer  "guest_id"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -137,7 +138,10 @@ ActiveRecord::Schema.define(:version => 20120106234949) do
     t.boolean  "attending_reception", :default => true
     t.datetime "invited_on"
     t.datetime "replyed_on"
+    t.integer  "partner_number"
+    t.integer  "comments_count",      :default => 0
     t.integer  "wedding_id"
+    t.integer  "position"
     t.string   "token",                                 :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -202,8 +206,8 @@ ActiveRecord::Schema.define(:version => 20120106234949) do
   add_index "stationary_images", ["stationary_id"], :name => "index_stationary_images_on_stationary_id"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                   :default => "",    :null => false
-    t.string   "encrypted_password",       :limit => 128, :default => "",    :null => false
+    t.string   "email",                                   :default => "", :null => false
+    t.string   "encrypted_password",       :limit => 128, :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -214,7 +218,6 @@ ActiveRecord::Schema.define(:version => 20120106234949) do
     t.string   "last_sign_in_ip"
     t.string   "first_name"
     t.string   "last_name"
-    t.boolean  "can_invite",                              :default => false
     t.string   "billing_name"
     t.string   "billing_address"
     t.string   "billing_state"
@@ -243,6 +246,8 @@ ActiveRecord::Schema.define(:version => 20120106234949) do
     t.datetime "reception_when"
     t.text     "reception_how"
     t.text     "reception_what"
+    t.string   "partner_one_name"
+    t.string   "partner_two_name"
     t.boolean  "payment_made"
     t.datetime "payment_date"
     t.integer  "stationary_id"

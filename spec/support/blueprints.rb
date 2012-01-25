@@ -30,6 +30,7 @@ Guest.blueprint do
   phone { Faker::PhoneNumber.phone_number }
   adults { rand(5) }
   children { rand(5) }
+  partner_number { rand(1..2) }
 end
 
 Wedding.blueprint do

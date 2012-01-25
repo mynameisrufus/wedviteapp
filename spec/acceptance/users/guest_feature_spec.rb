@@ -25,6 +25,7 @@ feature 'Guest feature', %q{
     fill_in 'Phone', with: "+61 487 738 874"
     fill_in 'Adults', with: 2
     fill_in 'Children', with: 0
+    choose 'Bride'
     click_button 'Add guest'
     page.should have_content('Roger and Sally have been added to the list.')
   end

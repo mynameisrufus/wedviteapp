@@ -1,5 +1,3 @@
-require 'invitor'
-
 class Users::CollaboratorsController < Users::BaseController
   before_filter :find_wedding, except: %w(collaborate)
 

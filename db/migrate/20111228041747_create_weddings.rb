@@ -13,6 +13,8 @@ class CreateWeddings < ActiveRecord::Migration
       t.datetime :reception_when
       t.text :reception_how
       t.text :reception_what
+      t.string :partner_one_name
+      t.string :partner_two_name
 
       t.boolean :payment_made
       t.datetime :payment_date

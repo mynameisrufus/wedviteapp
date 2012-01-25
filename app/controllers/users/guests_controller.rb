@@ -39,7 +39,7 @@ class Users::GuestsController < Users::BaseController
     @guest = @wedding.guests.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html { render layout: false if request.xhr? }
       format.json { render json: @guest }
     end
   end

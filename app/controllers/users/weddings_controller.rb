@@ -19,7 +19,7 @@ class Users::WeddingsController < Users::BaseController
   # GET /weddings/1.json
   def show
     @wedding = current_user.weddings.find(params[:id])
-    @guests  = @wedding.guests.page(params[:page]).per(50).sorted(params[:sort], "state ASC")
+    @guests  = @wedding.guests.order("name ASC, position DESC")
     
     @total_approved_adults   = @wedding.guests.approved.sum(:adults)
     @total_approved_children = @wedding.guests.approved.sum(:children)
