@@ -4,3 +4,4 @@
 
 heroku pg:reset SHARED_DATABASE
 heroku run rake db:setup
+heroku restart

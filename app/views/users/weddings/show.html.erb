@@ -1,13 +1,16 @@
 <section class="wedding show">
-  <div class="page-header">
+  <div class="page-header" id="top">
     <h1><%= @wedding.name %></h1>
   </div>
   <div class="row">
-    <div class="span4 background">
+    <div class="span3 background">
       <%= render partial: 'nav' %>
     </div>
-    <div class="span12 background">
+    <div class="span8 background">
       <%= render partial: 'list' %>
+    </div>
+    <div class="span1 no-margin">
+      <%= render partial: 'quickie' %>
     </div>
   </div>
 </section>

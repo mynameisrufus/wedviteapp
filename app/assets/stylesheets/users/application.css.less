@@ -9,7 +9,6 @@
 }
 
 body {
-  padding-top: 90px;
   background-image: image-url("bg-parchment.png");
 }
 
@@ -56,22 +55,23 @@ section {
       .guests {
         .header {
           h2 {
-            width: 100px;
             padding: 10px;
-            width: 320px;
-            display: inline-block;
+            width: 298px;
           }
         }
+        .column {
+          width: 308px;
+          display: inline-block;
+          vertical-align: top;
+        }
         .block {
-          border-top: 1px solid #E8E8E8;
-          .column {
-            width: 320px;
-            display: inline-block;
-            vertical-align: top;
-          }
+          margin: 5px 0px;
         }
         .guest {
           padding: 9px 12px 9px;
+          .details {
+            font-size: 1em;
+          }
         }
       }
     }
@@ -111,12 +111,12 @@ section {
 .icon {
   &.state {
     background-color: pink;
-    width: 15px;
-    height: 15px;
+    width: 12px;
+    height: 12px;
     display: block;
     float: left;
-    margin-right: 10px;
-    .border-radius(15px);
+    margin: 12px 10px 12px 0px;
+    .border-radius(12px);
     text-align: center;
     padding: 5px;
     font-weight: bold;
@@ -152,23 +152,75 @@ form {
   }
 }
 
-.topbar {
+// span-
+.no-margin {
+  margin-left: 0px;
+}
+
+.quickie {
+  position: relative;
+  ul {
+    position: fixed;
+    list-style: none;
+    margin: 5px 0px;
+    li {
+      background-color: gray;
+      color: white;
+      margin: 5px 0px;
+      .border-top-right-radius;
+      .border-bottom-right-radius;
+      padding: 10px;
+      text-align: center;
+      a {
+        display: inline;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+      }
+      i {
+        cursor: pointer;
+      }
+      &.green {
+        background-color: #57A957;
+      }
+      &.red {
+        background-color: #C43C35;
+      }
+      &.aqua {
+        background-color: #339BB9;
+      }
+      &.silver {
+        background-color: silver;
+      }
+      &.gold {
+        background-color: gold;
+      }
+      &.black {
+        background-color: black;
+      }
+    }
+  }
+}
+
+.navbar {
   height: 72px;
-  .menu-dropdown, .dropdown-menu {
-    top: 72px;
-  }
-  a.menu::after, .dropdown-toggle::after {
-    margin-top: 22px;
-  }
   .brand {
     font-family: 'EdwardianScriptITCRegular', sans-serif;
     font-size: 4em;
     width: 170px;
     height: 52px;
     overflow: hidden;
+    margin: 0px;
   }
-  div > ul a {
-    line-height: 50px;
+  .nav {
+    .menu-dropdown, .dropdown-menu {
+      top: 72px;
+    }
+    &> li > a {
+      line-height: 50px;
+      b {
+        margin-top: 23px;
+      }
+    }
   }
 }
-

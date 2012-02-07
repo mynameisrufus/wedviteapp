@@ -35,8 +35,29 @@ module ApplicationHelper
     state_hash.sort do |x, y|
       x[:order] <=> y[:order]
     end.map do |sh|
-      sh.merge guests: @guests.select{|g| g.state == sh[:state]}
+      guests = @guests.select{|g| g.state == sh[:state]}
+      sh.merge guests: guests,
+                stats: stats(guests)
     end
+  end
+
+  def stats(set)
+    stat(set).merge partner_one: stat(set.select{|g| g.partner_number == 1}),
+                    partner_two: stat(set.select{|g| g.partner_number == 2})
+  end
+
+  def stat(set)
+    {
+      total: set.inject(0) do |memo, sym|
+        memo + sym[:adults] + sym[:children]
+      end,
+      adults: set.inject(0) do |memo, sym|
+        memo + sym[:adults]
+      end,
+      children: set.inject(0) do |memo, sym|
+        memo + sym[:children]
+      end
+    }
   end
 
   def state_hash
@@ -67,7 +88,7 @@ module ApplicationHelper
       },
       {
         state: "tentative",
-        label: "~",
+        label: "&#8776;",
         title: "Tentative",
         css:   "aqua",
         color: "#339BB9",
@@ -85,6 +106,14 @@ module ApplicationHelper
         state: "declined",
         label: "D",
         title: "Invitation declined",
+        css:   "black",
+        color: "#000000",
+        order: 2
+      },
+      {
+        state: "sent",
+        label: "&#64;",
+        title: "Invitation sent",
         css:   "black",
         color: "#000000",
         order: 2

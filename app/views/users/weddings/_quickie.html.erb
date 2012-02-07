@@ -1,0 +1,47 @@
+<div class="quickie">
+  <ul>
+    <%= content_tag :li, {} do %>
+      <%= link_to new_wedding_guest_path(@wedding) do %>
+        <i class="icon-plus icon-white"></i>
+      <% end %>
+    <% end %>
+    <% guest_array.each do |ga| %>
+      <% next if ga[:guests].empty? %>
+      <%= content_tag :li, { class: [ga[:state], ga[:css]] } do %>
+        <% c = capture do %>
+          <p>Total: <%= ga[:stats][:total] %></p>
+          <sub>adults: <%= ga[:stats][:adults] %></sub>
+          <sub>children: <%= ga[:stats][:children] %></sub>
+          <p><%= @wedding.partner_one_name %>: <%= ga[:stats][:partner_one][:total] %></p>
+          <sub>adults: <%= ga[:stats][:partner_one][:adults] %></sub>
+          <sub>children: <%= ga[:stats][:partner_one][:children] %></sub>
+          <p><%= @wedding.partner_two_name %>: <%= ga[:stats][:partner_two][:total] %></p>
+          <sub>adults: <%= ga[:stats][:partner_two][:adults] %></sub>
+          <sub>children: <%= ga[:stats][:partner_two][:children] %></sub>
+        <% end %>
+
+        <%= content_tag :i, nil, {
+          class: ["icon-chevron-left", "icon-white", "goto"],
+          "data-id" => ga[:state]
+        } %>
+        <%= content_tag :i, nil, {
+          class: ["icon-eye-open", "icon-white", "toggle"],
+          "data-id" => ga[:state]
+        } %>
+        <%= content_tag :i, nil, {
+          class: ["icon-info-sign", "icon-white"],
+          "data-id" => ga[:state],
+          rel: "popover",
+          "data-content" => c,
+          "data-original-title" => ga[:title]
+        } %>
+      <% end %>
+    <% end %>
+    <%= content_tag :li, {} do %>
+      <%= content_tag :i, nil, {
+        class: ["icon-chevron-up", "icon-white", "goto"],
+        "data-id" => "top"
+      } %>
+    <% end %>
+  </ul>
+</div>

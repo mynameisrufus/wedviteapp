@@ -21,6 +21,20 @@ class Wedding < ActiveRecord::Base
       stationary_id_changed? and payment_made?
   end
 
+  class GuestStates
+    def initialize(guests)
+      @guests = guests
+    end
+  end
+
+  class GuestState
+
+  end
+
+  def guests_states
+    @guests_states ||= GuestStates.new guests.all
+  end
+
   def percent_complete
     completable_attributes.reduce(0) do |count, attribute|
       count += send(attribute).present? ? 1 : 0

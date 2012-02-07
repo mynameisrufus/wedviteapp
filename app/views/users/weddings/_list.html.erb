@@ -1,28 +1,21 @@
 <div class="guests">
   <div class="header clearfix">
-    <h2><%= @wedding.partner_one_name %></h2>
-    <h2><%= @wedding.partner_two_name %></h2>
+    <h2 class="column"><%= @wedding.partner_one_name %></h2>
+    <h2 class="column"><%= @wedding.partner_two_name %></h2>
   </div>
-  <div>
   <% guest_array.each do |ga| %>
     <% next if ga[:guests].empty? %>
-    <div class="block clearfix">
-      <div class="column">
-        <p>Adults <%= ga[:guests].select{|g| g.partner_number == 1}.inject(0){|memo, sym| memo + sym[:adults] } %></p>
-        <p>Children <%= ga[:guests].select{|g| g.partner_number == 1}.inject(0){|memo, sym| memo + sym[:children] } %></p>
-      </div>
-      <div class="column">
-        <p>Adults <%= ga[:guests].select{|g| g.partner_number == 2}.inject(0){|memo, sym| memo + sym[:adults] } %></p>
-        <p>Children <%= ga[:guests].select{|g| g.partner_number == 2}.inject(0){|memo, sym| memo + sym[:children] } %></p>
-      </div>
+    <div class="block clearfix <%= ga[:state] %>" id="<%= ga[:state] %>">
       <div class="column">
         <% ga[:guests].select{|g| g.partner_number == 1}.each do |guest| %>
           <div class="guest">
             <%= state_icon guest.state %>
             <h3><%= link_to guest.name, wedding_guest_path(@wedding, guest) %></h3>
-            <span>Adults: <%= guest.adults %> |</span>
-            <span>Children: <%= guest.children %> |</span>
-            <span>Comments: <%= guest.comments_count %></span>
+            <div class="details">
+              <span>Adults: <%= guest.adults %> |</span>
+              <span>Children: <%= guest.children %> |</span>
+              <span>Comments: <%= guest.comments_count %></span>
+            </div>
           </div>
         <% end %>
       </div>
@@ -31,9 +24,11 @@
           <div class="guest">
             <%= state_icon guest.state %>
             <h3><%= link_to guest.name, wedding_guest_path(@wedding, guest) %></h3>
-            <span>Adults: <%= guest.adults %> |</span>
-            <span>Children: <%= guest.children %> |</span>
-            <span>Comments: <%= guest.comments_count %></span>
+            <div class="details">
+              <span>Adults: <%= guest.adults %> |</span>
+              <span>Children: <%= guest.children %> |</span>
+              <span>Comments: <%= guest.comments_count %></span>
+            </div>
           </div>
         <% end %>
       </div>

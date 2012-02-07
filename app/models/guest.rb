@@ -7,7 +7,7 @@ class Guest < ActiveRecord::Base
     { verb: :reject, noun: :rejected },
     { verb: :accept, noun: :accepted },
     { verb: :decline, noun: :declined },
-    { verb: :viewed, noun: :viewed },
+    { verb: :sent, noun: :sent },
     { verb: :tentative, noun: :tentative },
     { verb: :review, noun: :review}
   ]

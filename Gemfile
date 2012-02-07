@@ -12,8 +12,7 @@ gem 'acts_as_list',          '~> 0.1.4'
 
 group :assets do
   gem 'jquery-rails',         '~> 1.0.19'
-  gem 'less-rails',           '~> 2.1.1'
-  gem 'less-rails-bootstrap', '~> 1.4.1'
+  gem 'less-rails-bootstrap', '~> 2.0.4'
 
   gem 'coffee-rails',         '~> 3.1.1'
   gem 'uglifier',             '>= 1.0.3'
