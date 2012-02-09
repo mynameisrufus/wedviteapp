@@ -21,9 +21,6 @@ class Users::WeddingsController < Users::BaseController
     @wedding = current_user.weddings.find(params[:id])
     @guests  = @wedding.guests.order("name ASC, position DESC")
     
-    @total_approved_adults   = @wedding.guests.approved.sum(:adults)
-    @total_approved_children = @wedding.guests.approved.sum(:children)
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @wedding }

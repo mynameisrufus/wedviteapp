@@ -1,6 +1,6 @@
 class Users::GuestsController < Users::BaseController
   before_filter :find_wedding
-  before_filter :find_guest, only: %w(approve reject tentative accept decline)
+  before_filter :find_guest, only: %w(approve reject tentative accept decline move)
 
   def approve
     change_state :approve
@@ -30,6 +30,17 @@ class Users::GuestsController < Users::BaseController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @guests }
+    end
+  end
+
+  # POST /guests/1/move
+  # POST /guests/1/move.json
+  def move
+    @guest.move params[:index]
+
+    respond_to do |format|
+      format.html { render nothing: true }
+      format.json { head :ok }
     end
   end
 

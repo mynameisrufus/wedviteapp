@@ -29,6 +29,7 @@ WeddingInvitor::Application.routes.draw do
           post 'tentative'
           post 'accept'
           post 'decline'
+          post 'move'
           resources :comments
         end
       end

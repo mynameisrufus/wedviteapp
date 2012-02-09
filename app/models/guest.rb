@@ -41,8 +41,21 @@ class Guest < ActiveRecord::Base
   }
 
   before_validation on: :create do
-    self.state = 'review'
-    self.token = ::FriendlyToken.make
+    self.state    = 'review'
+    self.token    = ::FriendlyToken.make
+  end
+
+  after_validation if: Proc.new { state_changed? || partner_number_changed? || new_record? } do
+    guest = last_for_partner_and_state
+    self.position = guest.nil? ? 0 : (guest.position + 1)
+  end
+
+  def last_for_partner_and_state
+    self.class.where(state: state)
+              .where(wedding_id: wedding_id)
+              .where(partner_number: partner_number)
+              .order("position DESC")
+              .first
   end
 
   def total_guests
@@ -51,5 +64,26 @@ class Guest < ActiveRecord::Base
 
   def update_state(state)
     update_attributes state: state
+  end
+
+  def siblings
+    self.class.where(state: state)
+        .where(wedding_id: wedding_id)
+        .where(partner_number: partner_number)
+        .where("id != ?", id)
+        .order("position ASC")
+  end
+
+  def move(new_position)
+    higher_order_siblings = siblings.select do |sibling|
+      sibling.position.to_i >= new_position.to_i
+    end
+  
+    Guest.transaction do
+      higher_order_siblings.each_with_index do |sibling, index|
+        sibling.update_attribute :position, (new_position.to_i + index + 1)
+      end
+      update_attribute :position, new_position.to_i
+    end
   end
 end

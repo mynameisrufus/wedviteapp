@@ -6,7 +6,22 @@ window.weddings = ->
       $modal.find('.modal-body').html(data)
       $modal.modal('show')
 
+  $( ".guests .column" ).each (index, col) ->
+    $(col).sortable
+      placeholder: "guest-placeholder"
+      axis: 'y'
+      update: (event, ui) ->
+        $.ajax
+          type: 'POST'
+          dataType: 'json'
+          data:
+            index: ui.item.index()
+          url: "#{window.location.pathname}/guests/#{ui.item.data('id')}/move"
+
+  $( ".guests .column" ).disableSelection()
+
   $quickie = $('.quickie')
+  $quickie.find("*[rel=tooltip]").tooltip delay: { show: 500, hide: 100 }
 
   $quickie.find('i[rel=popover]').popover placement: 'left'
 

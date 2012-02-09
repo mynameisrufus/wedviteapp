@@ -35,7 +35,11 @@ module ApplicationHelper
     state_hash.sort do |x, y|
       x[:order] <=> y[:order]
     end.map do |sh|
-      guests = @guests.select{|g| g.state == sh[:state]}
+      guests = @guests.select do |g|
+        g.state == sh[:state]
+      end.sort do |x, y|
+        x[:position].to_i <=> y[:position].to_i
+      end
       sh.merge guests: guests,
                 stats: stats(guests)
     end
@@ -60,14 +64,46 @@ module ApplicationHelper
     }
   end
 
+  def total_guests
+    guest_array.select do |g|
+      %w(accepted sent approved).include?(g[:state])
+    end.inject(0) do |memo, sym|
+      memo + sym[:stats][:total]
+    end
+  end
+
+  def total_possible_guests
+    guest_array.select do |g|
+      %w(tentative accepted sent approved).include?(g[:state])
+    end.inject(0) do |memo, sym|
+      memo + sym[:stats][:total]
+    end
+  end
+
   def state_hash
     [
       {
         state: "review",
         label: "?",
-        title: "Suggested",
+        title: "For review",
         css:   "silver",
         color: "#57A957",
+        order: 1
+      },
+      {
+        state: "accepted",
+        label: "R",
+        title: "RSVP",
+        css:   "gold",
+        color: "silver",
+        order: 2
+      },
+      {
+        state: "sent",
+        label: "&#64;",
+        title: "Invitation sent",
+        css:   "black",
+        color: "#000000",
         order: 3
       },
       {
@@ -79,28 +115,12 @@ module ApplicationHelper
         order: 4
       },
       {
-        state: "rejected",
-        label: "&#215;",
-        title: "Rejected",
-        css:   "red",
-        color: "#C43C35",
-        order: 5
-      },
-      {
         state: "tentative",
         label: "&#8776;",
         title: "Tentative",
         css:   "aqua",
         color: "#339BB9",
-        order: 6
-      },
-      {
-        state: "accepted",
-        label: "R",
-        title: "RSVP",
-        css:   "gold",
-        color: "silver",
-        order: 1
+        order: 5
       },
       {
         state: "declined",
@@ -108,15 +128,15 @@ module ApplicationHelper
         title: "Invitation declined",
         css:   "black",
         color: "#000000",
-        order: 2
+        order: 6
       },
       {
-        state: "sent",
-        label: "&#64;",
-        title: "Invitation sent",
-        css:   "black",
-        color: "#000000",
-        order: 2
+        state: "rejected",
+        label: "&#215;",
+        title: "Rejected",
+        css:   "red",
+        color: "#C43C35",
+        order: 7
       },
       {
         state: "default",

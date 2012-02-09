@@ -52,11 +52,23 @@ section {
   }
   &.wedding {
     &.show {
+      .nav {
+        padding: 10px;
+        color: white;
+        background-color: black;
+        .border-radius;
+        a {
+          color: white;
+          &:hover {
+            color: black;
+          }
+        }
+      }
       .guests {
         .header {
           h2 {
             padding: 10px;
-            width: 298px;
+            width: 288px;
           }
         }
         .column {
@@ -69,9 +81,42 @@ section {
         }
         .guest {
           padding: 9px 12px 9px;
-          .details {
-            font-size: 1em;
+          .state, .details {
+            display: inline-block;
           }
+          .details {
+            width: 230px;
+            span {
+              color: gray;
+            }
+          }
+          .actions {
+            display: none;
+            cursor: move;
+            i {
+              display: block;
+            }
+          }
+          &:hover {
+            .actions {
+              display: inline-block;
+            }
+            .details {
+              span {
+                color: black;
+              }
+            }
+          }
+          &.ui-sortable-helper {
+            background-image: image-url("bg-parchment.png");
+            border: 1px dashed gray;
+            .border-radius;
+          }    
+        }      
+        .guest-placeholder {
+          height: 45px;
+          padding: 9px 0px;
+          width: 100%;
         }
       }
     }
@@ -163,12 +208,16 @@ form {
     position: fixed;
     list-style: none;
     margin: 5px 0px;
+    padding: 5px;
+    background-color: black;
+    .border-radius;
     li {
       background-color: gray;
       color: white;
       margin: 5px 0px;
-      .border-top-right-radius;
-      .border-bottom-right-radius;
+      .border-radius;
+      //.border-top-right-radius;
+      //.border-bottom-right-radius;
       padding: 10px;
       text-align: center;
       a {

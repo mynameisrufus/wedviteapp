@@ -1,8 +1,8 @@
 <div class="quickie">
   <ul>
     <%= content_tag :li, {} do %>
-      <%= link_to new_wedding_guest_path(@wedding) do %>
-        <i class="icon-plus icon-white"></i>
+      <%= link_to new_wedding_guest_path(@wedding), id: "add-guest" do %>
+        <i class="icon-plus-sign icon-white" rel="tooltip" title="add new guest"></i>
       <% end %>
     <% end %>
     <% guest_array.each do |ga| %>
@@ -40,7 +40,9 @@
     <%= content_tag :li, {} do %>
       <%= content_tag :i, nil, {
         class: ["icon-chevron-up", "icon-white", "goto"],
-        "data-id" => "top"
+        "data-id" => "top",
+        "rel" => "tooltip",
+        "title" => "back to top"
       } %>
     <% end %>
   </ul>

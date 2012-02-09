@@ -26,7 +26,7 @@ class Users::CollaboratorsController < Users::BaseController
   # GET /collaborators/new
   # GET /collaborators/new.json
   def new
-    @invitor = Invitor::Collaborator.new role: 'read'
+    @invitor = CollaboratorInvitor.new role: 'read'
 
     respond_to do |format|
       format.html # new.html.erb
@@ -42,7 +42,7 @@ class Users::CollaboratorsController < Users::BaseController
   # POST /collaborators
   # POST /collaborators.json
   def create
-    @invitor = Invitor::Collaborator.new email: params[:email], wedding: @wedding, requestor: current_user, role: params[:role]
+    @invitor = CollaboratorInvitor.new email: params[:email], wedding: @wedding, requestor: current_user, role: params[:role]
 
     message = Proc.new {
       @invitor.invite_sent? ? "An invitation to collaborate has been sent to #{@invitor.email}" : "#{@invitor.user.name} is now collaborating on this wedding"

@@ -3,11 +3,11 @@
     <h1>Change <%= @collaborator.user.name %>'s role</h1>
   </div>
   <div class="row">
-    <div class="span4">
+    <div class="span3">
       <h3>Collaborators</h3>
       <p><strong>Note:</strong> It is recomended that only the Bride and Groom have the invite role as this means you can send the invites!<p>
     </div>
-    <div class="span12">
+    <div class="span9">
       <%= form_tag wedding_collaborator_path(@wedding, @collaborator) do %>
         <% if @collaborator.errors.any? %>
           <div id="error_explanation">

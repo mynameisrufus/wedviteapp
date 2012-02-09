@@ -1,9 +1,9 @@
 <div class="row">
-  <div class="span4">
+  <div class="span3">
     <h2>Wedding</h2>
     <p>Information about this action.</p>
   </div>
-  <div class="span12">
+  <div class="span9">
     <%= form_for @guest, url: @guest.new_record? ? wedding_guests_path(@wedding) : wedding_guest_path(@wedding, @guest) do |f| %>
       <% if @guest.errors.any? %>
         <div id="error_explanation">
