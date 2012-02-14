@@ -47,7 +47,7 @@ class Guest < ActiveRecord::Base
 
   after_validation if: Proc.new { state_changed? || partner_number_changed? || new_record? } do
     guest = last_for_partner_and_state
-    self.position = guest.nil? ? 0 : (guest.position + 1)
+    self.position = guest.nil? ? 0 : (guest.position.to_i + 1)
   end
 
   def last_for_partner_and_state
