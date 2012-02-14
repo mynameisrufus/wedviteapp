@@ -22,11 +22,15 @@
 
         <%= content_tag :i, nil, {
           class: ["icon-chevron-left", "icon-white", "goto"],
-          "data-id" => ga[:state]
+          "data-id" => ga[:state],
+          "title" => "jump to #{ga[:state]}",
+          "rel" => "tooltip"
         } %>
         <%= content_tag :i, nil, {
           class: ["icon-eye-open", "icon-white", "toggle"],
-          "data-id" => ga[:state]
+          "data-id" => ga[:state],
+          "title" => "show/hide",
+          "rel" => "tooltip"
         } %>
         <%= content_tag :i, nil, {
           class: ["icon-info-sign", "icon-white"],

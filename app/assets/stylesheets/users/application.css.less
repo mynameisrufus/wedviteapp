@@ -89,6 +89,7 @@ section {
           margin: 5px 0px;
         }
         .guest {
+          position: relative;
           padding: 9px 12px 9px;
           .state, .details {
             display: inline-block;
@@ -102,13 +103,16 @@ section {
           .actions {
             display: none;
             cursor: move;
+            position: absolute;
+            top: 20px;
+            right: 15px;
             i {
               display: block;
             }
           }
           &:hover {
             .actions {
-              display: inline-block;
+              display: block;
             }
             .details {
               span {

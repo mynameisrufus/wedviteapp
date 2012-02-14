@@ -21,7 +21,7 @@ window.weddings = ->
   $( ".guests .column" ).disableSelection()
 
   $quickie = $('.quickie')
-  $quickie.find("*[rel=tooltip]").tooltip delay: { show: 500, hide: 100 }
+  $quickie.find("*[rel=tooltip]").tooltip delay: { show: 1000, hide: 100 }
 
   $quickie.find('i[rel=popover]').popover placement: 'left'
 
