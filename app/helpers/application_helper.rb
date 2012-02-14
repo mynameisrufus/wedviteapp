@@ -69,7 +69,7 @@ module ApplicationHelper
       %w(accepted sent approved).include?(g[:state])
     end.inject(0) do |memo, sym|
       memo + sym[:stats][:total]
-    end
+    end + 2
   end
 
   def total_possible_guests
@@ -77,7 +77,7 @@ module ApplicationHelper
       %w(tentative accepted sent approved).include?(g[:state])
     end.inject(0) do |memo, sym|
       memo + sym[:stats][:total]
-    end
+    end + 2
   end
 
   def state_hash
