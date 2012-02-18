@@ -1,5 +1,5 @@
 class Users::Mailer < ActionMailer::Base
-  default from: "noreply@wedvite.net"
+  default from: "noreply@wedviteapp.com"
   
   def subdomain
     'plan'
@@ -11,10 +11,10 @@ class Users::Mailer < ActionMailer::Base
 
     @email     = options[:email]
     @token     = options[:token]
-    @url       = wedding_collaborate_url(@wedding, @token, host: 'wedvite.net', subdomain: subdomain)
+    @url       = wedding_collaborate_url(@wedding, @token, host: 'wedviteapp.com', subdomain: subdomain)
 
     mail to: @email,
-         from: "#{@requestor.name} <noreply@wedvite.net>",
+         from: "#{@requestor.name} <noreply@wedviteapp.com>",
          subject: "You are invited to collaborate on #{@wedding.name}"
   end
 
@@ -23,10 +23,10 @@ class Users::Mailer < ActionMailer::Base
     @wedding   = options[:wedding]
 
     @user      = options[:user]
-    @url       = wedding_url(@wedding, host: 'wedvite.net',  subdomain: subdomain)
+    @url       = wedding_url(@wedding, host: 'wedviteapp.com',  subdomain: subdomain)
 
     mail to: @user.email,
-         from: "#{@requestor.name} <noreply@wedvite.net>",
+         from: "#{@requestor.name} <noreply@wedviteapp.com>",
          subject: "You are now collaborating on #{@wedding.name}"
   end
 end
