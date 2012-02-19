@@ -4,7 +4,7 @@ gem 'rails', '3.1.2'
 
 gem 'pg'
 
-gem 'devise',                '~> 1.5.1'
+gem 'devise',                '~> 2.0.4'
 gem 'kaminari',              '~> 0.12.4'
 gem 'sorted',                '~> 0.4.0'
 gem 'rdiscount',             '~> 1.6.8'
