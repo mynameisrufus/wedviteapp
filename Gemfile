@@ -1,12 +1,13 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.2'
+gem 'rails', '3.2.1'
 
 gem 'pg'
 
 gem 'devise',                '~> 2.0.4'
-gem 'kaminari',              '~> 0.12.4'
-gem 'sorted',                '~> 0.4.0'
+# TODO: update gem versions for the following:
+# gem 'kaminari',              '~> 0.12.4'
+# gem 'sorted',                '~> 0.4.0'
 gem 'rdiscount',             '~> 1.6.8'
 gem 'acts_as_list',          '~> 0.1.4'
 
@@ -14,12 +15,11 @@ group :assets do
   gem 'jquery-rails',         '~> 1.0.19'
   gem 'less-rails-bootstrap', '~> 2.0.4'
 
-  gem 'coffee-rails',         '~> 3.1.1'
+  gem 'coffee-rails',         '~> 3.2.2'
   gem 'uglifier',             '>= 1.0.3'
 end
 
 group :development, :test do
-  gem 'rspec'
   gem 'rspec-rails',          '~> 2.7.0'
   gem 'machinist',            '2.0.0.beta2'
   gem 'ffaker'
@@ -31,7 +31,6 @@ group :development, :test do
 end
 
 group :development do
-  gem 'guard'
   gem 'guard-rspec'
   gem 'guard-livereload'
   gem 'rb-inotify', require: false
