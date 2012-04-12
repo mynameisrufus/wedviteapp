@@ -266,6 +266,13 @@ form {
 
 .navbar {
   height: 72px;
+  &.navbar-fixed-top {
+    position: relative;
+    margin-bottom: 10px;
+  }
+  .navbar-inner {
+    .border-radius(0);
+  }
   .brand {
     font-family: 'EdwardianScriptITCRegular', sans-serif;
     font-size: 4em;
