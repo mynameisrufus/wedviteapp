@@ -1,3 +1,11 @@
+module TextFilter
+  def flourished_date input
+    "Saturday the Seventh of April Two Thousand and Twelve"
+  end
+end
+
+Liquid::Template.register_filter TextFilter
+
 class Invitations::StationaryController < Invitations::BaseController
   layout false
 
@@ -52,16 +60,16 @@ class Invitations::StationaryController < Invitations::BaseController
   def show
     @guest = Guest.find_by_token params[:token]
 
-    data = { guest: GuestDrop.new(@guest), wedding: WeddingDrop.new(@guest.wedding) }
+    data = HashWithIndifferentAccess.new guest: GuestDrop.new(@guest), wedding: WeddingDrop.new(@guest.wedding)
 
-    template = @guest.wedding.stationary
+    template = @guest.wedding.stationary.html
     content  = @guest.wedding.wording
 
     parsed_content = RDiscount.new(content).to_html
 
     liquid = Liquid::Template.parse(parsed_content).render data
 
-    #lq = Liquid::Template.parse(template).render data.merge('content' => liquid)
-    render inline: liquid
+    lq = Liquid::Template.parse(template).render data.merge('content' => liquid)
+    render inline: lq
   end
 end
