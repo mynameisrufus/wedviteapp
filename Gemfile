@@ -5,11 +5,12 @@ gem 'rails', '3.2.3'
 gem 'pg'
 
 gem 'devise',                '~> 2.0.4'
-# TODO: update gem versions for the following:
-# gem 'kaminari',              '~> 0.12.4'
-# gem 'sorted',                '~> 0.4.0'
-gem 'rdiscount',             '~> 1.6.8'
+gem 'kaminari',              '~> 0.13.0'
+gem 'sorted',                '~> 0.4.2'
 gem 'acts_as_list',          '~> 0.1.4'
+gem 'rdiscount',             '~> 1.6.8'
+gem 'liquid',                '~> 2.3.0'
+gem 'rails_admin', :path => '../rails_admin'
 
 group :assets do
   gem 'jquery-rails',         '~> 1.0.19'

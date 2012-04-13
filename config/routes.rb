@@ -1,5 +1,12 @@
 WeddingInvitor::Application.routes.draw do
 
+  constraints subdomain: 'admin' do
+    devise_for :admins
+
+    root to: 'rails_admin/main#dashboard'
+    mount RailsAdmin::Engine => '/manage', :as => 'rails_admin'
+  end
+
   constraints subdomain: 'plan' do
     devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations" }
 
@@ -23,7 +30,6 @@ WeddingInvitor::Application.routes.draw do
         end
         resources :collaborators, except: %w(show)
         resources :guests do
-          get 'preview'
           post 'approve'
           post 'reject'
           post 'tentative'
@@ -37,24 +43,6 @@ WeddingInvitor::Application.routes.draw do
     end
   end
 
-  constraints subdomain: 'admin' do
-    devise_for :admins
-  
-    root to: 'admins/dashboard#home'
-    scope module: 'admins' do
-      resources :weddings
-      resources :agencies do
-        resources :agency_designers
-      end
-      resources :designers do
-        get :sign_in_as, on: :member
-      end
-      resources :users do
-        get :sign_in_as, on: :member
-      end
-    end 
-  end
-
   constraints subdomain: 'design' do
     devise_for :designers
 
@@ -66,8 +54,13 @@ WeddingInvitor::Application.routes.draw do
     end
   end
 
+  constraints subdomain: 'invitations' do
+    scope module: 'invitations' do
+      match ':token' => 'stationary#show', as: :invitation
+    end
+  end
+
   # http://wedding-invite.com/i/AD8L91/george-and-mildred
-  match 'i/:uuid' => 'invites#show'
   scope module: 'site' do
     root to: 'pages#home'
   end

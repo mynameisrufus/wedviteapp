@@ -5,7 +5,7 @@ class Designer < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name
 
   def name
     "#{first_name} #{last_name}" unless first_name.nil? && last_name.nil?

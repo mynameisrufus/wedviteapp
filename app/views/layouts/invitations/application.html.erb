@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WedVite</title>
+    <%= stylesheet_link_tag    "invitations/application" %>
+    <%= javascript_include_tag "invitations/application" %>
+    <!--[if lt IE 9]>
+      <%= javascript_include_tag "//html5shiv.googlecode.com/svn/trunk/html5.js" %>
+      <%= stylesheet_link_tag "invitations/ltIE9" %>
+    <![endif]-->
+    <%= yield :head %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
+</html>
