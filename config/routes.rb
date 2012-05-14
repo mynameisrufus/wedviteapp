@@ -12,13 +12,14 @@ WeddingInvitor::Application.routes.draw do
 
     root to: 'users/dashboard#home'
     scope module: 'users' do
-      resources :stationary, only: %w(index) do
-        post 'use'
-      end
       resources :weddings do
         get 'collaborators/collaborate/:token', action: :collaborate, controller: :collaborators, as: :collaborate
         %w(wording ceremony_only_wording save_the_date_wording ceremony_what ceremony_how reception_what reception_how).each do |markup_action|
           get markup_action
+        end
+        resources :stationary, only: %w(index) do
+          get 'purchase'
+          get 'choose'
         end
         resource :locations, only: [] do
           get 'ceremony'

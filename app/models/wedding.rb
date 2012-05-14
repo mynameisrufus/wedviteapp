@@ -54,14 +54,14 @@ class Wedding < ActiveRecord::Base
         :wording, :ceremony_only_wording, :save_the_date_wording,
         :ceremony_how, :ceremony_what, :reception_how, :reception_what,
         :ceremony_where, :reception_where,
-        :guests
+        :guests, :stationary
       ]
     else
       [
         :wording, :save_the_date_wording,
         :ceremony_how, :ceremony_what,
         :ceremony_where,
-        :guests
+        :guests, :stationary
       ]
     end
   end
