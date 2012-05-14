@@ -58,6 +58,10 @@ WeddingInvitor::Application.routes.draw do
   constraints subdomain: 'invitations' do
     scope module: 'invitations' do
       match ':token' => 'stationary#show', as: :invitation
+      match ':token/message' => 'weddings#message', as: :message, method: :post
+      match ':token/accept'  => 'weddings#accept', as: :accept
+      match ':token/decline' => 'weddings#decline', as: :decline
+      match ':token/details' => 'weddings#details', as: :details
     end
   end
 

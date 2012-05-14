@@ -16,6 +16,7 @@
               <span>Adults: <%= guest.adults %> |</span>
               <span>Children: <%= guest.children %> |</span>
               <span>Comments: <%= guest.comments_count %> |</span>
+              <span>Messages: <%= guest.messages_count %> |</span>
               <span><%= link_to "Prev", invitation_url(guest.token, subdomain: "invitations"), target: "_blank" %></span>
             </div>
             <div class="actions">

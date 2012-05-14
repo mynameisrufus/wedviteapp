@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120106234949) do
+ActiveRecord::Schema.define(:version => 20120514030758) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -96,7 +96,6 @@ ActiveRecord::Schema.define(:version => 20120106234949) do
 
   create_table "comments", :force => true do |t|
     t.text     "text"
-    t.string   "commenter"
     t.integer  "guest_id"
     t.integer  "user_id"
     t.datetime "created_at", :null => false
@@ -145,6 +144,7 @@ ActiveRecord::Schema.define(:version => 20120106234949) do
     t.string   "token",                                 :null => false
     t.datetime "created_at",                            :null => false
     t.datetime "updated_at",                            :null => false
+    t.integer  "messages_count",      :default => 0
   end
 
   add_index "guests", ["token"], :name => "index_guests_on_token", :unique => true
@@ -166,6 +166,15 @@ ActiveRecord::Schema.define(:version => 20120106234949) do
     t.datetime "created_at",                                                 :null => false
     t.datetime "updated_at",                                                 :null => false
   end
+
+  create_table "messages", :force => true do |t|
+    t.text     "text"
+    t.integer  "guest_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "messages", ["guest_id"], :name => "index_messages_on_guest_id"
 
   create_table "stationaries", :force => true do |t|
     t.string   "name"

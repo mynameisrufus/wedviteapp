@@ -10,11 +10,7 @@
       <% guest.comments.each do |comment| %>
         <tr>
           <td>
-            <% if comment.user.nil? %>
-              <%= guest.who %>
-            <% else %>
-              <%= comment.user.name %>
-            <% end %>
+            <%= comment.user.name %>
           </td>
           <td>
             <%= comment.text %>
