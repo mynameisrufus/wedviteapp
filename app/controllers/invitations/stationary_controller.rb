@@ -58,18 +58,22 @@ class Invitations::StationaryController < Invitations::BaseController
   end
 
   def show
-    @guest = Guest.find_by_token params[:token]
+    @guest = Guest.find_by_token params[:token];
 
-    data = HashWithIndifferentAccess.new guest: GuestDrop.new(@guest), wedding: WeddingDrop.new(@guest.wedding)
+    if @guest.accepted? || @guest.declined?
+      redirect_to details_path
+    else
+      data = HashWithIndifferentAccess.new guest: GuestDrop.new(@guest), wedding: WeddingDrop.new(@guest.wedding)
 
-    template = @guest.wedding.stationary.html
-    content  = @guest.wedding.wording
+      template = @guest.wedding.stationary.html
+      content  = @guest.wedding.wording
 
-    parsed_content = RDiscount.new(content).to_html
+      parsed_content = RDiscount.new(content).to_html
 
-    liquid = Liquid::Template.parse(parsed_content).render data
+      liquid = Liquid::Template.parse(parsed_content).render data
 
-    lq = Liquid::Template.parse(template).render data.merge('content' => liquid)
-    render inline: lq
+      lq = Liquid::Template.parse(template).render data.merge('content' => liquid)
+      render inline: lq
+    end
   end
 end
