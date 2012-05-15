@@ -8,4 +8,6 @@ describe Guest do
   pending "only allow guest to change between accepted and declined states"
 
   pending "only allow params on page to be updated"
+
+  pending "only allow update of status etc before the wedding respond by date"
 end
