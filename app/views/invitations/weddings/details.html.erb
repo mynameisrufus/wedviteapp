@@ -1,53 +1,66 @@
-<ul class="nav nav-tabs" id="myTab">
-  <li class="dropdown active">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown">When / Where<b class="caret"></b></a>
-    <ul class="dropdown-menu">
-      <li><a href="#when" data-toggle="tab">When</a></li>
-      <li><a href="#where" data-toggle="tab">Where</a></li>
-    </ul>
-  </li>
-  <li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown">How / What<b class="caret"></b></a>
-    <ul class="dropdown-menu">
-      <li><a href="#how" data-toggle="tab">How</a></li>
-      <li><a href="#what" data-toggle="tab">What</a></li>
-    </ul>
-  </li>
-  <li><a href="#settings"data-toggle="tab">Settings</a></li>
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#home"data-toggle="tab">Details</a></li>
+  <li><a href="#readme" data-toggle="tab">Readme</a></li>
+  <li><a href="#settings" data-toggle="tab">You</a></li>
 </ul>
  
 <div class="tab-content">
-  <div class="tab-pane active" id="when">
-    <p>Ceremony: <%= @wedding.ceremony_when %></p>
-    <p>Reception: <%= @wedding.reception_when %></p>
-    <p>ical: <%= link_to "download", ical_path %></p>
-  </div>
-  <div class="tab-pane" id="where">
+
+  <div class="tab-pane active" id="home">
+    <p><%= link_to ical_path do %><i class="icon-calendar"></i> Add wedding to your calendar<% end %></p>
+    <div class="page-header">
+      <h1>Ceremony</h1>
+    </div>
+    <p>To be held at <%= @wedding.ceremony_where.name %>, <%= @wedding.ceremony_where.formatted_address %> at <%= @wedding.ceremony_when.strftime "%H:%M %P, %A the #{@wedding.ceremony_when.day.ordinalize} of %B %G" %></p>
+
     <p style="text-align: right;"><%= link_to "http://maps.google.com/maps?q=#{@wedding.ceremony_where.name}, #{@wedding.ceremony_where.formatted_address}", target: "blank"  do %>
       open this map <i class="icon-share-alt"></i>
       <% end %></p>
     <div class="map-wrapper">
-      <div id="map_canvas" style="width: 100%; height: 100%"></div>
+      <div id="ceremony_where" style="width: 100%; height: 100%"></div>
     </div>
-    <p><%= @wedding.ceremony_where.name %></p>
-    <p><%= @wedding.ceremony_where.formatted_address %></p>
-    <p><%= @wedding.ceremony_where.international_phone_number %></p>
-    <p><%= link_to "Website", @wedding.ceremony_where.website, target: "blank" %></p>
-    </div>
-  </div>
-  <div class="tab-pane" id="how">
+    <p><i class="icon-share-alt"></i> Venue phone <%= link_to  @wedding.ceremony_where.international_phone_number, "tel:#{@wedding.ceremony_where.international_phone_number}" %></p>
+    <p><%= link_to @wedding.ceremony_where.website, target: "blank" do %><i class="icon-share-alt"></i> Venue website<% end %></p>
+    <% unless @wedding.ceremony_how.nil? %>
+      <div class="how">
+        <%= raw RDiscount.new(@wedding.ceremony_how).to_html %>
+      </div>
+    <% end %>
 
+    <% if @wedding.has_reception? && @guest.attending_reception? %>
+      <div class="page-header">
+        <h1>Reception</h1>
+      </div>
+      <p>To be held at <%= @wedding.reception_where.name %>, <%= @wedding.reception_where.formatted_address %> at <%= @wedding.reception_when.strftime "%H:%M %P, %A the #{@wedding.reception_when.day.ordinalize} of %B %G" %></p>
+      <p style="text-align: right;"><%= link_to "http://maps.google.com/maps?q=#{@wedding.reception_where.name}, #{@wedding.reception_where.formatted_address}", target: "blank"  do %>
+        open this map <i class="icon-share-alt"></i>
+        <% end %></p>
+      <div class="map-wrapper">
+        <div id="reception_where" style="width: 100%; height: 100%"></div>
+      </div>
+      <p><i class="icon-share-alt"></i> Venue phone <%= link_to  @wedding.reception_where.international_phone_number, "tel:#{@wedding.reception_where.international_phone_number}" %></p>
+      <p><%= link_to @wedding.reception_where.website, target: "blank" do %><i class="icon-share-alt"></i> Venue website<% end %></p>
+      <% unless @wedding.reception_how.nil? %>
+        <div class="how">
+          <%= raw RDiscount.new(@wedding.reception_how).to_html %>
+        </div>
+      <% end %>
+    <% end %>
   </div>
-  <div class="tab-pane" id="what">
 
+  <div class="tab-pane" id="readme">
+    <%= raw RDiscount.new(@wedding.ceremony_what).to_html %>
+    <%= raw RDiscount.new(@wedding.reception_what).to_html %>
   </div>
+
+  <div class="tab-pane" id="settings">
+    ...
+  </div>
+
 </div>
 
 <script type="text/javascript">
-  var lat = "<%= @wedding.ceremony_where.lat %>"
-  var lng = "<%= @wedding.ceremony_where.lng %>"
-
-  function initialize() {
+  function makeMap(lat, lng, id) {
     var myOptions = {
       center: new google.maps.LatLng(lat, lng),
       zoom: 8,
@@ -56,7 +69,7 @@
       disableDefaultUI: true,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    var map = new google.maps.Map(document.getElementById("map_canvas"),
+    var map = new google.maps.Map(document.getElementById(id),
         myOptions);
 
     var centerPoint  = new google.maps.LatLng(lat, lng)
@@ -80,7 +93,11 @@
     marker.setIcon(defaultImage)
   }
 
-$('a[href="#where"]').on('shown', function (e) {
-  initialize()
-})
+  makeMap(<%= @wedding.ceremony_where.lat %>, <%= @wedding.ceremony_where.lng %>, "ceremony_where")
+  makeMap(<%= @wedding.reception_where.lat %>, <%= @wedding.reception_where.lng %>, "reception_where")
+
+initialize()
+
+// $('a[href="#details"]').on('shown', function (e) {
+// })
 </script>
