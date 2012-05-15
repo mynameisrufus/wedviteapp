@@ -50,11 +50,13 @@
 
   <div class="tab-pane" id="readme">
     <%= raw RDiscount.new(@wedding.ceremony_what).to_html %>
-    <%= raw RDiscount.new(@wedding.reception_what).to_html %>
+    <% if @wedding.has_reception? && @guest.attending_reception? %>
+      <%= raw RDiscount.new(@wedding.reception_what).to_html %>
+    <% end %>
   </div>
 
   <div class="tab-pane" id="settings">
-    ...
+    <%= render partial: 'settings' %>
   </div>
 
 </div>
@@ -93,11 +95,13 @@
     marker.setIcon(defaultImage)
   }
 
+function maps() {
   makeMap(<%= @wedding.ceremony_where.lat %>, <%= @wedding.ceremony_where.lng %>, "ceremony_where")
   makeMap(<%= @wedding.reception_where.lat %>, <%= @wedding.reception_where.lng %>, "reception_where")
+}
+maps()
 
-initialize()
-
-// $('a[href="#details"]').on('shown', function (e) {
-// })
+$('a[href="#home"]').on('shown', function (e) {
+maps()
+})
 </script>

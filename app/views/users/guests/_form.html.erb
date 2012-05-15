@@ -83,13 +83,27 @@
 
         <% if @wedding.has_reception? %>
           <div class="clearfix">
+            <%= f.label :invited_to_reception %>
+            <div class="input">
+              <ul class="inputs-list">
+                <li>
+                  <label>
+                    <%= f.check_box :invited_to_reception %>
+                    <span>If the quest is not invited to the reception, they will not get the details in their invite.</span>
+                  </label>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="clearfix">
             <%= f.label :attending_reception %>
             <div class="input">
               <ul class="inputs-list">
                 <li>
                   <label>
                     <%= f.check_box :attending_reception %>
-                    <span>If the quest is not going to the reception, they will not get the details in their invite.</span>
+                    <span>The guest can change this if they have been invited to the reception.</span>
                   </label>
                 </li>
               </ul>

@@ -1,25 +1,6 @@
 class Invitations::WeddingsController < Invitations::BaseController
   before_filter :find_guest
 
-  def accept
-    @guest.update_state :accepted
-  end
-
-  def decline
-    @guest.update_state :declined
-  end
-
-  def message
-    @guest.messages.create! text: params[:message] if
-      params[:message].present?
-
-    redirect_to details_path
-  end
-
-  def details
-
-  end
-
   def ical
     calendar = RiCal.Calendar do |cal|
       cal.event &ceremony_event
@@ -35,11 +16,6 @@ class Invitations::WeddingsController < Invitations::BaseController
   end
 
   protected
-
-  def find_guest
-    @guest   = Guest.find_by_token params[:token]
-    @wedding = @guest.wedding
-  end
 
   def ceremony_event
     proc do |event|

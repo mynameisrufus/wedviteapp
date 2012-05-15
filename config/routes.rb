@@ -57,16 +57,18 @@ WeddingInvitor::Application.routes.draw do
 
   constraints subdomain: 'invitations' do
     scope module: 'invitations' do
-      match ':token' => 'stationary#show', as: :invitation
-      match ':token/message' => 'weddings#message', as: :message, method: :post
-      match ':token/accept'  => 'weddings#accept', as: :accept
-      match ':token/decline' => 'weddings#decline', as: :decline
-      match ':token/details' => 'weddings#details', as: :details
-      match ':token/ical' => 'weddings#ical', as: :ical
+      match ':token'         => 'stationary#show', as: :invitation
+
+      match ':token/message' => 'guests#message', as: :guest_message, method: :post
+      match ':token/update'  => 'guests#update', as: :guest, method: :post
+      match ':token/accept'  => 'guests#accept', as: :accept_invitation
+      match ':token/decline' => 'guests#decline', as: :decline_invitation
+
+      match ':token/details' => 'weddings#details', as: :wedding_details
+      match ':token/ical'    => 'weddings#ical', as: :ical
     end
   end
 
-  # http://wedding-invite.com/i/AD8L91/george-and-mildred
   scope module: 'site' do
     root to: 'pages#home'
   end
