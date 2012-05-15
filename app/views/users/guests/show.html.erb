@@ -4,4 +4,5 @@
   <%= link_to 'Edit guest', edit_wedding_guest_path(@wedding, @guest), class: 'btn' %>
   <%= link_to 'Comment', new_wedding_guest_comment_path(@wedding, @guest), class: 'btn' %>
   <%= render partial: 'comments', locals: { guest: @guest } %>
+  <%= render partial: 'messages', locals: { guest: @guest } %>
 </section>

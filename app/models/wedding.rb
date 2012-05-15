@@ -1,10 +1,10 @@
 class Wedding < ActiveRecord::Base
-  has_one :stationary, counter_cache: :popularity
   has_many :guests, dependent: :destroy
-  belongs_to :ceremony_where, class_name: 'Location', foreign_key: 'ceremony_location_id', dependent: :destroy
-  belongs_to :reception_where, class_name: 'Location', foreign_key: 'reception_location_id', dependent: :destroy
   has_many :collaborators, dependent: :destroy
   has_many :users, through: :collaborators
+  belongs_to :stationary, counter_cache: :popularity
+  belongs_to :ceremony_where, class_name: 'Location', foreign_key: 'ceremony_location_id', dependent: :destroy
+  belongs_to :reception_where, class_name: 'Location', foreign_key: 'reception_location_id', dependent: :destroy
 
   validates :partner_one_name, presence: true
   validates :partner_two_name, presence: true
@@ -54,15 +54,20 @@ class Wedding < ActiveRecord::Base
         :wording, :ceremony_only_wording, :save_the_date_wording,
         :ceremony_how, :ceremony_what, :reception_how, :reception_what,
         :ceremony_where, :reception_where,
-        :guests
+        :guests, :stationary
       ]
     else
       [
         :wording, :save_the_date_wording,
         :ceremony_how, :ceremony_what,
         :ceremony_where,
-        :guests
+        :guests, :stationary
       ]
     end
+  end
+
+  # Julie and Rob's wedding
+  def title
+    "#{self.partner_one_name} and #{self.partner_two_name}'s Wedding"
   end
 end

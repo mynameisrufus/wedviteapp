@@ -2,6 +2,7 @@ class Stationary < ActiveRecord::Base
   has_many :weddings
   has_many :stationary_images
   has_many :stationary_assets
+  belongs_to :agency
 
   validates_presence_of :style, :name
   validates_uniqueness_of :name

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WedVite</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <%= stylesheet_link_tag    "invitations/application" %>
+    <%= javascript_include_tag "invitations/application" %>
+    <%= javascript_include_tag 'http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places' %>
+    <!--[if lt IE 9]>
+      <%= javascript_include_tag "//html5shiv.googlecode.com/svn/trunk/html5.js" %>
+      <%= stylesheet_link_tag "invitations/ltIE9" %>
+    <![endif]-->
+    <%= yield :head %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
+</html>

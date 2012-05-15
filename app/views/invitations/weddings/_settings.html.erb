@@ -1,0 +1,86 @@
+<div class="page-header">
+  <h1>Update your details</h1>
+</div>
+
+<%= form_for @guest, url: guest_path, html: { class: 'form-horizontal' } do |f| %>
+  <fieldset>
+
+    <div class="control-group">
+      <%= f.label :state, "You have", class: "control-label" %>
+      <div class="controls">
+        <label class="radio">
+          <%= f.radio_button :state, 'accepted' %>
+          RSVPd
+        </label>
+        <label class="radio">
+          <%= f.radio_button :state, 'declined' %>
+          Declined
+        </label>
+      </div>
+    </div>
+
+    <% if @guest.invited_to_reception? %>
+      <div class="control-group">
+        <%= f.label :attending_reception, "Reception", class: "control-label" %>
+        <div class="controls">
+          <label class="checkbox">
+            <input type="checkbox" name="optionsCheckboxList1" value="option1">
+            <%= f.check_box :attending_reception %>
+            Will you be joining us for the reception?
+          </label>
+          <p class="help-block"><strong>Note:</strong> Please leave us a message below if you change your mind.</p>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="control-group">
+      <%= f.label :address, class: "control-label" %>
+      <div class="controls">
+        <%= f.text_field :address, class: 'input-xlarge' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :phone, class: "control-label" %>
+      <div class="controls">
+        <%= f.phone_field :phone, class: 'input-xlarge' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :adults, class: "control-label" %>
+      <div class="controls">
+        <%= f.text_field :adults, class: 'input-xlarge', type: :number %>
+      </div>
+    </div>
+
+    <% if @guest.children != 0 %>
+      <div class="control-group">
+        <%= f.label :children, class: "control-label" %>
+        <div class="controls">
+          <%= f.text_field :children, class: 'input-xlarge', type: :number %>
+        </div>
+      </div>
+    <% end %>
+    <div class="form-actions">
+      <button type="submit" class="btn">Update</button>
+    </div>
+  </fieldset>
+<% end %>
+
+<div class="page-header">
+  <h1>Leave us a message</h1>
+</div>
+
+<%= form_tag guest_message_path, class: 'form-horizontal' do %>
+  <fieldset>
+    <div class="control-group">
+      <div class="controls">
+        <%= text_area_tag 'message', nil, class: 'input-xlarge', rows: 3 %>
+      </div>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn">Message</button>
+    </div>
+  </fieldset>
+<% end %>

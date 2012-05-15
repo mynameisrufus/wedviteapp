@@ -87,3 +87,7 @@ end
 Location.blueprint do
 
 end
+
+Message.blueprint do
+  # Attributes here
+end

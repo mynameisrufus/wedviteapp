@@ -1,0 +1,17 @@
+<% unless guest.messages.empty? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Comment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% guest.messages.each do |message| %>
+        <tr>
+          <td>
+            <%= message.text %>
+          </td>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

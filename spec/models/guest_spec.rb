@@ -29,4 +29,8 @@ describe Guest do
     guest_three.reload.position.should be 1
     guest_two.reload.position.should be 2
   end
+
+  pending "invited_to_reception should always be true when attending_reception is false"
+
+  pending "attending_reception should always be false when invited_to_reception is false"
 end

@@ -1,17 +1,25 @@
 WeddingInvitor::Application.routes.draw do
 
+  constraints subdomain: 'admin' do
+    devise_for :admins
+
+    root to: 'rails_admin/main#dashboard'
+    mount RailsAdmin::Engine => '/manage', :as => 'rails_admin'
+  end
+
   constraints subdomain: 'plan' do
     devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations" }
 
     root to: 'users/dashboard#home'
     scope module: 'users' do
-      resources :stationary, only: %w(index) do
-        post 'use'
-      end
       resources :weddings do
         get 'collaborators/collaborate/:token', action: :collaborate, controller: :collaborators, as: :collaborate
         %w(wording ceremony_only_wording save_the_date_wording ceremony_what ceremony_how reception_what reception_how).each do |markup_action|
           get markup_action
+        end
+        resources :stationary, only: %w(index) do
+          get 'purchase'
+          get 'choose'
         end
         resource :locations, only: [] do
           get 'ceremony'
@@ -23,7 +31,6 @@ WeddingInvitor::Application.routes.draw do
         end
         resources :collaborators, except: %w(show)
         resources :guests do
-          get 'preview'
           post 'approve'
           post 'reject'
           post 'tentative'
@@ -37,24 +44,6 @@ WeddingInvitor::Application.routes.draw do
     end
   end
 
-  constraints subdomain: 'admin' do
-    devise_for :admins
-  
-    root to: 'admins/dashboard#home'
-    scope module: 'admins' do
-      resources :weddings
-      resources :agencies do
-        resources :agency_designers
-      end
-      resources :designers do
-        get :sign_in_as, on: :member
-      end
-      resources :users do
-        get :sign_in_as, on: :member
-      end
-    end 
-  end
-
   constraints subdomain: 'design' do
     devise_for :designers
 
@@ -66,8 +55,20 @@ WeddingInvitor::Application.routes.draw do
     end
   end
 
-  # http://wedding-invite.com/i/AD8L91/george-and-mildred
-  match 'i/:uuid' => 'invites#show'
+  constraints subdomain: 'invitations' do
+    scope module: 'invitations' do
+      match ':token'         => 'stationary#show', as: :invitation
+
+      match ':token/message' => 'guests#message', as: :guest_message, method: :post
+      match ':token/update'  => 'guests#update', as: :guest, method: :post
+      match ':token/accept'  => 'guests#accept', as: :accept_invitation
+      match ':token/decline' => 'guests#decline', as: :decline_invitation
+
+      match ':token/details' => 'weddings#details', as: :wedding_details
+      match ':token/ical'    => 'weddings#ical', as: :ical
+    end
+  end
+
   scope module: 'site' do
     root to: 'pages#home'
   end
