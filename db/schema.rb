@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120514030758) do
+ActiveRecord::Schema.define(:version => 20120515022131) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -264,6 +264,8 @@ ActiveRecord::Schema.define(:version => 20120514030758) do
     t.integer  "reception_location_id"
     t.datetime "created_at",                              :null => false
     t.datetime "updated_at",                              :null => false
+    t.datetime "ceremony_when_end"
+    t.datetime "reception_when_end"
   end
 
   add_index "weddings", ["stationary_id"], :name => "index_weddings_on_stationary_id"

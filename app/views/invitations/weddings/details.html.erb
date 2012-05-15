@@ -20,6 +20,7 @@
   <div class="tab-pane active" id="when">
     <p>Ceremony: <%= @wedding.ceremony_when %></p>
     <p>Reception: <%= @wedding.reception_when %></p>
+    <p>ical: <%= link_to "download", ical_path %></p>
   </div>
   <div class="tab-pane" id="where">
     <p style="text-align: right;"><%= link_to "http://maps.google.com/maps?q=#{@wedding.ceremony_where.name}, #{@wedding.ceremony_where.formatted_address}", target: "blank"  do %>

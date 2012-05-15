@@ -1,4 +1,6 @@
 module TextFilter
+  # see
+  # http://api.rubyonrails.org/classes/ActiveSupport/Inflector.html#method-i-ordinalize
   def flourished_date input
     "Saturday the Seventh of April Two Thousand and Twelve"
   end

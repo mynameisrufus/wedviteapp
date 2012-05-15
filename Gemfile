@@ -10,6 +10,7 @@ gem 'sorted',                '~> 0.4.2'
 gem 'acts_as_list',          '~> 0.1.4'
 gem 'rdiscount',             '~> 1.6.8'
 gem 'liquid',                '~> 2.3.0'
+gem 'ri_cal',                '~> 0.8.8'
 gem 'rails_admin', :path => '../rails_admin'
 
 group :assets do

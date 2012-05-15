@@ -181,6 +181,7 @@ GEM
     remotipart (1.0.2)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    ri_cal (0.8.8)
     rspec (2.7.0)
       rspec-core (~> 2.7.0)
       rspec-expectations (~> 2.7.0)
@@ -260,6 +261,7 @@ DEPENDENCIES
   rb-fsevent
   rb-inotify
   rdiscount (~> 1.6.8)
+  ri_cal (~> 0.8.8)
   rspec-rails (~> 2.7.0)
   sorted (~> 0.4.2)
   steak (~> 2.0.0)

@@ -65,4 +65,9 @@ class Wedding < ActiveRecord::Base
       ]
     end
   end
+
+  # Julie and Rob's wedding
+  def title
+    "#{self.partner_one_name} and #{self.partner_two_name}'s Wedding"
+  end
 end

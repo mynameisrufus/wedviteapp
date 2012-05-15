@@ -62,6 +62,7 @@ WeddingInvitor::Application.routes.draw do
       match ':token/accept'  => 'weddings#accept', as: :accept
       match ':token/decline' => 'weddings#decline', as: :decline
       match ':token/details' => 'weddings#details', as: :details
+      match ':token/ical' => 'weddings#ical', as: :ical
     end
   end
 
