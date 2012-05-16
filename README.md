@@ -5,8 +5,14 @@
 Create, manage a guest list and then invite by electronic means. __stick
 to it__
 
-# Nuke data on heroku
+# Heroku
 
-heroku pg:reset SHARED_DATABASE
-heroku run rake db:setup
-heroku restart
+### Nuke
+
+    heroku pg:reset SHARED_DATABASE
+    heroku run rake db:setup
+    heroku restart
+
+### Migrations
+
+    heroku run rake db:migrate
