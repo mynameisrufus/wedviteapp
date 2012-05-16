@@ -3,6 +3,8 @@ WeddingInvitor::Application.routes.draw do
   constraints subdomain: 'admin' do
     devise_for :admins
 
+    match 'robots.txt' => 'application#robots'
+
     root to: 'rails_admin/main#dashboard'
     mount RailsAdmin::Engine => '/manage', :as => 'rails_admin'
   end
@@ -12,6 +14,8 @@ WeddingInvitor::Application.routes.draw do
 
     root to: 'users/dashboard#home'
     scope module: 'users' do
+      match 'robots.txt' => 'base#robots'
+
       resources :weddings do
         get 'collaborators/collaborate/:token', action: :collaborate, controller: :collaborators, as: :collaborate
         %w(wording ceremony_only_wording save_the_date_wording ceremony_what ceremony_how reception_what reception_how).each do |markup_action|
@@ -47,6 +51,8 @@ WeddingInvitor::Application.routes.draw do
   constraints subdomain: 'design' do
     devise_for :designers
 
+    match 'robots.txt' => 'base#robots'
+
     root to: 'designers/dashboard#home'
     scope module: 'designers' do
       resources :stationary do
@@ -57,6 +63,8 @@ WeddingInvitor::Application.routes.draw do
 
   constraints subdomain: 'invitations' do
     scope module: 'invitations' do
+      match 'robots.txt' => 'base#robots'
+
       match ':token'         => 'stationary#show', as: :invitation
 
       match ':token/message' => 'guests#message', as: :guest_message, method: :post
@@ -70,6 +78,7 @@ WeddingInvitor::Application.routes.draw do
   end
 
   scope module: 'site' do
+    match 'robots.txt' => 'base#robots'
     root to: 'pages#home'
   end
 end
