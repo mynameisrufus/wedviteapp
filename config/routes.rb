@@ -44,6 +44,9 @@ WeddingInvitor::Application.routes.draw do
           resources :comments
         end
       end
+      match 'feedback/new' => 'feedback#new', method: :get
+      match 'feedback' => 'feedback#create', method: :post
+
       match 'help/:page' => 'help#page', as: :help_page
     end
   end

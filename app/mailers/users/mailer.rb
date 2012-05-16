@@ -29,4 +29,13 @@ class Users::Mailer < ActionMailer::Base
          from: "#{@requestor.name} <noreply@wedviteapp.com>",
          subject: "You are now collaborating on #{@wedding.name}"
   end
+
+  def feedback(options)
+    @user = options[:user]
+    @text = options[:text]
+
+    mail to: 'rufuspost@gmail.com',
+         from: "#{@user.email} <noreply@wedviteapp.com>",
+         subject: 'Wedvite feedback'
+  end
 end
