@@ -20,6 +20,10 @@ class Invitations::StationaryController < Invitations::BaseController
       @wedding.name
     end
 
+    def title
+      @wedding.title
+    end
+
     def ceremony_when
       Time.now
     end

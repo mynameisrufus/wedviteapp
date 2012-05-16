@@ -1,8 +1,48 @@
 <div class="guests">
   <div class="header clearfix">
-    <h2 class="column"><%= @wedding.partner_one_name %></h2>
-    <h2 class="column"><%= @wedding.partner_two_name %></h2>
+    <div class="column">
+      <div class="guest bride-groom">
+        <div class="details">
+          <%= state_icon 'accepted' %>
+          <h3><%= @wedding.partner_one_name %></h3>
+          <span><%= link_to "Change name", "#" %></span>
+        </div>
+        <%= form_for @wedding, html: { style: 'display: none;' } do |f| %>
+          <div class="controls">
+            <div class="input-append">
+              <%= f.text_field :partner_one_name, style: 'margin: 0px;' %><button class="btn" type="submit">Save</button>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="column">
+      <div class="guest bride-groom">
+        <div class="details">
+          <%= state_icon 'accepted' %>
+          <h3><%= @wedding.partner_two_name %></h3>
+          <span><%= link_to "Change name", "#" %></span>
+        </div>
+        <%= form_for @wedding, html: { style: 'display: none;' } do |f| %>
+          <div class="controls">
+            <div class="input-append">
+              <%= f.text_field :partner_two_name, style: 'margin: 0px;' %><button class="btn" type="submit">Save</button>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
+  <script>
+    $('.bride-groom').each(function(index, elem) {
+      var $edit = $(elem).find('a')
+      $edit.on('click', function(event) {
+        event.preventDefault()
+        $(elem).find('.details').hide()
+        $(elem).find('form').show()
+      })
+    })
+  </script>
   <% guest_array.each do |ga| %>
     <% next if ga[:guests].empty? %>
     <div class="block clearfix <%= ga[:state] %>" id="<%= ga[:state] %>">
