@@ -1,6 +1,7 @@
 #= require jquery
 #= require jquery-ui
 #= require jquery_ujs
+#= require ../lib/spin.js
 #= require twitter/bootstrap
 #= require users/locations_form
 #= require users/weddings_show

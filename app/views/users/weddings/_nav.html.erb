@@ -118,3 +118,10 @@ tasks = [
     </li>
   </ul>
 </div>
+
+<% if @wedding.stationary && @wedding.payment_made %>
+  <%= link_to wedding_confirm_path(@wedding), class: 'btn btn-success btn-large', style: 'width: 190px;' do %>
+    <i class="icon-envelope icon-white"></i>
+    Send invitations
+  <% end %>
+<% end %>

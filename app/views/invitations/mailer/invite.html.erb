@@ -1,0 +1,13 @@
+<p>Dear <%= @guest.name %>,</p>
+
+<p>We're getting married!</p>
+
+<p>We would be honoured if you would share our wedding day with us.</p>
+
+<p>Please find your invitation and all our wedding details in the following link:</p>
+
+<%= link_to @url, @url %>
+
+<p>We look forward to celebrating with you,</p>
+
+<p><%= @wedding.partner_one_name %> and <%= @wedding.partner_two_name %></p>

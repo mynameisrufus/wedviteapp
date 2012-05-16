@@ -72,7 +72,7 @@ class Invitations::StationaryController < Invitations::BaseController
       data = HashWithIndifferentAccess.new guest: GuestDrop.new(@guest), wedding: WeddingDrop.new(@guest.wedding)
 
       template = @guest.wedding.stationary.html
-      content  = @guest.wedding.wording
+      content  = @guest.wedding.wording || ''
 
       parsed_content = RDiscount.new(content).to_html
 

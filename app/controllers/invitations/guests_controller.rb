@@ -3,10 +3,12 @@ class Invitations::GuestsController < Invitations::BaseController
 
   def accept
     @guest.update_state :accepted
+    @guest.update_attribute(:replyed_on, Time.now)
   end
 
   def decline
     @guest.update_state :declined
+    @guest.update_attribute(:replyed_on, Time.now)
   end
 
   def message

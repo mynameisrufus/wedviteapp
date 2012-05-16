@@ -57,7 +57,9 @@
               <span>Children: <%= guest.children %> |</span>
               <span>Comments: <%= guest.comments_count %> |</span>
               <span>Messages: <%= guest.messages_count %> |</span>
-              <span><%= link_to "Prev", invitation_url(guest.token, subdomain: "invitations"), target: "_blank" %></span>
+              <% if @wedding.stationary %>
+                <span><%= link_to "Prev", invitation_url(guest.token, subdomain: "invitations"), target: "_blank" %></span>
+              <% end %>
             </div>
             <div class="actions">
               <i class="icon-arrow-up"></i>

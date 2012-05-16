@@ -4,6 +4,8 @@ class Users::WeddingsController < Users::BaseController
     ceremony_how ceremony_what reception_how reception_what
   )
 
+  before_filter :find_for_send, only: %w(confirm_send send_invites)
+
   # GET /weddings
   # GET /weddings.json
   def index
@@ -86,5 +88,24 @@ class Users::WeddingsController < Users::BaseController
       format.html { redirect_to weddings_url }
       format.json { head :ok }
     end
+  end
+
+  def confirm_send
+
+  end
+
+  def send_invites
+    @guests.each do |guest|
+      mail = Invitations::Mailer.invite user: current_user, guest: guest, wedding: @wedding
+      mail.deliver
+      guest.update_attribute(:invited_on, Time.now)
+    end
+  end
+
+  protected
+
+  def find_for_send
+    @wedding = current_user.weddings.find(params[:wedding_id])
+    @guests  = @wedding.guests.approved.where(invited_on: nil)
   end
 end
