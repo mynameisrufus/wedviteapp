@@ -16,3 +16,4 @@ to it__
 ### Migrations
 
     heroku run rake db:migrate
+    heroku restart

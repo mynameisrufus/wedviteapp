@@ -12,6 +12,6 @@ test:
 
 production:
   adapter: postgresql
-  database: wedding_invitor_production
+  database: wedding_invitor_development
   pool: 5
   timeout: 5000
