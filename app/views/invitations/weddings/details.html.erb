@@ -1,3 +1,5 @@
+<% markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
+        :autolink => true, :space_after_headers => true) %>
 <ul class="nav nav-tabs">
   <li class="active"><a href="#home"data-toggle="tab">Details</a></li>
   <li><a href="#readme" data-toggle="tab">Readme</a></li>
@@ -23,7 +25,7 @@
     <p><%= link_to @wedding.ceremony_where.website, target: "blank" do %><i class="icon-share-alt"></i> Venue website<% end %></p>
     <% unless @wedding.ceremony_how.nil? %>
       <div class="how">
-        <%= raw RDiscount.new(@wedding.ceremony_how).to_html %>
+        <%= raw markdown.render(@wedding.ceremony_how) %>
       </div>
     <% end %>
 
@@ -42,16 +44,16 @@
       <p><%= link_to @wedding.reception_where.website, target: "blank" do %><i class="icon-share-alt"></i> Venue website<% end %></p>
       <% unless @wedding.reception_how.nil? %>
         <div class="how">
-          <%= raw RDiscount.new(@wedding.reception_how).to_html %>
+          <%= raw markdown.render(@wedding.reception_how) %>
         </div>
       <% end %>
     <% end %>
   </div>
 
   <div class="tab-pane" id="readme">
-    <%= raw RDiscount.new(@wedding.ceremony_what).to_html %>
+    <%= raw markdown.render(@wedding.ceremony_what || '') %>
     <% if @wedding.has_reception? && @guest.attending_reception? %>
-      <%= raw RDiscount.new(@wedding.reception_what).to_html %>
+      <%= raw markdown.render(@wedding.reception_what || '') %>
     <% end %>
   </div>
 

@@ -64,6 +64,8 @@ class Invitations::StationaryController < Invitations::BaseController
   end
 
   def show
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
+        :autolink => true, :space_after_headers => true)
     @guest = Guest.find_by_token params[:token];
 
     if @guest.accepted? || @guest.declined?
@@ -74,7 +76,7 @@ class Invitations::StationaryController < Invitations::BaseController
       template = @guest.wedding.stationary.html
       content  = @guest.wedding.wording || ''
 
-      parsed_content = RDiscount.new(content).to_html
+      parsed_content = markdown.render(content)
 
       liquid = Liquid::Template.parse(parsed_content).render data
 
