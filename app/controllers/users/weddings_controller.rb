@@ -2,7 +2,7 @@ class Users::WeddingsController < Users::BaseController
   before_filter :find_wedding, only: %w(
     wording ceremony_only_wording save_the_date_wording
     ceremony_how ceremony_what reception_how reception_what
-    payment_success payment_failure
+    payment payment_success payment_failure
   )
 
   before_filter :find_for_send, only: %w(confirm_send send_invites)
@@ -27,8 +27,13 @@ class Users::WeddingsController < Users::BaseController
     @guests  = @wedding.guests.order("name ASC, position DESC")
     
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @wedding }
+      if !@wedding.payment_made? && @wedding.payment_due?
+        format.html { redirect_to wedding_payment_path(@wedding), alert: 'You must pay to keep using this feature.' }
+        format.json { render json: @wedding, status: :created, location: @wedding }
+      else
+        format.html # show.html.erb
+        format.json { render json: @wedding }
+      end
     end
   end
 

@@ -12,6 +12,8 @@ class Wedding < ActiveRecord::Base
   validates :name, presence: true
   validate :can_change_stationary
 
+  PRICE = 49.95
+
   before_validation on: :create do
     self.partner_one_name = 'Bride'
     self.partner_two_name = 'Groom'
@@ -70,5 +72,9 @@ class Wedding < ActiveRecord::Base
   # Julie and Rob's wedding
   def title
     "#{self.partner_one_name} and #{self.partner_two_name}'s Wedding"
+  end
+
+  def payment_due?
+    (self.created_at + 10.days).to_i <= Time.now.to_i
   end
 end
