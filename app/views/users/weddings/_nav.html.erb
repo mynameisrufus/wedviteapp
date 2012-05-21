@@ -111,14 +111,19 @@ tasks = [
   <% end %>
 </div>
 
-<% if @wedding.stationary && @wedding.payment_made %>
+<% if !@wedding.payment_made? %>
+  <%= link_to wedding_payment_path(@wedding), class: 'btn btn-warning btn-large', style: 'width: 190px;' do %>
+    <i class="icon-gift icon-white"></i>
+    Pay now
+  <% end %>
+<% elsif @wedding.stationary %>
   <%= link_to wedding_confirm_path(@wedding), class: 'btn btn-success btn-large', style: 'width: 190px;' do %>
     <i class="icon-envelope icon-white"></i>
     Send invitations
   <% end %>
 <% else %>
-  <%= link_to wedding_payment_path(@wedding), class: 'btn btn-warning btn-large', style: 'width: 190px;' do %>
-    <i class="icon-gift icon-white"></i>
-    Pay now
+  <%= link_to wedding_stationary_index_path(@wedding), class: 'btn btn-inverse btn-large', style: 'width: 190px;' do %>
+    <i class="icon-picture icon-white"></i>
+    Select stationary
   <% end %>
 <% end %>

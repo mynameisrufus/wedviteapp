@@ -22,7 +22,7 @@ class Users::StationaryController < Users::BaseController
     @current_stationary = @wedding.stationary
 
     respond_to do |format|
-      if @wedding.update_attributes(stationary_id: @stationary.id)
+      if @wedding.update_attributes!(stationary_id: @stationary.id)
         Stationary.decrement_counter(:popularity, @current_stationary.id) unless @current_stationary.nil?
         Stationary.increment_counter(:popularity, @stationary.id)
         format.html { redirect_to @wedding, notice: "#{@stationary.name} was selected for #{@wedding.name}." }

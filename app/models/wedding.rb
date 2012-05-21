@@ -10,18 +10,12 @@ class Wedding < ActiveRecord::Base
   validates :partner_one_name, presence: true
   validates :partner_two_name, presence: true
   validates :name, presence: true
-  validate :can_change_stationary
 
   PRICE = 49.95
 
   before_validation on: :create do
     self.partner_one_name = 'Bride'
     self.partner_two_name = 'Groom'
-  end
-
-  def can_change_stationary
-    errors.add :stationary_id, "You can no longer change your stationary as the invitations have been sent" if
-      stationary_id_changed? and payment_made?
   end
 
   class GuestStates
