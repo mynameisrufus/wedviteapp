@@ -91,3 +91,7 @@ end
 Message.blueprint do
   # Attributes here
 end
+
+Payment.blueprint do
+  # Attributes here
+end

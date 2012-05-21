@@ -18,8 +18,14 @@ WeddingInvitor::Application.routes.draw do
 
       resources :weddings do
         get 'collaborators/collaborate/:token', action: :collaborate, controller: :collaborators, as: :collaborate
+
         get 'confirm-send', action: :confirm_send, as: :confirm
         get 'send-invites', action: :send_invites, as: :send
+
+        get 'payment'
+        post 'payment-success', action: :payment_success, as: :payment_success
+        get 'payment-failure', action: :payment_failure, as: :payment_failure
+
         %w(wording ceremony_only_wording save_the_date_wording ceremony_what ceremony_how reception_what reception_how).each do |markup_action|
           get markup_action
         end

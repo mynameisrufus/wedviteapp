@@ -2,9 +2,12 @@ class Users::WeddingsController < Users::BaseController
   before_filter :find_wedding, only: %w(
     wording ceremony_only_wording save_the_date_wording
     ceremony_how ceremony_what reception_how reception_what
+    payment_success payment_failure
   )
 
   before_filter :find_for_send, only: %w(confirm_send send_invites)
+
+  skip_before_filter :verify_authenticity_token, only: %w(payment_success)
 
   # GET /weddings
   # GET /weddings.json
@@ -99,6 +102,34 @@ class Users::WeddingsController < Users::BaseController
       mail = Invitations::Mailer.invite user: current_user, guest: guest, wedding: @wedding
       mail.deliver
       guest.update_attribute(:invited_on, Time.now)
+    end
+  end
+
+  def payment_success
+    respond_to do |format|
+      if params[:payment_status] == "Completed"
+
+        @wedding.update_attributes payment_made: true, payment_date: Time.now
+
+        @transaction = @wedding.payments.create! gross: params[:mc_gross],
+                                                 transaction_fee: params[:mc_fee],
+                                                 currency: params[:mc_currency],
+                                                 transaction_id: params[:txn_id],
+                                                 user_id: current_user.id,
+                                                 gateway: "PayPal",
+                                                 gateway_response: params
+
+        format.html { redirect_to @wedding, notice: 'Payment made.' }
+      else
+        format.html { redirect_to @wedding, alert: 'Payment not made.' }
+      end
+    end
+  end
+
+  def payment_failure
+    respond_to do |format|
+      format.html { redirect_to @wedding, alert: 'Payment not made.' }
+      format.json { head :ok }
     end
   end
 

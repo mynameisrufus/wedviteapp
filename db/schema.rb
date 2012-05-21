@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120515065821) do
+ActiveRecord::Schema.define(:version => 20120521033513) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -176,6 +176,20 @@ ActiveRecord::Schema.define(:version => 20120515065821) do
   end
 
   add_index "messages", ["guest_id"], :name => "index_messages_on_guest_id"
+
+  create_table "payments", :force => true do |t|
+    t.float    "gross",            :default => 0.0, :null => false
+    t.float    "transaction_fee",  :default => 0.0, :null => false
+    t.string   "currency",                          :null => false
+    t.integer  "purchasable_id",                    :null => false
+    t.string   "purchasable_type",                  :null => false
+    t.integer  "user_id",                           :null => false
+    t.string   "transaction_id",                    :null => false
+    t.string   "gateway",                           :null => false
+    t.text     "gateway_response"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
 
   create_table "stationaries", :force => true do |t|
     t.string   "name"

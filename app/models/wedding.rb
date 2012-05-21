@@ -2,6 +2,7 @@ class Wedding < ActiveRecord::Base
   has_many :guests, dependent: :destroy
   has_many :collaborators, dependent: :destroy
   has_many :users, through: :collaborators
+  has_many :payments, as: :purchasable, dependent: :nullify
   belongs_to :stationary, counter_cache: :popularity
   belongs_to :ceremony_where, class_name: 'Location', foreign_key: 'ceremony_location_id', dependent: :destroy
   belongs_to :reception_where, class_name: 'Location', foreign_key: 'reception_location_id', dependent: :destroy

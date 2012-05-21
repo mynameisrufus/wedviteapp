@@ -1,0 +1,34 @@
+<%= form_tag PAYPAL[:url] do %>
+  <!-- Identify your business so that you can collect the payments.-->
+  <%= hidden_field_tag "business", PAYPAL[:business] %> 
+
+  <!-- Disable shipping address -->
+  <%= hidden_field_tag "no_shipping", 1 %> 
+
+  <!-- No notes to seller -->
+  <%= hidden_field_tag "no_note", 0 %> 
+
+  <!-- Specify a Buy Now button. --> 
+  <input type="hidden" name="cmd" value="_xclick"> 
+
+  <!-- Specify details about the item that buyers will purchase. --> 
+  <input type="hidden" name="item_name" value="Wedvite Wedding Payment"> 
+  <input type="hidden" name="currency_code" value="USD">
+
+  <!-- Ammount -->
+  <input type="hidden" name="amount" value="49.95">
+
+  <!-- TODO image
+  <input type="hidden" name="image_url" value="http://">
+  -->
+
+  <!-- return fields. --> 
+  <%= hidden_field_tag "return", wedding_payment_success_url(@wedding) %>
+  <%= hidden_field_tag "cancel_return", wedding_payment_failure_url(@wedding) %>
+  <%= hidden_field_tag "rm", 2 %>
+  <%= hidden_field_tag "cbt", "Return to Wedvite" %>
+
+  <!-- Display the payment button. --> 
+  <input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynow_LG.gif" border="0" name="submit" alt="PayPal — The safer, easier way to pay online.">
+  <img alt="" border="0" src="https://www.paypalobjects.com/en_AU/i/scr/pixel.gif" width="1" height="1">
+<% end %>

@@ -124,4 +124,9 @@ tasks = [
     <i class="icon-envelope icon-white"></i>
     Send invitations
   <% end %>
+<% else %>
+  <%= link_to wedding_payment_path(@wedding), class: 'btn btn-warning btn-large', style: 'width: 190px;' do %>
+    <i class="icon-gift icon-white"></i>
+    Pay now
+  <% end %>
 <% end %>

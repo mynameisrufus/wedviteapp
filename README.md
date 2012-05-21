@@ -17,3 +17,9 @@ to it__
 
     heroku run rake db:migrate
     heroku restart
+
+# PayPal
+
+Payments are made using PayPal, see
+
+    config/initializers/pay_pal.rb

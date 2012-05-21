@@ -1,7 +1,8 @@
 class Stationary < ActiveRecord::Base
   has_many :weddings
-  has_many :stationary_images
-  has_many :stationary_assets
+  has_many :stationary_images, dependent: :destroy
+  has_many :stationary_assets, dependent: :destroy
+  has_many :payments, as: :purchasable, dependent: :nullify
   belongs_to :agency
 
   validates_presence_of :style, :name
