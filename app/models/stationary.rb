@@ -10,5 +10,11 @@ class Stationary < ActiveRecord::Base
   validates :price, numericality: { greater_than_or_equal_to: 29.95 }
   validates :commision, numericality: true
 
+  has_attached_file :preview,
+    storage: :s3,
+    s3_credentials: "#{Rails.root}/config/s3.yml",
+    path: "stationary/:id/preview/:hash.:extension",
+    hash_secret: "wedvitehash"
+
   scope :published, where(published: true)
 end

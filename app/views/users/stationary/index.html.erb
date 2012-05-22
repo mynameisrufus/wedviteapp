@@ -1,3 +1,14 @@
-<% @stationary.each do |stationary| %>
-  <p><%= stationary.name %> <%= link_to 'Purchase', wedding_stationary_payment_path(@wedding, stationary), class: 'btn btn-success' %></p>
-<% end %>
+<section class="wedding stationary">
+  <div class="page-header">
+    <h1>Select Your Stationary</h1>
+  </div>
+  <div class="row">
+    <div class="span12">
+      <% @stationary.each do |stationary| %>
+        <h2><%= stationary.name %></h2>
+        <%= image_tag stationary.preview.url %>
+        <p><%= link_to 'Choose', wedding_stationary_payment_success_path(@wedding, stationary), class: 'btn btn-success' %></p>
+      <% end %>
+    </div>
+  </div>
+</section>

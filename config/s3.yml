@@ -1,0 +1,14 @@
+development:
+  bucket: wedvite.development
+  access_key_id: AKIAIBSFKAL3RH3LUGWA
+  secret_access_key: 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
+
+test:
+  bucket: wedvite.development
+  access_key_id: AKIAIBSFKAL3RH3LUGWA
+  secret_access_key: 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
+
+production:
+  bucket: wedvite.production
+  access_key_id: AKIAIBSFKAL3RH3LUGWA
+  secret_access_key: 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

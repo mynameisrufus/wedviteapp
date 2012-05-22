@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120521033513) do
+ActiveRecord::Schema.define(:version => 20120522025625) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -196,16 +196,20 @@ ActiveRecord::Schema.define(:version => 20120521033513) do
     t.string   "style"
     t.text     "description"
     t.text     "html"
-    t.boolean  "desktop",     :default => true
-    t.boolean  "mobile",      :default => false
-    t.boolean  "print",       :default => false
-    t.boolean  "published",   :default => false
+    t.boolean  "desktop",              :default => true
+    t.boolean  "mobile",               :default => false
+    t.boolean  "print",                :default => false
+    t.boolean  "published",            :default => false
     t.integer  "popularity"
     t.float    "price"
     t.float    "commision"
     t.integer  "agency_id"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
+    t.string   "preview_file_name"
+    t.string   "preview_content_type"
+    t.integer  "preview_file_size"
+    t.datetime "preview_updated_at"
   end
 
   add_index "stationaries", ["agency_id"], :name => "index_stationaries_on_agency_id"

@@ -32,6 +32,11 @@ GEM
     addressable (2.2.7)
     arel (3.0.2)
     awesome_print (1.0.2)
+    aws-sdk (1.5.2)
+      httparty (~> 0.7)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
+      uuidtools (~> 2.1)
     bbenezech-nested_form (0.0.6)
     bcrypt-ruby (3.0.1)
     bootstrap-sass (2.0.3)
@@ -45,6 +50,7 @@ GEM
       xpath (~> 0.1.4)
     childprocess (0.3.1)
       ffi (~> 1.0.6)
+    cocaine (0.2.1)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -86,6 +92,9 @@ GEM
       rubyzip
     hike (1.2.1)
     hpricot (0.8.6)
+    httparty (0.8.3)
+      multi_json (~> 1.0)
+      multi_xml
     i18n (0.6.0)
     journey (1.0.3)
     jquery-rails (1.0.19)
@@ -121,9 +130,16 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.18)
     multi_json (1.2.0)
+    multi_xml (0.5.1)
     netrc (0.7.1)
     nokogiri (1.5.2)
     orm_adapter (0.0.7)
+    paperclip (3.0.4)
+      activemodel (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (>= 0.0.2)
+      mime-types
     pg (0.13.2)
     polyglot (0.3.3)
     rack (1.4.1)
@@ -226,6 +242,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    uuidtools (2.1.2)
     warden (1.1.1)
       rack (>= 1.0)
     xpath (0.1.4)
@@ -237,6 +254,7 @@ PLATFORMS
 DEPENDENCIES
   acts_as_list (~> 0.1.4)
   awesome_print
+  aws-sdk (~> 1.5)
   coffee-rails (~> 3.2.2)
   database_cleaner
   devise (~> 2.0.4)
@@ -250,6 +268,7 @@ DEPENDENCIES
   less-rails-bootstrap (~> 2.0.10)
   liquid (~> 2.3.0)
   machinist (= 2.0.0.beta2)
+  paperclip (~> 3.0)
   pg
   rails (= 3.2.3)
   rails_admin (~> 0.0.3)

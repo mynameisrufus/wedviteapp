@@ -13,6 +13,9 @@ gem 'liquid',                '~> 2.3.0'
 gem 'ri_cal',                '~> 0.8.8'
 gem 'rails_admin',           '~> 0.0.3'
 
+gem 'aws-sdk',               '~> 1.5'
+gem 'paperclip',             '~> 3.0'
+
 group :assets do
   gem 'jquery-rails',         '~> 1.0.19'
   gem 'less-rails-bootstrap', '~> 2.0.10'
