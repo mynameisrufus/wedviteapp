@@ -11,12 +11,16 @@ class Users::StationaryController < Users::BaseController
     end
   end
 
-  def purchase
+  def payment
     @wedding            = Wedding.find(params[:wedding_id])
     respond_with(@stationary = Stationary.find(params[:stationary_id]))
   end
 
-  def choose
+  def payment_failure
+
+  end
+
+  def payment_success
     @stationary         = Stationary.find(params[:stationary_id])
     @wedding            = Wedding.find(params[:wedding_id])
     @current_stationary = @wedding.stationary

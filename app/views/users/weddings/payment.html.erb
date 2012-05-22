@@ -7,8 +7,10 @@
       <p>To contine managing <%= @wedding.name %> please pay USD <%= Wedding::PRICE %> with PayPal.</p>
       <p><strong>What you get:</strong></p>
       <ul>
-        <li>Manage unlimited guests forever!</li>
+        <li>Manage unlimited guests</li>
+        <li>Take as long as you want - your usage never expires</li>
         <li>Send unlimited invitations</li>
+        <li>Unlimited collaborators</li>
         <li>Support answered within 24 hours</li>
       </ul>
       <p><strong>What you do not get:</strong></p>
@@ -17,40 +19,14 @@
       </ul>
     </div>
     <div class="span8">
-      <%= form_tag PAYPAL[:url] do %>
-        <!-- Identify your business so that you can collect the payments.-->
-        <%= hidden_field_tag "business", PAYPAL[:business] %> 
-
-        <!-- Disable shipping address -->
-        <%= hidden_field_tag "no_shipping", 1 %> 
-
-        <!-- No notes to seller -->
-        <%= hidden_field_tag "no_note", 0 %> 
-
-        <!-- Specify a Buy Now button. --> 
-        <input type="hidden" name="cmd" value="_xclick"> 
-
-        <!-- Specify details about the item that buyers will purchase. --> 
-        <input type="hidden" name="item_name" value="Wedvite Wedding Plan Payment"> 
-        <input type="hidden" name="currency_code" value="USD">
-
-        <!-- Ammount -->
-        <%= hidden_field_tag "amount", Wedding::PRICE %>
-
-        <!-- TODO image
-        <input type="hidden" name="image_url" value="http://">
-        -->
-
-        <!-- return fields. --> 
-        <%= hidden_field_tag "return", wedding_payment_success_url(@wedding) %>
-        <%= hidden_field_tag "cancel_return", wedding_payment_failure_url(@wedding) %>
-        <%= hidden_field_tag "rm", 2 %>
-        <%= hidden_field_tag "cbt", "Return to Wedvite" %>
-
-        <!-- Display the payment button. --> 
-        <button type="submit" class="btn btn-success btn-pay-now">Pay now with PayPal &trade;</button>
-        <img alt="" border="0" src="https://www.paypalobjects.com/en_AU/i/scr/pixel.gif" width="1" height="1">
-      <% end %>
+      <%= render partial: 'users/shared/paypal',
+        locals: {
+          description: "Wedvite Wedding Plan Payment",
+          amount: Wedding::PRICE,
+          return_url: wedding_payment_success_url(@wedding),
+          cancel_url: wedding_payment_failure_url(@wedding)
+        }
+      %>
     </div>
   </div>
 </section>

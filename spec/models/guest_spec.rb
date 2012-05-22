@@ -11,7 +11,7 @@ describe Guest do
     guest_two.position.should be > guest_one.position
   end
 
-  it "should return siblings" do
+  it "should return siblings of the guest with the same state and partner number" do
     guest_one   = Guest.make! wedding_id: @wedding.id, partner_number: 1
     guest_two   = Guest.make! wedding_id: @wedding.id, partner_number: 1
 

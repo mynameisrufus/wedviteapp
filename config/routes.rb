@@ -30,8 +30,9 @@ WeddingInvitor::Application.routes.draw do
           get markup_action
         end
         resources :stationary, only: %w(index) do
-          get 'purchase'
-          get 'choose'
+          get 'payment'
+          get 'payment-success', action: :payment_success, as: :payment_success
+          get 'payment-failure', action: :payment_failure, as: :payment_failure
         end
         resource :locations, only: [] do
           get 'ceremony'
