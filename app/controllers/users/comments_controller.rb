@@ -41,14 +41,18 @@ class Users::CommentsController < Users::BaseController
     @comment = @guest.comments.find(params[:id])
   end
 
-  # POST /comments
-  # POST /comments.json
   def create
     @comment = @guest.comments.new(params[:comment])
     @comment.user = current_user if user_signed_in?
 
     respond_to do |format|
       if @comment.save
+
+        @comment.evt.create! wedding: @wedding,
+                             state: 'new',
+                             headline: "#{current_user.name} commented on #{@guest.name}",
+                             quotation: @comment.text
+
         format.html { redirect_to @wedding, notice: 'Comment was successfully created.' }
         format.json { render json: @comment, status: :created, location: @comment }
       else

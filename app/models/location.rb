@@ -1,4 +1,6 @@
 class Location < ActiveRecord::Base
+  include Eventfull
+
   serialize :address_components
   serialize :types
 

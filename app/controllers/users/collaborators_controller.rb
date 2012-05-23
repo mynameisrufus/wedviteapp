@@ -50,6 +50,7 @@ class Users::CollaboratorsController < Users::BaseController
 
     respond_to do |format|
       if @invitor.save
+
         format.html { redirect_to wedding_collaborators_path(@wedding), notice: message.call }
         format.json { render json: @invitor, status: :created, location: @wedding }
       else
@@ -100,6 +101,9 @@ class Users::CollaboratorsController < Users::BaseController
         @collaborator = Collaborator.new wedding: @wedding, user: current_user, role: @collaboration_token.role
         if @collaborator.save
           @collaboration_token.update_attributes claimed_on: Time.now
+
+          @collaborator.evt.create! wedding: @wedding,
+                                    headline: "#{current_user.name} is now collaborating on this wedding"
         end
         format.html { redirect_to @wedding, notice: 'You are now collaborating on this wedding.' }
         format.json { head :ok }

@@ -68,19 +68,3 @@
   </fieldset>
 <% end %>
 
-<div class="page-header">
-  <h1>Leave us a message</h1>
-</div>
-
-<%= form_tag guest_message_path, class: 'form-horizontal' do %>
-  <fieldset>
-    <div class="control-group">
-      <div class="controls">
-        <%= text_area_tag 'message', nil, class: 'input-xlarge', rows: 3 %>
-      </div>
-    </div>
-    <div class="form-actions">
-      <button type="submit" class="btn">Message</button>
-    </div>
-  </fieldset>
-<% end %>

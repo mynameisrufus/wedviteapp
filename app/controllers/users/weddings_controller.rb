@@ -1,66 +1,52 @@
 class Users::WeddingsController < Users::BaseController
-  before_filter :find_wedding, only: %w(
-    wording ceremony_only_wording save_the_date_wording
-    ceremony_how ceremony_what reception_how reception_what
-    payment payment_success payment_failure
-  )
-
-  before_filter :find_for_send, only: %w(confirm_send send_invites)
+  before_filter :find_wedding, except: %w(new create)
 
   skip_before_filter :verify_authenticity_token, only: %w(payment_success)
 
-  # GET /weddings
-  # GET /weddings.json
-  def index
-    @weddings = Wedding.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @weddings }
-    end
+  def show
+    path = @wedding.invite_process_started? ? wedding_timeline_path(@wedding) : wedding_guestlist_path(@wedding)
+    redirect_to path
   end
 
-  # GET /weddings/1
-  # GET /weddings/1.json
-  def show
-    @wedding = current_user.weddings.find(params[:id])
-    @guests  = @wedding.guests.order("name ASC, position DESC")
-    
+  def timeline
+    @events = @wedding.events.order("created_at DESC").page(params[:page]).per(50)
+    respond_with @events
+  end
+
+  def guestlist
     respond_to do |format|
       if !@wedding.payment_made? && @wedding.payment_due?
         format.html { redirect_to wedding_payment_path(@wedding), alert: 'You must pay to keep using this feature.' }
         format.json { render json: @wedding, status: :created, location: @wedding }
       else
+        @guests  = @wedding.guests.order("name ASC, position DESC")
         format.html # show.html.erb
         format.json { render json: @wedding }
       end
     end
   end
 
-  # GET /weddings/new
-  # GET /weddings/new.json
   def new
     @wedding = Wedding.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @wedding }
-    end
+    respond_with @wedding
   end
 
-  # GET /weddings/1/edit
   def edit
     @wedding = current_user.weddings.find(params[:id])
+    respond_with @wedding
   end
 
-  # POST /weddings
-  # POST /weddings.json
   def create
     @wedding = Wedding.new(params[:wedding])
 
     respond_to do |format|
       if @wedding.save
+
         Collaborator.create! user: current_user, wedding: @wedding, role: 'invite'
+
+        @wedding.evt.create! wedding: @wedding,
+                             text: "#{current_user.name} created a new wedding called #{@wedding.name}"
+
         format.html { redirect_to @wedding, notice: 'Wedding created.' }
         format.json { render json: @wedding, status: :created, location: @wedding }
       else
@@ -99,10 +85,15 @@ class Users::WeddingsController < Users::BaseController
   end
 
   def confirm_send
+    @guests  = @wedding.guests.approved.where(invited_on: nil)
 
   end
 
   def send_invites
+    @guests  = @wedding.guests.approved.where(invited_on: nil)
+    unless @wedding.invite_process_started?
+      @wedding.update_attributes(invite_process_started: true, invite_process_started_at: Time.now)
+    end
     @guests.each do |guest|
       mail = Invitations::Mailer.invite user: current_user, guest: guest, wedding: @wedding
       mail.deliver
@@ -136,12 +127,5 @@ class Users::WeddingsController < Users::BaseController
       format.html { redirect_to @wedding, alert: 'Payment not made.' }
       format.json { head :ok }
     end
-  end
-
-  protected
-
-  def find_for_send
-    @wedding = current_user.weddings.find(params[:wedding_id])
-    @guests  = @wedding.guests.approved.where(invited_on: nil)
   end
 end

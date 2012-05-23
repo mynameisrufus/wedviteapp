@@ -4,24 +4,38 @@ class Invitations::GuestsController < Invitations::BaseController
   def accept
     @guest.update_state :accepted
     @guest.update_attribute(:replyed_on, Time.now)
+
+    @guest.evt.create! wedding: @guest.wedding,
+                       state: 'accepted',
+                       headline: "#{@guest.name} has RSVPd"
   end
 
   def decline
     @guest.update_state :declined
     @guest.update_attribute(:replyed_on, Time.now)
+
+    @guest.evt.create! wedding: @guest.wedding,
+                       state: 'declined',
+                       headline: "#{@guest.name} has declined your invitation"
   end
 
   def message
-    @guest.messages.create! text: params[:message] if
-      params[:message].present?
+    if params[:message].present?
+      @message = @guest.messages.create! text: params[:message]
 
-    redirect_to wedding_details_path
+      @message.evt.create! wedding: @guest.wedding,
+                           state: 'new',
+                           headline: @guest.name,
+                           quotation: @message.text
+    end
+
+    redirect_to wedding_details_path, notice: 'Message added'
   end
 
   def update
     respond_to do |format|
       if @guest.update_attributes guest_strict_params
-        format.html { redirect_to wedding_details_path, notice: 'Wedding was successfully updated.' }
+        format.html { redirect_to wedding_details_path, notice: 'Your details have been updated.' }
         format.json { head :ok }
       else
         format.html { render controller: "weddings", action: "details" }

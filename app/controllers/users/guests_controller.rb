@@ -78,6 +78,11 @@ class Users::GuestsController < Users::BaseController
 
     respond_to do |format|
       if @guest.save
+
+        @guest.evt.create! wedding: @wedding,
+                           state: 'new',
+                           headline: "#{current_user.name} added #{@guest.name} to the guest"
+
         format.html { redirect_to @wedding, notice: "#{@guest.name} #{@guest.total_guests > 1 ? "have" : "has"} been added to the list."  }
         format.json { render json: @guest, status: :created, location: @guest }
       else
@@ -128,7 +133,13 @@ class Users::GuestsController < Users::BaseController
   def change_state(state)
     respond_to do |format|
       if @guest.send state
-        format.html { redirect_to @wedding, notice: "#{@guest.name} #{@guest.total_guests > 1 ? "are" : "is"} now #{@guest.state}."  }
+
+
+        @guest.evt.create! wedding: @guest.wedding,
+                           state: @guest.state,
+                           headline: "#{current_user.name} changed #{@guest.name} to #{@guest.state}"
+
+        format.html { redirect_to @wedding, notice: "#{@guest.name} #{@guest.total_guests > 1 ? "are" : "is"} now #{@guest.state}." }
         format.json { head :ok }
       else
         format.html { redirect_to @wedding, notice: "Could not change the guests state." }
