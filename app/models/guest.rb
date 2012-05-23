@@ -1,5 +1,8 @@
 class Guest < ActiveRecord::Base
+  include Eventfull
+
   belongs_to :wedding
+
   has_many :comments, dependent: :destroy
   has_many :messages, dependent: :destroy
 

@@ -1,6 +1,11 @@
 class Invitations::WeddingsController < Invitations::BaseController
   before_filter :find_guest
 
+  def details
+    @guests = @wedding.guests.accepted.order(:name)
+    @events = @wedding.events.eventfull(:message).order("created_at DESC").page(params[:page]).per(50)
+  end
+
   def ical
     calendar = RiCal.Calendar do |cal|
       cal.event &ceremony_event

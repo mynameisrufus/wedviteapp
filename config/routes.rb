@@ -17,6 +17,10 @@ WeddingInvitor::Application.routes.draw do
       match 'robots.txt' => 'base#robots'
 
       resources :weddings do
+
+        get 'timeline', action: :timeline
+        get 'guestlist', action: :guestlist
+
         get 'collaborators/collaborate/:token', action: :collaborate, controller: :collaborators, as: :collaborate
 
         get 'confirm-send', action: :confirm_send, as: :confirm

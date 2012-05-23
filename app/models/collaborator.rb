@@ -1,4 +1,6 @@
 class Collaborator < ActiveRecord::Base
+  include Eventfull
+
   ROLES = %w(invite edit comment read)
 
   belongs_to :user

@@ -1,4 +1,7 @@
 class Wedding < ActiveRecord::Base
+  include Eventfull
+  has_many :events
+
   has_many :guests, dependent: :destroy
   has_many :collaborators, dependent: :destroy
   has_many :users, through: :collaborators

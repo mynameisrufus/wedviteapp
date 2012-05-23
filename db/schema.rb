@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120522025625) do
+ActiveRecord::Schema.define(:version => 20120523003248) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -125,6 +125,19 @@ ActiveRecord::Schema.define(:version => 20120522025625) do
 
   add_index "designers", ["email"], :name => "index_designers_on_email", :unique => true
   add_index "designers", ["reset_password_token"], :name => "index_designers_on_reset_password_token", :unique => true
+
+  create_table "events", :force => true do |t|
+    t.string   "headline",       :null => false
+    t.text     "quotation"
+    t.string   "state"
+    t.integer  "eventfull_id",   :null => false
+    t.string   "eventfull_type", :null => false
+    t.integer  "wedding_id",     :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "events", ["wedding_id"], :name => "index_events_on_wedding_id"
 
   create_table "guests", :force => true do |t|
     t.string   "state"
@@ -270,7 +283,7 @@ ActiveRecord::Schema.define(:version => 20120522025625) do
     t.datetime "ceremony_when"
     t.text     "ceremony_how"
     t.text     "ceremony_what"
-    t.boolean  "has_reception",         :default => true
+    t.boolean  "has_reception",             :default => true
     t.datetime "reception_when"
     t.text     "reception_how"
     t.text     "reception_what"
@@ -281,10 +294,12 @@ ActiveRecord::Schema.define(:version => 20120522025625) do
     t.integer  "stationary_id"
     t.integer  "ceremony_location_id"
     t.integer  "reception_location_id"
-    t.datetime "created_at",                              :null => false
-    t.datetime "updated_at",                              :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
     t.datetime "ceremony_when_end"
     t.datetime "reception_when_end"
+    t.datetime "invite_process_started_at"
+    t.boolean  "invite_process_started"
   end
 
   add_index "weddings", ["stationary_id"], :name => "index_weddings_on_stationary_id"

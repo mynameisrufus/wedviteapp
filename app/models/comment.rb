@@ -1,4 +1,6 @@
 class Comment < ActiveRecord::Base
+  include Eventfull
+
   belongs_to :guest, counter_cache: true
   belongs_to :user
 
