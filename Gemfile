@@ -25,7 +25,7 @@ group :assets do
 end
 
 group :development, :test do
-  gem 'rspec-rails',          '~> 2.7.0'
+  gem 'rspec-rails',          '~> 2.10'
   gem 'machinist',            '2.0.0.beta2'
   gem 'ffaker'
   gem 'database_cleaner'

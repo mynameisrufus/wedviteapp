@@ -81,9 +81,9 @@ class Users::GuestsController < Users::BaseController
 
         @guest.evt.create! wedding: @wedding,
                            state: 'new',
-                           headline: "#{current_user.name} added #{@guest.name} to the guest"
+                           headline: "#{current_user.name} added #{@guest.name} to the guest list"
 
-        format.html { redirect_to @wedding, notice: "#{@guest.name} #{@guest.total_guests > 1 ? "have" : "has"} been added to the list."  }
+        format.html { redirect_to wedding_guestlist_path(@wedding), notice: "#{@guest.name} #{@guest.total_guests > 1 ? "have" : "has"} been added to the list."  }
         format.json { render json: @guest, status: :created, location: @guest }
       else
         format.html { render action: "new" }
@@ -99,7 +99,7 @@ class Users::GuestsController < Users::BaseController
 
     respond_to do |format|
       if @guest.update_attributes(params[:guest])
-        format.html { redirect_to @wedding, notice: "#{@guest.name} #{@guest.total_guests > 1 ? "have" : "has"} been updated."  }
+        format.html { redirect_to wedding_guestlist_path(@wedding), notice: "#{@guest.name} #{@guest.total_guests > 1 ? "have" : "has"} been updated."  }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -139,7 +139,7 @@ class Users::GuestsController < Users::BaseController
                            state: @guest.state,
                            headline: "#{current_user.name} changed #{@guest.name} to #{@guest.state}"
 
-        format.html { redirect_to @wedding, notice: "#{@guest.name} #{@guest.total_guests > 1 ? "are" : "is"} now #{@guest.state}." }
+        format.html { redirect_to wedding_guestlist_path(@wedding), notice: "#{@guest.name} #{@guest.total_guests > 1 ? "are" : "is"} now #{@guest.state}." }
         format.json { head :ok }
       else
         format.html { redirect_to @wedding, notice: "Could not change the guests state." }

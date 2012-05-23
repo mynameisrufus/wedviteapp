@@ -53,7 +53,7 @@ class Users::CommentsController < Users::BaseController
                              headline: "#{current_user.name} commented on #{@guest.name}",
                              quotation: @comment.text
 
-        format.html { redirect_to @wedding, notice: 'Comment was successfully created.' }
+        format.html { redirect_to wedding_guestlist_path(@wedding), notice: 'Comment was successfully created.' }
         format.json { render json: @comment, status: :created, location: @comment }
       else
         format.html { render action: "new" }
@@ -69,7 +69,7 @@ class Users::CommentsController < Users::BaseController
 
     respond_to do |format|
       if @comment.update_attributes(params[:comment])
-        format.html { redirect_to @wedding, notice: 'Comment was successfully updated.' }
+        format.html { redirect_to wedding_guestlist_path(@wedding), notice: 'Comment was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

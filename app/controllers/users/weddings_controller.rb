@@ -4,8 +4,7 @@ class Users::WeddingsController < Users::BaseController
   skip_before_filter :verify_authenticity_token, only: %w(payment_success)
 
   def show
-    path = @wedding.invite_process_started? ? wedding_timeline_path(@wedding) : wedding_guestlist_path(@wedding)
-    redirect_to path
+
   end
 
   def timeline
@@ -45,7 +44,7 @@ class Users::WeddingsController < Users::BaseController
         Collaborator.create! user: current_user, wedding: @wedding, role: 'invite'
 
         @wedding.evt.create! wedding: @wedding,
-                             text: "#{current_user.name} created a new wedding called #{@wedding.name}"
+                             headline: "#{current_user.name} created a new wedding called #{@wedding.name}"
 
         format.html { redirect_to @wedding, notice: 'Wedding created.' }
         format.json { render json: @wedding, status: :created, location: @wedding }

@@ -4,6 +4,7 @@ class Wedding < ActiveRecord::Base
 
   has_many :guests, dependent: :destroy
   has_many :collaborators, dependent: :destroy
+  has_many :collaboration_tokens, dependent: :destroy
   has_many :users, through: :collaborators
   has_many :payments, as: :purchasable, dependent: :nullify
   belongs_to :stationary, counter_cache: :popularity
@@ -51,14 +52,16 @@ class Wedding < ActiveRecord::Base
   def completable_attributes
     if has_reception?
       [
-        :wording, :ceremony_only_wording, :save_the_date_wording,
+        :wording, :ceremony_only_wording,
+        :save_the_date_wording, :thank_you_wording,
         :ceremony_how, :ceremony_what, :reception_how, :reception_what,
         :ceremony_where, :reception_where,
         :guests, :stationary
       ]
     else
       [
-        :wording, :save_the_date_wording,
+        :wording,
+        :save_the_date_wording, :thank_you_wording,
         :ceremony_how, :ceremony_what,
         :ceremony_where,
         :guests, :stationary

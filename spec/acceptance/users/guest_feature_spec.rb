@@ -18,6 +18,7 @@ feature 'Guest feature', %q{
   scenario 'add a guest to wedding' do
     visit root_path
     click_link @wedding.name
+    click_link "Guest List"
     click_link "add-guest"
     fill_in 'Name', with: "Roger and Sally"
     fill_in 'Email', with: "roger@aol.com"
@@ -33,6 +34,7 @@ feature 'Guest feature', %q{
   scenario 'edit an existing guest' do
     visit root_path
     click_link @wedding.name
+    click_link "Guest List"
     click_link @guest.name
     click_link "Edit guest"
     fill_in 'Name', with: "Bob and Roger"
@@ -44,6 +46,7 @@ feature 'Guest feature', %q{
   scenario 'reject a guest' do
     visit root_path
     click_link @wedding.name
+    click_link "Guest List"
     click_link @guest.name
     click_button "Reject"
     page.should have_content("#{@guest.name} are now rejected.")
@@ -52,6 +55,7 @@ feature 'Guest feature', %q{
   scenario 'accept a guest' do
     visit root_path
     click_link @wedding.name
+    click_link "Guest List"
     click_link @guest.name
     click_button "Approve"
     page.should have_content("#{@guest.name} are now approved.")

@@ -1,0 +1,13 @@
+<%= render partial: 'subnav' %>
+<section class="wedding planner">
+  <h2>Details</h2>
+  <%= render partial: 'links_details' %>
+  <h2><% if @wedding.has_reception? %>Locations<% else %>Location<% end %></h2>
+  <%= render partial: 'links_locations' %>
+  <h2>Invitations</h2>
+  <%= render partial: 'links_invitations' %>
+  <!--
+  <h2>Extra</h2>
+  <%= render partial: 'links_extra' %>
+  -->
+</section>

@@ -53,12 +53,10 @@
             <%= state_icon guest.state %>
             <div class="details">
               <h3><%= link_to guest.name, wedding_guest_path(@wedding, guest) %></h3>
-              <span>Adults: <%= guest.adults %> |</span>
-              <span>Children: <%= guest.children %> |</span>
-              <span>Comments: <%= guest.comments_count %> |</span>
-              <span>Messages: <%= guest.messages_count %> |</span>
+              <span>Adults: <%= guest.adults %></span>
+              <span>Children: <%= guest.children %></span>
               <% if @wedding.stationary %>
-                <span><%= link_to "Prev", invitation_url(guest.token, subdomain: "invitations"), target: "_blank" %></span>
+                <span><%= link_to "preview", invitation_url(guest.token, subdomain: "invitations"), target: "_blank" %></span>
               <% end %>
             </div>
             <div class="actions">

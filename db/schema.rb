@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120523003248) do
+ActiveRecord::Schema.define(:version => 20120523031205) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -300,6 +300,7 @@ ActiveRecord::Schema.define(:version => 20120523003248) do
     t.datetime "reception_when_end"
     t.datetime "invite_process_started_at"
     t.boolean  "invite_process_started"
+    t.text     "thank_you_wording"
   end
 
   add_index "weddings", ["stationary_id"], :name => "index_weddings_on_stationary_id"

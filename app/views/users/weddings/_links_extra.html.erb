@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="span6">
+    <% unless @wedding.invite_process_started? %>
+      <h3>Save the date email</h3>
+      <p>Send out a save the date email to "approved" guests.</p>
+      <a href="<%= wedding_save_the_date_wording_path(@wedding) %>" class="btn btn-inverse"><i class="icon-envelope icon-white"></i> Create and send</a>
+    <% end %>
+  </div>
+  <div class="span6">
+    <% unless @wedding.ceremony_when.nil? || @wedding.ceremony_when <= Time.now %>
+      <h3>Thank you email</h3>
+      <p>Send out a thank you email to all who RSVPd</p>
+      <a href="<%= wedding_thank_you_wording_path(@wedding) %>" class="btn btn-inverse"><i class="icon-envelope icon-white"></i> Create and send</a>
+    <% end %>
+  </div>
+</div>

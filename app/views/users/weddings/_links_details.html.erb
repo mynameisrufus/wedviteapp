@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="span6">
+    <h3>Wedding options</h3>
+    <p>Change your wedding and reception dates, change your wedding name or select wether you have a reception or not.</p>
+  </div>
+  <div class="span6">
+    <h3>Collaborators</h3>
+    <p><% if @wedding.collaboration_tokens.count == 0 %>
+      Invite the bride, the groom or anyone else to collaborate with you on this wedding
+    <% else %>
+      Add more collaborators or manage existing ones.
+    <% end %></p>
+  </div>
+</div>
+<div class="row">
+  <div class="span6">
+    <a href="<%= edit_wedding_path(@wedding) %>" class="btn btn-success"><i class="icon-ok icon-white"></i> Change</a>
+  </div>
+  <div class="span6">
+    <% if @wedding.collaboration_tokens.count == 0 %>
+      <a href="<%= wedding_collaborators_path(@wedding) %>" class="btn btn-inverse"><i class="icon-plus icon-white"></i> Invite a collaborator</a>
+    <% else %>
+      <a href="<%= wedding_collaborators_path(@wedding) %>" class="btn btn-success"><i class="icon-ok icon-white"></i> Manage collaborators</a>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span6">
+    <h3>Ceremony details</h3>
+    <p>Details about your ceremony, things to do before and after, pretty much anything you like.</p>
+  </div>
+  <div class="span6">
+    <% if @wedding.has_reception? %>
+      <h3>Reception details</h3>
+      <p>Details about your reception, things to do before and after, pretty much anything you like.</p>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="span6">
+    <% if @wedding.outstanding_attributes.include?(:ceremony_what) %>
+      <a href="<%= wedding_ceremony_what_path(@wedding) %>" class="btn btn-inverse"><i class="icon-plus icon-white"></i> Start entering details</a>
+    <% else %>
+      <a href="<%= wedding_ceremony_what_path(@wedding) %>" class="btn btn-success"><i class="icon-ok icon-white"></i> Edit details</a>
+    <% end %>
+  </div>
+  <div class="span6">
+    <% if @wedding.has_reception? %>
+      <% if @wedding.outstanding_attributes.include?(:reception_what) %>
+        <a href="<%= wedding_reception_what_path(@wedding) %>" class="btn btn-inverse"><i class="icon-plus icon-white"></i> Start entering details</a>
+      <% else %>
+        <a href="<%= wedding_reception_what_path(@wedding) %>" class="btn btn-success"><i class="icon-ok icon-white"></i> Edit details</a>
+      <% end %>
+    <% end %>
+  </div>
+</div>
