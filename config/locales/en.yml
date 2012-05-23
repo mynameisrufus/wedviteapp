@@ -8,3 +8,13 @@ en:
     formats:
       # needs ordinalize of day before can be used
       sentence: "%H:%M %P %A the %e of %B %G"
+  accepted: "RSVPd"
+  declined: "declined"
+  state: "status"
+  adults: "adults"
+  children: "adults"
+  attending_reception: "attending the reception"
+  true: "yes"
+  false: "no"
+  address: "address"
+  phone: "phone"
