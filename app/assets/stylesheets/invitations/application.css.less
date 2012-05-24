@@ -1,8 +1,45 @@
 @import "twitter/bootstrap";
 @import "twitter/bootstrap/responsive";
 
+body, p {
+  font-family: "Gill Sans","Gill Sans MT", sans-serif;
+  font-weight: 200;
+}
+
+body {
+  background-image: image-url("bg-cloth.png");
+}
+
+p {
+  font-size: 16px;
+  line-height: 30px;
+}
+
+h1 {
+  line-height: 45px;
+  font-weight: 300;
+}
+
 a {
   color: blue;  
+}
+
+.container {
+}
+
+.tab-content {
+  padding: 10px;
+  background-color: @white; 
+  border-left-color: #DDD;
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-bottom-color: #DDD;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+}
+
+.nav {
+  margin-bottom: 0px;
 }
 
 .map-wrapper {
@@ -15,6 +52,7 @@ a {
 @media (max-width: 480px) {
   body {
     color: #000000;
+    padding: 0px;
   }
 
   .map-wrapper {
