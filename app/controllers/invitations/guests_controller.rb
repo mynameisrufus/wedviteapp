@@ -33,8 +33,23 @@ class Invitations::GuestsController < Invitations::BaseController
   end
 
   def update
+    @guest.attributes = params[:guest_strict]
+
+    if @guest.changed?
+      @guest.changes.each do |change|
+        label = t change[0]
+        from  = translate_unless_fixnum change[1][0]
+        to    = translate_unless_fixnum change[1][1]
+        @guest.evt.create!({
+          wedding: @guest.wedding,
+          state: 'changed',
+          headline: "#{@guest.name} changed #{label} from #{from} to #{to}"
+        })
+      end
+    end
+
     respond_to do |format|
-      if @guest.update_attributes guest_strict_params
+      if @guest.save
         format.html { redirect_to wedding_details_path, notice: 'Your details have been updated.' }
         format.json { head :ok }
       else
@@ -46,9 +61,7 @@ class Invitations::GuestsController < Invitations::BaseController
 
   protected
 
-  def guest_strict_params
-    params[:guest_strict].select do |key|
-      %w(state attending_reception address phone adults children).include?(key)
-    end
+  def translate_unless_fixnum value
+    value.class == Fixnum ? value : t(value)
   end
 end

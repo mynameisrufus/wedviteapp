@@ -1,16 +1,13 @@
-<%= render partial: 'subnav' %>
-<section class="wedding timeline">
-  <div class="row">
-    <% @events.each do |event| %>
-      <div class="well <%= event.to_css %>">
-        <p><%= event.headline %></p>
-        <% unless event.quotation.nil? %>
-          <blockquote>
-            <%= event.quotation %>
-          </blockquote>
-        <% end %>
-        <p><strong><%= time_ago_in_words event.created_at %></strong></p>
-      </div>
-    <% end %>
-  </div>
+<section class="timeline">
+  <% @events.each do |event| %>
+    <div class="well <%= event.to_css %>">
+      <p><%= event.headline %></p>
+      <% unless event.quotation.nil? %>
+        <blockquote>
+          <%= event.quotation %>
+        </blockquote>
+      <% end %>
+      <p><strong><%= time_ago_in_words event.created_at %></strong></p>
+    </div>
+  <% end %>
 </section>

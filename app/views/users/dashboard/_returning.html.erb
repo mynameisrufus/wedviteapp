@@ -13,10 +13,10 @@
     </p>
     <%= link_to 'Create another wedding plan', new_wedding_path, class: 'btn' %>
   </div>
-  <div class="span8">
+  <div class="span7">
     <ul>
       <% current_user.weddings.each do |wedding| %>
-        <li><%= link_to wedding.name, wedding_path(wedding) %></li>
+        <li><%= link_to wedding.name, (wedding.invite_process_started? ? wedding_timeline_path(wedding) : wedding_guestlist_path(wedding)) %></li>
       <% end %>
     <ul>
   </div>
