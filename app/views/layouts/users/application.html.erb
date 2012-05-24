@@ -15,6 +15,9 @@
     <%= render partial: "layouts/users/nav" %>
     <div class="container">
       <%= render partial: "layouts/users/flash" %>
+      <% unless current_page?(root_path) || current_page?(new_wedding_path) %>
+        <%= render partial: "layouts/users/subnav" %>
+      <% end %>
       <%= yield %>
       <%= render partial: 'layouts/users/footer' %>
     </div>

@@ -3,25 +3,10 @@
     <h3>Wedding options</h3>
     <p>Change your wedding and reception dates, change your wedding name or select wether you have a reception or not.</p>
   </div>
-  <div class="span6">
-    <h3>Collaborators</h3>
-    <p><% if @wedding.collaboration_tokens.count == 0 %>
-      Invite the bride, the groom or anyone else to collaborate with you on this wedding
-    <% else %>
-      Add more collaborators or manage existing ones.
-    <% end %></p>
-  </div>
 </div>
 <div class="row">
   <div class="span6">
     <a href="<%= edit_wedding_path(@wedding) %>" class="btn btn-success"><i class="icon-ok icon-white"></i> Change</a>
-  </div>
-  <div class="span6">
-    <% if @wedding.collaboration_tokens.count == 0 %>
-      <a href="<%= wedding_collaborators_path(@wedding) %>" class="btn btn-inverse"><i class="icon-plus icon-white"></i> Invite a collaborator</a>
-    <% else %>
-      <a href="<%= wedding_collaborators_path(@wedding) %>" class="btn btn-success"><i class="icon-ok icon-white"></i> Manage collaborators</a>
-    <% end %>
   </div>
 </div>
 

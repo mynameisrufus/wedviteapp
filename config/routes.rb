@@ -19,6 +19,7 @@ WeddingInvitor::Application.routes.draw do
       resources :weddings do
 
         get 'timeline', action: :timeline
+        get 'options', action: :options
         get 'guestlist', action: :guestlist
 
         get 'collaborators/collaborate/:token', action: :collaborate, controller: :collaborators, as: :collaborate

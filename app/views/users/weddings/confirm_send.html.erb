@@ -1,8 +1,10 @@
-<ol>
-  <% @guests.each do |guest| %>
-    <li><%= guest.name %></li>
+<section class="confirm-send">
+  <ol>
+    <% @guests.each do |guest| %>
+      <li><%= guest.name %></li>
+    <% end %>
+  </ol>
+  <%= link_to wedding_send_path(@wedding), class: 'btn btn-danger btn-large', style: 'width: 190px;' do %>
+    Send!
   <% end %>
-</ol>
-<%= link_to wedding_send_path(@wedding), class: 'btn btn-danger btn-large', style: 'width: 190px;' do %>
-  Send!
-<% end %>
+</section>
