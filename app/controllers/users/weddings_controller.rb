@@ -3,7 +3,16 @@ class Users::WeddingsController < Users::BaseController
 
   skip_before_filter :verify_authenticity_token, only: %w(payment_success)
 
-  def show
+  def details
+
+  end
+
+  def guestlist
+    @guests = @wedding.guests
+    respond_with @wedding, @guests
+  end
+
+  def invitations
 
   end
 
@@ -12,18 +21,6 @@ class Users::WeddingsController < Users::BaseController
     respond_with @events
   end
 
-  def guestlist
-    respond_to do |format|
-      if !@wedding.payment_made? && @wedding.payment_due?
-        format.html { redirect_to wedding_payment_path(@wedding), alert: 'You must pay to keep using this feature.' }
-        format.json { render json: @wedding, status: :created, location: @wedding }
-      else
-        @guests  = @wedding.guests.order("name ASC, position DESC")
-        format.html # show.html.erb
-        format.json { render json: @wedding }
-      end
-    end
-  end
 
   def new
     @wedding = Wedding.new
@@ -46,7 +43,7 @@ class Users::WeddingsController < Users::BaseController
         @wedding.evt.create! wedding: @wedding,
                              headline: "#{current_user.name} created a new wedding called #{@wedding.name}"
 
-        format.html { redirect_to @wedding, notice: 'Wedding created.' }
+        format.html { redirect_to wwedding_collaborators_path(@wedding), notice: 'Wedding created.' }
         format.json { render json: @wedding, status: :created, location: @wedding }
       else
         format.html { render action: "new" }
@@ -62,7 +59,7 @@ class Users::WeddingsController < Users::BaseController
 
     respond_to do |format|
       if @wedding.update_attributes(params[:wedding])
-        format.html { redirect_to @wedding, notice: 'Wedding was successfully updated.' }
+        format.html { redirect_to edit_wedding_path(@wedding), notice: 'Wedding was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -114,16 +111,16 @@ class Users::WeddingsController < Users::BaseController
                                                  gateway: "PayPal",
                                                  gateway_response: params
 
-        format.html { redirect_to @wedding, notice: 'Payment made.' }
+        format.html { redirect_to confirm_send_path(@wedding), notice: 'Payment made.' }
       else
-        format.html { redirect_to @wedding, alert: 'Payment not made.' }
+        format.html { redirect_to wedding_payment_path(@wedding), alert: 'Payment not made.' }
       end
     end
   end
 
   def payment_failure
     respond_to do |format|
-      format.html { redirect_to @wedding, alert: 'Payment not made.' }
+      format.html { redirect_to wedding_payment_path(@wedding), alert: 'Payment not made.' }
       format.json { head :ok }
     end
   end

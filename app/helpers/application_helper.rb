@@ -150,12 +150,8 @@ module ApplicationHelper
   end
 
   def nav_tab title, url
-    @step ||= 0
-    @step += 1
     content_tag :li, class: (current_page?(url) ? 'active' : nil) do
-      link_to url do
-        content_tag(:span, @step, class: 'step') + ' ' + content_tag(:span, title)
-      end
+      link_to title, url
     end
   end
 end

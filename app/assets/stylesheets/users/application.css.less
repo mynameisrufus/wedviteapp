@@ -1,5 +1,6 @@
 @import "twitter/bootstrap";
 @import "colors";
+@import "users/nav";
 
 @font-face {
   font-family: 'EdwardianScriptITCRegular';
@@ -21,44 +22,10 @@ body {
   margin-bottom: 5px;
 }
 
-.nav-tabs > li > a {
-  .magnolia_grandflora(40);
-  color: @gray;
-}
-.nav-tabs > li > a:hover {
-  .carnation();
-}
-
-.nav-tabs > .active > a, .nav-tabs > .active > a:hover {
-  background-color: @white;
-  background-color: rgba(255, 255, 255, 0.3); 
-  border-bottom-color: @white;
-  border-bottom-color: rgba(255, 255, 255, 0.3); 
-}
-
-.nav-tabs {
-  .step {
-    font-weight: bold;
-    font-size: 2em;
-    font-style: italic;
-  }
-}
-
-section {
-  width: 100%;
-  display: table;
+.slide-deck {
   .white();
-  padding: 10px 20px;
-  border-left-color: #DDD;
-  border-left-style: solid;
-  border-left-width: 1px;
-  border-bottom-color: #DDD;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-}
-
-.nav {
-  margin-bottom: 0px;
+  padding: 10px;
+  .border-radius(10px);
 }
 
 .background {
@@ -69,10 +36,6 @@ section {
   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
   -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
   box-shadow: 0 1px 2px rgba(0,0,0,.15);
-}
-
-.nav-pills > .active > a, .nav-pills > .active > a:hover {
-  background-color: @black;
 }
 
 section {

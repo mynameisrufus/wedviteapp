@@ -18,16 +18,16 @@ WeddingInvitor::Application.routes.draw do
 
       resources :weddings do
 
-        get 'timeline', action: :timeline
-        get 'options', action: :options
-        get 'guestlist', action: :guestlist
-
         get 'collaborators/collaborate/:token', action: :collaborate, controller: :collaborators, as: :collaborate
 
-        get 'confirm-send', action: :confirm_send, as: :confirm
-        get 'send-invites', action: :send_invites, as: :send
+        get :details
+        get :guestlist
+        get 'invitation-and-stationery', action: :invitations, as: :invitations
+        get :timeline
+        get 'invite-guests', action: :confirm, controller: :invitations, as: :confirm
+        get :deliver, controller: :invitations
 
-        get 'payment'
+        get :payment
         post 'payment-success', action: :payment_success, as: :payment_success
         get 'payment-failure', action: :payment_failure, as: :payment_failure
 
@@ -89,7 +89,7 @@ WeddingInvitor::Application.routes.draw do
       match ':token/accept'  => 'guests#accept', as: :accept_invitation
       match ':token/decline' => 'guests#decline', as: :decline_invitation
 
-      match ':token/details' => 'weddings#details', as: :wedding_details
+      match ':token/details' => 'weddings#details', as: :details
       match ':token/ical'    => 'weddings#ical', as: :ical
     end
   end

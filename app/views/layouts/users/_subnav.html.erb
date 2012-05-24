@@ -1,13 +1,10 @@
 <div class="page-header" id="top">
   <h1><%= @wedding.name %></h1>
 </div>
-<ul class="nav nav-tabs">
-  <%= nav_tab "Timing", edit_wedding_path(@wedding) %>
-  <%= nav_tab "Collaborators", wedding_collaborators_path(@wedding) %>
+<ul class="nav nav-pills">
+  <%= nav_tab "Wedding Details", wedding_details_path(@wedding) %>
   <%= nav_tab "Guest list", wedding_guestlist_path(@wedding) %>
-  <%= nav_tab "Stationery", wedding_stationary_index_path(@wedding) %>
-  <%= nav_tab "Directions", wedding_stationary_index_path(@wedding) %>
-  <%= nav_tab "Wording", wedding_stationary_index_path(@wedding) %>
-  <%= nav_tab "Send invitations", wedding_confirm_path(@wedding) %>
+  <%= nav_tab "Invitation & Stationery", wedding_invitations_path(@wedding) %>
   <%= nav_tab "Timeline", wedding_timeline_path(@wedding) %>
+  <%= nav_tab "Invite Guests", wedding_confirm_path(@wedding) %>
 </ul>
