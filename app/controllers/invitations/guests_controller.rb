@@ -47,7 +47,6 @@ class Invitations::GuestsController < Invitations::BaseController
         })
       end
     end
-    
 
     respond_to do |format|
       if @guest.save
