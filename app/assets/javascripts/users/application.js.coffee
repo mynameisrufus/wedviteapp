@@ -2,6 +2,8 @@
 #= require jquery-ui
 #= require jquery_ujs
 #= require ../lib/spin.js
+#= require ../lib/jquery.transit.js
+#= require ../lib/jquery.slide-deck.js
 #= require twitter/bootstrap
 #= require users/locations_form
 #= require users/weddings_show
@@ -27,14 +29,6 @@ class window.GuestList
         else
           $(this).html('Hide comments')
           div.show()
-
-class window.WeddingForm
-  constructor: ->
-    $("#wedding_has_reception").bind 'click', (evt) ->
-      if $(this).is(':checked')
-        $("#reception").fadeIn()
-      else
-        $("#reception").fadeOut()
 
 $ ->
   $("#menu").dropdown()
