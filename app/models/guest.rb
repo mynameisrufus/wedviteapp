@@ -66,6 +66,14 @@ class Guest < ActiveRecord::Base
     adults + children
   end
 
+  def possibly?
+    %w(tentative accepted sent approved).include?(self.state)
+  end
+
+  def likely?
+    %w(accepted sent approved).include?(self.state)
+  end
+
   def update_state(state)
     update_attributes state: state
   end

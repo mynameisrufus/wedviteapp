@@ -1,4 +1,4 @@
-<div class='state'>
+<div class="modal-body">
   <%= form_tag wedding_guest_approve_path(@wedding, guest) do %>
     <%= submit_tag "Approve", class: 'btn btn-success' %>
   <% end %>
@@ -14,4 +14,7 @@
   <%= form_tag wedding_guest_decline_path(@wedding, guest) do %>
     <%= submit_tag "Decline", class: 'btn' %>
   <% end %>
+</div>
+<div class="modal-footer">
+  <a href="#" class="btn" data-dismiss="modal">Close</a>
 </div>

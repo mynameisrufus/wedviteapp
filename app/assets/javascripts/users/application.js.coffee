@@ -6,7 +6,6 @@
 #= require ../lib/jquery.slide-deck.js
 #= require twitter/bootstrap
 #= require users/locations_form
-#= require users/weddings_show
 
 class window.GuestList
   constructor: ->

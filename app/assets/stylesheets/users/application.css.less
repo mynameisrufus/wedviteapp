@@ -51,6 +51,54 @@ section {
       height: 400px;
     }
   }
+  &.guestlist {
+    .guests {
+      .header {
+        h2 {
+          padding: 10px;
+          width: 288px;
+        }
+      }
+      .column {
+        width: 388px;
+        display: inline-block;
+        vertical-align: top;
+      }
+      .block {
+        margin: 5px 0px;
+      }
+      .guest {
+        .white();
+        .border-radius();
+        position: relative;
+        padding: 9px 12px 9px;
+        .state, .details {
+          display: inline-block;
+        }
+        .details {
+          width: 230px;
+          span {
+            color: gray;
+          }
+        }
+        .actions {
+          a {
+            margin-right: 10px;
+          }
+        }
+        &.ui-sortable-helper {
+          background-image: image-url("bg-parchment.png");
+          border: 1px dashed gray;
+          .border-radius;
+        }    
+      }      
+      .guest-placeholder {
+        height: 45px;
+        padding: 9px 0px;
+        width: 100%;
+      }
+    }
+  }
 }
 
 section {
@@ -99,79 +147,6 @@ section {
     &.stationary {
       img {
         width: 100%;
-      }
-    }
-    &.show {
-      .nav {
-        padding: 10px;
-        color: white;
-        background-color: black;
-        .border-radius;
-        a {
-          color: white;
-          &:hover {
-            color: black;
-          }
-        }
-      }
-      .guests {
-        .header {
-          h2 {
-            padding: 10px;
-            width: 288px;
-          }
-        }
-        .column {
-          width: 308px;
-          display: inline-block;
-          vertical-align: top;
-        }
-        .block {
-          margin: 5px 0px;
-        }
-        .guest {
-          position: relative;
-          padding: 9px 12px 9px;
-          .state, .details {
-            display: inline-block;
-          }
-          .details {
-            width: 230px;
-            span {
-              color: gray;
-            }
-          }
-          .actions {
-            display: none;
-            cursor: move;
-            position: absolute;
-            top: 20px;
-            right: 15px;
-            i {
-              display: block;
-            }
-          }
-          &:hover {
-            .actions {
-              display: block;
-            }
-            .details {
-              span {
-                color: black;
-              }
-            }
-          }
-          &.ui-sortable-helper {
-            background-image: image-url("bg-parchment.png");
-            border: 1px dashed gray;
-            .border-radius;
-          }    
-        }      
-        .guest-placeholder {
-          height: 45px;
-          padding: 9px 0px;
-          width: 100%;
-        }
       }
     }
   }
@@ -254,56 +229,51 @@ form {
   }
 }
 
-// span-
-.no-margin {
-  margin-left: 0px;
-}
-
 .quickie {
   position: relative;
-  ul {
+  width: 100%;
+  height: 100px;
+  .btn-large {
+    width: 105px;
+  }
+  .wrapper {
     position: fixed;
-    list-style: none;
+  }
+  .quickie-nav {
+    background-color: gray;
+    color: white;
     margin: 5px 0px;
-    padding: 5px;
-    background-color: black;
     .border-radius;
-    li {
-      background-color: gray;
+    //.border-top-right-radius;
+    //.border-bottom-right-radius;
+    padding: 10px;
+    text-align: center;
+    a {
+      display: inline;
       color: white;
-      margin: 5px 0px;
-      .border-radius;
-      //.border-top-right-radius;
-      //.border-bottom-right-radius;
-      padding: 10px;
+      font-weight: bold;
       text-align: center;
-      a {
-        display: inline;
-        color: white;
-        font-weight: bold;
-        text-align: center;
-      }
-      i {
-        cursor: pointer;
-      }
-      &.green {
-        background-color: #57A957;
-      }
-      &.red {
-        background-color: #C43C35;
-      }
-      &.aqua {
-        background-color: #339BB9;
-      }
-      &.silver {
-        background-color: silver;
-      }
-      &.gold {
-        background-color: gold;
-      }
-      &.black {
-        background-color: black;
-      }
+    }
+    i {
+      cursor: pointer;
+    }
+    &.green {
+      background-color: #57A957;
+    }
+    &.red {
+      background-color: #C43C35;
+    }
+    &.aqua {
+      background-color: #339BB9;
+    }
+    &.silver {
+      background-color: silver;
+    }
+    &.gold {
+      background-color: gold;
+    }
+    &.black {
+      background-color: black;
     }
   }
 }
@@ -345,4 +315,13 @@ form {
     height: 80px;
     font-weight: bold;
   }
+}
+
+.modal-footer {
+  background-color: @magnolia_grandflora;
+  border-top: 1px solid @sugared_pansy_pink;
+}
+
+.modal-body {
+  max-height: 600px;
 }

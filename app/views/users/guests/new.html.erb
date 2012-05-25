@@ -1,6 +1,8 @@
-<section class="guests new">
-  <div class="page-header">
-    <h1>Add guest</h1>
+<%= guest_form wedding_guests_path(@wedding) do |f| %>
+  <div class="modal-body">
+    <%= render partial: 'users/guests/form', locals: { f: f } %>
   </div>
-  <%= render 'form' %>
-</section>
+  <div class="modal-footer">
+    <%= f.submit 'Save', class: 'btn' %>&nbsp;<a href="#" class="btn" data-dismiss="modal">Close</a>
+  </div>
+<% end %>

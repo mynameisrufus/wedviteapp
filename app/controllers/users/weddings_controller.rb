@@ -66,7 +66,7 @@ class Users::WeddingsController < Users::BaseController
 
     respond_to do |format|
       if @wedding.update_attributes(params[:wedding])
-        format.html { redirect_to edit_wedding_path(@wedding), notice: 'Wedding was successfully updated.' }
+        format.html { redirect_to wedding_guestlist_path(@wedding), notice: 'Wedding was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

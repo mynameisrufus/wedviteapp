@@ -1,13 +1,10 @@
-<section class="wedding show">
+<section class="guestlist">
   <div class="row">
-    <div class="span3">
-      <%= render partial: 'nav' %>
+    <div class="span2">
+      <%= render partial: 'users/weddings/guestlist/quickie' %>
     </div>
-    <div class="span8">
-      <%= render partial: 'list' %>
-    </div>
-    <div class="span1 no-margin">
-      <%= render partial: 'quickie' %>
+    <div class="span10">
+      <%= render partial: 'users/weddings/guestlist/list' %>
     </div>
   </div>
 </section>
@@ -20,8 +17,43 @@
     <a href="#" class="btn" data-dismiss="modal">Close</a>
   </div>
 </div>
+
 <script>
-  $(function(){
-    weddings();
-  });
+$(function(){
+    
+    var $modal = $('#modal-from-dom')
+
+    $('a.add-guest').on('click', function(event) {
+        event.preventDefault()
+        $.get(this.href, function(data) {
+            $modal.html(data).modal('show')
+        })
+    })
+
+    $('.guest.regular a').on('click', function(event) {
+        event.preventDefault()
+        $.get(this.href, function(data) {
+            $modal.html(data).modal('show')
+        })
+    })
+
+    $('*[rel=popover]').popover({placement: 'right'})
+
+    $quickie = $('.quickie')
+    $quickie.find("*[rel=tooltip]").tooltip({delay: { show: 1000, hide: 100 }})
+
+    $quickie.find('.toggle').on('click', function(event) {
+      event.preventDefault()
+      $(this).toggleClass('icon-white')
+      var id = $(this).data('id')
+      $("#" + id).toggle()
+    })
+
+    $quickie.find('.goto').on('click', function(event) {
+      event.preventDefault()
+      var id = $(this).data('id')
+      $('html, body').animate({scrollTop: ($("#" + id).offset().top - 50)}, 500)
+    })
+
+});
 </script>

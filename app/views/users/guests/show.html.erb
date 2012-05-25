@@ -1,8 +1,21 @@
-<section class="guest show">
+<div class="modal-body">
   <h3><%= @guest.name %></h3>
-  <%= render partial: 'state', locals: { guest: @guest } %>
-  <%= link_to 'Edit guest', edit_wedding_guest_path(@wedding, @guest), class: 'btn' %>
-  <%= link_to 'Comment', new_wedding_guest_comment_path(@wedding, @guest), class: 'btn' %>
-  <%= render partial: 'comments', locals: { guest: @guest } %>
-  <%= render partial: 'messages', locals: { guest: @guest } %>
-</section>
+  <%= form_tag wedding_guest_approve_path(@wedding, @guest) do %>
+    <%= submit_tag "Approve", class: 'btn btn-success' %>
+  <% end %>
+  <%= form_tag wedding_guest_reject_path(@wedding, @guest) do %>
+    <%= submit_tag "Reject", class: 'btn btn-danger'%>
+  <% end %>
+  <%= form_tag wedding_guest_tentative_path(@wedding, @guest) do %>
+    <%= submit_tag "Make tentative", class: 'btn btn-info' %>
+  <% end %>
+  <%= form_tag wedding_guest_accept_path(@wedding, @guest) do %>
+    <%= submit_tag "Accept", class: 'btn' %>
+  <% end %>
+  <%= form_tag wedding_guest_decline_path(@wedding, @guest) do %>
+    <%= submit_tag "Decline", class: 'btn' %>
+  <% end %>
+</div>
+<div class="modal-footer">
+  <a href="#" class="btn" data-dismiss="modal">Close</a>
+</div>

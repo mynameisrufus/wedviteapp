@@ -1,13 +1,26 @@
 <div class="quickie">
-  <ul>
-    <%= content_tag :li, {} do %>
-      <%= link_to new_wedding_guest_path(@wedding), id: "add-guest" do %>
-        <i class="icon-plus-sign icon-white" rel="tooltip" title="add new guest"></i>
+  <div class="wrapper">
+      <p>
+      <% c = capture do %>
+        <p>Total: <%= total_guests %></p>
+        <p><strong><%= total_guests_partner 1 %></strong> <%= @wedding.partner_one_name %></p>
+        <p><strong><%= total_guests_partner 2 %></strong> <%= @wedding.partner_two_name %></p>
       <% end %>
-    <% end %>
+
+      <%= content_tag :i, nil, {
+        class: ["icon-info-sign"],
+        rel: "popover",
+        "data-content" => c,
+        "data-original-title" => "totals"
+      } %>
+      <strong><%= total_guests %></strong> Guests</p>
+
+  <%= link_to new_wedding_guest_path(@wedding), class: 'btn btn-large add-guest' do %>
+    <i class="icon-plus-sign"></i> Add guest
+  <% end %>
     <% guest_array.each do |ga| %>
       <% next if ga[:guests].empty? %>
-      <%= content_tag :li, { class: [ga[:state], ga[:css]] } do %>
+      <%= content_tag :div, { class: ['quickie-nav', ga[:state], ga[:css]] } do %>
         <% c = capture do %>
           <p>Total: <%= ga[:stats][:total] %></p>
           <sub>adults: <%= ga[:stats][:adults] %></sub>
@@ -21,12 +34,6 @@
         <% end %>
 
         <%= content_tag :i, nil, {
-          class: ["icon-chevron-left", "icon-white", "goto"],
-          "data-id" => ga[:state],
-          "title" => "jump to #{ga[:state]}",
-          "rel" => "tooltip"
-        } %>
-        <%= content_tag :i, nil, {
           class: ["icon-eye-open", "icon-white", "toggle"],
           "data-id" => ga[:state],
           "title" => "show/hide",
@@ -39,15 +46,16 @@
           "data-content" => c,
           "data-original-title" => ga[:title]
         } %>
+        <%= content_tag :i, nil, {
+          class: ["icon-chevron-right", "icon-white", "goto"],
+          "data-id" => ga[:state],
+          "title" => "jump to #{ga[:state]}",
+          "rel" => "tooltip"
+        } %>
       <% end %>
     <% end %>
-    <%= content_tag :li, {} do %>
-      <%= content_tag :i, nil, {
-        class: ["icon-chevron-up", "icon-white", "goto"],
-        "data-id" => "top",
-        "rel" => "tooltip",
-        "title" => "back to top"
-      } %>
-    <% end %>
-  </ul>
+  <%= link_to "#", class: ['btn', 'btn-large', 'goto'], "data-id" => "top" do %>
+    <i class="icon-chevron-up"></i> Back to top
+  <% end %>
+</div>
 </div>

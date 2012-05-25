@@ -32,7 +32,7 @@ module ApplicationHelper
   end
 
   def guest_array
-    state_hash.sort do |x, y|
+    @guest_array ||= state_hash.sort do |x, y|
       x[:order] <=> y[:order]
     end.map do |sh|
       guests = @guests.select do |g|
@@ -65,19 +65,27 @@ module ApplicationHelper
   end
 
   def total_guests
-    guest_array.select do |g|
-      %w(accepted sent approved).include?(g[:state])
-    end.inject(0) do |memo, sym|
-      memo + sym[:stats][:total]
-    end + 2
+    @guests.select do |guest|
+      guest.likely?
+    end.inject(2) do |memo, sym|
+      memo + sym.total_guests
+    end
   end
 
   def total_possible_guests
-    guest_array.select do |g|
-      %w(tentative accepted sent approved).include?(g[:state])
-    end.inject(0) do |memo, sym|
-      memo + sym[:stats][:total]
-    end + 2
+    @guests.select do |guest|
+      guest.possibly?
+    end.inject(2) do |memo, sym|
+      memo + sym.total_guests
+    end
+  end
+
+  def total_guests_partner num
+    @guests.select do |guest|
+      guest.partner_number == num && guest.likely?
+    end.inject(1) do |memo, sym|
+      memo + sym.total_guests
+    end
   end
 
   def state_hash

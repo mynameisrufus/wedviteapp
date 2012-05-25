@@ -5,7 +5,7 @@
         <div class="details">
           <%= state_icon 'accepted' %>
           <h3><%= @wedding.partner_one_name %></h3>
-          <span><%= link_to "Change name", "#" %></span>
+          <span><%= link_to "re-name", "#" %></span>
         </div>
         <%= form_for @wedding, html: { style: 'display: none;' } do |f| %>
           <div class="controls">
@@ -21,7 +21,7 @@
         <div class="details">
           <%= state_icon 'accepted' %>
           <h3><%= @wedding.partner_two_name %></h3>
-          <span><%= link_to "Change name", "#" %></span>
+          <span><%= link_to "re-name", "#" %></span>
         </div>
         <%= form_for @wedding, html: { style: 'display: none;' } do |f| %>
           <div class="controls">
@@ -49,10 +49,10 @@
       <% [1,2].each do |partner_number| %>
       <div class="column">
         <% ga[:guests].select{|g| g.partner_number == partner_number}.each do |guest| %>
-          <div class="guest" data-id="<%= guest.id %>">
+          <div class="guest regular" data-id="<%= guest.id %>">
             <%= state_icon guest.state %>
             <div class="details">
-              <h3><%= link_to guest.name, wedding_guest_path(@wedding, guest) %></h3>
+              <h3><%= guest.name %></h3>
               <span>Adults: <%= guest.adults %></span>
               <span>Children: <%= guest.children %></span>
               <% if @wedding.stationary %>
@@ -60,8 +60,8 @@
               <% end %>
             </div>
             <div class="actions">
-              <i class="icon-arrow-up"></i>
-              <i class="icon-arrow-down"></i>
+              <%= link_to "move", wedding_guest_path(@wedding, guest) %>
+              <%= link_to "update", edit_wedding_guest_path(@wedding, guest) %>
             </div>
           </div>
         <% end %>

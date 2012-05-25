@@ -61,7 +61,7 @@ class Users::GuestsController < Users::BaseController
     @guest = @wedding.guests.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render layout: false if request.xhr? }
       format.json { render json: @guest }
     end
   end
@@ -69,6 +69,11 @@ class Users::GuestsController < Users::BaseController
   # GET /guests/1/edit
   def edit
     @guest = @wedding.guests.find(params[:id])
+
+    respond_to do |format|
+      format.html { render layout: false if request.xhr? }
+      format.json { render json: @guest }
+    end
   end
 
   # POST /guests

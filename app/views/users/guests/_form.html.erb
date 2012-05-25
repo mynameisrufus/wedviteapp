@@ -1,124 +1,64 @@
-<div class="row">
-  <div class="span3">
-    <h2>Wedding</h2>
-    <p>Information about this action.</p>
+<fieldset>
+  <legend>New guest</legend>
+
+  <div class="control-group">
+    <%= f.label :name, class: "control-label" %>
+    <div class="controls">
+      <%= f.text_field :name, size: 30 %>
+    </div>
   </div>
-  <div class="span9">
-    <%= form_for @guest, url: @guest.new_record? ? wedding_guests_path(@wedding) : wedding_guest_path(@wedding, @guest) do |f| %>
-      <% if @guest.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@guest.errors.count, "error") %> prohibited this invitation from being saved:</h2>
 
-          <ul>
-          <% @guest.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-          </ul>
-        </div>
-      <% end %>
-      <fieldset>
-        <legend>Example form legend</legend>
+  <div class="control-group">
+    <%= f.label :email, class: "control-label" %>
+    <div class="controls">
+      <%= f.email_field :email, size: 30 %>
+    </div>
+  </div>
 
-        <div class="clearfix">
-          <%= f.label :name %>
-          <div class="input">
-            <%= f.text_field :name, class: 'xlarge', size: 30 %>
-          </div>
-        </div>
+  <div class="control-group">
+    <%= f.label :adults, class: "control-label" %>
+    <div class="controls">
+      <%= f.text_field :adults, size: 30, class: 'span1', type: :number %> &nbsp; Children <%= f.text_field :children, size: 30, class: 'span1', type: :number %>
+    </div>
+  </div>
 
-        <div class="clearfix">
-          <%= f.label :email %>
-          <div class="input">
-            <%= f.email_field :email, class: 'xlarge', size: 30 %>
-          </div>
-        </div>
+  <div class="control-group">
+    <%= f.label :partner_number, "Side", class: "control-label" %>
+    <div class="controls">
+      <label class="radio">
+        <%= f.radio_button :partner_number, 1 %> <%= @wedding.partner_one_name %>
+      </label>
+      <label class="radio">
+        <%= f.radio_button :partner_number, 2 %> <%= @wedding.partner_two_name %>
+      </label>
+    </div>
+  </div>
 
-        <div class="clearfix">
-          <%= f.label :address %>
-          <div class="input">
-            <%= f.text_field :address, class: 'xlarge', size: 30 %>
-          </div>
-        </div>
+  <% if @wedding.has_reception? %>
+    <div class="control-group">
+      <%= f.label :invited_to_reception, class: "control-label" %>
+      <div class="controls">
+        <label class="radio">
+          <%= f.radio_button :invited_to_reception, true %> Yes
+        </label>
+        <label class="radio">
+          <%= f.radio_button :invited_to_reception, false %> No
+        </label>
+      </div>
+    </div>
+  <% end %>
 
-        <div class="clearfix">
-          <%= f.label :phone %>
-          <div class="input">
-            <%= f.phone_field :phone, class: 'xlarge', size: 30 %>
-          </div>
-        </div>
+  <div class="control-group">
+    <%= f.label :address, "Address (Optional)", class: "control-label" %>
+    <div class="controls">
+      <%= f.email_field :address, size: 30 %>
+    </div>
+  </div>
 
-        <div class="clearfix">
-          <%= f.label :adults %>
-          <div class="input">
-            <%= f.text_field :adults, class: 'xlarge', size: 30, type: :number %>
-          </div>
-        </div>
-
-        <div class="clearfix">
-          <%= f.label :children %>
-          <div class="input">
-            <%= f.text_field :children, class: 'xlarge', size: 30, type: :number %>
-          </div>
-        </div>
-
-        <div class="clearfix">
-          <%= f.label :partner_number, "Side" %>
-          <div class="input">
-            <ul class="inputs-list">
-              <li>
-                <label>
-                  <%= f.radio_button :partner_number, 1 %>
-                  <span><%= @wedding.partner_one_name %></span>
-                </label>
-              </li>
-              <li>
-                <label>
-                  <%= f.radio_button :partner_number, 2 %>
-                  <span><%= @wedding.partner_two_name %></span>
-                </label>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <% if @wedding.has_reception? %>
-          <div class="clearfix">
-            <%= f.label :invited_to_reception %>
-            <div class="input">
-              <ul class="inputs-list">
-                <li>
-                  <label>
-                    <%= f.check_box :invited_to_reception %>
-                    <span>If the quest is not invited to the reception, they will not get the details in their invite.</span>
-                  </label>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="clearfix">
-            <%= f.label :attending_reception %>
-            <div class="input">
-              <ul class="inputs-list">
-                <li>
-                  <label>
-                    <%= f.check_box :attending_reception %>
-                    <span>The guest can change this if they have been invited to the reception.</span>
-                  </label>
-                </li>
-              </ul>
-            </div>
-          </div>
-        <% end %>
-
-        <div class="actions">
-          <% if @guest.new_record? %>
-            <%= f.submit 'Add guest', class: 'btn primary' %>&nbsp;<%= link_to 'Cancel', wedding_path(@wedding), class: 'btn' %>
-          <% else %>
-            <%= f.submit 'Update guest', class: 'btn primary' %>&nbsp;<%= link_to 'Cancel', wedding_path(@wedding), class: 'btn' %>
-          <% end %>
-        </div>
-      </fieldset>
-    <% end %>
-  <div>
-<div>
+  <div class="control-group">
+    <%= f.label :phone, "Phone (Optional)", class: "control-label" %>
+    <div class="controls">
+      <%= f.phone_field :phone, size: 30 %>
+    </div>
+  </div>
+</fieldset>

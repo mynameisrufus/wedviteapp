@@ -16,5 +16,10 @@ class Users::InvitationsController < Users::BaseController
       mail.deliver
       guest.update_attribute(:invited_on, Time.now)
     end
+
+    @wedding.evt.create! wedding: @wedding,
+                         headline: "#{@guests.size} guests were sent their invitations!"
+
+    redirect_to wedding_timeline_path(@wedding), notice: "Invitations have been sent!"
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120523031205) do
+ActiveRecord::Schema.define(:version => 20120525063701) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -150,7 +150,7 @@ ActiveRecord::Schema.define(:version => 20120523031205) do
     t.boolean  "attending_reception",  :default => true
     t.datetime "invited_on"
     t.datetime "replyed_on"
-    t.integer  "partner_number"
+    t.integer  "partner_number",       :default => 1
     t.integer  "comments_count",       :default => 0
     t.integer  "wedding_id"
     t.integer  "position"
