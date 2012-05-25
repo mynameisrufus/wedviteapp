@@ -4,10 +4,8 @@ class Users::WeddingsController < Users::BaseController
   skip_before_filter :verify_authenticity_token, only: %w(payment_success)
 
   def details
-    @locations = {
-      ceremony: @wedding.ceremony_where || Location.new,
-      reception: @wedding.reception_where || Location.new,
-    }
+    @ceremony_where  = @wedding.ceremony_where || Location.new
+    @reception_where = @wedding.reception_where || Location.new
   end
 
   def update_details

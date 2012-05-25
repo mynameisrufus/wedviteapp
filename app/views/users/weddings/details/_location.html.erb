@@ -1,22 +1,4 @@
-<p class="help-block">Start typing to find the location</p>
-<%= text_field_tag :search, nil, class: 'xlarge search span9', size: 30, type: :search %>
-
-<div id="map" style="width: 100%; height: 400px"></div>
-
-<hr/>
-
-<%= form_for @location, url: url, html: { class: "form-horizontal" } do |f| %>
-  <% if @location.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@location.errors.count, "error") %> prohibited this invitation from being saved:</h2>
-
-      <ul>
-      <% @location.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_for location, as: as, url: url, html: { class: "form-horizontal" } do |f| %>
   <fieldset>
     <%= f.hidden_field :address_components %>
     <%= f.hidden_field :types %>
@@ -25,6 +7,7 @@
     <%= f.hidden_field :lat %>
     <%= f.hidden_field :lng %>
     <%= f.hidden_field :vicinity %>
+    <%= f.hidden_field :formatted_phone_number %>
 
     <div class="control-group">
       <%= f.label :name, "Place name", class: "control-label" %>
@@ -50,28 +33,25 @@
     </div>
 
     <div class="control-group">
-      <%= f.label :formatted_phone_number, "Phone #", class: "control-label" %>
-      <div class="controls">
-        <%= f.text_field :formatted_phone_number, class: 'xlarge span6', size: 30 %>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <%= f.label :international_phone_number, "International #", class: "control-label" %>
+      <%= f.label :international_phone_number, "Phone", class: "control-label" %>
       <div class="controls">
         <%= f.text_field :international_phone_number, class: 'xlarge span6', size: 30 %>
       </div>
     </div>
 
     <div class="form-actions">
-      <%= f.submit 'Save location', class: 'btn btn-primary' %>
-      <%= link_to 'Cancel', wedding_path(@wedding), class: 'btn' %>
+      <%= f.submit 'Save location', class: 'btn' %>
     </div>
   </fieldset>
 <% end %>
 
-<script>
-  $(function(){
-    locations();
-  });
-</script>
+<%= details_form do |f| %>
+  <fieldset>
+    <%= f.label how, "Extra instructions" %>
+    <%= f.text_area how, class: 'markdown markdown-small', rows: 3 %>
+
+    <div class="form-actions">
+      <%= f.submit 'Save instructions', class: 'btn' %>
+    </div>
+  </fieldset>
+<% end %>

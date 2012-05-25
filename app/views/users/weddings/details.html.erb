@@ -3,7 +3,12 @@
     <ul class="nav nav-wedvite">
       <li class="active"><a href="#ourday">Our Day</a></li>
       <li><a href="#date_and_times">Dates & Times</a></li>
-      <li><a href="#directions">Directions</a></li>
+      <% if @wedding.has_reception? %>
+        <li><a href="#ceremony_directions">Ceremony Directions</a></li>
+        <li><a href="#reception_directions">Reception Directions</a></li>
+      <% else %>
+        <li><a href="#ceremony_directions">Directions</a></li>
+      <% end %>
       <li><a href="#settings">Settings</a></li>
     </ul>
     <div class="span9">
@@ -14,11 +19,17 @@
         <div class="slide" data-position="2" data-transition="horizontal" id="date_and_times">
           <%= render partial: 'users/weddings/details/date_and_times' %>
         </div>
-        <div class="slide" data-position="3" data-transition="horizontal" id="directions">
-          <%= render partial: 'users/weddings/details/directions' %>
-        </div>
-        <div class="slide" data-position="4" data-transition="horizontal" id="settings">
+        <div class="slide" data-position="3" data-transition="horizontal" id="settings">
           <%= render partial: 'users/weddings/details/settings' %>
+        </div>
+        <div class="slide" data-position="4" data-transition="horizontal" id="ceremony_directions">
+          <%= render partial: 'users/weddings/details/ceremony_directions' %>
+        </div>
+        <% if @wedding.has_reception? %>
+          <div class="slide" data-position="5" data-transition="horizontal" id="reception_directions">
+            <%= render partial: 'users/weddings/details/reception_directions' %>
+          </div>
+        <% end %>
         </div>
       </div>
     </div>
@@ -55,5 +66,16 @@
         $sections.change(id)
         return false
     })
+
+    $sections.on('entered', function(event, elem) {
+        if (this.id === 'ceremony_directions') locations('ceremony_location')
+    })
+
+    $sections.on('entered', function(event, elem) {
+        if (this.id === 'reception_directions') locations('reception_location')
+    })
+
 })();
 </script>
+
+<%= javascript_include_tag 'http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places' %>

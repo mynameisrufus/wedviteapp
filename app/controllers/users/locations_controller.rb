@@ -1,67 +1,37 @@
 class Users::LocationsController < Users::BaseController
   before_filter :find_wedding
 
-  def ceremony
-    @location = @wedding.ceremony_where || Location.new
-    show
-  end
-
-  def reception
-    @location = @wedding.reception_where || Location.new
-    show
-  end
-
   def create_ceremony
-    create "ceremony", :ceremony_where
+    create :reception_where, :reception_location
   end
 
   def create_reception
-    create "reception", :reception_where
+    create :reception_where, :reception_location
   end
 
   def update_ceremony
     @location = @wedding.ceremony_where
-    update "ceremony"
+    update :ceremony_location
   end
 
   def update_reception
     @location = @wedding.reception_where
-    update "reception"
+    update :reception_location
   end
 
   protected
 
-  def show
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @location }
+  def create(association, params_key)
+    @location = Location.new(params[params_key])
+    if @location.save
+      @wedding.send "#{association}=", @location
+      @wedding.save
+      redirect_to wedding_details_path(@wedding), notice: "#{params_key.to_s.humanize} has been added."
     end
   end
 
-  def create(on_failure_action, association)
-    @location = Location.new(params[:location])
-    respond_to do |format|
-      if @location.save
-        @wedding.send "#{association}=", @location
-        @wedding.save
-        format.html { redirect_to @wedding, notice: "Location been updated."  }
-        format.json { render json: @location, status: :created, location: @location }
-      else
-        format.html { render action: on_failure_action }
-        format.json { render json: @location.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-  
-  def update(on_failure_action)
-    respond_to do |format|
-      if @location.update_attributes(params[:location])
-        format.html { redirect_to @wedding, notice: "Location been updated."  }
-        format.json { head :ok }
-      else
-        format.html { render action: on_failure_action }
-        format.json { render json: @location.errors, status: :unprocessable_entity }
-      end
-    end
+  def update(params_key)
+    @location.update_attributes(params[params_key])
+    redirect_to wedding_details_path(@wedding), notice: "#{params_key.to_s.humanize} has been updated."
   end
 end

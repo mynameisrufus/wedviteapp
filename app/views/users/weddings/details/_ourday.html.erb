@@ -1,5 +1,4 @@
-<%= form_for @wedding do |f| %>
-  <%= error_messages_on @wedding %>
+<%= details_form do |f| %>
   <fieldset>
     <%= f.text_area :ceremony_what, class: 'markdown', rows: 3 %>
 
@@ -8,7 +7,8 @@
     <% end %>
 
     <% if @wedding.has_reception? %>
-      <h3>Extra Details for Reception</h3>
+      <hr/>
+      <%= f.label :reception_what, "Extra details for those attending the reception:" %>
       <%= f.text_area :reception_what, class: 'markdown markdown-small', rows: 3 %>
       <p class="help-block"><strong>Note:</strong> people who are not attending the reception will not see this.</p>
     <% end %>

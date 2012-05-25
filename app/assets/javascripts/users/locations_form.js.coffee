@@ -26,12 +26,12 @@ uiIds = [
   "search"
 ]
 
-getElements = ->
+getElements = (prefix = '') ->
   elements = {}
   addAttrEl = (key) ->
-    elements[key] = document.getElementById "location_#{key}"
+    elements[key] = document.getElementById "#{prefix}_#{key}"
   addUiEl = (key) ->
-    elements[key] = document.getElementById key
+    elements[key] = document.getElementById "#{prefix}_#{key}"
   addAttrEl key for key in attrIds
   addUiEl key for key in uiIds
   elements
@@ -111,8 +111,8 @@ updateElements = (elements, parts) ->
         else
           el.value = partValue
 
-window.locations = ->
-  elements     = getElements()
+window.locations = (prefix) ->
+  elements     = getElements(prefix)
   startLat     = if elements.lat.value == "" then cords.lat else elements.lat.value
   startLng     = if elements.lng.value == "" then cords.lng else elements.lng.value
   map          = addMap startLat, startLng, elements

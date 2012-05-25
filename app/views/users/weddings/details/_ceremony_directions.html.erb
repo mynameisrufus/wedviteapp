@@ -1,0 +1,11 @@
+<div id="ceremony_location_map" class="location-map"></div>
+<hr/>
+<p class="help-block">Start typing to find the location</p>
+<%= text_field_tag "ceremony_location_search", nil, class: 'search', size: 30, type: :search %>
+
+<%= render partial: 'users/weddings/details/location', locals: {
+  location: @ceremony_where,
+  how: :ceremony_how,
+  as: :ceremony_location,
+  url: ceremony_wedding_locations_path(@wedding)
+} %>
