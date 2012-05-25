@@ -1,9 +1,10 @@
 <section class="details">
   <div class="row">
     <ul class="nav nav-wedvite">
-      <li><a href="#ourday">Our Day</a></li>
+      <li class="active"><a href="#ourday">Our Day</a></li>
       <li><a href="#date_and_times">Dates & Times</a></li>
       <li><a href="#directions">Directions</a></li>
+      <li><a href="#settings">Settings</a></li>
     </ul>
     <div class="span9">
       <div class="slide-deck">
@@ -14,7 +15,10 @@
           <%= render partial: 'users/weddings/details/date_and_times' %>
         </div>
         <div class="slide" data-position="3" data-transition="horizontal" id="directions">
-          <%= render partial: 'users/weddings/details/ourday' %>
+          <%= render partial: 'users/weddings/details/directions' %>
+        </div>
+        <div class="slide" data-position="4" data-transition="horizontal" id="settings">
+          <%= render partial: 'users/weddings/details/settings' %>
         </div>
       </div>
     </div>
@@ -24,20 +28,29 @@
 <script>
 (function() {
 
-    var $container = $('.slide-deck')
-    var $sections  = $container.find('.slide')
+    var $container = $('.slide-deck'),
+        $sections  = $container.find('.slide'),
+        $navItems  = $('.nav-wedvite li')
 
     $sections.slideDeck({
         speed: 500,
         easing: $.support.transition ? 'ease' : 'swing'
     })
 
+    $container.css('height', $($sections.get(0)).height())
     $sections.on('incomming', function(event, elem) {
         $container.css('height', $(this).height())
     })
 
-    $('.nav-wedvite a').on('click', function(event) {
+
+    $navItems.find('a').on('click', function(event) {
         event.preventDefault()
+
+        // toggle active states
+        $navItems.removeClass('active')
+        $(this).parent().addClass('active')
+
+        // transition
         var id = this.hash.replace(/#/, '')
         $sections.change(id)
         return false

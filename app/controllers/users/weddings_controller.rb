@@ -4,7 +4,16 @@ class Users::WeddingsController < Users::BaseController
   skip_before_filter :verify_authenticity_token, only: %w(payment_success)
 
   def details
+    @locations = {
+      ceremony: @wedding.ceremony_where || Location.new,
+      reception: @wedding.reception_where || Location.new,
+    }
+  end
 
+  def update_details
+    @wedding = current_user.weddings.find params[:wedding_id]
+    @wedding.update_attributes(params[:wedding])
+    redirect_to wedding_details_path(@wedding), notice: 'Details updated.'
   end
 
   def guestlist

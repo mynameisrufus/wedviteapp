@@ -1,3 +1,20 @@
+<%= form_for @wedding do |f| %>
+  <%= error_messages_on @wedding %>
+  <fieldset>
+    <%= f.text_area :ceremony_what, class: 'markdown', rows: 3 %>
 
-          <p class="help-block">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-          <p class="help-block">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+    <% if @wedding.has_reception? %>
+      <p class="help-block"><strong>Note:</strong> everybody will see this.</p>
+    <% end %>
+
+    <% if @wedding.has_reception? %>
+      <h3>Extra Details for Reception</h3>
+      <%= f.text_area :reception_what, class: 'markdown markdown-small', rows: 3 %>
+      <p class="help-block"><strong>Note:</strong> people who are not attending the reception will not see this.</p>
+    <% end %>
+
+    <div class="form-actions">
+      <%= f.submit 'Save changes', class: 'btn primary' %>&nbsp;<%= link_to 'Preview', wedding_details_path(@wedding), class: 'btn' %>
+    </div>
+  </fieldset>
+<% end %>

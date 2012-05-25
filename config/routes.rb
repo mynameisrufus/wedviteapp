@@ -21,6 +21,8 @@ WeddingInvitor::Application.routes.draw do
         get 'collaborators/collaborate/:token', action: :collaborate, controller: :collaborators, as: :collaborate
 
         get :details
+        put :update_details
+
         get :guestlist
         get 'invitation-and-stationery', action: :invitations, as: :invitations
         get :timeline
