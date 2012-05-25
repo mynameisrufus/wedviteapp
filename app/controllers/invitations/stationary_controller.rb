@@ -69,7 +69,7 @@ class Invitations::StationaryController < Invitations::BaseController
     @guest = Guest.find_by_token params[:token];
 
     if @guest.accepted? || @guest.declined?
-      redirect_to wedding_details_path
+      redirect_to guesthome_path
     else
       data = HashWithIndifferentAccess.new guest: GuestDrop.new(@guest), wedding: WeddingDrop.new(@guest.wedding)
 

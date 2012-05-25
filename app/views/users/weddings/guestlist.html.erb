@@ -23,14 +23,7 @@ $(function(){
     
     var $modal = $('#modal-from-dom')
 
-    $('a.add-guest').on('click', function(event) {
-        event.preventDefault()
-        $.get(this.href, function(data) {
-            $modal.html(data).modal('show')
-        })
-    })
-
-    $('.guest.regular a').on('click', function(event) {
+    $('a.modal-me').on('click', function(event) {
         event.preventDefault()
         $.get(this.href, function(data) {
             $modal.html(data).modal('show')

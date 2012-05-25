@@ -23,6 +23,9 @@ WeddingInvitor::Application.routes.draw do
         get :details
         put :update_details
 
+        get :invitations
+        put :update_invitations
+
         get :guestlist
         get 'invitation-and-stationery', action: :invitations, as: :invitations
         get :timeline
@@ -37,9 +40,7 @@ WeddingInvitor::Application.routes.draw do
           get markup_action
         end
         resources :stationary, only: %w(index) do
-          get 'payment'
-          get 'payment-success', action: :payment_success, as: :payment_success
-          get 'payment-failure', action: :payment_failure, as: :payment_failure
+          get 'choose'
         end
         resource :locations, only: [] do
           get 'ceremony'
@@ -91,7 +92,7 @@ WeddingInvitor::Application.routes.draw do
       match ':token/accept'  => 'guests#accept', as: :accept_invitation
       match ':token/decline' => 'guests#decline', as: :decline_invitation
 
-      match ':token/details' => 'weddings#details', as: :details
+      match ':token/details' => 'weddings#details', as: :guesthome
       match ':token/ical'    => 'weddings#ical', as: :ical
     end
   end

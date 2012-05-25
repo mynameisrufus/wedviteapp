@@ -49,19 +49,19 @@
       <% [1,2].each do |partner_number| %>
       <div class="column">
         <% ga[:guests].select{|g| g.partner_number == partner_number}.each do |guest| %>
-          <div class="guest regular" data-id="<%= guest.id %>">
+          <div class="guest" data-id="<%= guest.id %>">
             <%= state_icon guest.state %>
             <div class="details">
               <h3><%= guest.name %></h3>
               <span>Adults: <%= guest.adults %></span>
               <span>Children: <%= guest.children %></span>
-              <% if @wedding.stationary %>
-                <span><%= link_to "preview", invitation_url(guest.token, subdomain: "invitations"), target: "_blank" %></span>
-              <% end %>
             </div>
             <div class="actions">
-              <%= link_to "move", wedding_guest_path(@wedding, guest) %>
-              <%= link_to "update", edit_wedding_guest_path(@wedding, guest) %>
+              <%= link_to "move", wedding_guest_path(@wedding, guest), class: "modal-me" %>
+              <%= link_to "update", edit_wedding_guest_path(@wedding, guest), class: "modal-me" %>
+              <% if @wedding.stationary && !%w(accepted declined).include?(guest.state) %>
+                <%= link_to "preview", invitation_url(guest.token, subdomain: "invitations"), target: "_blank" %>
+              <% end %>
             </div>
           </div>
         <% end %>

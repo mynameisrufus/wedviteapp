@@ -20,7 +20,13 @@ class Users::WeddingsController < Users::BaseController
   end
 
   def invitations
+    @stationary = Stationary.published.sorted(params[:sort], 'popularity ASC').page(params[:page]).per(50).all
+  end
 
+  def update_invitations
+    @wedding = current_user.weddings.find params[:wedding_id]
+    @wedding.update_attributes(params[:wedding])
+    redirect_to wedding_invitations_path(@wedding), notice: 'Invitation wording has been updated.'
   end
 
   def timeline
@@ -50,7 +56,7 @@ class Users::WeddingsController < Users::BaseController
         @wedding.evt.create! wedding: @wedding,
                              headline: "#{current_user.name} created a new wedding called #{@wedding.name}"
 
-        format.html { redirect_to wwedding_collaborators_path(@wedding), notice: 'Wedding created.' }
+        format.html { redirect_to wedding_details_path(@wedding), notice: 'Wedding created.' }
         format.json { render json: @wedding, status: :created, location: @wedding }
       else
         format.html { render action: "new" }

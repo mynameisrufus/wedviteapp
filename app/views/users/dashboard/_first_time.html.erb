@@ -3,14 +3,17 @@
     <div class="container">
       <h1>Welcome to WedVite <%= current_user.name %></h1>
       <p class="lead">
-        You are now ready to start planning your wedding invitation list.
+        You are now ready to start planning your wedding invitation list. First things first, lets create a new wedding, any name will do as it's just for your reference.
       </p>
-    </div><!-- /container -->
+    </div>
   </div>
 </header>
 <div class="row">
   <div class="span16">
-    <%= link_to 'Get started!', new_wedding_path, class: 'btn large primary' %>
+    <%= form_for @wedding do |f| %>
+      <%= f.text_field :name %>
+      <button type="submit" class="btn btn-large">Create</button>
+    <% end %>
   </div>
 </div>
 

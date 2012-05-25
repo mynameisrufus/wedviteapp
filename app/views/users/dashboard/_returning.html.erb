@@ -11,7 +11,10 @@
     <p>
       Don't worry you can set what collaborators can and can't do
     </p>
-    <%= link_to 'Create another wedding plan', new_wedding_path, class: 'btn' %>
+    <%= form_for @wedding do |f| %>
+      <%= f.text_field :name %>
+      <button type="submit" class="btn btn-large">Create another wedding</button>
+    <% end %>
   </div>
   <div class="span7">
     <ul>

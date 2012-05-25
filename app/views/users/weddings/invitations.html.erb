@@ -1,0 +1,54 @@
+<section class="invitations">
+  <div class="row">
+    <div class="span3">
+      <ul class="nav nav-wedvite">
+        <li class="active"><a href="#wording">Invitation Wording</a></li>
+        <li><a href="#stationery">Stationery</a></li>
+      </ul>
+    </div>
+    <div class="span9">
+      <div class="slide-deck">
+        <div class="slide" data-position="1" data-transition="horizontal" id="wording">
+          <%= render partial: 'users/weddings/invitations/wording' %>
+        </div>
+        <div class="slide" data-position="2" data-transition="horizontal" id="stationery">
+          <%= render partial: 'users/weddings/invitations/stationery' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+
+    var $container = $('.slide-deck'),
+        $sections  = $container.find('.slide'),
+        $navItems  = $('.nav-wedvite li')
+
+    $sections.slideDeck({
+        speed: 500,
+        easing: $.support.transition ? 'ease' : 'swing'
+    })
+
+    $container.css('height', $($sections.get(0)).height())
+    $sections.on('incomming', function(event, elem) {
+        $container.css('height', $(this).height())
+    })
+
+
+    $navItems.find('a').on('click', function(event) {
+        event.preventDefault()
+
+        // toggle active states
+        $navItems.removeClass('active')
+        $(this).parent().addClass('active')
+
+        // transition
+        var id = this.hash.replace(/#/, '')
+        $sections.change(id)
+        return false
+    })
+
+})();
+</script>

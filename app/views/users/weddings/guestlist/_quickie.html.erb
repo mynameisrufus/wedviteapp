@@ -15,7 +15,7 @@
       } %>
       <strong><%= total_guests %></strong> Guests</p>
 
-  <%= link_to new_wedding_guest_path(@wedding), class: 'btn btn-large add-guest' do %>
+  <%= link_to new_wedding_guest_path(@wedding), class: 'btn btn-large modal-me' do %>
     <i class="icon-plus-sign"></i> Add guest
   <% end %>
     <% guest_array.each do |ga| %>

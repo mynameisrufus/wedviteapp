@@ -2,25 +2,7 @@ class Users::StationaryController < Users::BaseController
   before_filter :find_wedding
   respond_to :html
 
-  def index
-    @stationary = Stationary.published.sorted(params[:sort], 'popularity ASC').page(params[:page]).per(50).all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @stationary }
-    end
-  end
-
-  def payment
-    @wedding            = Wedding.find(params[:wedding_id])
-    respond_with(@stationary = Stationary.find(params[:stationary_id]))
-  end
-
-  def payment_failure
-
-  end
-
-  def payment_success
+  def choose
     @stationary         = Stationary.find(params[:stationary_id])
     @wedding            = Wedding.find(params[:wedding_id])
     @current_stationary = @wedding.stationary
@@ -29,7 +11,7 @@ class Users::StationaryController < Users::BaseController
       if @wedding.update_attributes!(stationary_id: @stationary.id)
         Stationary.decrement_counter(:popularity, @current_stationary.id) unless @current_stationary.nil?
         Stationary.increment_counter(:popularity, @stationary.id)
-        format.html { redirect_to @wedding, notice: "#{@stationary.name} was selected for #{@wedding.name}." }
+        format.html { redirect_to wedding_invitations_path(@wedding), notice: "#{@stationary.name} was selected for #{@wedding.name}." }
         format.json { head :ok }
       else
         format.html { render action: "index" }
