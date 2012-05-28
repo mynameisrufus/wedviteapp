@@ -17,7 +17,7 @@ module ApplicationHelper
   def state_icon(state)
     sh = get_state_hash state
     html_options = {
-      class: ["state", "icon", sh[:css]],
+      class: ["state", "icon", state],
       title: sh[:title],
       rel: 'twipsy'
     }
@@ -94,64 +94,48 @@ module ApplicationHelper
         state: "review",
         label: "?",
         title: "For review",
-        css:   "silver",
-        color: "#57A957",
         order: 1
       },
       {
         state: "accepted",
         label: "R",
         title: "RSVP",
-        css:   "gold",
-        color: "silver",
         order: 2
       },
       {
         state: "sent",
         label: "&#64;",
         title: "Invitation sent",
-        css:   "black",
-        color: "#000000",
         order: 3
       },
       {
         state: "approved",
         label: "&#10003;",
         title: "Approved for invitation",
-        css:   "green",
-        color: "#57A957",
         order: 4
       },
       {
         state: "tentative",
         label: "&#8776;",
         title: "Tentative",
-        css:   "aqua",
-        color: "#339BB9",
         order: 5
       },
       {
         state: "declined",
         label: "D",
         title: "Invitation declined",
-        css:   "black",
-        color: "#000000",
         order: 6
       },
       {
         state: "rejected",
         label: "&#215;",
         title: "Rejected",
-        css:   "red",
-        color: "#C43C35",
         order: 7
       },
       {
         state: "default",
         label:   "-",
         title: "unknown",
-        css:   "unknown",
-        color: "pink",
         order: 0
       }
     ]

@@ -20,7 +20,8 @@
   <% end %>
     <% guest_array.each do |ga| %>
       <% next if ga[:guests].empty? %>
-      <%= content_tag :div, { class: ['quickie-nav', ga[:state], ga[:css]] } do %>
+      <%= content_tag :div, { class: ['quickie-nav', ga[:state]] } do %>
+        <%= state_icon ga[:state] %>
         <% c = capture do %>
           <p>Total: <%= ga[:stats][:total] %></p>
           <sub>adults: <%= ga[:stats][:adults] %></sub>

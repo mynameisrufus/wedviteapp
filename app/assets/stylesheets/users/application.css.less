@@ -187,6 +187,14 @@ section {
           border-bottom-right-radius: @radius;
 }
 
+.guest {
+  .icon {
+    &.state {
+      margin: 12px 10px 12px 0px;
+    }
+  }
+}
+
 .icon {
   &.state {
     background-color: pink;
@@ -194,30 +202,40 @@ section {
     height: 12px;
     display: block;
     float: left;
-    margin: 12px 10px 12px 0px;
     .border-radius(12px);
     text-align: center;
     padding: 5px;
     font-weight: bold;
     line-height: 0.9em;
-    color: white;
-    &.green {
-      background-color: #57A957;
+    color: @white;
+    &.approved {
+      background-color: @approved;
     }
-    &.red {
-      background-color: #C43C35;
+    &.rejected {
+      background-color: @rejected;
+      font-size: 1.5em;
+      line-height: 0.4em;
     }
-    &.aqua {
-      background-color: #339BB9;
+    &.accepted {
+      background-color: @accepted;
     }
-    &.silver {
-      background-color: silver;
+    &.declined {
+      background-color: @declined;
     }
-    &.gold {
-      background-color: gold;
+    &.sent {
+      background-color: @sent;
+      font-weight: 100;
+      font-size: 1.3em;
+      line-height: 0.7em;
+      text-indent: -1px;
     }
-    &.black {
-      background-color: black;
+    &.tentative {
+      background-color: @tentative;
+      font-size: 1.6em;
+      line-height: 0.4em;
+    }
+    &.review {
+      background-color: @review;
     }
   }
 }
@@ -243,6 +261,7 @@ form {
   }
   .wrapper {
     position: fixed;
+    width: 140px;
   }
   .quickie-nav {
     background-color: gray;
@@ -350,3 +369,19 @@ form {
      font-size: 700%;
      color: @cornucopia;
  }
+
+.btn {
+  .icon {
+    &.state {
+      margin: 0px 10px 0px 0px;
+    }
+  }
+}
+
+.guest-state-form {
+  button {
+    width: 165px;
+    text-align: left;
+    line-height: 25px;
+  }
+}
