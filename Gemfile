@@ -17,10 +17,11 @@ gem 'paperclip',             '~> 3.0'
 
 group :assets do
   gem 'jquery-rails',         '~> 1.0.19'
-  gem 'less-rails-bootstrap', '~> 2.0.10'
+  gem 'less-rails-bootstrap', '~> 2.0'
 
   gem 'coffee-rails',         '~> 3.2.2'
   gem 'uglifier',             '>= 1.0.3'
+  gem 'therubyracer',         '~> 0.10'
 end
 
 group :development, :test do
