@@ -1,7 +1,7 @@
 <div class="guests">
   <div class="header clearfix">
     <div class="column">
-      <div class="guest bride-groom">
+      <div class="guest shade bride-groom">
         <div class="details">
           <%= state_icon 'accepted' %>
           <h3><%= @wedding.partner_one_name %></h3>
@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="column">
-      <div class="guest bride-groom">
+      <div class="guest shade bride-groom">
         <div class="details">
           <%= state_icon 'accepted' %>
           <h3><%= @wedding.partner_two_name %></h3>
@@ -49,7 +49,7 @@
       <% [1,2].each do |partner_number| %>
       <div class="column">
         <% ga[:guests].select{|g| g.partner_number == partner_number}.each do |guest| %>
-          <div class="guest" data-id="<%= guest.id %>">
+          <div class="guest shade" data-id="<%= guest.id %>">
             <%= state_icon guest.state %>
             <div class="details">
               <h3><%= guest.name %></h3>

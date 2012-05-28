@@ -1,3 +1,4 @@
+#= require ../lib/ie-foreach
 #= require jquery
 #= require jquery-ui
 #= require jquery_ujs
