@@ -11,7 +11,7 @@ class Users::Mailer < ActionMailer::Base
 
     @email     = options[:email]
     @token     = options[:token]
-    @url       = wedding_collaborate_url(@wedding, @token, host: 'wedviteapp.com', subdomain: subdomain)
+    @url       = collaborate_url(@wedding, @token, host: 'wedviteapp.com', subdomain: subdomain)
 
     mail to: @email,
          from: "#{@requestor.name} <noreply@wedviteapp.com>",

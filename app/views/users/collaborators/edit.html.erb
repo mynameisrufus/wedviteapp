@@ -8,7 +8,7 @@
       <p><strong>Note:</strong> It is recomended that only the Bride and Groom have the invite role as this means you can send the invites!<p>
     </div>
     <div class="span9">
-      <%= form_tag wedding_collaborator_path(@wedding, @collaborator) do %>
+      <%= form_for @collaborator, url: wedding_collaborator_path(@wedding, @collaborator) do %>
         <% if @collaborator.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@invitor.errors.count, "error") %> prohibited this collaborator from being added:</h2>
@@ -37,7 +37,7 @@
             </div>
           </div>
           <div class="actions">
-            <%= submit_tag 'Change role', class: 'btn primary' %>
+            <%= submit_tag 'Save', class: 'btn primary' %>
             <%= link_to 'Back', wedding_collaborators_path(@wedding), class: 'btn' %>
           </div>
         </fieldset>

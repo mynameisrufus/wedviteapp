@@ -10,7 +10,7 @@ module HelperMethods
   def wedup!
     wedding      = Wedding.make!
     user         = User.make!
-    collaborator = Collaborator.make! user_id: user.id, wedding_id: wedding.id
+    collaborator = Collaborator.make! user_id: user.id, wedding_id: wedding.id, role: 'invite'
 
     [wedding, user, collaborator]
   end

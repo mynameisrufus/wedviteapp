@@ -1,48 +1,24 @@
 class Users::CollaboratorsController < Users::BaseController
   before_filter :find_wedding, except: %w(collaborate)
+  before_filter :authorize, only: %w(index new edit create)
 
   show_subnav true
 
-  # GET /collaborators
-  # GET /collaborators.json
   def index
     @collaborators = @wedding.collaborators.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @collaborators }
-    end
+    respond_with @collaborators
   end
 
-  # GET /collaborators/1
-  # GET /collaborators/1.json
-  def show
-    @collaborator = @wedding.collaborators.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @collaborator }
-    end
-  end
-
-  # GET /collaborators/new
-  # GET /collaborators/new.json
   def new
     @invitor = CollaboratorInvitor.new role: 'read'
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @invitor }
-    end
+    respond_with @invitor
   end
 
-  # GET /collaborators/1/edit
   def edit
     @collaborator = @wedding.collaborators.find(params[:id])
+    respond_with @collaborator
   end
 
-  # POST /collaborators
-  # POST /collaborators.json
   def create
     @invitor = CollaboratorInvitor.new email: params[:email], wedding: @wedding, requestor: current_user, role: params[:role]
 
@@ -62,14 +38,14 @@ class Users::CollaboratorsController < Users::BaseController
     end
   end
 
-  # PUT /collaborators/1
-  # PUT /collaborators/1.json
   def update
     @collaborator = @wedding.collaborators.find(params[:id])
 
+    authorize! :manage, @collaborator
+
     respond_to do |format|
       if @collaborator.update_attributes(role: params[:role])
-        format.html { redirect_to @collaborator, notice: 'Collaborator was successfully updated.' }
+        format.html { redirect_to wedding_collaborators_path(@wedding), notice: "#{@collaborator.user.name} now has the '#{@collaborator.role}' role." }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -78,10 +54,11 @@ class Users::CollaboratorsController < Users::BaseController
     end
   end
 
-  # DELETE /collaborators/1
-  # DELETE /collaborators/1.json
   def destroy
     @collaborator = @wedding.collaborators.find(params[:id])
+
+    authorize! :manage, @collaborator
+
     @collaborator.destroy
 
     respond_to do |format|
@@ -90,10 +67,9 @@ class Users::CollaboratorsController < Users::BaseController
     end
   end
 
-  # GET /weddings/1/collaborate/o8Tq2nfw6SYdmcME7oz7
   def collaborate
-    @wedding = Wedding.find(params[:wedding_id])
-    @collaboration_token = CollaborationToken.where(wedding_id: @wedding.id).where(token: params[:token]).first!
+    @collaboration_token = CollaborationToken.where(token: params[:token]).first!
+    @wedding             = @collaboration_token.wedding
 
     respond_to do |format|
       if @collaboration_token.claimed?
@@ -107,9 +83,15 @@ class Users::CollaboratorsController < Users::BaseController
           @collaborator.evt.create! wedding: @wedding,
                                     headline: "#{current_user.name} is now collaborating on this wedding"
         end
-        format.html { redirect_to @wedding, notice: 'You are now collaborating on this wedding.' }
+        format.html { redirect_to wedding_guestlist_path(@wedding), notice: 'You are now collaborating on this wedding.' }
         format.json { head :ok }
       end
     end
+  end
+
+  protected
+
+  def authorize
+    authorize! :manage_collaborators, @wedding
   end
 end

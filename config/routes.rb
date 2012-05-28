@@ -12,13 +12,14 @@ WeddingInvitor::Application.routes.draw do
   constraints subdomain: 'plan' do
     devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations" }
 
+
     root to: 'users/dashboard#home'
     scope module: 'users' do
       match 'robots.txt' => 'base#robots'
 
-      resources :weddings do
+      get 'collaborate/:token', action: :collaborate, controller: :collaborators, as: :collaborate
 
-        get 'collaborators/collaborate/:token', action: :collaborate, controller: :collaborators, as: :collaborate
+      resources :weddings do
 
         get :details
         put :update_details
@@ -36,9 +37,6 @@ WeddingInvitor::Application.routes.draw do
         post 'payment-success', action: :payment_success, as: :payment_success
         get 'payment-failure', action: :payment_failure, as: :payment_failure
 
-        %w(wording ceremony_only_wording save_the_date_wording thank_you_wording ceremony_what ceremony_how reception_what reception_how).each do |markup_action|
-          get markup_action
-        end
         resources :stationary, only: %w(index) do
           get 'choose'
         end

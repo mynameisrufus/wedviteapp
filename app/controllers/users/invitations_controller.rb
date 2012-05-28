@@ -1,6 +1,8 @@
 class Users::InvitationsController < Users::BaseController
   before_filter :find_wedding
 
+  show_subnav true
+
   def confirm
     @guests = @wedding.guests.approved.where(invited_on: nil)
     respond_with @guests

@@ -57,11 +57,18 @@
               <span>Children: <%= guest.children %></span>
             </div>
             <div class="actions">
-              <%= link_to "move", wedding_guest_path(@wedding, guest), class: "modal-me" %>
-              <%= link_to "update", edit_wedding_guest_path(@wedding, guest), class: "modal-me" %>
-              <% if @wedding.stationary && !%w(accepted declined).include?(guest.state) %>
-                <%= link_to "preview", invitation_url(guest.token, subdomain: "invitations"), target: "_blank" %>
+              <% if can? :edit, guest %>
+                <%= link_to "move", wedding_guest_path(@wedding, guest), class: "modal-me" %>
+                <%= link_to "update", edit_wedding_guest_path(@wedding, guest), class: "modal-me" %>
+                <% if @wedding.stationary && !%w(accepted declined).include?(guest.state) %>
+                  <%= link_to "preview", invitation_url(guest.token, subdomain: "invitations"), target: "_blank" %>
+                <% end %>
               <% end %>
+              <!-- 
+              <% if can? :comment, guest %>
+                <%= link_to "comments #{guest.comments_count}", "#" %>
+              <% end %>
+              -->
             </div>
           </div>
         <% end %>

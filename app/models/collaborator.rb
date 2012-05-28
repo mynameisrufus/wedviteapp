@@ -17,4 +17,12 @@ class Collaborator < ActiveRecord::Base
     scope: :wedding_id,
     message: "already a collaborator on this wedding"
   }
+
+  def is_role? role
+    self.role == role
+  end
+
+  def is_not_role? role
+    !is_role? role
+  end
 end
