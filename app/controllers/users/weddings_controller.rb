@@ -3,6 +3,8 @@ class Users::WeddingsController < Users::BaseController
 
   skip_before_filter :verify_authenticity_token, only: %w(payment_success)
 
+  show_subnav true
+
   def details
     @ceremony_where  = @wedding.ceremony_where || Location.new
     @reception_where = @wedding.reception_where || Location.new

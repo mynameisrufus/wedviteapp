@@ -8,13 +8,34 @@ en:
     formats:
       # needs ordinalize of day before can be used
       sentence: "%H:%M %P %A the %e of %B %G"
-  accepted: "RSVPd"
-  declined: "declined"
-  state: "status"
-  adults: "adults"
-  children: "adults"
-  attending_reception: "attending the reception"
   true: "yes"
   false: "no"
-  address: "address"
-  phone: "phone"
+  guest:
+    adults: "adults"
+    children: "adults"
+    attending_reception: "attending the reception"
+    address: "address"
+    phone: "phone"
+    state: "Status"
+  state:
+    approved:
+      noun: "Approved"
+      verb: "Approve"
+    rejected:
+      noun: "Rejected"
+      verb: "Reject"
+    accepted:
+      noun: "RSVPd"
+      verb: "RSVP"
+    declined:
+      noun: "Declined"
+      verb: "Decline"
+    sent:
+      noun: "Sent"
+      verb: "Send"
+    tentative:
+      noun: "Tentative"
+      verb: "Make tentative"
+    review:
+      noun: "Reviewed"
+      verb: "Review"

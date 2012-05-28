@@ -144,7 +144,7 @@ class Users::GuestsController < Users::BaseController
                            state: @guest.state,
                            headline: "#{current_user.name} changed #{@guest.name} to #{@guest.state}"
 
-        format.html { redirect_to wedding_guestlist_path(@wedding), notice: "#{@guest.name} #{@guest.total_guests > 1 ? "are" : "is"} now #{@guest.state}." }
+        format.html { redirect_to wedding_guestlist_path(@wedding), notice: "#{@guest.name} #{@guest.total_guests > 1 ? "are" : "is"} now #{t "state.#{@guest.state}.noun"}." }
         format.json { head :ok }
       else
         format.html { redirect_to @wedding, notice: "Could not change the guests state." }

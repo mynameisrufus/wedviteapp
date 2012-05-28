@@ -1,6 +1,8 @@
 class Users::CollaboratorsController < Users::BaseController
   before_filter :find_wedding, except: %w(collaborate)
 
+  show_subnav true
+
   # GET /collaborators
   # GET /collaborators.json
   def index

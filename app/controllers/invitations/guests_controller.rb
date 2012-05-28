@@ -7,7 +7,7 @@ class Invitations::GuestsController < Invitations::BaseController
 
     @guest.evt.create! wedding: @guest.wedding,
                        state: 'accepted',
-                       headline: "#{@guest.name} has RSVPd"
+                       headline: "#{@guest.name} has #{t("state.accepted.noun")}"
   end
 
   def decline
@@ -16,7 +16,7 @@ class Invitations::GuestsController < Invitations::BaseController
 
     @guest.evt.create! wedding: @guest.wedding,
                        state: 'declined',
-                       headline: "#{@guest.name} has declined your invitation"
+                       headline: "#{@guest.name} has #{t("state.declined.noun")}"
   end
 
   def message
@@ -37,7 +37,7 @@ class Invitations::GuestsController < Invitations::BaseController
 
     if @guest.changed?
       @guest.changes.each do |change|
-        label = t change[0]
+        label = t "guest.#{change[0]}"
         from  = translate_unless_fixnum change[1][0]
         to    = translate_unless_fixnum change[1][1]
         @guest.evt.create!({
@@ -62,6 +62,6 @@ class Invitations::GuestsController < Invitations::BaseController
   protected
 
   def translate_unless_fixnum value
-    value.class == Fixnum ? value : t(value)
+    value.class == Fixnum ? value : t("state.#{value}.noun")
   end
 end

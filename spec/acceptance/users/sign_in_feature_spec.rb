@@ -12,12 +12,12 @@ feature 'Sign in feature', %q{
   end
 
   scenario 'sign in' do
-    sign_in_with email: @user.email, password: @user.password
+    sign_in_with @user.email, @user.password
     page.should have_content('Signed in successfully.')
   end
 
   scenario 'sign out' do
-    sign_in_with email: @user.email, password: @user.password
+    sign_in_with @user.email, @user.password
     sign_out
     page.should have_content('Sign in')
   end

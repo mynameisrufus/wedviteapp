@@ -36,10 +36,21 @@ end
 
 group :development do
   gem 'guard-rspec'
+
+  # live reload for browser
   gem 'guard-livereload'
+
+  # file system event gems
   gem 'rb-inotify', require: false
   gem 'rb-fsevent', require: false
   gem 'rb-fchange', require: false
+
+  # growl notify
+  gem 'ruby_gntp'
+
+  # development server
   gem 'unicorn'
+
+  # silence asset logging and asset get requests
   gem 'quiet_assets'
 end
