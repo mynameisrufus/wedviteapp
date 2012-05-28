@@ -1,9 +1,0 @@
-<%= form_for(@wedding) do |f| %>
-  <%= error_messages_on(@wedding) %>
-  <fieldset>
-    <%= f.text_area attribute, class: 'markdown', rows: 3 %>
-    <div class="actions">
-      <%= f.submit 'Save', class: 'btn primary' %>&nbsp;<%= link_to 'Cancel', wedding_path(@wedding), class: 'btn' %>
-    </div>
-  </fieldset>
-<% end %>
