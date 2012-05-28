@@ -10,7 +10,7 @@ WeddingInvitor::Application.routes.draw do
   end
 
   constraints subdomain: 'plan' do
-    devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations" }
+    devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations", passwords: "users/passwords" }
 
 
     root to: 'users/dashboard#home'
