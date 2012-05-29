@@ -22,9 +22,14 @@ class Wedding < ActiveRecord::Base
     self.partner_two_name = 'Groom'
   end
 
+  HELP_ATTRIBUTES = %w(wording ceremony_only_wording ceremony_what reception_what)
+  HELP_MARKDOWN   = HELP_ATTRIBUTES.inject({}) do |memo, help|
+    memo.merge({ help => File.read(File.join(Rails.root, 'app', 'help', "#{help}.md")) })
+  end
+
   before_create do
-    %w(wording ceremony_only_wording ceremony_what reception_what).each do |help|
-      self.send(:"#{help}=", File.read(File.join(Rails.root, 'app', 'help', "#{help}.md")))
+    HELP_ATTRIBUTES.each do |help|
+      self.send :"#{help}=", HELP_MARKDOWN[help]
     end
   end
 
