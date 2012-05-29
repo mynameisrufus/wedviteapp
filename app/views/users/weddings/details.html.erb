@@ -18,18 +18,18 @@
         <div class="slide" data-position="1" data-transition="horizontal" id="ourday">
           <%= render partial: 'users/weddings/details/ourday' %>
         </div>
-        <div class="slide" data-position="2" data-transition="horizontal" id="date_and_times">
+        <div class="slide hide" data-position="2" data-transition="horizontal" id="date_and_times">
           <%= render partial: 'users/weddings/details/date_and_times' %>
         </div>
-        <div class="slide" data-position="3" data-transition="horizontal" id="ceremony_directions">
+        <div class="slide hide" data-position="3" data-transition="horizontal" id="ceremony_directions">
           <%= render partial: 'users/weddings/details/ceremony_directions' %>
         </div>
         <% if @wedding.has_reception? %>
-          <div class="slide" data-position="4" data-transition="horizontal" id="reception_directions">
+          <div class="slide hide" data-position="4" data-transition="horizontal" id="reception_directions">
             <%= render partial: 'users/weddings/details/reception_directions' %>
           </div>
         <% end %>
-        <div class="slide" data-position="10" data-transition="horizontal" id="settings">
+        <div class="slide hide" data-position="10" data-transition="horizontal" id="settings">
           <%= render partial: 'users/weddings/details/settings' %>
         </div>
         </div>
