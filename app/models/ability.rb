@@ -2,21 +2,13 @@ class Ability
   include CanCan::Ability
 
   def initialize(collaboration)
-    can [:send_invitations, :manage_collaborators], Wedding do |wedding|
-      wedding.collaborators.include?(collaboration) && collaboration.is_role?('invite')
-    end
+    can [:send_invitations, :manage_collaborators], Wedding if collaboration.is_role?('invite')
 
-    can :update, Wedding do |wedding|
-      wedding.collaborators.include?(collaboration) && %w(invite edit).include?(collaboration.role)
-    end
+    can :update, Wedding if %w(invite edit).include?(collaboration.role)
 
-    can :comment, Guest do |guest|
-      guest.wedding.collaborators.include?(collaboration) && %w(invite edit comment).include?(collaboration.role)
-    end
+    can :comment, Guest if %w(invite edit comment).include?(collaboration.role)
 
-    can :edit, Guest do |guest|
-      guest.wedding.collaborators.include?(collaboration) && %w(invite edit).include?(collaboration.role)
-    end
+    can :edit, Guest if %w(invite edit).include?(collaboration.role)
 
     can :create, Guest if %w(invite edit).include?(collaboration.role)
 
