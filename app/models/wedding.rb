@@ -22,6 +22,12 @@ class Wedding < ActiveRecord::Base
     self.partner_two_name = 'Groom'
   end
 
+  before_create do
+    %w(wording ceremony_only_wording ceremony_what reception_what).each do |help|
+      self.send(:"#{help}=", File.read(File.join(Rails.root, 'app', 'help', "#{help}.md")))
+    end
+  end
+
   def invite_process_started!
     unless invite_process_started?
       update_attributes({

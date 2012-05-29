@@ -59,7 +59,7 @@ class Users::WeddingsController < Users::BaseController
         format.html { redirect_to wedding_details_path(@wedding), notice: 'Wedding created.' }
         format.json { render json: @wedding, status: :created, location: @wedding }
       else
-        format.html { render action: "new" }
+        format.html { redirect_to root_path, notice: "You must give your wedding a name" }
         format.json { render json: @wedding.errors, status: :unprocessable_entity }
       end
     end
