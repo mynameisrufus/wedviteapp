@@ -29,7 +29,7 @@ class Invitations::GuestsController < Invitations::BaseController
                            quotation: @message.text
     end
 
-    redirect_to wedding_details_path, notice: 'Message added'
+    redirect_to guesthome_path, notice: 'Message added'
   end
 
   def update

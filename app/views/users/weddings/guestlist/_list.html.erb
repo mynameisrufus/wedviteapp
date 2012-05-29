@@ -67,6 +67,9 @@
                 <% if @wedding.stationary && guest.state == 'approved' %>
                   <%= link_to "preview", wedding_guest_preview_path(@wedding, guest), target: "_blank" %>
                 <% end %>
+                <% unless Rails.env.production? %>
+                  <%= link_to "invitation", invitation_url(guest.token, subdomain: 'invitations'), target: "_blank" %>
+                <% end %>
               <% end %>
               <!-- 
               <% if can? :comment, guest %>
