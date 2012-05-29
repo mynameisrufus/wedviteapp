@@ -21,11 +21,16 @@ class Guest < ActiveRecord::Base
 
     define_method state[:verb] do
       update_state state[:noun].to_s
+      self
     end
 
     define_method "#{state[:noun]}?" do
       self.state == state[:noun].to_s
     end
+  end
+
+  def invited!
+    sent.update_attribute(:invited_on, Time.now)
   end
 
   validates_presence_of :wedding_id, :name, :adults, :children, :token

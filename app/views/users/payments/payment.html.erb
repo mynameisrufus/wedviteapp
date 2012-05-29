@@ -1,0 +1,24 @@
+<section class="payment placeholder">
+  <div class="page-header">
+    <h1>Wedding Plan Payment $<%= Wedding::PRICE %></h1>
+  </div>
+    <p>To send your invitations <%= @wedding.name %> please pay USD <%= Wedding::PRICE %> with PayPal.</p>
+    <p><strong>What you get:</strong></p>
+    <ul>
+      <li>All the extra features that your guests get to use to interact with your wedding after they RSVP or decline.</li>
+      <li>Send unlimited invitations</li>
+      <li>Manage unlimited guests</li>
+      <li>Take as long as you want - your usage for this wedding never expires</li>
+      <li>Unlimited collaborators</li>
+      <li>Support answered within 24 hours</li>
+    </ul>
+    <hr/>
+    <%= render partial: 'users/shared/paypal',
+      locals: {
+        description: "Wedvite Wedding Plan Payment",
+        amount: Wedding::PRICE,
+        return_url: wedding_payment_success_url(@wedding),
+        cancel_url: wedding_payment_failure_url(@wedding)
+      }
+    %>
+</section>

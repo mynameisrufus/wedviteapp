@@ -33,9 +33,9 @@ WeddingInvitor::Application.routes.draw do
         get 'invite-guests', action: :confirm, controller: :invitations, as: :confirm
         get :deliver, controller: :invitations
 
-        get :payment
-        post 'payment-success', action: :payment_success, as: :payment_success
-        get 'payment-failure', action: :payment_failure, as: :payment_failure
+        get :payment, controller: :payments
+        post 'payment-success', controller: :payments, action: :success, as: :payment_success
+        get 'payment-failure',  controller: :payments, action: :failure, as: :payment_failure
 
         resources :stationary, only: %w(index) do
           get 'choose'

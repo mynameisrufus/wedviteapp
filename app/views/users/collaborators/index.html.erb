@@ -1,44 +1,55 @@
-<%
-  cols = [[],[]]
-  @collaborators.each_with_index do |collaborator, index|
-    cols[index % 2] << collaborator
-  end
-%>
-
-<section class="collaborate">
-  <div class="row">
-    <div class="span2">
-      <div class="quickie">
-        <%= link_to new_wedding_collaborator_path(@wedding), class: 'btn btn-large modal-me' do %>
-          <i class="icon-plus-sign"></i> Invite
-        <% end %>
+<% if @collaborators.size > 1 %>
+  <%
+    cols = [[],[]]
+    @collaborators.each_with_index do |collaborator, index|
+      cols[index % 2] << collaborator
+    end
+  %>
+  <section class="collaborate">
+    <div class="row">
+      <div class="span2">
+        <div class="quickie">
+          <%= link_to new_wedding_collaborator_path(@wedding), class: 'btn btn-large modal-me' do %>
+            <i class="icon-plus-sign"></i> Invite
+          <% end %>
+        </div>
       </div>
-    </div>
-    <div class="span10">
-      <div class="collaborators">
-        <% cols.each do |col| %>
-        <div class="column">
-          <% col.each do |collaborator| %>
-            <% next if collaborator.user == current_user %>
-              <div class="collaborator">
-                <div class="details">
-                  <h3><%= collaborator.user.name %></h3>
-                  <span>Role: <%= collaborator.role %></span>
-                </div>
-                <% if can? :manage, collaborator %>
-                  <div class="actions">
-                    <%= link_to 'change', edit_wedding_collaborator_path(@wedding, collaborator), class: 'modal-me' %>
-                    <%= link_to 'remove', wedding_collaborator_path(@wedding, collaborator), method: :delete, confirm: "Are you sure you no longer want #{collaborator.user.name} collaborating on you wedding?" %>
+      <div class="span10">
+        <div class="collaborators">
+          <% cols.each do |col| %>
+          <div class="column">
+            <% col.each do |collaborator| %>
+              <% next if collaborator.user == current_user %>
+                <div class="collaborator">
+                  <div class="details">
+                    <h3><%= collaborator.user.name %></h3>
+                    <span>Role: <%= collaborator.role %></span>
                   </div>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
+                  <% if can? :manage, collaborator %>
+                    <div class="actions">
+                      <%= link_to 'change', edit_wedding_collaborator_path(@wedding, collaborator), class: 'modal-me' %>
+                      <%= link_to 'remove', wedding_collaborator_path(@wedding, collaborator), method: :delete, confirm: "Are you sure you no longer want #{collaborator.user.name} collaborating on you wedding?" %>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+<% else %>
+  <section class="placeholder">
+    <h3>No one is yet collaborating on this wedding with you, start by inviting the bride or the groom!</h3>
+    <p>You can add as many collaborators as you want. The default role is 'read' which only lets the collaborator view guest and wedding details.</p>
+    <p><strong>Note:</strong> It is recomended that only the Bride and Groom have the invite role as this means you can send the invites!<p>
+    <p>Maybe just the Bride should have the invite role ;)</p>
+    <%= link_to new_wedding_collaborator_path(@wedding), class: 'btn btn-large modal-me' do %>
+      <i class="icon-plus-sign"></i> Invite
+    <% end %>
+  </section>
+<% end %>
 
 <div id="modal-from-dom" class="modal hide fade">
   <div class="modal-body">

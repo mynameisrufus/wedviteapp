@@ -22,6 +22,15 @@ class Wedding < ActiveRecord::Base
     self.partner_two_name = 'Groom'
   end
 
+  def invite_process_started!
+    unless invite_process_started?
+      update_attributes({
+        invite_process_started: true,
+        invite_process_started_at: Time.now
+      })
+    end
+  end
+
   class GuestStates
     def initialize(guests)
       @guests = guests
