@@ -15,6 +15,7 @@ gem 'rails_admin',           '~> 0.0.3'
 
 gem 'aws-sdk',               '~> 1.5'
 gem 'paperclip',             '~> 3.0'
+gem 'ffaker',                '~> 1.14'
 
 group :assets do
   gem 'jquery-rails',         '~> 1.0.19'
@@ -28,7 +29,6 @@ end
 group :development, :test do
   gem 'rspec-rails',          '~> 2.10'
   gem 'machinist',            '2.0.0.beta2'
-  gem 'ffaker'
   gem 'database_cleaner'
   gem 'awesome_print'
   gem "steak",                '~> 2.0.0'

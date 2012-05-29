@@ -264,7 +264,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.2)
   database_cleaner
   devise (~> 2.1)
-  ffaker
+  ffaker (~> 1.14)
   guard-livereload
   guard-rspec
   heroku
