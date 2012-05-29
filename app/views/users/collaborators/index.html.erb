@@ -41,12 +41,12 @@
   </section>
 <% else %>
   <section class="placeholder">
-    <h3>No one is yet collaborating on this wedding with you, start by inviting the bride or the groom!</h3>
+    <h2>No one is yet collaborating on this wedding with you, start by inviting the bride or the groom!</h2>
     <p>You can add as many collaborators as you want. The default role is 'read' which only lets the collaborator view guest and wedding details.</p>
     <p><strong>Note:</strong> It is recomended that only the Bride and Groom have the invite role as this means you can send the invites!<p>
     <p>Maybe just the Bride should have the invite role ;)</p>
     <%= link_to new_wedding_collaborator_path(@wedding), class: 'btn btn-large modal-me' do %>
-      <i class="icon-plus-sign"></i> Invite
+      <i class="icon-plus-sign"></i> Click here to invite a collaborator
     <% end %>
   </section>
 <% end %>

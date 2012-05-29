@@ -1,5 +1,6 @@
 @import "twitter/bootstrap";
 @import "colors";
+@import "fonts";
 @import "users/nav";
 
 @font-face {
@@ -233,15 +234,17 @@ section {
     text-align: center;
     padding: 5px;
     font-weight: bold;
-    line-height: 0.9em;
     color: @white;
     &.approved {
       background-color: @approved;
+      font-weight: 300;
+      line-height: 14px;
     }
     &.rejected {
       background-color: @rejected;
-      font-size: 1.5em;
-      line-height: 0.4em;
+      font-size: 20px;
+      line-height: 12px;
+      font-weight: 600;
     }
     &.accepted {
       background-color: @accepted;
@@ -249,20 +252,26 @@ section {
     &.declined {
       background-color: @declined;
     }
+    &.accepted, &.declined {
+      line-height: 11px;
+      font-weight: 500;
+    }
     &.sent {
       background-color: @sent;
       font-weight: 100;
-      font-size: 1.3em;
-      line-height: 0.7em;
-      text-indent: -1px;
+      font-size: 16px;
+      line-height: 10px;
     }
     &.tentative {
       background-color: @tentative;
-      font-size: 1.6em;
-      line-height: 0.4em;
+      font-size: 20px;
+      line-height: 10px;
     }
     &.review {
       background-color: @review;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-weight: 200;
+      line-height: 12px;
     }
   }
 }
@@ -327,6 +336,8 @@ form {
     height: 52px;
     overflow: hidden;
     margin: 0px;
+    width: 215px;
+    color: @white;
   }
   .nav {
     .menu-dropdown, .dropdown-menu {

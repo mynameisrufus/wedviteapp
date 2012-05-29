@@ -21,7 +21,7 @@ feature 'Collaborate feature', %q{
     wedding, user, collaborator = wedup!
     navigate_to_collaborators wedding, user
 
-    click_link 'Invite'
+    click_link 'Click here to invite a collaborator'
     fill_in 'email', with: 'user@example.com'
     choose 'role_invite'
     click_button 'Save'
@@ -35,7 +35,7 @@ feature 'Collaborate feature', %q{
 
     other_user = User.make!
 
-    click_link 'Invite'
+    click_link 'Click here to invite a collaborator'
     fill_in 'email', with: other_user.email
     choose 'role_invite'
     click_button 'Save'

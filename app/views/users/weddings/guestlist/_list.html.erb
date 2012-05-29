@@ -5,9 +5,9 @@
         <div class="details">
           <%= state_icon 'accepted' %>
           <h3><%= @wedding.partner_one_name %></h3>
-          <% if can? :manage, @wedding %><span><%= link_to "re-name", "#" %></span><% end %>
+          <% if can? :update, @wedding %><span><%= link_to "re-name", "#" %></span><% end %>
         </div>
-        <% if can? :manage, @wedding %>
+        <% if can? :update, @wedding %>
           <%= form_for @wedding, html: { style: 'display: none;' } do |f| %>
             <div class="controls">
               <div class="input-append">
@@ -23,9 +23,9 @@
         <div class="details">
           <%= state_icon 'accepted' %>
           <h3><%= @wedding.partner_two_name %></h3>
-          <% if can? :manage, @wedding %><span><%= link_to "re-name", "#" %></span><% end %>
+          <% if can? :update, @wedding %><span><%= link_to "re-name", "#" %></span><% end %>
         </div>
-        <% if can? :manage, @wedding %>
+        <% if can? :update, @wedding %>
           <%= form_for @wedding, html: { style: 'display: none;' } do |f| %>
             <div class="controls">
               <div class="input-append">
@@ -64,7 +64,7 @@
               <% if can? :edit, guest %>
                 <%= link_to "move", wedding_guest_path(@wedding, guest), class: "modal-me" %>
                 <%= link_to "update", edit_wedding_guest_path(@wedding, guest), class: "modal-me" %>
-                <% if @wedding.stationary && !%w(accepted declined).include?(guest.state) %>
+                <% if @wedding.stationary && guest.state == 'approved' %>
                   <%= link_to "preview", invitation_url(guest.token, subdomain: "invitations"), target: "_blank" %>
                 <% end %>
               <% end %>
