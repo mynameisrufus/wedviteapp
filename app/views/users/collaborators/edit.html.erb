@@ -1,47 +1,22 @@
-<section class="collaborators edit tab-content">
-  <div class="page-header">
-    <h1>Change <%= @collaborator.user.name %>'s role</h1>
+<%= form_for @collaborator, url: wedding_collaborator_path(@wedding, @collaborator), html: { class: 'form-horizontal modal-form' } do %>
+  <div class="modal-body">
+    <fieldset>
+      <legend>Change collaborators role</legend>
+      <div class="control-group">
+        <%= label_tag :role, "Role", class: "control-label" %>
+        <div class="controls">
+          <% Collaborator::ROLES.each do |role| %>
+            <label class="radio">
+              <%= radio_button_tag :role, role, @collaborator.role == role %>
+              <strong><%= role %></strong>
+              <p><%= t "collaborator.role.#{role}.description" %></p>
+            </label>
+          <% end %>
+        </div>
+      </div>
+    </fieldset>
   </div>
-  <div class="row">
-    <div class="span3">
-      <h3>Collaborators</h3>
-      <p><strong>Note:</strong> It is recomended that only the Bride and Groom have the invite role as this means you can send the invites!<p>
-    </div>
-    <div class="span9">
-      <%= form_for @collaborator, url: wedding_collaborator_path(@wedding, @collaborator) do %>
-        <% if @collaborator.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@invitor.errors.count, "error") %> prohibited this collaborator from being added:</h2>
-
-            <ul>
-            <% @collaborator.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-            </ul>
-          </div>
-        <% end %>
-        <fieldset>
-          <div class="clearfix">
-            <%= label_tag :role %>
-            <div class="input">
-              <ul class="inputs-list">
-                <% Collaborator::ROLES.each do |role| %>
-                  <li>
-                    <label>
-                      <%= radio_button_tag :role, role, @collaborator.role == role %>
-                      <span><%= role %></span>
-                    </label>
-                  </li>
-                <% end %>
-              </ul>
-            </div>
-          </div>
-          <div class="actions">
-            <%= submit_tag 'Save', class: 'btn primary' %>
-            <%= link_to 'Back', wedding_collaborators_path(@wedding), class: 'btn' %>
-          </div>
-        </fieldset>
-      <% end %>
-    <div>
-  <div>
-</section>
+  <div class="modal-footer">
+    <%= submit_tag 'Save', class: 'btn primary' %>&nbsp;<a href="#" class="btn" data-dismiss="modal">Close</a>
+  </div>
+<% end %>

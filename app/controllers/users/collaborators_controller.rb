@@ -11,12 +11,20 @@ class Users::CollaboratorsController < Users::BaseController
 
   def new
     @invitor = CollaboratorInvitor.new role: 'read'
-    respond_with @invitor
+
+    respond_to do |format|
+      format.html { render layout: false if request.xhr? }
+      format.json { render json: @invitor }
+    end
   end
 
   def edit
     @collaborator = @wedding.collaborators.find(params[:id])
-    respond_with @collaborator
+
+    respond_to do |format|
+      format.html { render layout: false if request.xhr? }
+      format.json { render json: @guest }
+    end
   end
 
   def create
@@ -59,10 +67,15 @@ class Users::CollaboratorsController < Users::BaseController
 
     authorize! :manage, @collaborator
 
+    message = "#{@collaborator.user.name} has been removed as a collaborator"
+
+    @collaborator.evt.create! wedding: @wedding,
+                              headline: message
+
     @collaborator.destroy
 
     respond_to do |format|
-      format.html { redirect_to collaborators_url }
+      format.html { redirect_to wedding_collaborators_path(@wedding), notice: message }
       format.json { head :ok }
     end
   end

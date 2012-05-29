@@ -1,34 +1,38 @@
 <div class="guests">
   <div class="header clearfix">
     <div class="column">
-      <div class="guest shade bride-groom">
+      <div class="guest bride-groom">
         <div class="details">
           <%= state_icon 'accepted' %>
           <h3><%= @wedding.partner_one_name %></h3>
-          <span><%= link_to "re-name", "#" %></span>
+          <% if can? :manage, @wedding %><span><%= link_to "re-name", "#" %></span><% end %>
         </div>
-        <%= form_for @wedding, html: { style: 'display: none;' } do |f| %>
-          <div class="controls">
-            <div class="input-append">
-              <%= f.text_field :partner_one_name, style: 'margin: 0px;' %><button class="btn" type="submit">Save</button>
+        <% if can? :manage, @wedding %>
+          <%= form_for @wedding, html: { style: 'display: none;' } do |f| %>
+            <div class="controls">
+              <div class="input-append">
+                <%= f.text_field :partner_one_name, style: 'margin: 0px;' %><button class="btn" type="submit">Save</button>
+              </div>
             </div>
-          </div>
+          <% end %>
         <% end %>
       </div>
     </div>
     <div class="column">
-      <div class="guest shade bride-groom">
+      <div class="guest bride-groom">
         <div class="details">
           <%= state_icon 'accepted' %>
           <h3><%= @wedding.partner_two_name %></h3>
-          <span><%= link_to "re-name", "#" %></span>
+          <% if can? :manage, @wedding %><span><%= link_to "re-name", "#" %></span><% end %>
         </div>
-        <%= form_for @wedding, html: { style: 'display: none;' } do |f| %>
-          <div class="controls">
-            <div class="input-append">
-              <%= f.text_field :partner_two_name, style: 'margin: 0px;' %><button class="btn" type="submit">Save</button>
+        <% if can? :manage, @wedding %>
+          <%= form_for @wedding, html: { style: 'display: none;' } do |f| %>
+            <div class="controls">
+              <div class="input-append">
+                <%= f.text_field :partner_two_name, style: 'margin: 0px;' %><button class="btn" type="submit">Save</button>
+              </div>
             </div>
-          </div>
+          <% end %>
         <% end %>
       </div>
     </div>
@@ -49,7 +53,7 @@
       <% [1,2].each do |partner_number| %>
       <div class="column">
         <% ga[:guests].select{|g| g.partner_number == partner_number}.each do |guest| %>
-          <div class="guest shade" data-id="<%= guest.id %>">
+          <div class="guest" data-id="<%= guest.id %>">
             <%= state_icon guest.state %>
             <div class="details">
               <h3><%= guest.name %></h3>

@@ -11,10 +11,6 @@ class User < ActiveRecord::Base
   has_many :weddings, through: :collaborations
  
   def name
-    if first_name.nil? && last_name.nil?
-      email
-    else
-      "#{first_name} #{last_name}"
-    end
+    first_name.present? && last_name.present? ? "#{first_name} #{last_name}" : email
   end
 end

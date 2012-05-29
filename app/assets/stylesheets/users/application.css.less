@@ -14,6 +14,7 @@
 body {
   background-image: image-url("bg-cloth.png");
   color: @kalamata_olive;
+  padding-bottom: 30px;
 }
 
 .guest-container {
@@ -22,9 +23,19 @@ body {
   margin-bottom: 5px;
 }
 
-.slide-deck {
-  padding: 10px;
-  .border-radius(10px);
+.slide-deck,
+.guest,
+.collaborator {
+  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.form-actions {
+  background-color: transparent;
+}
+
+.form-horizontal .form-actions {
+  padding-top: 35px;
 }
 
 .background {
@@ -35,6 +46,12 @@ body {
   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
   -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
   box-shadow: 0 1px 2px rgba(0,0,0,.15);
+}
+
+.column {
+  width: 388px;
+  display: inline-block;
+  vertical-align: top;
 }
 
 section {
@@ -62,11 +79,6 @@ section {
           padding: 10px;
           width: 288px;
         }
-      }
-      .column {
-        width: 388px;
-        display: inline-block;
-        vertical-align: top;
       }
       .block {
         margin: 5px 0px;
@@ -114,19 +126,19 @@ section {
       } 
     }
   }
-  &.collaborators {
-    &.index {
-      .row {
-        margin-left: 0px;
-        margin-bottom: 0px;
-        padding-bottom: 7px;
-      }
-      .row + .row {
-        padding-top: 17px;
-        border-top: 1px solid #DDD;
-      }
-      .actions {
-        margin-top: 0px;
+  &.collaborate {
+    .collaborators {
+      .collaborator {
+        padding: 10px;
+        .border-radius();
+        span {
+          color: gray;
+        }
+        .actions {
+          a {
+            margin-right: 10px;
+          }
+        }
       }
     }
   }
@@ -255,21 +267,21 @@ form {
   width: 100%;
   height: 100px;
   .btn-large {
-    width: 105px;
+    width: 100px;
   }
   .wrapper {
     position: fixed;
-    width: 140px;
+    width: 130px;
+    padding: 20px 5px;
+    .magnolia_grandflora(40);
   }
   .quickie-nav {
-    background-color: gray;
     color: white;
     margin: 5px 0px;
-    .border-radius;
-    //.border-top-right-radius;
-    //.border-bottom-right-radius;
-    padding: 10px;
+    padding: 12px 10px 7px 10px;
     text-align: center;
+    border-top: 1px dotted @sugared_pansy_pink;
+    line-height: 23px;
     a {
       display: inline;
       color: white;
@@ -278,24 +290,6 @@ form {
     }
     i {
       cursor: pointer;
-    }
-    &.green {
-      background-color: #57A957;
-    }
-    &.red {
-      background-color: #C43C35;
-    }
-    &.aqua {
-      background-color: #339BB9;
-    }
-    &.silver {
-      background-color: silver;
-    }
-    &.gold {
-      background-color: gold;
-    }
-    &.black {
-      background-color: black;
     }
   }
 }
@@ -383,3 +377,4 @@ form {
     line-height: 25px;
   }
 }
+

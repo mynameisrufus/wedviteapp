@@ -37,7 +37,7 @@ $(function(){
 
     $quickie.find('.toggle').on('click', function(event) {
       event.preventDefault()
-      $(this).toggleClass('icon-white')
+      $(this).toggleClass('icon-eye').toggleClass('icon-eye-close')
       var id = $(this).data('id')
       $("#" + id).toggle()
     })
@@ -48,5 +48,33 @@ $(function(){
       $('html, body').animate({scrollTop: ($("#" + id).offset().top - 50)}, 500)
     })
 
+    function getScrollTop(){
+        if(typeof pageYOffset!= 'undefined'){
+            //most browsers
+            return pageYOffset;
+        }
+        else{
+            var B= document.body; //IE 'quirks'
+            var D= document.documentElement; //IE with doctype
+            D= (D.clientHeight)? D: B;
+            return D.scrollTop;
+        }
+    }
+
+    var $topButton = $('.goto-top')
+    var $wrapper = $('.quickie .wrapper')
+
+    $topButton.hide()
+    $wrapper.css('position', 'absolute')
+
+    $(window).on('scroll', function(){
+        if (getScrollTop() > 185) {
+            $topButton.show()
+            $wrapper.css({position: 'fixed', top: 30})
+        } else {
+            $topButton.hide()
+            $wrapper.css({position: 'absolute', top: 0})
+        }
+    })
 });
 </script>

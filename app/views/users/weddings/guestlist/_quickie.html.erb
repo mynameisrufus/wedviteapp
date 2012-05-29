@@ -15,11 +15,6 @@
       } %>
       <strong><%= total_guests %></strong> Guests</p>
 
-  <% if can? :create, Guest %>
-    <%= link_to new_wedding_guest_path(@wedding), class: 'btn btn-large modal-me' do %>
-      <i class="icon-plus-sign"></i> Add guest
-    <% end %>
-  <% end %>
     <% guest_array.each do |ga| %>
       <% next if ga[:guests].empty? %>
       <%= content_tag :div, { class: ['quickie-nav', ga[:state]] } do %>
@@ -37,28 +32,34 @@
         <% end %>
 
         <%= content_tag :i, nil, {
-          class: ["icon-eye-open", "icon-white", "toggle"],
+          class: ["icon-eye-open", "toggle"],
           "data-id" => ga[:state],
           "title" => "show/hide",
           "rel" => "tooltip"
         } %>
         <%= content_tag :i, nil, {
-          class: ["icon-info-sign", "icon-white"],
+          class: ["icon-info-sign"],
           "data-id" => ga[:state],
           rel: "popover",
           "data-content" => c,
           "data-original-title" => ga[:title]
         } %>
         <%= content_tag :i, nil, {
-          class: ["icon-chevron-right", "icon-white", "goto"],
+          class: ["icon-chevron-right", "goto"],
           "data-id" => ga[:state],
           "title" => "jump to #{ga[:state]}",
           "rel" => "tooltip"
         } %>
       <% end %>
     <% end %>
-  <%= link_to "#", class: ['btn', 'btn-large', 'goto'], "data-id" => "top" do %>
+  <%= link_to "#", class: ['btn', 'btn-large', 'goto', 'goto-top'], "data-id" => "top" do %>
     <i class="icon-chevron-up"></i> Back to top
+  <% end %>
+  <hr/>
+  <% if can? :create, Guest %>
+    <%= link_to new_wedding_guest_path(@wedding), class: 'btn btn-large modal-me' do %>
+      <i class="icon-plus-sign"></i> Add guest
+    <% end %>
   <% end %>
 </div>
 </div>

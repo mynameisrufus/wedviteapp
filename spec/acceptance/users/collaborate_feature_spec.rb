@@ -21,10 +21,10 @@ feature 'Collaborate feature', %q{
     wedding, user, collaborator = wedup!
     navigate_to_collaborators wedding, user
 
-    click_link 'Add collaborator'
+    click_link 'Invite'
     fill_in 'email', with: 'user@example.com'
     choose 'role_invite'
-    click_button 'Add collaborator'
+    click_button 'Save'
 
     page.should have_content 'An invitation to collaborate has been sent to user@example.com'
   end
@@ -35,10 +35,10 @@ feature 'Collaborate feature', %q{
 
     other_user = User.make!
 
-    click_link 'Add collaborator'
+    click_link 'Invite'
     fill_in 'email', with: other_user.email
     choose 'role_invite'
-    click_button 'Add collaborator'
+    click_button 'Save'
 
     page.should have_content "#{other_user.name} is now collaborating on this wedding"
   end
@@ -51,7 +51,7 @@ feature 'Collaborate feature', %q{
 
     navigate_to_collaborators wedding, user
 
-    click_link 'change role'
+    click_link 'change'
     choose 'role_edit'
     click_button 'Save'
 
@@ -92,5 +92,17 @@ feature 'Collaborate feature', %q{
 
     navigate_to_wedding wedding, user
     page.should_not have_content 'Invite Guests'
+  end
+
+  scenario 'remove a collaborator' do
+    wedding      = Wedding.make!
+    user         = User.make!
+    other_user   = User.make!
+    collaborator = Collaborator.make! user_id: user.id, wedding_id: wedding.id, role: 'invite'
+    other_collaborator = Collaborator.make! user_id: other_user.id, wedding_id: wedding.id, role: 'edit'
+
+    navigate_to_collaborators wedding, user
+    click_link 'remove'
+    page.should have_content "#{other_collaborator.user.name} has been removed as a collaborator"
   end
 end

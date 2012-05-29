@@ -1,40 +1,66 @@
-<section class="collaborators index tab-content">
-  <% if @wedding.collaborators.size == 1 %>
-    <div class="row">
-      <div class="page-header">
-        <h1>Start collaborating!</h1>
-      </div>
-      <div class="span12">
-        <p>There is no one collaborating on this wedding.</p>
-      </div>
-      <div class="span12">
-        <%= link_to "Add collaborator", new_wedding_collaborator_path(@wedding), class: 'btn primary large' %>
+<%
+  cols = [[],[]]
+  @collaborators.each_with_index do |collaborator, index|
+    cols[index % 2] << collaborator
+  end
+%>
+
+<section class="collaborate">
+  <div class="row">
+    <div class="span2">
+      <div class="quickie">
+        <%= link_to new_wedding_collaborator_path(@wedding), class: 'btn btn-large modal-me' do %>
+          <i class="icon-plus-sign"></i> Invite
+        <% end %>
       </div>
     </div>
-  <% else %>
-    <div class="page-header">
-      <h1>Collaborators</h1>
-    </div>
-    <% @wedding.collaborators.each do |collaborator| %>
-      <% next if collaborator.user == current_user %>
-      <div class="row collaborator">
-        <div class="span6">
-          <p><%= collaborator.user.name %></p>
-        </div>
-        <div class="span5">
-          <p><strong><%= collaborator.role %></strong></p>
-        </div>
-        <div class="span2">
-          <p><%= link_to 'change role', edit_wedding_collaborator_path(@wedding, collaborator), class: 'btn small' %></p>
-        </div>
-        <div class="span2">
-          <p><%= link_to 'remove', wedding_collaborator_path(@wedding, collaborator), method: :delete, class: 'btn small danger' %></p>
-        </div>
+    <div class="span10">
+      <div class="collaborators">
+        <% cols.each do |col| %>
+        <div class="column">
+          <% col.each do |collaborator| %>
+            <% next if collaborator.user == current_user %>
+              <div class="collaborator">
+                <div class="details">
+                  <h3><%= collaborator.user.name %></h3>
+                  <span>Role: <%= collaborator.role %></span>
+                </div>
+                <% if can? :manage, collaborator %>
+                  <div class="actions">
+                    <%= link_to 'change', edit_wedding_collaborator_path(@wedding, collaborator), class: 'modal-me' %>
+                    <%= link_to 'remove', wedding_collaborator_path(@wedding, collaborator), method: :delete, confirm: "Are you sure you no longer want #{collaborator.user.name} collaborating on you wedding?" %>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-    <div class="actions">
-      <%= link_to "Add collaborator", new_wedding_collaborator_path(@wedding), class: 'btn primary' %>
-      <%= link_to "Back to wedding", wedding_path(@wedding), class: 'btn' %>
     </div>
-  <% end %>
+  </div>
 </section>
+
+<div id="modal-from-dom" class="modal hide fade">
+  <div class="modal-body">
+    <p>One fine body…</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+  </div>
+</div>
+
+<script>
+
+$(function(){
+    
+    var $modal = $('#modal-from-dom')
+
+    $('a.modal-me').on('click', function(event) {
+        event.preventDefault()
+        $.get(this.href, function(data) {
+            $modal.html(data).modal('show')
+        })
+    })
+
+});
+</script>

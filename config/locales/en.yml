@@ -39,3 +39,13 @@ en:
     review:
       noun: "Reviewed"
       verb: "Review"
+  collaborator:
+    role:
+      invite:
+        description: "Can do everything."
+      edit:
+        description: "Everything except send the invitations."
+      comment:
+        description: "View the guest list and make comments on the guests."
+      read:
+        description: "View the guest list only."

@@ -5,13 +5,17 @@ class Users::Mailer < ActionMailer::Base
     'plan'
   end
 
+  def host
+    Rails.env.production? ? 'wedviteapp.com' : 'wedvite.dev'
+  end
+
   def invite_collaborator(options)
     @requestor = options[:requestor]
     @wedding   = options[:wedding]
 
     @email     = options[:email]
     @token     = options[:token]
-    @url       = collaborate_url(@wedding, @token, host: 'wedviteapp.com', subdomain: subdomain)
+    @url       = collaborate_url(@token, host: host, subdomain: subdomain)
 
     mail to: @email,
          from: "#{@requestor.name} <noreply@wedviteapp.com>",
