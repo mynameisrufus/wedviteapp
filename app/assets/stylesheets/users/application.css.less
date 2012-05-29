@@ -23,6 +23,13 @@ body {
   margin-bottom: 5px;
 }
 
+.guest .details h3,
+.collaborator .details h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .slide-deck,
 .guest,
 .collaborator {
@@ -91,7 +98,7 @@ section {
           display: inline-block;
         }
         .details {
-          width: 230px;
+          width: 330px;
           span {
             color: gray;
           }
@@ -377,4 +384,3 @@ form {
     line-height: 25px;
   }
 }
-
