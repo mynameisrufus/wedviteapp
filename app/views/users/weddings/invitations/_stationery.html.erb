@@ -1,5 +1,5 @@
-<% @stationary.each do |stationary| %>
-  <h2><%= stationary.name %></h2>
-  <%= image_tag stationary.preview.url %>
-  <p><%= link_to 'Choose', wedding_stationary_choose_path(@wedding, stationary), class: 'btn btn-success' %></p>
+<% @stationary.each do |stationery| %>
+  <h2><%= stationery.name %></h2>
+  <%= image_tag stationery.preview.url %>
+  <p><%= link_to 'Choose', wedding_stationary_choose_path(@wedding, stationery), class: 'btn btn-success' %>&nbsp;<%= link_to 'Preview', wedding_stationery_preview_path(@wedding, stationery), target: '_blank', class: 'btn' %></p>
 <% end %>

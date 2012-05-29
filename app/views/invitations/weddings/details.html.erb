@@ -1,124 +1,29 @@
-<% markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
-        :autolink => true, :space_after_headers => true) %>
 <ul class="nav nav-tabs">
-  <li class="active"><a href="#home"data-toggle="tab">Details</a></li>
-  <li><a href="#readme" data-toggle="tab">Readme</a></li>
+  <li class="active"><a href="#ourday" data-toggle="tab">Our day</a></li>
+  <li><a href="#directions"data-toggle="tab">Directions</a></li>
   <li><a href="#settings" data-toggle="tab">You</a></li>
   <li><a href="#guestlist" data-toggle="tab">Guest list</a></li>
   <li><a href="#timeline" data-toggle="tab">Messages</a></li>
 </ul>
  
 <div class="tab-content">
-
-  <div class="tab-pane active" id="home">
-    <% if @wedding.ceremony_where %>
-      <p><%= link_to ical_path do %><i class="icon-calendar"></i> Add wedding to your calendar<% end %></p>
-      <div class="page-header">
-        <h1>Ceremony</h1>
-      </div>
-      <p>To be held at <%= @wedding.ceremony_where.name %>, <%= @wedding.ceremony_where.formatted_address %> at <%= @wedding.ceremony_when.strftime "%H:%M %P, %A the #{@wedding.ceremony_when.day.ordinalize} of %B %G" %></p>
-
-      <p style="text-align: right;"><%= link_to "http://maps.google.com/maps?q=#{@wedding.ceremony_where.name}, #{@wedding.ceremony_where.formatted_address}", target: "blank"  do %>
-        open this map <i class="icon-share-alt"></i>
-        <% end %></p>
-      <div class="map-wrapper">
-        <div id="ceremony_where" style="width: 100%; height: 100%"></div>
-      </div>
-      <p><i class="icon-share-alt"></i> Venue phone <%= link_to  @wedding.ceremony_where.international_phone_number, "tel:#{@wedding.ceremony_where.international_phone_number}" %></p>
-      <p><%= link_to @wedding.ceremony_where.website, target: "blank" do %><i class="icon-share-alt"></i> Venue website<% end %></p>
-      <% unless @wedding.ceremony_how.nil? %>
-        <div class="how">
-          <%= raw markdown.render(@wedding.ceremony_how) %>
-        </div>
-      <% end %>
-    <% end %>
-
-    <% if @wedding.has_reception? && @guest.attending_reception? && @wedding.reception_where %>
-      <div class="page-header">
-        <h1>Reception</h1>
-      </div>
-      <p>To be held at <%= @wedding.reception_where.name %>, <%= @wedding.reception_where.formatted_address %> at <%= @wedding.reception_when.strftime "%H:%M %P, %A the #{@wedding.reception_when.day.ordinalize} of %B %G" %></p>
-      <p style="text-align: right;"><%= link_to "http://maps.google.com/maps?q=#{@wedding.reception_where.name}, #{@wedding.reception_where.formatted_address}", target: "blank"  do %>
-        open this map <i class="icon-share-alt"></i>
-        <% end %></p>
-      <div class="map-wrapper">
-        <div id="reception_where" style="width: 100%; height: 100%"></div>
-      </div>
-      <p><i class="icon-share-alt"></i> Venue phone <%= link_to  @wedding.reception_where.international_phone_number, "tel:#{@wedding.reception_where.international_phone_number}" %></p>
-      <p><%= link_to @wedding.reception_where.website, target: "blank" do %><i class="icon-share-alt"></i> Venue website<% end %></p>
-      <% unless @wedding.reception_how.nil? %>
-        <div class="how">
-          <%= raw markdown.render(@wedding.reception_how) %>
-        </div>
-      <% end %>
-    <% end %>
+  <div class="tab-pane active" id="ourday">
+    <%= render "invitations/guests/ourday" %>
   </div>
 
-  <div class="tab-pane" id="readme">
-    <%= raw markdown.render(@wedding.ceremony_what || '') %>
-    <% if @wedding.has_reception? && @guest.attending_reception? %>
-      <%= raw markdown.render(@wedding.reception_what || '') %>
-    <% end %>
+  <div class="tab-pane" id="directions">
+    <%= render "invitations/guests/directions" %>
   </div>
 
   <div class="tab-pane" id="settings">
-    <%= render partial: 'settings' %>
+    <%= render "settings" %>
   </div>
 
   <div class="tab-pane" id="guestlist">
-    <%= render partial: 'guestlist' %>
+    <%= render "guestlist" %>
   </div>
 
   <div class="tab-pane" id="timeline">
-    <%= render partial: 'timeline' %>
+    <%= render "timeline" %>
   </div>
 </div>
-
-<script type="text/javascript">
-  function makeMap(lat, lng, id) {
-    var myOptions = {
-      center: new google.maps.LatLng(lat, lng),
-      zoom: 8,
-      zoomControl: false,
-      disableDoubleClickZoom: true,
-      disableDefaultUI: true,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    var map = new google.maps.Map(document.getElementById(id),
-        myOptions);
-
-    var centerPoint  = new google.maps.LatLng(lat, lng)
-
-    var marker = new google.maps.Marker({
-        map: map,
-        draggable: false,
-        animation: google.maps.Animation.DROP,
-        position: centerPoint
-    })
-
-    var infowindow   = new google.maps.InfoWindow()
-    var defaultImage = new google.maps.MarkerImage(
-        "http://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png",
-        new google.maps.Size(71, 71),
-        new google.maps.Point(0, 0),
-        new google.maps.Point(17, 34),
-        new google.maps.Size(35, 35)
-    )
-
-    marker.setIcon(defaultImage)
-  }
-
-function maps() {
-  <% if @wedding.ceremony_where %>
-  makeMap(<%= @wedding.ceremony_where.lat %>, <%= @wedding.ceremony_where.lng %>, "ceremony_where")
-  <% end %>
-  <% if @wedding.reception_where %>
-  makeMap(<%= @wedding.reception_where.lat %>, <%= @wedding.reception_where.lng %>, "reception_where")
-  <% end %>
-}
-maps()
-
-$('a[href="#home"]').on('shown', function (e) {
-maps()
-})
-</script>

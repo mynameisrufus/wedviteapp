@@ -37,6 +37,13 @@ WeddingInvitor::Application.routes.draw do
         post 'payment-success', controller: :payments, action: :success, as: :payment_success
         get 'payment-failure',  controller: :payments, action: :failure, as: :payment_failure
 
+
+        get 'preview/ourday'         => 'preview#ourday', as: :ourday_preview
+        get 'preview/directions'     => 'preview#directions', as: :directions_preview
+        get 'preview/invitation'     => 'preview#invitation', as: :invitation_preview
+        get 'preview/stationery/:id' => 'preview#stationery', as: :stationery_preview
+        get 'preview/guest/:id'      => 'preview#guest', as: :guest_preview
+
         resources :stationary, only: %w(index) do
           get 'choose'
         end
@@ -83,15 +90,15 @@ WeddingInvitor::Application.routes.draw do
     scope module: 'invitations' do
       match 'robots.txt' => 'base#robots'
 
-      match ':token'         => 'stationary#show', as: :invitation
+      match ':token'           => 'stationary#show', as: :invitation
 
-      match ':token/message' => 'guests#message', as: :guest_message, method: :post
-      match ':token/update'  => 'guests#update', as: :guest, method: :post
-      match ':token/accept'  => 'guests#accept', as: :accept_invitation
-      match ':token/decline' => 'guests#decline', as: :decline_invitation
+      match ':token/message'   => 'guests#message', as: :guest_message, method: :post
+      match ':token/update'    => 'guests#update', as: :guest, method: :post
+      match ':token/accept'    => 'guests#accept', as: :accept_invitation
+      match ':token/decline'   => 'guests#decline', as: :decline_invitation
 
-      match ':token/details' => 'weddings#details', as: :guesthome
-      match ':token/ical'    => 'weddings#ical', as: :ical
+      match ':token/details'   => 'weddings#details', as: :guesthome
+      match ':token/ical'      => 'weddings#ical', as: :ical
     end
   end
 
