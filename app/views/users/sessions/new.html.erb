@@ -1,10 +1,10 @@
-<section class="sessions">
+<section class="sessions placeholder">
   <div class="content">
     <div class="page-header">
       <h1>Sign in</h1>
     </div>
     <div class="row">
-      <div class="span8">
+      <div class="span7">
         <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), html: { class: "form-horizontal" }) do |f| %>
           <%= devise_error_messages! %>
           <div class="control-group">
@@ -30,12 +30,13 @@
             </div>
           <% end -%>
           <div class="form-actions">
-            <%= f.submit "Sign in", class: 'btn btn-primary btn-large' %>
+            <%= f.submit "Sign in", class: 'btn btn-large' %>
           </div>
         <% end %>
       </div>
       <div class="span4">
-        <%= render "users/shared/links" %>
+        <p><%= link_to "Sign up", new_user_registration_path %></p>
+        <p><%= link_to "Forgot your password?", new_user_password_path %></p>
       </div>
     </div>
   </div>
