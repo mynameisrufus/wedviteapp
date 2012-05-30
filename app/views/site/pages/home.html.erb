@@ -4,12 +4,14 @@
       <h1>WedVite</h1>
     </div>
   </div>
+  <% introduction = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a massa ligula, id tristique massa. Vivamus sollicitudin posuere ante et imperdiet. Duis molestie neque sagittis tellus egestas elementum." %>
   <div class="span6 call-to-action">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a massa ligula, id tristique massa. Vivamus sollicitudin posuere ante et imperdiet. Duis molestie neque sagittis tellus egestas elementum.</p>
+    <p class="hidden-phone"><%= introduction %></p>
     <ul>
-      <li><%= link_to 'Sign up for free', new_user_registration_url(subdomain: 'plan'), class: 'cupid green sign-up' %></li>
+      <li><%= link_to 'Sign up for free', new_user_registration_url(subdomain: 'plan'), class: 'cupid pink sign-up' %></li>
       <li><%= link_to 'Sign in', new_user_session_url(subdomain: 'plan'), class: 'cupid blue sign-in' %></li>
     </ul>
+    <p class="visible-phone"><%= introduction %></p>
   </div>
 </div>
 
@@ -17,36 +19,81 @@
   <div class="span12">
     <ul class="nav nav-pills">
       <li class="active">
-        <a href="#">Organise</a>
+        <a href="#orginise">Organise</a>
       </li>
-      <li><a href="#">Invitations</a></li>
-      <li><a href="#">Share</a></li>
-      <li><a href="#">Pricing</a></li>
+      <li><a href="#invitations">Invitations</a></li>
+      <li><a href="#share">Share</a></li>
+      <li><a href="#pricing">Pricing</a></li>
     </ul>
-    <article>
-      <section>
-        <h2>Welcome to Wed Vite and congratulations on your engagement!</h2>
-        <p>Planning your wedding will be very exciting time in your lives, yet a real test of your organisational skills!</p>
-        <p>Wed Vite can help you easily organise and share your guest list, design and personalise your wedding invitation, invite your guests and manage RSVPs - all online. You can also share information with your guests such as  wedding ceremony and reception location, where to stay, next day, activities and gift registry.</p>
-      </section>
-      <section>
-        <h2>Organise & Collaborate</h2>
-        <p>Sign up and create your wedding list. Simply add guests to the list and then collaborate together where you can approve, make tentative (B list) or reject guests (make sure ‘that guy’ doesn’t get on the final invite list). You can also easily keep track of guest numbers (adults and children) from both the Bride and Groom’s sides.</p>
-      </section>
-      <section>
-        <h2>Share</h2>
-        <p>You can choose to share the guest list with your family, bridal party or wedding planner. You can allocate viewing permissions which include view only, comment or edit.</p>
-      </section>
-      <section>
-        <h2>Stationary Shop</h2>
-        <p>Choose from a selection of invitation designs and use your own wording to create your invite, setting the tone and theme of your special day. You can preview each invitation to check spelling and grammar before you send out your invitations.</p>
-      </section>
-      <section>
-        <h2>Invite</h2>
-        <p>When your wedding plans are confirmed you can send out your invites directly from Wed Vite, eliminating the need for spending money on printing and postage. Your guests can RSVP instantly from your invite at the touch of a button, automatically updating your guest list with who is coming and who can’t make it.</p>
-        <p>Guests can also add your wedding date to their email or phone calendar and specify in their reply if they have any special requirements, such as vegetarian/gluten-free diets, children’s meals, highchairs or wheelchairs.</p>
-        <p>All confirmed guests will have access to Wed Vite’s added features including directions to the wedding, where to stay, activities in the area, the next day and gift registry details.</p>
-      </section>
-    </article>
   </div>
 </div>
+
+<article class="slide-deck outer">
+  <section class="slide outer" id="orginise" data-position="1" data-transition="horizontal">
+    <div class="slide-deck inner">
+      <div class="slide inner" id="guestlist" data-position="1" data-transition="horizontal">
+        <%= render partial: "guestlist" %>
+      </div>
+    </div>
+  </section>
+  <section class="slide outer" id="invitations" data-position="2" data-transition="horizontal">
+    <div class="slide-deck inner">
+      <div class="slide inner" id="guestlist" data-position="1" data-transition="horizontal">
+        <%= render partial: "guestlist" %>
+      </div>
+    </div>
+  </section>
+  <section class="slide outer" id="share" data-position="3" data-transition="horizontal">
+    <div class="slide-deck inner">
+      <div class="slide inner" id="guestlist" data-position="1" data-transition="horizontal">
+        <%= render partial: "guestlist" %>
+      </div>
+    </div>
+  </section>
+  <section class="slide outer" id="pricing" data-position="4" data-transition="horizontal">
+    <div class="slide-deck inner">
+      <div class="slide inner" id="guestlist" data-position="1" data-transition="horizontal">
+        <%= render partial: "guestlist" %>
+      </div>
+    </div>
+  </section>
+</article>
+
+<script>
+(function() {
+
+    var $outerContainer  = $('.slide-deck.outer'),
+        $innerContainers = $('.slide-deck.inner'),
+        $outerSections  = $outerContainer.find('.slide.outer'),
+        $outerNav       = $('.nav li')
+
+    $outerSections.slideDeck({
+        speed: 500,
+        easing: $.support.transition ? 'ease' : 'swing'
+    })
+
+    var navListner = function($nav, $sections) {
+        $nav.find('a').on('click', function(event) {
+            event.preventDefault()
+
+            // toggle active states
+            $nav.removeClass('active')
+            $(this).parent().addClass('active')
+
+            // transition
+            var id = this.hash.replace(/#/, '')
+            $sections.change(id)
+            return false
+        })
+    }
+
+    navListner($outerNav, $outerSections);
+
+    $(window).on("load",function() {
+        setTimeout(function(){
+            window.scrollTo(0, 1);
+        }, 100);
+    });
+
+})();
+</script>

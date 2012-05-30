@@ -7,6 +7,12 @@ class ApplicationController < ActionController::Base
     render text: "User-Agent: *\nDisallow: /", layout: false
   end
 
+  private
+
+  def after_sign_out_path_for(resource_or_scope)
+    Rails.env.production? ? 'http://wedviteapp.com' : 'http://wedvite.dev'
+  end
+
   class MarkdownRenderer < Redcarpet::Render::HTML
     def link(link, title, alt_text)
       "<a target=\"_blank\" href=\"#{link}\">#{alt_text}</a>"

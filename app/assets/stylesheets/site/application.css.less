@@ -50,17 +50,6 @@ body {
   }
 }
 
-.row {
-  article {
-    section {
-      padding: 10px;
-    }
-    section + section {
-      border-top: 1px solid #E2E2E2;
-    }
-  }  
-}
-
 .call-to-action {
   ul {
     margin: 0 auto;
@@ -69,6 +58,50 @@ body {
       float: left;
     }
   }
+}
+
+.nav {
+  &.nav-pills {
+    width: 330px;
+    margin: 0 auto;
+  }
+}
+
+img {
+  border: 1px solid @gray;
+  max-width: 99%;
+}
+
+article {
+  margin: 20px 0px;
+  &.slide-deck {
+    width: 100%;
+  }
+}
+
+.slide-deck,
+.slide {
+  height: 800px;
+}
+
+div {
+  &.slide-deck {
+    width: 100%;
+  }
+}
+
+.slide-deck {
+  .slide {
+    min-height: 610px;
+    width: 100%;
+  }
+}
+
+.blurb {
+  .rounded-corners();
+  padding: 10px;
+  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 // Landscape phone to portrait tablet
@@ -133,4 +166,3 @@ body {
     width: 260px;
   }
 }
-
