@@ -1,6 +1,29 @@
-@import "twitter/bootstrap";
+// CSS Reset
+@import "twitter/bootstrap/reset";
+
+// Core variables and mixins
+@import "twitter/bootstrap/variables"; // Modify this for custom colors, font-sizes, etc
+@import "twitter/bootstrap/mixins";
+
+// Grid system and page structure
+@import "twitter/bootstrap/scaffolding";
+@import "twitter/bootstrap/grid";
+@import "twitter/bootstrap/layouts";
+@import "twitter/bootstrap/responsive";
+
+// Components
+@import "twitter/bootstrap/navs";
+
+// Base CSS
+@import "twitter/bootstrap/type";
+
+// App global stylesheets
 @import "colors";
 @import "fonts";
+@import "navs";
+
+// Site stylesheets
+@import "site/buttons";
 
 .rounded-corners (@radius: 5px) {
   border-radius: @radius;
@@ -16,13 +39,14 @@ body {
 
 .page-header {
   text-align: center;
+  border: 0px none;
   h1 {
     font-family: 'EdwardianScriptITCRegular', sans-serif;
-    font-size: 20em;
+    font-size: 9em;
     line-height: 1em;
-    margin: 30px 70px 30px 0px;
     font-weight: normal;
     text-shadow: #999 2px 2px 9px;
+    text-indent: -40px;
   }
 }
 
@@ -38,9 +62,7 @@ body {
 }
 
 .call-to-action {
-  height: 90px;
   ul {
-    width: 565px;
     margin: 0 auto;
     list-style: none;
     li {
@@ -49,109 +71,66 @@ body {
   }
 }
 
-a.cupid {
-  display: block;
-  float: left;
-  margin: 10px;
-  color: #fff;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
-  border-radius: 3px;
-  font-size: 3em;
-  line-height: 1;
-  padding: 7px 0 8px 0;
-  text-align: center;
-  width: 260px;
-  &:hover {
-    text-decoration: none;
-    cursor: pointer;
-    -webkit-background-clip: padding-box; }
-  &:active {
-    -webkit-background-clip: padding-box; }
-  &.green {
-    background-color: #7fbf4d;
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7fbf4d), color-stop(100%, #63a62f));
-    background-image: -webkit-linear-gradient(top, #7fbf4d, #63a62f);
-    background-image: -moz-linear-gradient(top, #7fbf4d, #63a62f);
-    background-image: -ms-linear-gradient(top, #7fbf4d, #63a62f);
-    background-image: -o-linear-gradient(top, #7fbf4d, #63a62f);
-    background-image: linear-gradient(top, #7fbf4d, #63a62f);
-    border: 1px solid #63a62f;
-    border-bottom: 1px solid #5b992b;
-    -webkit-box-shadow: inset 0 1px 0 0 #96ca6d;
-    -moz-box-shadow: inset 0 1px 0 0 #96ca6d;
-    -ms-box-shadow: inset 0 1px 0 0 #96ca6d;
-    -o-box-shadow: inset 0 1px 0 0 #96ca6d;
-    box-shadow: inset 0 1px 0 0 #96ca6d;
-    text-shadow: 0 -1px 0 #4c9021;
-    &:hover {
-      background-color: #76b347;
-      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #76b347), color-stop(100%, #5e9e2e));
-      background-image: -webkit-linear-gradient(top, #76b347, #5e9e2e);
-      background-image: -moz-linear-gradient(top, #76b347, #5e9e2e);
-      background-image: -ms-linear-gradient(top, #76b347, #5e9e2e);
-      background-image: -o-linear-gradient(top, #76b347, #5e9e2e);
-      background-image: linear-gradient(top, #76b347, #5e9e2e);
-      -webkit-box-shadow: inset 0 1px 0 0 #8dbf67;
-      -moz-box-shadow: inset 0 1px 0 0 #8dbf67;
-      -ms-box-shadow: inset 0 1px 0 0 #8dbf67;
-      -o-box-shadow: inset 0 1px 0 0 #8dbf67;
-      box-shadow: inset 0 1px 0 0 #8dbf67; }
-    &:active {
-      border: 1px solid #5b992b;
-      border-bottom: 1px solid #538c27;
-      -webkit-box-shadow: inset 0 0 8px 4px #548c29, 0 1px 0 0 #eeeeee;
-      -moz-box-shadow: inset 0 0 8px 4px #548c29, 0 1px 0 0 #eeeeee;
-      -ms-box-shadow: inset 0 0 8px 4px #548c29, 0 1px 0 0 #eeeeee;
-      -o-box-shadow: inset 0 0 8px 4px #548c29, 0 1px 0 0 #eeeeee;
-      box-shadow: inset 0 0 8px 4px #548c29, 0 1px 0 0 #eeeeee; } }
-  &.blue {
-    background-color: #52a8e8;
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #52a8e8), color-stop(100%, #377ad0));
-    background-image: -webkit-linear-gradient(top, #52a8e8, #377ad0);
-    background-image: -moz-linear-gradient(top, #52a8e8, #377ad0);
-    background-image: -ms-linear-gradient(top, #52a8e8, #377ad0);
-    background-image: -o-linear-gradient(top, #52a8e8, #377ad0);
-    background-image: linear-gradient(top, #52a8e8, #377ad0);
-    border-top: 1px solid #4081af;
-    border-right: 1px solid #2e69a3;
-    border-bottom: 1px solid #20559a;
-    border-left: 1px solid #2e69a3;
-    -webkit-box-shadow: inset 0 1px 0 0 #72b9eb, 0 1px 2px 0 #b3b3b3;
-    -moz-box-shadow: inset 0 1px 0 0 #72b9eb, 0 1px 2px 0 #b3b3b3;
-    -ms-box-shadow: inset 0 1px 0 0 #72b9eb, 0 1px 2px 0 #b3b3b3;
-    -o-box-shadow: inset 0 1px 0 0 #72b9eb, 0 1px 2px 0 #b3b3b3;
-    box-shadow: inset 0 1px 0 0 #72b9eb, 0 1px 2px 0 #b3b3b3;
-    text-shadow: 0 -1px 1px #3275bc;
-    &:hover {
-      background-color: #3e9ee5;
-      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3e9ee5), color-stop(100%, #206bcb));
-      background-image: -webkit-linear-gradient(top, #3e9ee5 0%, #206bcb 100%);
-      background-image: -moz-linear-gradient(top, #3e9ee5 0%, #206bcb 100%);
-      background-image: -ms-linear-gradient(top, #3e9ee5 0%, #206bcb 100%);
-      background-image: -o-linear-gradient(top, #3e9ee5 0%, #206bcb 100%);
-      background-image: linear-gradient(top, #3e9ee5 0%, #206bcb 100%);
-      border-top: 1px solid #2a73a6;
-      border-right: 1px solid #165899;
-      border-bottom: 1px solid #07428f;
-      border-left: 1px solid #165899;
-      -webkit-box-shadow: inset 0 1px 0 0 #62b1e9;
-      -moz-box-shadow: inset 0 1px 0 0 #62b1e9;
-      -ms-box-shadow: inset 0 1px 0 0 #62b1e9;
-      -o-box-shadow: inset 0 1px 0 0 #62b1e9;
-      box-shadow: inset 0 1px 0 0 #62b1e9;
-      text-shadow: 0 -1px 1px #1d62ab;
-      -webkit-background-clip: padding-box; }
-    &:active {
-      background: #3282d3;
-      border: 1px solid #154c8c;
-      border-bottom: 1px solid #0e408e;
-      -webkit-box-shadow: inset 0 0 6px 3px #1657b5, 0 1px 0 0 white;
-      -moz-box-shadow: inset 0 0 6px 3px #1657b5, 0 1px 0 0 white;
-      -ms-box-shadow: inset 0 0 6px 3px #1657b5, 0 1px 0 0 white;
-      -o-box-shadow: inset 0 0 6px 3px #1657b5, 0 1px 0 0 white;
-      box-shadow: inset 0 0 6px 3px #1657b5, 0 1px 0 0 white;
-      text-shadow: 0 -1px 1px #2361a4;
-      -webkit-background-clip: padding-box; } } }
+// Landscape phone to portrait tablet
+@media (max-width: 767px) {
+  .call-to-action {
+    ul {
+      width: 460px;
+      height: 70px;
+    }
+  }
+}
+
+// Landscape phones and down
+@media (max-width: 480px) {
+  .page-header {
+    h1 {
+      font-size: 5em;
+      line-height: 0.5em;
+      text-indent: -25px;
+    }
+  }
+  .call-to-action {
+    ul {
+      width: 280px;
+      height: 55px;
+    }
+  }
+  a.cupid {
+    width: 128px;
+    font-size: 1em;
+    margin: 10px 5px 20px 5px;
+  }
+}
+
+// Portrait tablet to landscape and desktop
+@media (min-width: 768px) and (max-width: 979px) {
+  .page-header {
+    h1 {
+      font-size: 7em;
+      line-height: 0.5em;
+      text-indent: -25px;
+      margin-top: 50px;
+    }
+  }
+  a.cupid {
+    font-size: 1.5em;
+    margin: 10px 5px 20px 5px;
+    width: 164px;
+  }
+}
+
+// Large desktop
+@media (min-width: 1200px) {
+  .page-header {
+    h1 {
+      font-size: 11em;
+    }
+  }
+  a.cupid {
+    font-size: 2em;
+    margin: 10px 5px 20px 5px;
+    width: 260px;
+  }
+}
+
