@@ -1,19 +1,16 @@
-<header class="jumbotron masthead" id="overview">
+<header class="jumbotron masthead placeholder" id="overview">
   <div class="inner">
     <div class="container">
       <h1>Welcome to WedVite <%= current_user.name %></h1>
       <p class="lead">
         You are now ready to start planning your wedding invitation list. First things first, lets create a new wedding, any name will do as it's just for your reference.
       </p>
+      <%= form_for @wedding do |f| %>
+        <div class="input-append">
+          <%= f.text_field :name, class: "span6", placeholder: "Type in the name" %><button type="submit" class="btn"><i class="icon-plus-sign"></i> Create</button>
+        </div>
+      <% end %>
     </div>
   </div>
 </header>
-<div class="row">
-  <div class="span16">
-    <%= form_for @wedding do |f| %>
-      <%= f.text_field :name %>
-      <button type="submit" class="btn btn-large">Create</button>
-    <% end %>
-  </div>
-</div>
 

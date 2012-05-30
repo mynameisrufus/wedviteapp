@@ -2,7 +2,7 @@
   <h1>My Weddings</h1>
 </div>
 <div class="row">
-  <div class="span4">
+  <div class="span4 placeholder">
     <h3>More than one wedding?</h3>
     <p>
       After you create a wedding you can invite others to collaborate.
@@ -12,11 +12,12 @@
       Don't worry you can set what collaborators can and can't do
     </p>
     <%= form_for @wedding do |f| %>
-      <%= f.text_field :name %>
-      <button type="submit" class="btn btn-large">Create another wedding</button>
+      <div class="input-append">
+        <%= f.text_field :name, class: "span3", placeholder: "Name of new wedding" %><button type="submit" class="btn"><i class="icon-plus-sign"></i> Create</button>
+      </div>
     <% end %>
   </div>
-  <div class="span7">
+  <div class="span7 placeholder">
     <ul>
       <% current_user.weddings.each do |wedding| %>
         <li><%= link_to wedding.name, (wedding.invite_process_started? ? wedding_timeline_path(wedding) : wedding_guestlist_path(wedding)) %></li>
