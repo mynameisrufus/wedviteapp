@@ -1,6 +1,6 @@
 module HelperMethods
-  def change_subdomain(subdomain)
-    Capybara.default_host = "http://#{subdomain}.example.com"
+  def change_subdomain subdomain
+    Capybara.default_host = subdomain.nil? ? "http://example.com" : "http://#{subdomain}.example.com"
   end
 
 

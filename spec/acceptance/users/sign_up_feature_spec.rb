@@ -6,6 +6,10 @@ feature 'Sign up feature', %q{
   I want sign up
 } do
 
+  background do
+    change_subdomain nil
+  end
+
   scenario 'first scenario' do
     visit '/'
     click_link "Sign up for free"

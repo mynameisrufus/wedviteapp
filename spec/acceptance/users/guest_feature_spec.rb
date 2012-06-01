@@ -53,7 +53,7 @@ feature 'Guest feature', %q{
                         children: 1
     navigate_to_wedding wedding, user
 
-    click_link "update"
+    click_link "edit"
 
     fill_in 'Name',            with: "Bob and Roger"
     fill_in 'Adults',          with: 2
