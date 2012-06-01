@@ -109,10 +109,27 @@ section {
         .state, .details {
           display: inline-block;
         }
+
+        .details span {
+          .opacity(60);
+        }
+        .actions {
+          visibility: hidden;
+        }
+        &:hover, &.active {
+          .details span {
+            .opacity(100);
+          }
+          .actions {
+            visibility: visible;
+          }
+        }
+
         .details {
           width: 330px;
           span {
             color: gray;
+            margin-right: 25px;
           }
         }
         .actions {
@@ -369,6 +386,16 @@ form {
 
 .modal-body {
   max-height: 600px;
+  .comments {
+    overflow: scroll;
+    max-height: 300px;
+  }
+  .new_comment {
+    textarea {
+      width: 520px;
+      height: 50px;
+    }
+  }
 }
 
 .bqstart {
@@ -414,4 +441,12 @@ form {
     margin: 10px;
     width: 670px;
   }
+}
+
+.alert {
+  position: fixed;
+  bottom: 20px;
+  z-index: 300;
+  right: 40px;
+  width: 200px;
 }

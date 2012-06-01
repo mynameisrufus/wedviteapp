@@ -1,0 +1,6 @@
+<div class="comment">
+  <blockquote>
+    <%= comment.text %>
+  </blockquote>
+  <p><strong><%= time_ago_in_words comment.created_at %> ago by <%= comment.user.name %></strong></p>
+</div>
