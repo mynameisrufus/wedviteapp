@@ -2,8 +2,8 @@
   <div class="header clearfix">
     <div class="column">
       <div class="guest bride-groom">
+        <%= state_icon 'accepted' %>
         <div class="details">
-          <%= state_icon 'accepted' %>
           <h3><%= @wedding.partner_one_name %></h3>
           <% if can? :update, @wedding %><span><%= link_to "re-name", "#" %></span><% end %>
         </div>
@@ -20,8 +20,8 @@
     </div>
     <div class="column">
       <div class="guest bride-groom">
+        <%= state_icon 'accepted' %>
         <div class="details">
-          <%= state_icon 'accepted' %>
           <h3><%= @wedding.partner_two_name %></h3>
           <% if can? :update, @wedding %><span><%= link_to "re-name", "#" %></span><% end %>
         </div>
@@ -59,11 +59,13 @@
               <h3><%= guest.name %></h3>
               <span>Adults: <%= guest.adults %></span>
               <span>Children: <%= guest.children %></span>
+              <span>Comments: <%= guest.comments_count %></span>
             </div>
             <div class="actions">
               <% if can? :edit, guest %>
                 <%= link_to "move", wedding_guest_path(@wedding, guest), class: "modal-me" %>
-                <%= link_to "update", edit_wedding_guest_path(@wedding, guest), class: "modal-me" %>
+                <%= link_to "edit", edit_wedding_guest_path(@wedding, guest), class: "modal-me" %>
+                <%= link_to "comments", wedding_guest_comments_path(@wedding, guest), class: "modal-me" %>
                 <% if @wedding.stationary && guest.state == 'approved' %>
                   <%= link_to "preview", wedding_guest_preview_path(@wedding, guest), target: "_blank" %>
                 <% end %>

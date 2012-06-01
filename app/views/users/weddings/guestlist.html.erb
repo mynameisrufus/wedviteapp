@@ -76,5 +76,11 @@ $(function(){
             $wrapper.css({position: 'absolute', top: 0})
         }
     })
+
+    var $guests = $('.guests .guest')
+    $guests.on('click', function(event) {
+        $guests.removeClass('active')
+        $(this).addClass('active')
+    })
 });
 </script>
