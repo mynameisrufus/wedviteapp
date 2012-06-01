@@ -13,8 +13,12 @@ class Location < ActiveRecord::Base
   end
 
   def parse_escaped_json(attributes)
-    attributes[:address_components] = JSON.parse attributes.delete(:address_components)
-    attributes[:types]              = JSON.parse attributes.delete(:types)
-    attributes
+    begin
+      attributes[:address_components] = JSON.parse attributes.delete(:address_components)
+      attributes[:types]              = JSON.parse attributes.delete(:types)
+      attributes
+    rescue
+      attributes
+    end
   end
 end

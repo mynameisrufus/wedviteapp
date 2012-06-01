@@ -39,19 +39,11 @@
       </div>
     </div>
 
-    <div class="form-actions">
-      <%= f.submit 'Save location', class: 'btn' %>
-    </div>
-  </fieldset>
-<% end %>
-
-<%= details_form do |f| %>
-  <fieldset>
-    <%= f.label how, "Extra instructions" %>
-    <%= f.text_area how, class: 'markdown markdown-small', rows: 3 %>
+    <%= label_tag how, "Extra instructions" %>
+    <%= text_area_tag how, @wedding.send(how), class: 'markdown markdown-small', rows: 3 %>
 
     <div class="form-actions">
-      <%= f.submit 'Save instructions', class: 'btn' %>&nbsp;<%= link_to 'Preview', wedding_directions_preview_path(@wedding), target: '_blank', class: 'btn' %>
+      <%= f.submit 'Save directions', class: 'btn' %>&nbsp;<%= link_to 'Preview', wedding_directions_preview_path(@wedding), target: '_blank', class: 'btn' %>
     </div>
   </fieldset>
 <% end %>

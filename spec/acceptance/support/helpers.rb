@@ -33,6 +33,10 @@ module HelperMethods
     click_link wedding.name
     click_link "Guest List"
   end
+
+  def show!
+    save_and_open_page
+  end
 end
 
 RSpec.configuration.include HelperMethods, type: :acceptance

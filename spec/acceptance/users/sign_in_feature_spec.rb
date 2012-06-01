@@ -8,16 +8,17 @@ feature 'Sign in feature', %q{
 
   background do
     change_subdomain :plan
-    @user = User.make!
   end
 
   scenario 'sign in' do
-    sign_in_with @user.email, @user.password
-    page.should have_content('Signed in successfully.')
+    user = User.make!
+    sign_in_with user.email, user.password
+    page.should have_content(user.name)
   end
 
   scenario 'sign out' do
-    sign_in_with @user.email, @user.password
+    user = User.make!
+    sign_in_with user.email, user.password
     sign_out
     page.should have_content('Sign in')
   end
