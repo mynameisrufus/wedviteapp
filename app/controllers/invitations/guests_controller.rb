@@ -2,21 +2,25 @@ class Invitations::GuestsController < Invitations::BaseController
   before_filter :find_guest
 
   def accept
-    @guest.update_state :accepted
-    @guest.update_attribute(:replyed_on, Time.now)
+    unless @guest.accepted?
+      @guest.update_state :accepted
+      @guest.update_attribute(:replyed_on, Time.now)
 
-    @guest.evt.create! wedding: @guest.wedding,
-                       state: 'accepted',
-                       headline: "#{@guest.name} has #{t("state.accepted.noun")}"
+      @guest.evt.create! wedding: @guest.wedding,
+                         state: 'accepted',
+                         headline: "#{@guest.name} has #{t("state.accepted.noun")}"
+    end
   end
 
   def decline
-    @guest.update_state :declined
-    @guest.update_attribute(:replyed_on, Time.now)
+    unless @guest.declined?
+      @guest.update_state :declined
+      @guest.update_attribute(:replyed_on, Time.now)
 
-    @guest.evt.create! wedding: @guest.wedding,
-                       state: 'declined',
-                       headline: "#{@guest.name} has #{t("state.declined.noun")}"
+      @guest.evt.create! wedding: @guest.wedding,
+                         state: 'declined',
+                         headline: "#{@guest.name} has #{t("state.declined.noun")}"
+    end
   end
 
   def message
