@@ -9,7 +9,7 @@
     <% end %>
 
     <div class="form-actions">
-      <%= f.submit 'Save changes', class: 'btn primary' %>&nbsp;<%= link_to 'Preview', wedding_invitation_preview_path(@wedding), target: '_blank', class: 'btn' %>
+      <%= f.submit 'Save changes', class: 'btn primary' %><% unless @wedding.stationary.nil? %>&nbsp;<%= link_to 'Preview', wedding_invitation_preview_path(@wedding), target: '_blank', class: 'btn' %><% end %>
     </div>
   </fieldset>
 <% end %>
