@@ -91,7 +91,12 @@ class Users::GuestsController < Users::BaseController
         format.html { redirect_to wedding_guestlist_path(@wedding), notice: "#{@guest.name} #{@guest.total_guests > 1 ? "have" : "has"} been added to the list."  }
         format.json { render json: @guest, status: :created, location: @guest }
       else
-        format.html { render action: "new" }
+        errors = @guest.errors.full_messages.map do |message|
+          content_tag(:li, message)
+        end.join
+
+        format.html { redirect_to wedding_guestlist_path(@wedding), alert: "Guest had problems: <ul>#{errors}</ul>"  }
+
         format.json { render json: @guest.errors, status: :unprocessable_entity }
       end
     end
@@ -107,7 +112,12 @@ class Users::GuestsController < Users::BaseController
         format.html { redirect_to wedding_guestlist_path(@wedding), notice: "#{@guest.name} #{@guest.total_guests > 1 ? "have" : "has"} been updated."  }
         format.json { head :ok }
       else
-        format.html { render action: "edit" }
+        errors = @guest.errors.full_messages.map do |message|
+          content_tag(:li, message)
+        end.join
+
+        format.html { redirect_to wedding_guestlist_path(@wedding), alert: "Guest had problems: <ul>#{errors}</ul>"  }
+
         format.json { render json: @guest.errors, status: :unprocessable_entity }
       end
     end
