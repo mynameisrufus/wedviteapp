@@ -24,7 +24,7 @@ class Stationary < ActiveRecord::Base
 
     data = HashWithIndifferentAccess.new guest: GuestDrop.new(guest), wedding: WeddingDrop.new(guest.wedding), urls: UrlDrop.new(accept_url, decline_url)
 
-    template = guest.wedding.stationary.html
+    template = self.html
     content  = guest.wedding.wording || ''
 
     parsed_content = markdown.render(content)
