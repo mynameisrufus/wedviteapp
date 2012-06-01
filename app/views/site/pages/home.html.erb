@@ -21,7 +21,7 @@
       <li class="active">
         <a href="#orginise">Organise</a>
       </li>
-      <li><a href="#invitations">Invitations</a></li>
+      <li><a href="#invitations-and-stationery">Invitations</a></li>
       <li><a href="#share">Share</a></li>
       <li><a href="#pricing">Pricing</a></li>
     </ul>
@@ -29,31 +29,53 @@
 </div>
 
 <article class="slide-deck outer">
-  <section class="slide outer" id="orginise" data-position="1" data-transition="horizontal">
+  <section class="slide outer" id="orginise" data-position="1" data-transition="vertical">
     <div class="slide-deck inner">
       <div class="slide inner" id="guestlist" data-position="1" data-transition="horizontal">
         <%= render partial: "guestlist" %>
       </div>
     </div>
   </section>
-  <section class="slide outer" id="invitations" data-position="2" data-transition="horizontal">
+  <section class="slide outer" id="invitations-and-stationery" data-position="2" data-transition="vertical">
     <div class="slide-deck inner">
-      <div class="slide inner" id="guestlist" data-position="1" data-transition="horizontal">
+      <div class="paddle left"></div>
+      <div class="paddle right"></div>
+      <div class="slide inner" id="invitations" data-position="1" data-transition="horizontal">
+        <%= render partial: "guestlist" %>
+      </div>
+      <div class="slide inner" id="stationery" data-position="2" data-transition="horizontal">
         <%= render partial: "guestlist" %>
       </div>
     </div>
   </section>
-  <section class="slide outer" id="share" data-position="3" data-transition="horizontal">
+  <section class="slide outer" id="share" data-position="3" data-transition="vertical">
     <div class="slide-deck inner">
-      <div class="slide inner" id="guestlist" data-position="1" data-transition="horizontal">
+      <div class="paddle left"></div>
+      <div class="paddle right"></div>
+      <div class="slide inner" id="directions" data-position="1" data-transition="horizontal">
+        <%= render partial: "guestlist" %>
+      </div>
+      <div class="slide inner" id="messages" data-position="2" data-transition="horizontal">
+        <%= render partial: "guestlist" %>
+      </div>
+      <div class="slide inner" id="rsvps" data-position="3" data-transition="horizontal">
         <%= render partial: "guestlist" %>
       </div>
     </div>
   </section>
-  <section class="slide outer" id="pricing" data-position="4" data-transition="horizontal">
-    <div class="slide-deck inner">
-      <div class="slide inner" id="guestlist" data-position="1" data-transition="horizontal">
-        <%= render partial: "guestlist" %>
+  <section class="slide outer" id="pricing" data-position="4" data-transition="vertical">
+    <div class="row">
+      <div class="span12">
+        <div class="blurb">
+          <h1>$49.95</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a massa ligula, id tristique massa. Vivamus sollicitudin posuere ante et imperdiet. Duis molestie neque sagittis tellus egestas elementum.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a massa ligula, id tristique massa. Vivamus sollicitudin posuere ante et imperdiet. Duis molestie neque sagittis tellus egestas elementum.</p>
+          <ul>
+            <li>Lorem ipsum dolor sit amet</li>
+            <li>Lorem ipsum dolor sit amet</li>
+            <li>Lorem ipsum dolor sit amet</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -63,31 +85,45 @@
 (function() {
 
     var $outerContainer  = $('.slide-deck.outer'),
-        $innerContainers = $('.slide-deck.inner'),
         $outerSections  = $outerContainer.find('.slide.outer'),
-        $outerNav       = $('.nav li')
+        $outerNav       = $('.nav-pills li')
 
     $outerSections.slideDeck({
         speed: 500,
         easing: $.support.transition ? 'ease' : 'swing'
     })
 
-    var navListner = function($nav, $sections) {
-        $nav.find('a').on('click', function(event) {
-            event.preventDefault()
+    $outerNav.find('a').on('click', function(event) {
+        event.preventDefault()
 
-            // toggle active states
-            $nav.removeClass('active')
-            $(this).parent().addClass('active')
+        // toggle active states
+        $outerNav.removeClass('active')
+        $(this).parent().addClass('active')
 
-            // transition
-            var id = this.hash.replace(/#/, '')
-            $sections.change(id)
-            return false
+        // transition
+        var id = this.hash.replace(/#/, '')
+        $outerSections.change(id)
+        return false
+    })
+
+    $('.slide-deck.inner').each(function(index, container) {
+        var $container = $(container),
+            $sections  = $container.find('.slide.inner'),
+            $left      = $container.find('.paddle.left'),
+            $right     = $container.find('.paddle.right')
+
+        $sections.slideDeck({
+            speed: 500,
+            easing: $.support.transition ? 'ease' : 'swing'
         })
-    }
 
-    navListner($outerNav, $outerSections);
+        $left.on('click', function(){
+            $sections.previous()
+        })
+        $right.on('click', function(){
+            $sections.next()
+        })
+    })
 
     $(window).on("load",function() {
         setTimeout(function(){
