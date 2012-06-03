@@ -26,6 +26,12 @@ class Wedding < ActiveRecord::Base
     self.stationary = Stationary.first
   end
 
+  before_create do
+    %w(ceremony_when ceremony_when_end reception_when reception_when_end respond_deadline).each do |date|
+      self.send :"#{date}=", Time.now
+    end
+  end
+
   HELP_ATTRIBUTES = %w(wording ceremony_only_wording ceremony_what reception_what ceremony_how reception_how)
   HELP_MARKDOWN   = HELP_ATTRIBUTES.inject({}) do |memo, help|
     memo.merge({ help => File.read(File.join(Rails.root, 'app', 'help', "#{help}.md")) })
