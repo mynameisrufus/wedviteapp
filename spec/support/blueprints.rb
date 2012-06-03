@@ -51,7 +51,29 @@ Collaborator.blueprint do
 end
 
 Stationary.blueprint do
-  # Attributes here
+  name { Faker::Name.first_name }
+  style { "Simple" }
+  published { true }
+  price { 29.95 }
+  commision { 0.10 }
+  html {
+<<EOL
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+  <div class="container">
+    {{ content }}
+    <div class="actions">
+      <a href="{{ urls.rsvp }}">RSVP</a>
+      <a href="{{ urls.decline }}">Decline</a>
+    </div>
+  </div>
+</body>
+</html>
+EOL
+}
 end
 
 StationaryAsset.blueprint do
