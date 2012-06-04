@@ -1,10 +1,18 @@
 <section class="confirm-send placeholder">
-  <ol>
-    <% @guests.each do |guest| %>
-      <li><%= guest.name %></li>
+  <% unless @guests.empty? %>
+    <h2>List off approved guests that will be emailed</h2>
+    <p>The following list of approved guests will be sent an email with a private link to you wedding invitation.</p>
+    <ol>
+      <% @guests.each do |guest| %>
+        <li><%= guest.name %></li>
+      <% end %>
+    </ol>
+    <%= link_to wedding_deliver_path(@wedding), class: 'btn btn-danger btn-large', style: 'width: 190px;', confirm: "Are you sure? this cannot be undone." do %>
+      Send!
     <% end %>
-  </ol>
-  <%= link_to wedding_deliver_path(@wedding), class: 'btn btn-danger btn-large', style: 'width: 190px;' do %>
-    Send!
+  <% else %>
+    <h2>You have no approved guests to send invitations to</h2>
+    <p>To send guests an invitation they need to be approved, approved guests have a symbol like this:</p>
+    <p><%= state_icon 'approved' %> &nbsp;</p>
   <% end %>
 </section>
