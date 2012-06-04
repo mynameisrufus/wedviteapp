@@ -20,7 +20,7 @@ class Users::WeddingsController < Users::BaseController
   end
 
   def invitations
-    @stationary = Stationary.published.sorted(params[:sort], 'popularity ASC').page(params[:page]).per(50).all
+    @stationary = Stationary.published.sorted(params[:sort], 'popularity DESC').page(params[:page]).per(50).all
   end
 
   def update_invitations

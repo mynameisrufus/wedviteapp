@@ -87,8 +87,25 @@ section {
     }
   }
   &.invitations {
-    img {
-      width: 680px;
+    .stationeries {
+      height: 700px;
+      overflow: hidden;
+      .stationery {
+        .wrapper {
+          position: relative;
+          background-color: @kalamata_olive;
+          height: 575px;
+          overflow: hidden;
+          img {
+            width: 680px;
+            height: auto;
+          }
+        }
+        .actions {
+          margin: 20px 0px;
+          text-align: center;
+        }
+      }
     }
   }
   &.guestlist {
@@ -193,11 +210,6 @@ section {
       }
       .btn {
         margin-bottom: 20px;
-      }
-    }
-    &.stationary {
-      img {
-        width: 100%;
       }
     }
   }

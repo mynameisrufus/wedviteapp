@@ -1,5 +1,75 @@
-<% @stationary.each do |stationery| %>
-  <h2><%= stationery.name %></h2>
-  <%= image_tag stationery.preview.url %>
-  <p><%= link_to 'Choose', wedding_stationary_choose_path(@wedding, stationery), class: 'btn btn-success' %>&nbsp;<%= link_to 'Preview', wedding_stationery_preview_path(@wedding, stationery), target: '_blank', class: 'btn' %></p>
-<% end %>
+<div class="stationeries">
+  <% @stationary.each_with_index do |stationery, index| %>
+    <div class="stationery" data-id="<%= index %>">
+      <h2><%= stationery.name %></h2>
+      <div class="wrapper" data-src="<%= stationery.preview.url %>"></div>
+      <sub>by <%= stationery.agency.name %></sub>
+      <div class="actions">
+        <% unless index == 0 %>
+          <a class="btn previous" href="#"><i class="icon-arrow-left"></i> Previous</a>
+        <% end %>
+        <%= link_to 'Use this stationery for your wedding', wedding_stationary_choose_path(@wedding, stationery), class: 'btn btn-success' %>
+        <%= link_to 'Preview using your wording', wedding_stationery_preview_path(@wedding, stationery), target: '_blank', class: 'btn' %>
+        <% unless index == (@stationary.size - 1) %>
+          <a class="btn next" href="#">Next <i class="icon-arrow-right"></i></a>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<script>
+(function(undefined){
+
+    var $stationeries = $('.stationeries'),
+        $stationery   = $stationeries.find('.stationery'),
+        $next         = $stationeries.find('.btn.next'),
+        $previous     = $stationeries.find('.btn.previous'),
+        current       = null
+
+    var load = function(elem, spin) {
+        var $elem = $(elem).find('.wrapper'),
+            src = $elem.data('src'),
+            $img = $(new Image)
+
+        var callback = function(){
+            $elem.html($img)
+        }
+
+        $img.one('load', callback)
+        $img.attr('src', src)
+        $img.each(function() {
+            if (this.complete) return $(this).trigger('load')
+            if (spin !== false) return new Spinner({color: "#FFFFFF"}).spin($elem.get(0))
+            return
+        })
+
+        return $img
+    }
+
+    var move = function(n, spin) {
+        $stationery.hide().each(function(index, elem) {
+            var id = $(elem).data('id')
+            if (id === n) {
+                current = id
+                $(elem).show()
+                return load(elem, spin)
+            }
+        })
+
+        return current
+    }
+
+    move(0, false)
+
+    $next.on('click', function(event) {
+        event.preventDefault()
+        move(current + 1)
+    })
+
+    $previous.on('click', function(event) {
+        event.preventDefault()
+        move(current - 1)
+    })
+
+}).call(this);
+</script>
