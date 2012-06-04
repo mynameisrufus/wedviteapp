@@ -1,4 +1,4 @@
-# RailsAdmin config file. Generated on April 13, 2012 08:52
+# RailsAdmin config file. Generated on June 04, 2012 14:41
 # See github.com/sferik/rails_admin for more informations
 
 RailsAdmin.config do |config|
@@ -31,10 +31,10 @@ RailsAdmin.config do |config|
 
   #  ==> Included models
   # Add all excluded models here:
-  # config.excluded_models = [Admin, Agency, AgencyDesigner, AgencyDesignerToken, CollaborationToken, Collaborator, Comment, Designer, Guest, Location, Stationary, StationaryAsset, StationaryImage, User, Wedding]
+  # config.excluded_models = [Admin, Agency, AgencyDesigner, AgencyDesignerToken, CollaborationToken, Collaborator, Comment, Designer, Event, Guest, GuestStrict, Location, Message, Payment, Stationary, StationaryAsset, StationaryImage, User, Wedding]
 
   # Add models here if you want to go 'whitelist mode':
-  # config.included_models = [Admin, Agency, AgencyDesigner, AgencyDesignerToken, CollaborationToken, Collaborator, Comment, Designer, Guest, Location, Stationary, StationaryAsset, StationaryImage, User, Wedding]
+  # config.included_models = [Admin, Agency, AgencyDesigner, AgencyDesignerToken, CollaborationToken, Collaborator, Comment, Designer, Event, Guest, GuestStrict, Location, Message, Payment, Stationary, StationaryAsset, StationaryImage, User, Wedding]
 
   # Application wide tried label methods for models' instances
   # config.label_methods << :description # Default is [:name, :title]
@@ -125,22 +125,23 @@ RailsAdmin.config do |config|
   #   create do; end
   #   update do; end
   # end
-
-  config.model AgencyDesigner do
-      configure :agency, :belongs_to_association
-      configure :designer, :belongs_to_association
-      configure :id, :integer 
-      configure :role, :string 
-      configure :created_at, :datetime 
-      configure :updated_at, :datetime   #   # Sections:
-    list do; end
-    export do; end
-    show do; end
-    edit do; end
-    create do; end
-    update do; end
-  end
-
+  # config.model AgencyDesigner do
+  #   # Found associations:
+  #     configure :agency, :belongs_to_association 
+  #     configure :designer, :belongs_to_association   #   # Found columns:
+  #     configure :id, :integer 
+  #     configure :agency_id, :integer         # Hidden 
+  #     configure :designer_id, :integer         # Hidden 
+  #     configure :role, :string 
+  #     configure :created_at, :datetime 
+  #     configure :updated_at, :datetime   #   # Sections:
+  #   list do; end
+  #   export do; end
+  #   show do; end
+  #   edit do; end
+  #   create do; end
+  #   update do; end
+  # end
   # config.model AgencyDesignerToken do
   #   # Found associations:
   #     configure :agency, :belongs_to_association   #   # Found columns:
@@ -180,7 +181,8 @@ RailsAdmin.config do |config|
   # config.model Collaborator do
   #   # Found associations:
   #     configure :user, :belongs_to_association 
-  #     configure :wedding, :belongs_to_association   #   # Found columns:
+  #     configure :wedding, :belongs_to_association 
+  #     configure :evt, :has_many_association   #   # Found columns:
   #     configure :id, :integer 
   #     configure :role, :string 
   #     configure :user_id, :integer         # Hidden 
@@ -197,10 +199,10 @@ RailsAdmin.config do |config|
   # config.model Comment do
   #   # Found associations:
   #     configure :guest, :belongs_to_association 
-  #     configure :user, :belongs_to_association   #   # Found columns:
+  #     configure :user, :belongs_to_association 
+  #     configure :evt, :has_many_association   #   # Found columns:
   #     configure :id, :integer 
   #     configure :text, :text 
-  #     configure :commenter, :string 
   #     configure :guest_id, :integer         # Hidden 
   #     configure :user_id, :integer         # Hidden 
   #     configure :created_at, :datetime 
@@ -212,37 +214,59 @@ RailsAdmin.config do |config|
   #   create do; end
   #   update do; end
   # end
-
-  config.model Designer do
-      configure :id, :integer 
-      configure :email, :string 
-      configure :first_name, :string
-      configure :last_name, :string
-      configure :password, :password         # Hidden 
-      configure :password_confirmation, :password         # Hidden 
-      configure :reset_password_token, :string         # Hidden 
-      configure :reset_password_sent_at, :datetime 
-      configure :remember_created_at, :datetime 
-      configure :sign_in_count, :integer 
-      configure :current_sign_in_at, :datetime 
-      configure :last_sign_in_at, :datetime 
-      configure :current_sign_in_ip, :string 
-      configure :last_sign_in_ip, :string 
-      configure :biography, :text 
-      configure :created_at, :datetime 
-      configure :updated_at, :datetime   #   # Sections:
-    list do; end
-    export do; end
-    show do; end
-    edit do; end
-    create do; end
-    update do; end
-  end
-
+  # config.model Designer do
+  #   # Found associations:
+  #   # Found columns:
+  #     configure :id, :integer 
+  #     configure :email, :string 
+  #     configure :password, :password         # Hidden 
+  #     configure :password_confirmation, :password         # Hidden 
+  #     configure :reset_password_token, :string         # Hidden 
+  #     configure :reset_password_sent_at, :datetime 
+  #     configure :remember_created_at, :datetime 
+  #     configure :sign_in_count, :integer 
+  #     configure :current_sign_in_at, :datetime 
+  #     configure :last_sign_in_at, :datetime 
+  #     configure :current_sign_in_ip, :string 
+  #     configure :last_sign_in_ip, :string 
+  #     configure :first_name, :string 
+  #     configure :last_name, :string 
+  #     configure :biography, :text 
+  #     configure :created_at, :datetime 
+  #     configure :updated_at, :datetime   #   # Sections:
+  #   list do; end
+  #   export do; end
+  #   show do; end
+  #   edit do; end
+  #   create do; end
+  #   update do; end
+  # end
+  # config.model Event do
+  #   # Found associations:
+  #     configure :eventfull, :polymorphic_association 
+  #     configure :wedding, :belongs_to_association   #   # Found columns:
+  #     configure :id, :integer 
+  #     configure :headline, :string 
+  #     configure :quotation, :text 
+  #     configure :state, :string 
+  #     configure :eventfull_id, :integer         # Hidden 
+  #     configure :eventfull_type, :string         # Hidden 
+  #     configure :wedding_id, :integer         # Hidden 
+  #     configure :created_at, :datetime 
+  #     configure :updated_at, :datetime   #   # Sections:
+  #   list do; end
+  #   export do; end
+  #   show do; end
+  #   edit do; end
+  #   create do; end
+  #   update do; end
+  # end
   # config.model Guest do
   #   # Found associations:
   #     configure :wedding, :belongs_to_association 
-  #     configure :comments, :has_many_association   #   # Found columns:
+  #     configure :evt, :has_many_association 
+  #     configure :comments, :has_many_association 
+  #     configure :messages, :has_many_association   #   # Found columns:
   #     configure :id, :integer 
   #     configure :state, :string 
   #     configure :name, :string 
@@ -260,7 +284,42 @@ RailsAdmin.config do |config|
   #     configure :position, :integer 
   #     configure :token, :string 
   #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime   #   # Sections:
+  #     configure :updated_at, :datetime 
+  #     configure :messages_count, :integer 
+  #     configure :invited_to_reception, :boolean   #   # Sections:
+  #   list do; end
+  #   export do; end
+  #   show do; end
+  #   edit do; end
+  #   create do; end
+  #   update do; end
+  # end
+  # config.model GuestStrict do
+  #   # Found associations:
+  #     configure :wedding, :belongs_to_association 
+  #     configure :evt, :has_many_association 
+  #     configure :comments, :has_many_association 
+  #     configure :messages, :has_many_association   #   # Found columns:
+  #     configure :id, :integer 
+  #     configure :state, :string 
+  #     configure :name, :string 
+  #     configure :email, :string 
+  #     configure :address, :string 
+  #     configure :phone, :string 
+  #     configure :adults, :integer 
+  #     configure :children, :integer 
+  #     configure :attending_reception, :boolean 
+  #     configure :invited_on, :datetime 
+  #     configure :replyed_on, :datetime 
+  #     configure :partner_number, :integer 
+  #     configure :comments_count, :integer 
+  #     configure :wedding_id, :integer         # Hidden 
+  #     configure :position, :integer 
+  #     configure :token, :string 
+  #     configure :created_at, :datetime 
+  #     configure :updated_at, :datetime 
+  #     configure :messages_count, :integer 
+  #     configure :invited_to_reception, :boolean   #   # Sections:
   #   list do; end
   #   export do; end
   #   show do; end
@@ -270,7 +329,7 @@ RailsAdmin.config do |config|
   # end
   # config.model Location do
   #   # Found associations:
-  #   # Found columns:
+  #     configure :evt, :has_many_association   #   # Found columns:
   #     configure :id, :integer 
   #     configure :address_components, :serialized 
   #     configure :types, :serialized 
@@ -293,34 +352,78 @@ RailsAdmin.config do |config|
   #   create do; end
   #   update do; end
   # end
-
-  config.model Stationary do
-      configure :weddings, :has_many_association 
-      configure :stationary_images, :has_many_association 
-      configure :stationary_assets, :has_many_association   #   # Found columns:
-      configure :id, :integer 
-      configure :name, :string 
-      configure :style, :string 
-      configure :description, :text 
-      configure :html, :text 
-      configure :desktop, :boolean 
-      configure :mobile, :boolean 
-      configure :print, :boolean 
-      configure :published, :boolean 
-      configure :popularity, :integer 
-      configure :price, :float 
-      configure :commision, :float 
-      configure :agency, :belongs_to_association 
-      configure :created_at, :datetime 
-      configure :updated_at, :datetime   #   # Sections:
-    list do; end
-    export do; end
-    show do; end
-    edit do; end
-    create do; end
-    update do; end
-  end
-
+  # config.model Message do
+  #   # Found associations:
+  #     configure :guest, :belongs_to_association 
+  #     configure :evt, :has_many_association   #   # Found columns:
+  #     configure :id, :integer 
+  #     configure :text, :text 
+  #     configure :guest_id, :integer         # Hidden 
+  #     configure :created_at, :datetime 
+  #     configure :updated_at, :datetime   #   # Sections:
+  #   list do; end
+  #   export do; end
+  #   show do; end
+  #   edit do; end
+  #   create do; end
+  #   update do; end
+  # end
+  # config.model Payment do
+  #   # Found associations:
+  #     configure :purchasable, :polymorphic_association   #   # Found columns:
+  #     configure :id, :integer 
+  #     configure :gross, :float 
+  #     configure :transaction_fee, :float 
+  #     configure :currency, :string 
+  #     configure :purchasable_id, :integer         # Hidden 
+  #     configure :purchasable_type, :string         # Hidden 
+  #     configure :user_id, :integer 
+  #     configure :transaction_id, :string 
+  #     configure :gateway, :string 
+  #     configure :gateway_response, :serialized 
+  #     configure :created_at, :datetime 
+  #     configure :updated_at, :datetime   #   # Sections:
+  #   list do; end
+  #   export do; end
+  #   show do; end
+  #   edit do; end
+  #   create do; end
+  #   update do; end
+  # end
+  # config.model Stationary do
+  #   # Found associations:
+  #     configure :agency, :belongs_to_association 
+  #     configure :weddings, :has_many_association 
+  #     configure :stationary_images, :has_many_association 
+  #     configure :stationary_assets, :has_many_association 
+  #     configure :payments, :has_many_association   #   # Found columns:
+  #     configure :id, :integer 
+  #     configure :name, :string 
+  #     configure :style, :string 
+  #     configure :description, :text 
+  #     configure :html, :text 
+  #     configure :desktop, :boolean 
+  #     configure :mobile, :boolean 
+  #     configure :print, :boolean 
+  #     configure :published, :boolean 
+  #     configure :popularity, :integer 
+  #     configure :price, :float 
+  #     configure :commision, :float 
+  #     configure :agency_id, :integer         # Hidden 
+  #     configure :created_at, :datetime 
+  #     configure :updated_at, :datetime 
+  #     configure :preview_file_name, :string         # Hidden 
+  #     configure :preview_content_type, :string         # Hidden 
+  #     configure :preview_file_size, :integer         # Hidden 
+  #     configure :preview_updated_at, :datetime         # Hidden 
+  #     configure :preview, :paperclip   #   # Sections:
+  #   list do; end
+  #   export do; end
+  #   show do; end
+  #   edit do; end
+  #   create do; end
+  #   update do; end
+  # end
   # config.model StationaryAsset do
   #   # Found associations:
   #     configure :stationary, :belongs_to_association   #   # Found columns:
@@ -386,12 +489,16 @@ RailsAdmin.config do |config|
   # end
   # config.model Wedding do
   #   # Found associations:
+  #     configure :stationary, :belongs_to_association 
   #     configure :ceremony_where, :belongs_to_association 
   #     configure :reception_where, :belongs_to_association 
-  #     configure :stationary, :has_one_association 
+  #     configure :evt, :has_many_association 
+  #     configure :events, :has_many_association 
   #     configure :guests, :has_many_association 
   #     configure :collaborators, :has_many_association 
-  #     configure :users, :has_many_association   #   # Found columns:
+  #     configure :collaboration_tokens, :has_many_association 
+  #     configure :users, :has_many_association 
+  #     configure :payments, :has_many_association   #   # Found columns:
   #     configure :id, :integer 
   #     configure :name, :string 
   #     configure :wording, :text 
@@ -409,11 +516,16 @@ RailsAdmin.config do |config|
   #     configure :partner_two_name, :string 
   #     configure :payment_made, :boolean 
   #     configure :payment_date, :datetime 
-  #     configure :stationary_id, :integer 
+  #     configure :stationary_id, :integer         # Hidden 
   #     configure :ceremony_location_id, :integer         # Hidden 
   #     configure :reception_location_id, :integer         # Hidden 
   #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime   #   # Sections:
+  #     configure :updated_at, :datetime 
+  #     configure :ceremony_when_end, :datetime 
+  #     configure :reception_when_end, :datetime 
+  #     configure :invite_process_started_at, :datetime 
+  #     configure :invite_process_started, :boolean 
+  #     configure :thank_you_wording, :text   #   # Sections:
   #   list do; end
   #   export do; end
   #   show do; end
