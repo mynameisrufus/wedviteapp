@@ -8,6 +8,7 @@ en:
     formats:
       # needs ordinalize of day before can be used
       sentence: "%H:%M %P %A the %e of %B %G"
+      simple: "%B %e %G"
   true: "yes"
   false: "no"
   guest:

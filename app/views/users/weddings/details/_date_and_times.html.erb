@@ -10,7 +10,7 @@
     <div class="control-group">
       <div class="controls">
         <%= f.time_select :ceremony_when, { ignore_date: true }, { class: 'span1' } %><strong>to</strong> <%= f.time_select :ceremony_when_end, {}, class: 'span1' %>
-        <p class="help-block">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <p class="help-block">This date and time will be used by your guests to add their calendar.</p>
       </div>
     </div>
 
@@ -24,7 +24,7 @@
       <div class="control-group">
         <div class="controls">
           <%= f.time_select :reception_when, { ignore_date: true }, { class: 'span1' } %><strong>to</strong> <%= f.time_select :reception_when_end, {}, class: 'span1' %>
-          <p class="help-block">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+          <p class="help-block">This date and time will be used by the guests that are attending the reception to add to their calendar.</p>
         </div>
       </div>
     <% end %>
@@ -33,7 +33,7 @@
       <%= f.label :respond_deadline, "RSVP deadline", class: "control-label" %>
       <div class="controls">
         <%= f.date_select :respond_deadline, {}, class: 'span2' %>
-        <p class="help-block">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <p class="help-block">This will be sent out in the invitation email so guests know when to respond by. Guests will not be able to respond to the invitation after this date and will be asked to contact you directly instead.</p>
       </div>
     </div>
 

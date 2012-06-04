@@ -11,3 +11,8 @@ Please find your invitation and all our wedding details in the following link:
 We look forward to celebrating with you,
 
 <%= @wedding.partner_one_name %> and <%= @wedding.partner_two_name %>
+
+<% unless @wedding.respond_deadline.nil? %>
+-------------------------------------------
+Please respond by <%= l @wedding.respond_deadline, format: :simple %>
+<% end %>
