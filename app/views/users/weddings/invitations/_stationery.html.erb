@@ -1,3 +1,4 @@
+<% current_index = 0 %>
 <div class="stationeries">
   <% @stationary.each_with_index do |stationery, index| %>
     <div class="stationery" data-id="<%= index %>">
@@ -8,7 +9,11 @@
         <% unless index == 0 %>
           <a class="btn previous" href="#"><i class="icon-arrow-left"></i> Previous</a>
         <% end %>
-        <%= link_to 'Use this stationery for your wedding', wedding_stationary_choose_path(@wedding, stationery), class: 'btn btn-success' %>
+        <% if @wedding.stationary == stationery %>
+          <% current_index = index %>
+        <% else %>
+          <%= link_to 'Use this stationery for your wedding', wedding_stationary_choose_path(@wedding, stationery), class: 'btn btn-success' %>
+        <% end %>
         <%= link_to 'Preview using your wording', wedding_stationery_preview_path(@wedding, stationery), target: '_blank', class: 'btn' %>
         <% unless index == (@stationary.size - 1) %>
           <a class="btn next" href="#">Next <i class="icon-arrow-right"></i></a>
@@ -59,7 +64,7 @@
         return current
     }
 
-    move(0, false)
+    move(<%= current_index %>, false)
 
     $next.on('click', function(event) {
         event.preventDefault()
