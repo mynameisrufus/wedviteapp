@@ -11,9 +11,3 @@
 <p>We look forward to celebrating with you,</p>
 
 <p><%= @wedding.partner_one_name %> and <%= @wedding.partner_two_name %></p>
-
-<% unless @wedding.respond_deadline.nil? %>
-<hr/>
-
-<p>Please respond by <%= l @wedding.respond_deadline, format: :simple %></p>
-<% end %>
