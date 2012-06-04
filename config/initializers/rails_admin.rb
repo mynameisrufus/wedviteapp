@@ -34,7 +34,7 @@ RailsAdmin.config do |config|
   # config.excluded_models = [Admin, Agency, AgencyDesigner, AgencyDesignerToken, CollaborationToken, Collaborator, Comment, Designer, Event, Guest, GuestStrict, Location, Message, Payment, Stationary, StationaryAsset, StationaryImage, User, Wedding]
 
   # Add models here if you want to go 'whitelist mode':
-  config.included_models = [Admin, Agency, AgencyDesigner, AgencyDesignerToken, CollaborationToken, Collaborator, Comment, Designer, Event, Guest, GuestStrict, Location, Message, Payment, Stationary, StationaryAsset, StationaryImage, User, Wedding]
+  # config.included_models = [Admin, Agency, AgencyDesigner, AgencyDesignerToken, CollaborationToken, Collaborator, Comment, Designer, Event, Guest, GuestStrict, Location, Message, Payment, Stationary, StationaryAsset, StationaryImage, User, Wedding]
 
   # Application wide tried label methods for models' instances
   # config.label_methods << :description # Default is [:name, :title]
