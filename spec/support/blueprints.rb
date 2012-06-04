@@ -85,7 +85,7 @@ StationaryImage.blueprint do
 end
 
 Agency.blueprint do
-  # Attributes here
+  name { Faker::Name.name }
 end
 
 AgencyDesigner.blueprint do
