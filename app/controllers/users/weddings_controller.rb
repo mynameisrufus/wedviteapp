@@ -11,7 +11,10 @@ class Users::WeddingsController < Users::BaseController
   def update_details
     @wedding = current_user.weddings.find params[:wedding_id]
     @wedding.update_attributes(params[:wedding])
-    redirect_to wedding_details_path(@wedding), notice: 'Details updated.'
+    respond_to do |format|
+      format.html { redirect_to wedding_details_path(@wedding), notice: 'Details updated.' }
+      format.json { render json: "success".to_json  }
+    end
   end
 
   def guestlist
