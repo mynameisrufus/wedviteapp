@@ -102,6 +102,16 @@ WeddingInvitor::Application.routes.draw do
     end
   end
 
+  constraints subdomain: 'blog' do
+    scope module: 'blog' do
+      match 'robots.txt' => 'posts#robots'
+      root to: 'posts#index'
+      resources :posts, only: %w(index show) do
+        get 'page/:page', action: :index, on: :collection, as: :page
+      end
+    end
+  end
+
   scope module: 'site' do
     match 'robots.txt' => 'base#robots'
     root to: 'pages#home'

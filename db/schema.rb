@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120604043859) do
+ActiveRecord::Schema.define(:version => 20120604233753) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -69,6 +69,12 @@ ActiveRecord::Schema.define(:version => 20120604043859) do
 
   add_index "agency_designers", ["agency_id"], :name => "index_agency_designers_on_agency_id"
   add_index "agency_designers", ["designer_id"], :name => "index_agency_designers_on_designer_id"
+
+  create_table "authors", :force => true do |t|
+    t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "collaboration_tokens", :force => true do |t|
     t.string   "role"
@@ -203,6 +209,19 @@ ActiveRecord::Schema.define(:version => 20120604043859) do
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
   end
+
+  create_table "posts", :force => true do |t|
+    t.string   "title",                           :null => false
+    t.text     "body"
+    t.string   "slug"
+    t.boolean  "published",    :default => false
+    t.integer  "author_id"
+    t.datetime "published_at"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+  end
+
+  add_index "posts", ["slug"], :name => "index_posts_on_slug", :unique => true
 
   create_table "rails_admin_histories", :force => true do |t|
     t.text     "message"

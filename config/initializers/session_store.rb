@@ -2,10 +2,8 @@
 
 WeddingInvitor::Application.config.session_store :cookie_store, key: 'wedvite_session', domain: {
   production: '.wedviteapp.com',
-  staging: '.wedvite.net',
   development: '.wedvite.dev',
-  test: :all
-}.fetch(Rails.env.to_sym)
+}.fetch(Rails.env.to_sym, :all)
 
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information

@@ -1,0 +1,17 @@
+<section class="posts">
+  <% @posts.each do |post| %>
+    <%= render partial: 'article', locals: { post: post } %>
+  <% end %>
+  <div class="row">
+    <div class="span6 offset2">
+      <div class="actions">
+        <%= newer_link @posts do %>
+          <span><i class="icon-arrow-left icon-white"></i> Newer<span>
+        <% end %>
+        <%= continue_link @posts do %>
+          <span>Continue <i class="icon-arrow-right icon-white"></i><span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
