@@ -121,3 +121,11 @@ end
 Event.blueprint do
   # Attributes here
 end
+
+Posts.blueprint do
+  # Attributes here
+end
+
+Authors.blueprint do
+  # Attributes here
+end
