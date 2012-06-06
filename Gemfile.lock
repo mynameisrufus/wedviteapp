@@ -1,3 +1,22 @@
+GIT
+  remote: https://github.com/mynameisrufus/rails_admin.git
+  revision: 5c763c9c3d5f979e6a5f5ebf2ea36cd5f2597f91
+  ref: 5c763c9c3d5f979e6a5f5ebf2ea36cd5f2597f91
+  specs:
+    rails_admin (0.0.3)
+      bbenezech-nested_form (~> 0.0.6)
+      bootstrap-sass (~> 2.0, >= 2.0.3)
+      builder (~> 3.0)
+      coffee-rails (~> 3.1)
+      haml (~> 3.1)
+      jquery-rails (>= 1.0.17)
+      jquery-ui-rails (~> 0.2.2)
+      kaminari (~> 0.12)
+      rack-pjax (~> 0.5)
+      rails (~> 3.1)
+      remotipart (~> 1.0)
+      sass-rails (~> 3.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -166,19 +185,6 @@ GEM
       activesupport (= 3.2.5)
       bundler (~> 1.0)
       railties (= 3.2.5)
-    rails_admin (0.0.3)
-      bbenezech-nested_form (~> 0.0.6)
-      bootstrap-sass (~> 2.0)
-      builder (~> 3.0)
-      coffee-rails (~> 3.1)
-      haml (~> 3.1)
-      jquery-rails (>= 1.0.17)
-      jquery-ui-rails (~> 0.2.2)
-      kaminari (~> 0.12)
-      rack-pjax (~> 0.5)
-      rails (~> 3.1)
-      remotipart (~> 1.0)
-      sass-rails (~> 3.1)
     railties (3.2.5)
       actionpack (= 3.2.5)
       activesupport (= 3.2.5)
@@ -280,7 +286,7 @@ DEPENDENCIES
   pg
   quiet_assets
   rails (= 3.2.5)
-  rails_admin (~> 0.0.3)
+  rails_admin!
   rb-fchange
   rb-fsevent
   rb-inotify

@@ -11,7 +11,7 @@ gem 'sorted',                '~> 0.4.2'
 gem 'redcarpet',             '~> 2.1.1'
 gem 'liquid',                '~> 2.3.0'
 gem 'ri_cal',                '~> 0.8.8'
-gem 'rails_admin',           '~> 0.0.3'
+gem 'rails_admin', git: 'https://github.com/mynameisrufus/rails_admin.git', ref: '5c763c9c3d5f979e6a5f5ebf2ea36cd5f2597f91'
 gem 'friendly_id',           '~> 4.0.1'
 
 gem 'aws-sdk',               '~> 1.5'
