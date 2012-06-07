@@ -15,7 +15,7 @@ class Stationary < ActiveRecord::Base
   has_attached_file :preview,
     storage: :s3,
     s3_credentials: "#{Rails.root}/config/s3.yml",
-    path: "stationary/:id/preview/:hash.:extension",
+    path: "stationery/previews/:id/:hash.:extension",
     hash_secret: "wedvitehash"
 
   scope :published, where(published: true)

@@ -11,6 +11,6 @@ class StationaryAsset < ActiveRecord::Base
   has_attached_file :attachment,
     storage: :s3,
     s3_credentials: "#{Rails.root}/config/s3.yml",
-    path: "stationary/assets/:id/:hash.:extension",
+    path: "stationery/assets/:id/:hash.:extension",
     hash_secret: "wedvitehash"
 end
