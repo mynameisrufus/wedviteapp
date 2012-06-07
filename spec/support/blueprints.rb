@@ -122,10 +122,10 @@ Event.blueprint do
   # Attributes here
 end
 
-Posts.blueprint do
+Post.blueprint do
   # Attributes here
 end
 
-Authors.blueprint do
+Author.blueprint do
   # Attributes here
 end

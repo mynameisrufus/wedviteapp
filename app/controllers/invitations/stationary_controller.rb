@@ -7,7 +7,7 @@ class Invitations::StationaryController < Invitations::BaseController
     if @guest.accepted? || @guest.declined?
       redirect_to guesthome_path
     else
-      render inline: @guest.wedding.stationary.render(@guest, @wedding, accept_invitation_path, decline_invitation_path)
+      render inline: @guest.wedding.stationary.render(@guest, accept_invitation_path, decline_invitation_path)
     end
   end
 end
