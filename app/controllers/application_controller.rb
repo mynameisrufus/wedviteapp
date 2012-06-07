@@ -26,5 +26,9 @@ class ApplicationController < ActionController::Base
     @markdown ||= Redcarpet::Markdown.new(MarkdownRenderer,
       autolink: true, space_after_headers: true)
   end
+
+  rescue_from Liquid::SyntaxError do
+    render template: "/errors/400.html.erb", status: 400
+  end
 end
 
