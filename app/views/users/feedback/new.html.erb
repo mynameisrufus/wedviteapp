@@ -1,20 +1,16 @@
-<section class="feedback">
+<section class="feedback placeholder">
   <div class="page-header">
     <h1>Feedback and Support</h1>
   </div>
-  <div class="row">
-    <div class="span3">
-      <p>All you need to get started is a name for you weeding, you can leave the rest until later. Don't worry your guests don't see this name, they see the wording.</p>
-    </div>
-    <div class="span9">
-      <%= form_tag feedback_path do %>
-        <fieldset>
-          <%= text_area_tag 'feedback', nil, class: 'input-xlarge', rows: 3 %>
-          <div class="actions">
-            <%= submit_tag 'Send', class: 'btn btn-primary' %>&nbsp;<%= link_to 'Cancel', root_path, class: 'btn' %>
-          </div>
-        </fieldset>
-      <% end %>
-    </div>
-  </div>
+  <p>Please leave us some feedback, brick bats and bouquets both welcome.</p>
+  <p>If you want a style of stationery that we do not have, please paste in some links to what you would like and we can make a very similar one for you.</p>
+  <p>We would love to hear from you even if it's just to say hi!</p>
+  <%= form_tag feedback_path do %>
+    <fieldset>
+      <%= text_area_tag 'feedback', nil, class: 'input-xlarge', rows: 3, style: "height: 200px; width: 910px;" %>
+      <div class="actions">
+        <%= link_to 'Cancel', root_path, class: 'btn' %>&nbsp;<%= submit_tag 'Send', class: 'btn' %>
+      </div>
+    </fieldset>
+  <% end %>
 </section>
