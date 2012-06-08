@@ -38,6 +38,8 @@ Wedding.blueprint do
   ceremony_when { Time.now + 5.weeks }
   has_reception { true }
   reception_when { Time.now + 5.weeks }
+  partner_one_name { Faker::Name.first_name }
+  partner_two_name { Faker::Name.first_name }
 end
 
 Comment.blueprint do

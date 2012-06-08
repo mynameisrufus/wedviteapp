@@ -31,7 +31,7 @@ describe Stationary do
       stationary = Stationary.make html: "{{ urls.rsvp }} {{ urls.decline }} {{ guest.name }} {{ wedding.name }}"
       wedding    = Wedding.make
       guest      = Guest.make wedding: wedding
-      stationary.render(guest, "#accept", "#decline").should eq "#accept #decline #{ guest.name } #{ wedding.name }"
+      stationary.render(guest, "#accept", "#decline").should eq "#accept #decline #{ guest.name } #{ wedding.partner_one_name } & #{ wedding.partner_two_name }"
     end
   end
 end

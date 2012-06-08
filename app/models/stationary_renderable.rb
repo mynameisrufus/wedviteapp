@@ -1,14 +1,14 @@
 module StationaryRenderable
 
-  module TextFilter
-    # see
-    # http://api.rubyonrails.org/classes/ActiveSupport/Inflector.html#method-i-ordinalize
-    def flourished_date input
-      "Saturday the Seventh of April Two Thousand and Twelve"
+  module HumanDateTimeFilter
+    def style datetime, index
+      PrettyDate.style(datetime).with(index)
+    rescue PrettyDate::MissingStyleError
+      "That date and or time style does not exist"
     end
   end
 
-  Liquid::Template.register_filter TextFilter
+  Liquid::Template.register_filter HumanDateTimeFilter
 
   class Attachement  < Liquid::Tag
     def initialize(tag_name, file_name, tokens)
@@ -43,29 +43,44 @@ module StationaryRenderable
     end
   end
 
+  # {{ wedding.has_reception }}
   class WeddingDrop < Liquid::Drop
     def initialize wedding
       @wedding = wedding
     end
 
     def name
-      @wedding.name
+      "#{@wedding.partner_one_name} & #{@wedding.partner_two_name}"
+    end
+  end
+
+  # {{ ceremony.when }}
+  class CeremonyDrop < Liquid::Drop
+    def initialize wedding
+      @wedding = wedding
     end
 
-    def title
-      @wedding.title
+    def start
+      @wedding.ceremony_when
     end
 
-    def ceremony_when
-      Time.now
+    def finish
+      @wedding.ceremony_when_end
+    end
+  end
+
+  # {{ reception.when }}
+  class ReceptionDrop < Liquid::Drop
+    def initialize wedding
+      @wedding = wedding
     end
 
-    def has_reception
-      true
+    def start
+      @wedding.reception_when
     end
 
-    def reception_when
-      Time.now
+    def finish
+      @wedding.reception_when_end
     end
   end
 
@@ -78,16 +93,16 @@ module StationaryRenderable
       @guest.name
     end
 
+    def total
+      adults + children
+    end
+
     def adults
-      rand 5
+      @guest.adults
     end
 
     def children
-      rand 5
-    end
-
-    def partner_number
-      rand 1..2
+      @guest.children
     end
 
     def token
@@ -128,6 +143,8 @@ module StationaryRenderable
     content  = markdown.render(guest.wedding.wording || '')
     drops    = HashWithIndifferentAccess.new guest: GuestDrop.new(guest),
                                              wedding: WeddingDrop.new(guest.wedding),
+                                             reception: ReceptionDrop.new(guest.wedding),
+                                             ceremony: CeremonyDrop.new(guest.wedding),
                                              urls: UrlDrop.new(accept_url, decline_url)
 
     lq(template, drops.merge(content: lq(content, drops)), uploads)
