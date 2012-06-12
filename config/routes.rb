@@ -83,8 +83,8 @@ WeddingInvitor::Application.routes.draw do
       resources :stationery do
         get :build, on: :member
         get :preview, on: :member
-        resources :images
-        resources :assets
+        resources :images, controller: :stationery_images
+        resources :assets, controller: :stationery_assets
       end
     end
   end

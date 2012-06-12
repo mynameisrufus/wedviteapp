@@ -1,0 +1,17 @@
+<div>
+<% @stationery.images.each do |image| %>
+  <div>
+    <img src="<%= image.attachment %>"/>
+  </div>
+  <div>
+    <p><%= image.attachment_file_name %></p>
+    <p><%= link_to image.attachment.url, image.attachment.url, target: 'blank' %></p>
+    <p><%= image.attachment_content_type %></p>
+    <p><%= (image.attachment_file_size.to_f / 1024).round(4) %> KB</p>
+    <p><%= image.attachment_updated_at %></p>
+    <%= link_to "update", edit_stationery_image_path(@stationery, image) %>
+    <%= link_to "destroy", stationery_image_path(@stationery, image), method: :delete, confirm: "R U sure" %>
+  </div>
+<% end %>
+</div>
+<%= link_to "upload new", new_stationery_image_path(@stationery) %>

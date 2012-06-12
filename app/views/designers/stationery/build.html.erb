@@ -6,6 +6,8 @@
   <% end %>
 </ul>
 
+<%= link_to 'manage images', stationery_images_path(@stationery) %>
+
 <div>
   <div id="editor"><%= @stationery.html %></div><div id="wording"><%= @stationery.example_wording %></div>
 </div>

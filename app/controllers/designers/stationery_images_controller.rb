@@ -10,11 +10,11 @@ class Designers::StationeryImagesController < Designers::AttachmentsController
   end
 
   def create
-    @image = @stationery.new params[:stationery_image]
+    @image = @stationery.images.new params[:stationery_image]
 
     respond_to do |format|
       if @image.save
-        format.html { redirect_to stationery_images_path(@stationery), notice: 'Image created.' }
+        format.html { redirect_to stationery_images_path(@stationery), notice: 'Image uploaded.' }
         format.json { render json: @image, status: :created, location: @image }
       else
         format.html { redirect_to root_path, notice: "Could not upload image" }
@@ -28,7 +28,7 @@ class Designers::StationeryImagesController < Designers::AttachmentsController
 
     respond_to do |format|
       if @image.update_attributes(params[:stationery_image])
-        format.html { redirect_to stationery_images_path(@stationery), notice: 'Wedding was successfully updated.' }
+        format.html { redirect_to stationery_images_path(@stationery), notice: 'Image uploaded.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
