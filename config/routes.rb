@@ -80,8 +80,9 @@ WeddingInvitor::Application.routes.draw do
 
     root to: 'designers/dashboard#home'
     scope module: 'designers' do
-      resources :stationary do
-        resources :weddings
+      resources :stationery do
+        get :build, on: :member
+        get :preview, on: :member
       end
     end
   end

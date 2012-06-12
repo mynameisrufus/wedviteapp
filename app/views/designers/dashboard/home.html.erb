@@ -1,0 +1,5 @@
+<ul>
+  <% current_designer.stationeries.each do |stationery| %>
+    <li><%= stationery.name %> <%= link_to 'details', edit_stationery_path(stationery) %> | <%= link_to 'code', build_stationery_path(stationery) %></li>
+  <% end %>
+</ul>

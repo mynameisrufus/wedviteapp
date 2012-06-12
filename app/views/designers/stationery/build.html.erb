@@ -1,0 +1,55 @@
+<h1><%= @stationery.name %></h1>
+
+<ul>
+  <% @stationery.images.each do |image| %>
+    <li><%= image.attachment_file_name %></li>
+  <% end %>
+</ul>
+
+<div>
+  <div id="editor"><%= @stationery.html %></div><div id="wording"><%= @stationery.example_wording %></div>
+</div>
+
+<div>
+  <button>Save</button>
+  <%= link_to "Preview", preview_stationery_path(@stationery), target: "blank" %>
+</div>
+
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/vibrant_ink");
+
+    var HtmlScriptMode = require("ace/mode/html").Mode;
+    editor.getSession().setMode(new HtmlScriptMode());
+
+    var wordingEditor = ace.edit("wording");
+    var MarkdownScriptMode = require("ace/mode/markdown").Mode;
+    var LiquidScriptMode = require("ace/mode/liquid").Mode;
+    //wordingEditor.getSession().setMode(new MarkdownScriptMode());
+    wordingEditor.getSession().setMode(new LiquidScriptMode());
+
+    var vim = require("ace/keyboard/vim").handler;
+    editor.setKeyboardHandler(vim);
+    wordingEditor.setKeyboardHandler(vim);
+
+    var save = function(code, wording) {
+        $.ajax({
+            type: 'PUT',
+            url: "<%= stationery_path(@stationery) %>",
+            data: {
+                stationery: {
+                    html: code,
+                    example_wording: wording
+                }
+            },
+            success: function(data) {
+              alert("Stationery saved")
+            },
+            dataType: 'json'
+        })
+    }
+    $('button').on('click', function(event) {
+        event.preventDefault()
+        save(editor.getValue(), wordingEditor.getValue())
+    })
+</script>

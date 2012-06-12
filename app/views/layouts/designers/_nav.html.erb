@@ -1,11 +1,4 @@
-<div class="topbar">
-  <div class="fill">
-    <div class="container">
-      <a class="brand" href="/">Wed Vite</a>
-      <ul class="nav">
-        <li><%= link_to "My Stationary", root_path %></li>
-        <li><%= link_to "Sign out", destroy_designer_session_path, method: 'delete' %></li>
-      </ul>
-    </div>
-  </div>
-</div>
+<ul class="nav">
+  <li><%= link_to "My Stationary", root_path %></li>
+  <li><%= link_to "Sign out", destroy_designer_session_path, method: 'delete' %></li>
+</ul>

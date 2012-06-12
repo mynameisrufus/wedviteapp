@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120606035729) do
+ActiveRecord::Schema.define(:version => 20120611045224) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -255,6 +255,7 @@ ActiveRecord::Schema.define(:version => 20120606035729) do
     t.string   "preview_content_type"
     t.integer  "preview_file_size"
     t.datetime "preview_updated_at"
+    t.text     "example_wording"
   end
 
   add_index "stationaries", ["agency_id"], :name => "index_stationaries_on_agency_id"
