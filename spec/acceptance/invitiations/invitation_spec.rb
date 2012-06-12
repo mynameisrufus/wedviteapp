@@ -9,8 +9,8 @@ feature 'Invitation feature', %q{
 
   scenario 'view in invitation' do
     agency     = Agency.make!
-    stationery = Stationary.make! agency: agency
-    wedding    = Wedding.make! stationary: stationery
+    stationery = Stationery.make! agency: agency
+    wedding    = Wedding.make! stationery: stationery
     guest      = Guest.make! wedding: wedding
     visit invitation_url(guest.token, subdomain: 'invitations')
 
@@ -21,8 +21,8 @@ feature 'Invitation feature', %q{
 
   scenario 'RSVP to the wedding' do
     agency     = Agency.make!
-    stationery = Stationary.make! agency: agency
-    wedding    = Wedding.create! name: "Our wedding", stationary: stationery
+    stationery = Stationery.make! agency: agency
+    wedding    = Wedding.create! name: "Our wedding", stationery: stationery
     guest      = Guest.make! wedding: wedding
     visit invitation_url(guest.token, subdomain: 'invitations')
 

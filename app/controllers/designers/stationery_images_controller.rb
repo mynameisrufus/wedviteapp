@@ -1,6 +1,6 @@
 class Designers::StationeryImagesController < Designers::AttachmentsController
   def new
-    @image = StationaryImage.new
+    @image = StationeryImage.new
     respond_with @image
   end
 

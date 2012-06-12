@@ -1,9 +1,9 @@
-class Stationary < ActiveRecord::Base
-  include StationaryRenderable
+class Stationery < ActiveRecord::Base
+  include StationeryRenderable
 
   has_many :weddings
-  has_many :images, class_name: StationaryImage.to_s, dependent: :destroy
-  has_many :assets, class_name: StationaryAsset.to_s, dependent: :destroy
+  has_many :images, class_name: StationeryImage.to_s, dependent: :destroy
+  has_many :assets, class_name: StationeryAsset.to_s, dependent: :destroy
   has_many :payments, as: :purchasable, dependent: :nullify
   belongs_to :agency
 

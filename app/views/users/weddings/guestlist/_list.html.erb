@@ -66,7 +66,7 @@
                 <%= link_to "move", wedding_guest_path(@wedding, guest), class: "modal-me" %>
                 <%= link_to "edit", edit_wedding_guest_path(@wedding, guest), class: "modal-me" %>
                 <%= link_to "comments", wedding_guest_comments_path(@wedding, guest), class: "modal-me" %>
-                <% if @wedding.stationary && guest.state == 'approved' %>
+                <% if @wedding.stationery && guest.state == 'approved' %>
                   <%= link_to "preview", wedding_guest_preview_path(@wedding, guest), target: "_blank" %>
                 <% end %>
                 <% unless Rails.env.production? %>

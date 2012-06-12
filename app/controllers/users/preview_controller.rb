@@ -13,17 +13,17 @@ class Users::PreviewController < Users::BaseController
   end
 
   def invitation
-    render inline: @wedding.stationary.render(@guest), layout: false
+    render inline: @wedding.stationery.render(@guest), layout: false
   end
 
   def stationery
-    @stationery = Stationary.find params[:id]
+    @stationery = Stationery.find params[:id]
     render inline: @stationery.render(@guest), layout: false
   end
 
   def guest
     @guest = Guest.find params[:id]
-    render inline: @wedding.stationary.render(@guest), layout: false
+    render inline: @wedding.stationery.render(@guest), layout: false
   end
 
   protected

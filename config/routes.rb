@@ -44,7 +44,7 @@ WeddingInvitor::Application.routes.draw do
         get 'preview/stationery/:id' => 'preview#stationery', as: :stationery_preview
         get 'preview/guest/:id'      => 'preview#guest', as: :guest_preview
 
-        resources :stationary, only: %w(index) do
+        resources :stationery, only: %w(index) do
           get 'choose'
         end
         resource :locations, only: [] do
@@ -93,7 +93,7 @@ WeddingInvitor::Application.routes.draw do
     scope module: 'invitations' do
       match 'robots.txt' => 'base#robots'
 
-      match ':token'           => 'stationary#show', as: :invitation
+      match ':token'           => 'stationery#show', as: :invitation
 
       match ':token/message'   => 'guests#message', as: :guest_message, method: :post
       match ':token/update'    => 'guests#update', as: :guest, method: :post

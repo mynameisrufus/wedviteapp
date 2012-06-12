@@ -1,6 +1,6 @@
 <% current_index = 0 %>
 <div class="stationeries">
-  <% @stationary.each_with_index do |stationery, index| %>
+  <% @stationery.each_with_index do |stationery, index| %>
     <div class="stationery" data-id="<%= index %>">
       <h2><%= stationery.name %></h2>
       <div class="wrapper" data-src="<%= stationery.preview.url %>"></div>
@@ -9,13 +9,13 @@
         <% unless index == 0 %>
           <a class="btn previous" href="#"><i class="icon-arrow-left"></i> Previous</a>
         <% end %>
-        <% if @wedding.stationary == stationery %>
+        <% if @wedding.stationery == stationery %>
           <% current_index = index %>
         <% else %>
-          <%= link_to 'Use this stationery for your wedding', wedding_stationary_choose_path(@wedding, stationery), class: 'btn btn-success' %>
+          <%= link_to 'Use this stationery for your wedding', wedding_stationery_choose_path(@wedding, stationery), class: 'btn btn-success' %>
         <% end %>
         <%= link_to 'Preview using your wording', wedding_stationery_preview_path(@wedding, stationery), target: '_blank', class: 'btn' %>
-        <% unless index == (@stationary.size - 1) %>
+        <% unless index == (@stationery.size - 1) %>
           <a class="btn next" href="#">Next <i class="icon-arrow-right"></i></a>
         <% end %>
       </div>

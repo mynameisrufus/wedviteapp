@@ -7,7 +7,7 @@ class Wedding < ActiveRecord::Base
   has_many :collaboration_tokens, dependent: :destroy
   has_many :users, through: :collaborators
   has_many :payments, as: :purchasable, dependent: :nullify
-  belongs_to :stationary, counter_cache: :popularity
+  belongs_to :stationery, counter_cache: :popularity
   belongs_to :ceremony_where, class_name: 'Location', foreign_key: 'ceremony_location_id', dependent: :destroy
   belongs_to :reception_where, class_name: 'Location', foreign_key: 'reception_location_id', dependent: :destroy
 
@@ -23,7 +23,7 @@ class Wedding < ActiveRecord::Base
   end
 
   before_create do
-    self.stationary = Stationary.first
+    self.stationery = Stationery.first
   end
 
   before_create do
@@ -86,7 +86,7 @@ class Wedding < ActiveRecord::Base
         :save_the_date_wording, :thank_you_wording,
         :ceremony_how, :ceremony_what, :reception_how, :reception_what,
         :ceremony_where, :reception_where,
-        :guests, :stationary
+        :guests, :stationery
       ]
     else
       [
@@ -94,7 +94,7 @@ class Wedding < ActiveRecord::Base
         :save_the_date_wording, :thank_you_wording,
         :ceremony_how, :ceremony_what,
         :ceremony_where,
-        :guests, :stationary
+        :guests, :stationery
       ]
     end
   end

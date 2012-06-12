@@ -52,7 +52,7 @@ Collaborator.blueprint do
   role { Collaborator::ROLES.shuffle.first }
 end
 
-Stationary.blueprint do
+Stationery.blueprint do
   name { Faker::Name.first_name }
   style { "Simple" }
   published { true }
@@ -78,11 +78,11 @@ EOL
 }
 end
 
-StationaryAsset.blueprint do
+StationeryAsset.blueprint do
   # Attributes here
 end
 
-StationaryImage.blueprint do
+StationeryImage.blueprint do
   # Attributes here
 end
 

@@ -1,4 +1,4 @@
-module StationaryRenderable
+module StationeryRenderable
 
   module HumanDateTimeFilter
     def style datetime, index

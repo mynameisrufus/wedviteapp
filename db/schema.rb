@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120611045224) do
+ActiveRecord::Schema.define(:version => 20120612011504) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -236,7 +236,7 @@ ActiveRecord::Schema.define(:version => 20120611045224) do
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
-  create_table "stationaries", :force => true do |t|
+  create_table "stationeries", :force => true do |t|
     t.string   "name"
     t.string   "style"
     t.text     "description"
@@ -258,13 +258,13 @@ ActiveRecord::Schema.define(:version => 20120611045224) do
     t.text     "example_wording"
   end
 
-  add_index "stationaries", ["agency_id"], :name => "index_stationaries_on_agency_id"
-  add_index "stationaries", ["popularity"], :name => "index_stationaries_on_popularity"
-  add_index "stationaries", ["price"], :name => "index_stationaries_on_price"
-  add_index "stationaries", ["style"], :name => "index_stationaries_on_style"
+  add_index "stationeries", ["agency_id"], :name => "index_stationaries_on_agency_id"
+  add_index "stationeries", ["popularity"], :name => "index_stationaries_on_popularity"
+  add_index "stationeries", ["price"], :name => "index_stationaries_on_price"
+  add_index "stationeries", ["style"], :name => "index_stationaries_on_style"
 
-  create_table "stationary_assets", :force => true do |t|
-    t.integer  "stationary_id"
+  create_table "stationery_assets", :force => true do |t|
+    t.integer  "stationery_id"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
     t.string   "attachment_file_name"
@@ -273,10 +273,10 @@ ActiveRecord::Schema.define(:version => 20120611045224) do
     t.datetime "attachment_updated_at"
   end
 
-  add_index "stationary_assets", ["stationary_id"], :name => "index_stationary_assets_on_stationary_id"
+  add_index "stationery_assets", ["stationery_id"], :name => "index_stationary_assets_on_stationary_id"
 
-  create_table "stationary_images", :force => true do |t|
-    t.integer  "stationary_id"
+  create_table "stationery_images", :force => true do |t|
+    t.integer  "stationery_id"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
     t.string   "attachment_file_name"
@@ -285,7 +285,7 @@ ActiveRecord::Schema.define(:version => 20120611045224) do
     t.datetime "attachment_updated_at"
   end
 
-  add_index "stationary_images", ["stationary_id"], :name => "index_stationary_images_on_stationary_id"
+  add_index "stationery_images", ["stationery_id"], :name => "index_stationary_images_on_stationary_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                   :default => "", :null => false
@@ -332,7 +332,7 @@ ActiveRecord::Schema.define(:version => 20120611045224) do
     t.string   "partner_two_name"
     t.boolean  "payment_made"
     t.datetime "payment_date"
-    t.integer  "stationary_id"
+    t.integer  "stationery_id"
     t.integer  "ceremony_location_id"
     t.integer  "reception_location_id"
     t.datetime "created_at",                                  :null => false
@@ -344,6 +344,6 @@ ActiveRecord::Schema.define(:version => 20120611045224) do
     t.text     "thank_you_wording"
   end
 
-  add_index "weddings", ["stationary_id"], :name => "index_weddings_on_stationary_id"
+  add_index "weddings", ["stationery_id"], :name => "index_weddings_on_stationary_id"
 
 end
