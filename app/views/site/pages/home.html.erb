@@ -4,19 +4,19 @@
       <h1>WedVite</h1>
     </div>
   </div>
-  <% introduction = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a massa ligula, id tristique massa. Vivamus sollicitudin posuere ante et imperdiet. Duis molestie neque sagittis tellus egestas elementum." %>
   <div class="span6 call-to-action">
-    <p class="hidden-phone"><%= introduction %></p>
+    <p class="hidden-phone"><%= t :value_proposition %></p>
     <ul>
       <li><%= link_to 'Sign up for free', new_user_registration_url(subdomain: 'plan'), class: 'cupid pink sign-up' %></li>
       <li><%= link_to 'Sign in', new_user_session_url(subdomain: 'plan'), class: 'cupid blue sign-in' %></li>
     </ul>
-    <p class="visible-phone"><%= introduction %></p>
+    <p class="visible-phone"><%= t :value_proposition %></p>
   </div>
 </div>
 
 <div class="row">
   <div class="span12">
+    <p><%= t :elevator_pitch %></p>
     <ul class="nav nav-pills">
       <li class="active">
         <a href="#orginise">Organise</a>
