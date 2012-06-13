@@ -1,114 +1,177 @@
-<div class="row">
-  <div class="span6">
-    <div class="page-header">
-      <h1>WedVite</h1>
+<div class="birdies"></div>
+<div class="shadow-wrap container">
+<div class="container">
+  <div class="row">
+    <div class="span4 offset4">
+      <p>Save time, money and trees with WedVite - your online wedding
+guest list and invitation organiser</p>
     </div>
   </div>
-  <div class="span6 call-to-action">
-    <p class="hidden-phone"><%= t :value_proposition %></p>
-    <ul>
+</div>
+
+<header class="overlay">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <h1>Wedvite</h1>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="row">
+  <div class="span4 offset4">
+    <ul class="login-signup">
       <li><%= link_to 'Sign up for free', new_user_registration_url(subdomain: 'plan'), class: 'cupid pink sign-up' %></li>
       <li><%= link_to 'Sign in', new_user_session_url(subdomain: 'plan'), class: 'cupid blue sign-in' %></li>
     </ul>
-    <p class="visible-phone"><%= t :value_proposition %></p>
   </div>
 </div>
+
+<header>
+  <div class="row">
+    <div class="span12">
+      <h2>Organise</h2>
+    </div>
+  </div>
+</header>
 
 <div class="row">
-  <div class="span12">
-    <p><%= t :elevator_pitch %></p>
-    <ul class="nav nav-pills">
-      <li class="active">
-        <a href="#orginise">Organise</a>
-      </li>
-      <li><a href="#invitations-and-stationery">Invitations</a></li>
-      <li><a href="#share">Share</a></li>
-      <li><a href="#pricing">Pricing</a></li>
-    </ul>
+  <div class="span4 offset4">
+    <p>Sign up for free and create your wedding list. Simply add guests
+to the list and then collaborate together where you can approve, make
+tentative (B list) or reject guests (make sure ‘that guy’ doesn’t get on
+the final invite list).</p>
+
+    <p>You can also easily keep track of guest numbers (adults and children)
+from both the Bride and Groom’s sides.</p>
   </div>
 </div>
 
-<article class="slide-deck outer">
-  <section class="slide outer" id="orginise" data-position="1" data-transition="vertical">
-    <div class="slide-deck inner">
-      <div class="slide inner" id="guestlist" data-position="1" data-transition="horizontal">
-        <%= render partial: "guestlist" %>
-      </div>
+<header>
+  <div class="row">
+    <div class="span12">
+      <h2>Share</h2>
     </div>
-  </section>
-  <section class="slide outer" id="invitations-and-stationery" data-position="2" data-transition="vertical">
-    <div class="slide-deck inner">
-      <div class="paddle left"></div>
-      <div class="paddle right"></div>
-      <div class="slide inner" id="invitations" data-position="1" data-transition="horizontal">
-        <%= render partial: "guestlist" %>
-      </div>
-      <div class="slide inner" id="stationery" data-position="2" data-transition="horizontal">
-        <%= render partial: "guestlist" %>
-      </div>
+  </div>
+</header>
+<div class="row">
+  <div class="span4 offset4">
+    <p>You can choose to share the guest list with your family, bridal
+party or wedding planner. And there’s no need to worry about your list
+being altered, you can allocate your collaborators with viewing
+permissions such as view, comment or edit.</p>
+  </div>
+</div>
+
+<header>
+  <div class="row">
+    <div class="span12">
+      <h2>Stationery</h2>
     </div>
-  </section>
-  <section class="slide outer" id="share" data-position="3" data-transition="vertical">
-    <div class="slide-deck inner">
-      <div class="paddle left"></div>
-      <div class="paddle right"></div>
-      <div class="slide inner" id="directions" data-position="1" data-transition="horizontal">
-        <%= render partial: "guestlist" %>
-      </div>
-      <div class="slide inner" id="messages" data-position="2" data-transition="horizontal">
-        <%= render partial: "guestlist" %>
-      </div>
-      <div class="slide inner" id="rsvps" data-position="3" data-transition="horizontal">
-        <%= render partial: "guestlist" %>
-      </div>
-    </div>
-  </section>
-  <section class="slide outer" id="pricing" data-position="4" data-transition="vertical">
-    <div class="row">
-      <div class="span12">
-        <div class="blurb">
-          <h1>$49.95</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a massa ligula, id tristique massa. Vivamus sollicitudin posuere ante et imperdiet. Duis molestie neque sagittis tellus egestas elementum.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a massa ligula, id tristique massa. Vivamus sollicitudin posuere ante et imperdiet. Duis molestie neque sagittis tellus egestas elementum.</p>
-          <ul>
-            <li>Lorem ipsum dolor sit amet</li>
-            <li>Lorem ipsum dolor sit amet</li>
-            <li>Lorem ipsum dolor sit amet</li>
-          </ul>
+  </div>
+</header>
+<div class="row">
+
+  <div class="slide-deck">
+    <div class="paddle left"></div>
+    <div class="paddle right"></div>
+    <div class="slide" id="invitations" data-position="1" data-transition="horizontal">
+      <div class="row images">
+        <div class="span1">&nbsp;</div>
+        <div class="span5">
+          <%= image_tag "site/guestlist.png" %>
         </div>
+        <div class="span5">
+          <%= image_tag "site/guestlist.png" %>
+        </div>
+        <div class="span1">&nbsp;</div>
       </div>
     </div>
-  </section>
-</article>
+    <div class="slide" id="stationery" data-position="2" data-transition="horizontal">
+      <div class="row images">
+        <div class="span1">&nbsp;</div>
+        <div class="span5">
+          <%= image_tag "site/guestlist.png" %>
+        </div>
+        <div class="span5">
+          <%= image_tag "site/guestlist.png" %>
+        </div>
+        <div class="span1">&nbsp;</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="span4 offset4">
+    <p>Choose from a selection of beautiful wedding invitation designs
+and in your own words, create your invite to give guests a glimpse into
+the style and theme of your special day. You can preview each individual
+invitation to check spelling and grammar before you press send.</p>
+  </div>
+</div>
+
+<header>
+  <div class="row">
+    <div class="span12">
+      <h2>Invite</h2>
+    </div>
+  </div>
+</header>
+<div class="row">
+  <div class="span4 offset4">
+    <p>Once your wedding details are confirmed, you can send out your
+invites directly from WedVite, saving you time and money on sourcing
+mailing addresses, expensive printing and postage costs.
+
+    <p>Your guests can instantly RSVP from your online invite at the touch of a
+button, which automatically updates your guest list with who accepted
+with pleasure and who declined with regret.</p>
+
+    <p>So your parents or grandparents don’t have email or use the internet? No
+problem, you can print out a special invitation from WedVite to take
+pride of place in their home. And for those traditionalists who like to
+feel and smell the real thing, they too can print a copy of your wedding
+invite for their fridge.</p> 
+
+    <p>As guests accept or decline, they are able to post you a personalised
+message. From here, attending guests can also specify any special
+requirements such as vegetarian/gluten-free diets, childrens meals, high
+chairs or wheelchairs. </p>
+
+    <p>Confirmed guests can automatically add your wedding date to their email
+or smartphone calendar and will receive all the details for your special
+day through WedVite’s added feature - ‘Our Day’. On a dedicated WedVite
+page, you can provide guests with as much information as you wish,
+including directions to your wedding, where to stay, the next day, local
+activities, transport, gift registry, meet the bridal party and much
+more.</p>
+  </div>
+</div>
+
+<header>
+  <div class="row">
+    <div class="span12">
+      <h2>Pricing</h2>
+    </div>
+  </div>
+</header>
+<div class="row">
+  <div class="span4 offset4">
+    <h3>$49.95</h3>
+    <p>Use Wedvite for free until you actually decide to send out the
+invitations. Once you have paid you can continue to send out round after
+round of invitations forever.</p>
+  </div>
+</div>
+
+</div>
 
 <script>
 (function() {
 
-    var $outerContainer  = $('.slide-deck.outer'),
-        $outerSections  = $outerContainer.find('.slide.outer'),
-        $outerNav       = $('.nav-pills li')
-
-    $outerSections.slideDeck({
-        speed: 500,
-        easing: $.support.transition ? 'ease' : 'swing'
-    })
-
-    $outerNav.find('a').on('click', function(event) {
-        event.preventDefault()
-
-        // toggle active states
-        $outerNav.removeClass('active')
-        $(this).parent().addClass('active')
-
-        // transition
-        var id = this.hash.replace(/#/, '')
-        $outerSections.change(id)
-        return false
-    })
-
-    $('.slide-deck.inner').each(function(index, container) {
+    $('.slide-deck').each(function(index, container) {
         var $container = $(container),
-            $sections  = $container.find('.slide.inner'),
+            $sections  = $container.find('.slide'),
             $left      = $container.find('.paddle.left'),
             $right     = $container.find('.paddle.right')
 

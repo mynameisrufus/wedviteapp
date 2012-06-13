@@ -17,159 +17,118 @@
 // Base CSS
 @import "twitter/bootstrap/type";
 
-// App global stylesheets
-@import "colors";
-@import "fonts";
-@import "navs";
-
-// Site stylesheets
-@import "site/buttons";
-
-.rounded-corners (@radius: 5px) {
-  border-radius: @radius;
-  -webkit-border-radius: @radius;
-  -moz-border-radius: @radius;
+@baby_blue: rgb(234, 243, 248);
+@blue: rgb(43, 97, 126);
+@copper: rgb(162, 154, 151);
+@white: rgb(249, 253, 255);
+.white (@alpha: 80) {
+  background-color: rgb(249, 253, 255);
+  background-color: rgba(249, 253, 255, @alpha / 100);
 }
 
 body {
-  padding-top: 30px;
-  background-image: image-url("bg-cloth.png");
-  color: @kalamata_olive;
+  background-color: white;
+  color: @blue;
+  padding: 25px 0px;
 }
 
-.page-header {
+.container {
+  background-color: @baby_blue;
+}
+
+.shadow-wrap {
+  .box-shadow(10px 10px 20px -5px gray);
+  // filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30);
+  // -ms-filter: "progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30)";
+  // zoom: 1;
+}
+
+.birdies {
+  background-image: image-url('birds.png');
+  height: 88px;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+header {
+  .white();
+  border-top: 3px @copper solid;
+  border-bottom: 3px @copper solid;
+  &.overlay {
+    width: 100%;
+    position: absolute;
+    left: 0px;
+  }
+}
+
+h1, h2 {
   text-align: center;
-  border: 0px none;
-  h1 {
-    font-family: 'EdwardianScriptITCRegular', sans-serif;
-    font-size: 9em;
-    line-height: 1em;
-    font-weight: normal;
-    text-shadow: #999 2px 2px 9px;
-    text-indent: -40px;
-  }
+  background-color: @white;
 }
 
-.row.images {
-  margin-bottom: 20px;
-}
-
-.call-to-action {
-  ul {
-    margin: 0 auto;
-    list-style: none;
-    li {
-      float: left;
-    }
-  }
-}
-
-.nav {
-  &.nav-pills {
-    width: 330px;
-    margin: 0 auto;
-  }
-  &.nav-dots > li {
-    float: left;
-  }
-}
-
-img {
-  border: 1px solid @gray;
-  max-width: 99%;
-}
-
-article {
-  margin: 20px 0px;
-  &.slide-deck {
-    width: 100%;
-  }
-}
-
-.slide-deck,
-.slide {
-  height: 800px;
-}
-
-div {
-  &.slide-deck {
-    width: 100%;
+ul.login-signup {
+  list-style: none;
+  padding: 0px;
+  margin: 40px 0px;
+  li {
+    border-top: 4px @white solid;
+    border-bottom: 4px @white solid;
+    margin: 40px 0px;
   }
 }
 
 .slide-deck {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 610px;
   .slide {
+    position: absolute;
     min-height: 610px;
     width: 100%;
   }
 }
 
-.blurb {
-  .rounded-corners();
-  padding: 10px;
-  background-color: rgb(255, 255, 255);
-  background-color: rgba(255, 255, 255, 0.3);
+.paddle {
+  width: 62px;
+  height: 62px;
+  background-image: url('/assets/site/paddles.png');
+  background-repeat: no-repeat;
+  position: absolute;
+  z-index: 221;
+  top: 190px;
+  cursor: pointer;
+  &.left {
+    left: 0px;
+    background-position: -7px -75px;
+  }
+  &.right {
+    right: 0px;
+    background-position: -3px -5px;
+  }
+}
+
+@media 
+  only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (min-device-pixel-ratio: 2) {
+  .birdies {
+    background-image: image-url('birds2x.png');
+    background-size: 166px 87px;
+  }
 }
 
 // Landscape phone to portrait tablet
 @media (max-width: 767px) {
-  .call-to-action {
-    ul {
-      width: 460px;
-      height: 70px;
-    }
-  }
 }
 
 // Landscape phones and down
 @media (max-width: 480px) {
-  .page-header {
-    h1 {
-      font-size: 5em;
-      line-height: 0.5em;
-      text-indent: -25px;
-    }
-  }
-  .call-to-action {
-    ul {
-      width: 280px;
-      height: 55px;
-    }
-  }
-  a.cupid {
-    width: 128px;
-    font-size: 1em;
-    margin: 10px 5px 20px 5px;
-  }
 }
 
 // Portrait tablet to landscape and desktop
 @media (min-width: 768px) and (max-width: 979px) {
-  .page-header {
-    h1 {
-      font-size: 7em;
-      line-height: 0.5em;
-      text-indent: -25px;
-      margin-top: 50px;
-    }
-  }
-  a.cupid {
-    font-size: 1.5em;
-    margin: 10px 5px 20px 5px;
-    width: 164px;
-  }
 }
 
 // Large desktop
 @media (min-width: 1200px) {
-  .page-header {
-    h1 {
-      font-size: 11em;
-    }
-  }
-  a.cupid {
-    font-size: 2em;
-    margin: 10px 5px 20px 5px;
-    width: 260px;
-  }
 }
