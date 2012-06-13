@@ -25,14 +25,16 @@ guest list and invitation organiser</p>
       <li><%= link_to 'Sign up for free', new_user_registration_url(subdomain: 'plan'), class: 'cupid pink sign-up' %></li>
       <li><%= link_to 'Sign in', new_user_session_url(subdomain: 'plan'), class: 'cupid blue sign-in' %></li>
     </ul>
+    <p>Forget lengthy spreadsheets and spending hundreds on expensive
+printing and postage, WedVite makes it easy for you to create and manage
+your wedding guest list, personalise your invitation and communicate all
+the details of your special day with guests.</p>
   </div>
 </div>
 
-<header>
-  <div class="row">
-    <div class="span12">
-      <h2>Organise</h2>
-    </div>
+<header class="row">
+  <div class="span12">
+    <h2>Organise</h2>
   </div>
 </header>
 
@@ -48,11 +50,9 @@ from both the Bride and Groom’s sides.</p>
   </div>
 </div>
 
-<header>
-  <div class="row">
-    <div class="span12">
-      <h2>Share</h2>
-    </div>
+<header class="row">
+  <div class="span12">
+    <h2>Share</h2>
   </div>
 </header>
 <div class="row">
@@ -64,44 +64,65 @@ permissions such as view, comment or edit.</p>
   </div>
 </div>
 
-<header>
-  <div class="row">
-    <div class="span12">
-      <h2>Stationery</h2>
-    </div>
+<header class="row">
+  <div class="span12">
+    <h2>Stationery</h2>
   </div>
 </header>
-<div class="row">
-
   <div class="slide-deck">
     <div class="paddle left"></div>
     <div class="paddle right"></div>
     <div class="slide" id="invitations" data-position="1" data-transition="horizontal">
-      <div class="row images">
-        <div class="span1">&nbsp;</div>
-        <div class="span5">
-          <%= image_tag "site/guestlist.png" %>
+      <div class="row">
+        <div class="span5 offset2">
+          <div class="imac">
+            <div class="imac-frame">
+              <%= image_tag "site/imac.png" %>
+            </div>
+            <div class="imac-content">
+              <%= image_tag "site/guestlist.png" %>
+            </div>
+          </div>
         </div>
-        <div class="span5">
-          <%= image_tag "site/guestlist.png" %>
+        <div class="span4">
+          <div class="iphone">
+            <div class="iphone-frame">
+              <%= image_tag "site/iphone.png" %>
+            </div>
+            <div class="iphone-content">
+              <%= image_tag "site/guestlist.png" %>
+            </div>
+          </div>
         </div>
-        <div class="span1">&nbsp;</div>
       </div>
     </div>
     <div class="slide" id="stationery" data-position="2" data-transition="horizontal">
-      <div class="row images">
-        <div class="span1">&nbsp;</div>
-        <div class="span5">
-          <%= image_tag "site/guestlist.png" %>
+      <div class="row">
+        <div class="span6 offset1">
+          <div class="imac">
+            <div class="imac-frame">
+              <%= image_tag "site/imac.png" %>
+            </div>
+            <div class="imac-content">
+              <%= image_tag "site/guestlist.png" %>
+            </div>
+          </div>
         </div>
-        <div class="span5">
-          <%= image_tag "site/guestlist.png" %>
+        <div class="span4">
+          <div class="iphone">
+            <div class="iphone-frame">
+              <%= image_tag "site/iphone.png" %>
+            </div>
+            <div class="iphone-content">
+              <%= image_tag "site/guestlist.png" %>
+            </div>
+          </div>
         </div>
-        <div class="span1">&nbsp;</div>
       </div>
     </div>
   </div>
 
+<div class="row">
   <div class="span4 offset4">
     <p>Choose from a selection of beautiful wedding invitation designs
 and in your own words, create your invite to give guests a glimpse into
@@ -110,11 +131,9 @@ invitation to check spelling and grammar before you press send.</p>
   </div>
 </div>
 
-<header>
-  <div class="row">
-    <div class="span12">
-      <h2>Invite</h2>
-    </div>
+<header class="row">
+  <div class="span12">
+    <h2>Invite</h2>
   </div>
 </header>
 <div class="row">
@@ -148,11 +167,9 @@ more.</p>
   </div>
 </div>
 
-<header>
-  <div class="row">
-    <div class="span12">
-      <h2>Pricing</h2>
-    </div>
+<header class="row">
+  <div class="span12">
+    <h2>Pricing</h2>
   </div>
 </header>
 <div class="row">
@@ -170,13 +187,13 @@ round of invitations forever.</p>
 (function() {
 
     $('.slide-deck').each(function(index, container) {
-        var $container = $(container),
+        var $container = $(container)
             $sections  = $container.find('.slide'),
             $left      = $container.find('.paddle.left'),
             $right     = $container.find('.paddle.right')
 
         $sections.slideDeck({
-            speed: 500,
+            speed: 1000,
             easing: $.support.transition ? 'ease' : 'swing'
         })
 

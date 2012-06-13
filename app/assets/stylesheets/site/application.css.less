@@ -17,6 +17,8 @@
 // Base CSS
 @import "twitter/bootstrap/type";
 
+@import "fonts";
+
 @baby_blue: rgb(234, 243, 248);
 @blue: rgb(43, 97, 126);
 @copper: rgb(162, 154, 151);
@@ -50,7 +52,8 @@ body {
   background-position: center center;
 }
 
-header {
+header.overlay,
+header h2 {
   .white();
   border-top: 3px @copper solid;
   border-bottom: 3px @copper solid;
@@ -70,6 +73,7 @@ ul.login-signup {
   list-style: none;
   padding: 0px;
   margin: 40px 0px;
+  margin: 120px 0px 80px 0px;
   li {
     border-top: 4px @white solid;
     border-bottom: 4px @white solid;
@@ -77,14 +81,16 @@ ul.login-signup {
   }
 }
 
+.slide-deck,
+.slide-deck .slide {
+  height: 440px;
+}
 .slide-deck {
   position: relative;
   overflow: hidden;
   width: 100%;
-  min-height: 610px;
   .slide {
     position: absolute;
-    min-height: 610px;
     width: 100%;
   }
 }
@@ -99,14 +105,80 @@ ul.login-signup {
   top: 190px;
   cursor: pointer;
   &.left {
-    left: 0px;
+    left: 50px;
     background-position: -7px -75px;
   }
   &.right {
-    right: 0px;
+    right: 20px;
     background-position: -3px -5px;
   }
 }
+
+.imac,
+.iphone {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.imac {
+  margin-top: 50px;
+}
+
+.iphone {
+  margin-top: 60px;
+}
+
+.imac,
+.imac-frame img {
+  height: 320px;
+  width: 400px;
+}
+
+.imac-content {
+  height: 225px;
+  margin: 20px;
+  img {
+    width: 360px;
+    max-width: 360px;
+    height: auto;
+  }
+}
+
+.iphone,
+.iphone-frame img {
+  width: 147px;
+  height: 287.5px;
+}
+
+.iphone-content {
+  margin: 51px 10px 0px 12px;
+  height: 186px;
+  img {
+    width: 125px;
+    max-width: 125px;
+    height: auto;
+  }
+}
+
+.imac-frame,
+.iphone-frame {
+  z-index: 121;
+}
+
+.imac-content,
+.iphone-content {
+  z-index: 120;
+  overflow: hidden;
+}
+
+.imac-frame,
+.imac-content,
+.iphone-frame,
+.iphone-content {
+  position: absolute;
+}
+
 
 @media 
   only screen and (-webkit-min-device-pixel-ratio: 2),
