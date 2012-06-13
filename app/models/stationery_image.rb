@@ -8,6 +8,9 @@ class StationeryImage < ActiveRecord::Base
     message: "you have already uploaded that file"
   }
 
+  # :hash is derived from
+  #
+  #   :class/:attachment/:id/:style/:updated_at
   has_attached_file :attachment,
     storage: :s3,
     s3_credentials: "#{Rails.root}/config/s3.yml",
