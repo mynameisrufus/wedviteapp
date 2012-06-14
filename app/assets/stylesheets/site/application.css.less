@@ -2,211 +2,190 @@
 @import "twitter/bootstrap/reset";
 
 // Core variables and mixins
-@import "twitter/bootstrap/variables"; // Modify this for custom colors, font-sizes, etc
 @import "twitter/bootstrap/mixins";
 
 // Grid system and page structure
-@import "twitter/bootstrap/scaffolding";
 @import "twitter/bootstrap/grid";
 @import "twitter/bootstrap/layouts";
 @import "twitter/bootstrap/responsive";
 
-// Components
-@import "twitter/bootstrap/navs";
-
 // Base CSS
 @import "twitter/bootstrap/type";
 
+// WedVite CSS files
 @import "global";
 
 body {
-  color: @blue;
-  padding-top: 25px;
-  padding-bottom: 25px;
-}
-
-.container {
-  background-color: @baby_blue;
-}
-
-.shadow-wrap {
-  .box-shadow(8px 8px 40px 0px gray);
-  // filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30);
-  // -ms-filter: "progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30)";
-  // zoom: 1;
-}
-
-.birdies {
-  background-image: image-url('birds.png');
-  height: 88px;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-
-header.overlay,
-header h2 {
-  .white();
-  border-top: 3px @copper solid;
-  border-bottom: 3px @copper solid;
-  &.overlay {
-    width: 100%;
-    position: absolute;
-    left: 0px;
-  }
-}
+    color: @blue;
+    padding-top: 25px;
+    padding-bottom: 25px; }
 
 h1, h2 {
   text-align: center;
-  background-color: @white;
-}
+  background-color: @white; }
+
+.birdies {
+    background-image: image-url('birds.png');
+    height: 88px;
+    background-repeat: no-repeat;
+    background-position: center center; }
+
+header.overlay,
+header h2 {
+    /* IE rgba start */
+    background: transparent;
+    filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr=#80FFFFFF,endColorstr=#80FFFFFF)"; 
+    zoom: 1;
+    /* IE rgba end */
+    .white();
+    border-top: 3px @copper solid;
+    border-bottom: 3px @copper solid;
+    &.overlay {
+        width: 100%;
+        position: absolute;
+        left: 0px;
+        z-index: 300;
+        top: 450px; } }
+
+.shadow-wrap {
+    /* IE box shadow start */
+    background-color: rgb(68,68,68);
+    filter: ~"progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30)";
+    -ms-filter: ~"progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30)";
+    zoom: 1;
+    /* IE box shadow end */
+    .box-shadow(8px 8px 40px 0px gray);
+    .shadow-content {
+        background-color: @baby_blue;
+        position: relative; } }
 
 ul.login-signup {
-  list-style: none;
-  padding: 0px;
-  margin: 40px 0px;
-  margin: 120px 0px 80px 0px;
-  li:hover {
-    background-color: darken(@baby_blue, 5%);
-  }
-}
+    list-style: none;
+    padding: 0px;
+    margin: 40px 0px;
+    margin: 120px 0px 80px 0px;
+    li:hover {
+        background-color: darken(@baby_blue, 5%); } }
 
 .stripes {
-  border-top: 6px @white solid;
-  border-bottom: 6px @white solid;
-  margin: 40px 0px;
-}
+    border-top: 6px @white solid;
+    border-bottom: 6px @white solid;
+    margin: 40px 0px;
+    text-align: center;
+    img {
+        width: 370px;
+        height: auto; } }
 
 .slide-deck,
 .slide-deck .slide {
-  height: 440px;
-}
+    height: 440px; }
+
 .slide-deck {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  .slide {
-    position: absolute;
+    position: relative;
+    overflow: hidden;
     width: 100%;
-  }
-}
+    .slide {
+        position: absolute;
+        width: 100%; } }
 
 .paddle {
-  width: 62px;
-  height: 62px;
-  background-image: url('/assets/site/paddles.png');
-  background-repeat: no-repeat;
-  position: absolute;
-  z-index: 221;
-  top: 190px;
-  cursor: pointer;
-  &.left {
-    left: 20px;
-    background-position: -7px -75px;
-  }
-  &.right {
-    right: 20px;
-    background-position: -3px -5px;
-  }
-}
+    width: 62px;
+    height: 62px;
+    background-image: url('/assets/site/paddles.png');
+    background-repeat: no-repeat;
+    position: absolute;
+    z-index: 221;
+    top: 190px;
+    cursor: pointer;
+    &.left {
+        left: 20px;
+        background-position: -7px -75px; }
+    &.right {
+        right: 20px;
+        background-position: -3px -5px; } }
 
 .imac,
 .iphone {
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-}
+    position: relative;
+    margin-left: auto;
+    margin-right: auto; }
 
 .imac {
-  margin-top: 50px;
-}
+    margin-top: 50px; }
 
 .iphone {
-  margin-top: 60px;
-}
+    margin-top: 60px; }
 
 .imac,
 .imac-frame img {
-  height: 320px;
-  width: 400px;
-}
+    height: 320px;
+    width: 400px; }
 
 .imac-content {
-  height: 225px;
-  margin: 20px;
-  img {
-    width: 360px;
-    max-width: 360px;
-    height: auto;
-  }
-}
+    height: 225px;
+    margin: 20px;
+    img {
+        width: 360px;
+        max-width: 360px;
+        height: auto; } }
 
 .iphone,
 .iphone-frame img {
-  width: 147px;
-  height: 287.5px;
-}
+    width: 147px;
+    height: 287.5px; }
 
 .iphone-content {
-  margin: 51px 10px 0px 12px;
-  height: 186px;
-  img {
-    width: 125px;
-    max-width: 125px;
-    height: auto;
-  }
-}
+    margin: 51px 10px 0px 12px;
+    height: 186px;
+    img {
+        width: 125px;
+        max-width: 125px;
+        height: auto; } }
 
 .imac-frame,
 .iphone-frame {
-  z-index: 121;
-}
+    z-index: 121; }
 
 .imac-content,
 .iphone-content {
-  z-index: 120;
-  overflow: hidden;
-}
+    z-index: 120;
+    overflow: hidden; }
 
 .imac-frame,
 .imac-content,
 .iphone-frame,
 .iphone-content {
-  position: absolute;
-}
-
+    position: absolute; }
 
 @media 
-  only screen and (-webkit-min-device-pixel-ratio: 2),
-  only screen and (min-device-pixel-ratio: 2) {
-  body {
-    background-image: image-url('linen2x.jpg');
-  }
-  .birdies {
-    background-image: image-url('birds2x.png');
-    background-size: 166px 87px;
-  }
+    only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (min-device-pixel-ratio: 2) {
+    body {
+        background-image: image-url('linen2x.jpg'); }
+    .birdies { background-image: image-url('birds2x.png');
+        background-size: 166px 87px; }
 }
 
 // Landscape phone to portrait tablet
 @media (max-width: 767px) {
+
 }
 
 // Landscape phones and down
 @media (max-width: 480px) {
-  body {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-  p {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-}
+    body {
+        padding-left: 0px;
+        padding-right: 0px; }
+    p {
+        padding-left: 10px;
+        padding-right: 10px; } }
 
 // Portrait tablet to landscape and desktop
 @media (min-width: 768px) and (max-width: 979px) {
+
 }
 
 // Large desktop
 @media (min-width: 1200px) {
+
 }
