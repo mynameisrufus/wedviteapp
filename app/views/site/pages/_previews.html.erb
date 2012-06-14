@@ -1,0 +1,23 @@
+<% unless previews.size == 1 %>
+  <div class="slide-deck">
+    <div class="paddle left"></div>
+    <div class="paddle right"></div>
+    <% previews.each_with_index do |set, index| %>
+      <div class="slide" id="preview_<%= preview_id %>" data-position="<%= index + 1 %>" data-transition="horizontal">
+        <div class="row">
+          <%= render partial: 'preview', locals: set.first %>
+          <%= render partial: 'preview', locals: set.last %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <% previews.each do |set| %>
+    <div class="row">
+      <div class="slide">
+        <%= render partial: 'preview', locals: set.first %>
+        <%= render partial: 'preview', locals: set.last %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

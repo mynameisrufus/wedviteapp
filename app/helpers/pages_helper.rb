@@ -6,14 +6,23 @@ module PagesHelper
 
   def stationery_previews
     [
-      {
-        imac: { url: "site/stationery1-imac.png", class: 'hidden-phone' },
-        iphone: { url: "site/stationery1-iphone.png" }
-      },
-      {
-        imac: { url: "site/stationery2-imac.png", class: 'hidden-phone' },
-        iphone: { url: "site/stationery2-iphone.png" }
-      }
+      [
+        { type: :imac, src: "stationery1-imac.png", css: 'span5 offset2 hidden-phone' },
+        { type: :iphone, src: "stationery1-iphone.png", css: 'span4' }
+      ],
+      [
+        { type: :imac, src: "stationery2-imac.png", css: 'span5 offset2 hidden-phone' },
+        { type: :iphone, src: "stationery2-iphone.png", css: 'span4' }
+      ]
+    ]
+  end
+
+  def organise_previews
+    [
+      [
+        { type: :imac, src: "organise1-imac.png", css: 'span6 visible-desktop' },
+        { type: :imac, src: "organise2-imac.png", css: 'span6' }
+      ]
     ]
   end
 end

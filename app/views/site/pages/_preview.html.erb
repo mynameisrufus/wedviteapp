@@ -1,30 +1,10 @@
-<div class="slide-deck">
-  <div class="paddle left"></div>
-  <div class="paddle right"></div>
-  <% previews.each_with_index do |preview, index| %>
-    <div class="slide" id="preview_<%= preview_id %>" data-position="<%= index + 1 %>" data-transition="horizontal">
-      <div class="row">
-        <div class="span5 offset2">
-          <%= content_tag :div, class: [preview[:imac][:class], 'imac'] do %>
-            <div class="imac-frame">
-              <%= image_tag "site/imac.png" %>
-            </div>
-            <div class="imac-content">
-              <%= image_tag preview[:imac][:url] %>
-            </div>
-          <% end %>
-        </div>
-        <div class="span4">
-          <%= content_tag :div, class: [preview[:iphone][:class], 'iphone'] do %>
-            <div class="iphone-frame">
-              <%= image_tag "site/iphone.png" %>
-            </div>
-            <div class="iphone-content">
-              <%= image_tag preview[:iphone][:url] %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
+<%= content_tag :div, class: css do %>
+  <%= content_tag :div, class: type do %>
+    <%= content_tag :div, class: "#{type}-frame" do %>
+      <%= image_tag "site/#{type}.png" %>
+    <% end %>
+    <%= content_tag :div, class: "#{type}-content" do %>
+      <%= image_tag "site/#{src}" %>
+    <% end %>
   <% end %>
-</div>
+<% end %>
