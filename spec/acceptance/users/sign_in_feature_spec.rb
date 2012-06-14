@@ -20,6 +20,6 @@ feature 'Sign in feature', %q{
     user = User.make!
     sign_in_with user.email, user.password
     sign_out
-    page.should have_content('Sign in')
+    current_url.should eq "http://wedvite.dev/"
   end
 end
