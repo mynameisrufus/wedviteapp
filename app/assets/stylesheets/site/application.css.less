@@ -29,9 +29,11 @@
 }
 
 body {
-  background-color: white;
+  background-color: rgb(233, 227, 212);
+  background-image: image-url('linen.jpg');
   color: @blue;
-  padding: 25px 0px;
+  padding-top: 25px;
+  padding-bottom: 25px;
 }
 
 .container {
@@ -39,7 +41,7 @@ body {
 }
 
 .shadow-wrap {
-  .box-shadow(10px 10px 20px -5px gray);
+  .box-shadow(8px 8px 40px 0px gray);
   // filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30);
   // -ms-filter: "progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30)";
   // zoom: 1;
@@ -74,11 +76,15 @@ ul.login-signup {
   padding: 0px;
   margin: 40px 0px;
   margin: 120px 0px 80px 0px;
-  li {
-    border-top: 4px @white solid;
-    border-bottom: 4px @white solid;
-    margin: 40px 0px;
+  li:hover {
+    background-color: darken(@baby_blue, 5%);
   }
+}
+
+.stripes {
+  border-top: 6px @white solid;
+  border-bottom: 6px @white solid;
+  margin: 40px 0px;
 }
 
 .slide-deck,
@@ -105,7 +111,7 @@ ul.login-signup {
   top: 190px;
   cursor: pointer;
   &.left {
-    left: 50px;
+    left: 20px;
     background-position: -7px -75px;
   }
   &.right {
@@ -183,9 +189,12 @@ ul.login-signup {
 @media 
   only screen and (-webkit-min-device-pixel-ratio: 2),
   only screen and (min-device-pixel-ratio: 2) {
+  body {
+    background-image: image-url('linen2x.jpg');
+  }
   .birdies {
     background-image: image-url('birds2x.png');
-    background-size: 166px 87px;
+    background-size: 166px 87px;
   }
 }
 
@@ -195,6 +204,14 @@ ul.login-signup {
 
 // Landscape phones and down
 @media (max-width: 480px) {
+  body {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  p {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
 
 // Portrait tablet to landscape and desktop

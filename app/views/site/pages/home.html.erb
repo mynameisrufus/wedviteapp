@@ -3,8 +3,9 @@
 <div class="container">
   <div class="row">
     <div class="span4 offset4">
-      <p>Save time, money and trees with WedVite - your online wedding
-guest list and invitation organiser</p>
+      <div class="stripes">
+        <%= image_tag 'vp2x.png', alt: 'Wedding invitations, save money, paper, time and hassle.' %>
+      </div>
     </div>
   </div>
 </div>
@@ -22,8 +23,16 @@ guest list and invitation organiser</p>
 <div class="row">
   <div class="span4 offset4">
     <ul class="login-signup">
-      <li><%= link_to 'Sign up for free', new_user_registration_url(subdomain: 'plan'), class: 'cupid pink sign-up' %></li>
-      <li><%= link_to 'Sign in', new_user_session_url(subdomain: 'plan'), class: 'cupid blue sign-in' %></li>
+      <li class="stripes">
+        <%= link_to new_user_session_url(subdomain: 'plan') do %>
+          <%= image_tag 'login2x.png', alt: 'Log in' %>
+        <% end %>
+      </li>
+      <li class="stripes">
+        <%= link_to new_user_registration_url(subdomain: 'plan') do %>
+          <%= image_tag 'signup2x.png', alt: 'Sign up for free' %>
+        <% end %>
+      </li>
     </ul>
     <p>Forget lengthy spreadsheets and spending hundreds on expensive
 printing and postage, WedVite makes it easy for you to create and manage
@@ -75,7 +84,7 @@ permissions such as view, comment or edit.</p>
     <div class="slide" id="invitations" data-position="1" data-transition="horizontal">
       <div class="row">
         <div class="span5 offset2">
-          <div class="imac">
+          <div class="imac hidden-phone">
             <div class="imac-frame">
               <%= image_tag "site/imac.png" %>
             </div>
@@ -99,7 +108,7 @@ permissions such as view, comment or edit.</p>
     <div class="slide" id="stationery" data-position="2" data-transition="horizontal">
       <div class="row">
         <div class="span6 offset1">
-          <div class="imac">
+          <div class="imac hidden-phone">
             <div class="imac-frame">
               <%= image_tag "site/imac.png" %>
             </div>
