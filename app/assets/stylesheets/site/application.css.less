@@ -24,6 +24,11 @@ h1, h2 {
   text-align: center;
   background-color: @white; }
 
+h2 {
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  margin-top: 20px; }
+
 .birdies {
     background-image: image-url('birds.png');
     height: 88px;
@@ -78,7 +83,7 @@ ul.login-signup {
 
 .slide-deck,
 .slide-deck .slide {
-    height: 440px; }
+    height: 370px; }
 
 .slide-deck {
     position: relative;
@@ -111,10 +116,12 @@ ul.login-signup {
     margin-right: auto; }
 
 .imac {
-    margin-top: 50px; }
+    margin-top: 15px;
+    margin-bottom: 20px; }
 
 .iphone {
-    margin-top: 60px; }
+    margin-top: 20px;
+    margin-bottom: 20px; }
 
 .imac,
 .imac-frame img {
@@ -142,13 +149,20 @@ ul.login-signup {
         max-width: 125px;
         height: auto; } }
 
-.imac-frame,
-.iphone-frame {
+.imac-frame {
     z-index: 121; }
+
+.iphone-frame {
+    z-index: 131; }
+
+.imac-content {
+    z-index: 120; }
+
+.iphone-content {
+    z-index: 130; }
 
 .imac-content,
 .iphone-content {
-    z-index: 120;
     overflow: hidden; }
 
 .imac-frame,
@@ -195,7 +209,9 @@ ul.login-signup {
 
 // Portrait tablet to landscape and desktop
 @media (min-width: 768px) and (max-width: 979px) {
-
+  .center-tablet {
+    width: 725px;
+  }
 }
 
 // Large desktop

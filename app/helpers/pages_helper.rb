@@ -20,8 +20,17 @@ module PagesHelper
   def organise_previews
     [
       [
-        { type: :imac, src: "organise1-imac.png", css: 'span6 visible-desktop' },
-        { type: :imac, src: "organise2-imac.png", css: 'span6' }
+        { type: :imac, src: "organise2-imac.png", css: 'span6 center-tablet' },
+        { type: :imac, src: "organise1-imac.png", css: 'span6 visible-desktop' }
+      ]
+    ]
+  end
+
+  def invite_previews
+    [
+      [
+        { type: :imac, src: "ourday-imac.png", css: 'span5 offset2 hidden-phone' },
+        { type: :iphone, src: "ourday-iphone.png", css: 'span4' }
       ]
     ]
   end
