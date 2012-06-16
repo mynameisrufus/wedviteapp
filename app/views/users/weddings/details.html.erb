@@ -10,6 +10,7 @@
         <% else %>
           <li><a href="#ceremony_directions">Directions</a></li>
         <% end %>
+        <li><a href="#thank">Thank You</a></li>
         <li><a href="#settings">Settings</a></li>
       </ul>
     </div>
@@ -29,6 +30,9 @@
             <%= render partial: 'users/weddings/details/reception_directions' %>
           </div>
         <% end %>
+        <div class="slide" data-position="5" data-transition="horizontal" id="thank">
+          <%= render partial: 'users/weddings/details/thank' %>
+        </div>
         <div class="slide hide" data-position="10" data-transition="horizontal" id="settings">
           <%= render partial: 'users/weddings/details/settings' %>
         </div>

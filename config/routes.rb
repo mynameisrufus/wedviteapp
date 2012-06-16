@@ -39,6 +39,7 @@ WeddingInvitor::Application.routes.draw do
 
 
         get 'preview/ourday'         => 'preview#ourday', as: :ourday_preview
+        get 'preview/thank'          => 'preview#thank', as: :thank_preview
         get 'preview/directions'     => 'preview#directions', as: :directions_preview
         get 'preview/invitation'     => 'preview#invitation', as: :invitation_preview
         get 'preview/stationery/:id' => 'preview#stationery', as: :stationery_preview

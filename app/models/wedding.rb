@@ -32,7 +32,8 @@ class Wedding < ActiveRecord::Base
     end
   end
 
-  HELP_ATTRIBUTES = %w(wording ceremony_only_wording ceremony_what reception_what ceremony_how reception_how)
+  HELP_ATTRIBUTES = %w(wording ceremony_only_wording ceremony_what
+reception_what ceremony_how reception_how thank_you_wording)
   HELP_MARKDOWN   = HELP_ATTRIBUTES.inject({}) do |memo, help|
     memo.merge({ help => File.read(File.join(Rails.root, 'app', 'help', "#{help}.md")) })
   end

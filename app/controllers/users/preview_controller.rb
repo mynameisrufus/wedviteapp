@@ -8,6 +8,10 @@ class Users::PreviewController < Users::BaseController
     render 'invitations/guests/ourday'
   end
 
+  def thank
+    render 'invitations/guests/thank'
+  end
+
   def directions
     render 'invitations/guests/directions'
   end
