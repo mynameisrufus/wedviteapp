@@ -39,3 +39,33 @@
     position: absolute;
   }
 }
+
+.navbar {
+  height: 72px;
+  background-color: @baby_blue;
+  &.navbar-fixed-top {
+    position: relative;
+    margin-bottom: 10px;
+  }
+  .birdies {
+    width: 170px;
+    height: 88px;
+    display: block;
+    float: left;
+    margin-top: 5px;
+  }
+  .nav {
+    &> li > a {
+      line-height: 50px;
+      color: @blue;
+      text-shadow: none;
+      &:hover {
+        color: darken(@blue, 20%);
+      }
+      b {
+        margin-top: 23px;
+      }
+    }
+  }
+}
+
