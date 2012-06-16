@@ -24,14 +24,24 @@ h1, h2 {
   text-align: center;
   background-color: @white; }
 
+h1 {
+  background-image: image-url('brand.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 130px;
+  span {
+    display: none;
+  }
+}
+
 .birdies {
     background-image: image-url('birds.png');
     height: 88px;
     background-repeat: no-repeat;
     background-position: center center; }
 
-header.overlay,
-header h2 {
+.overlay,
+h2 {
     /* IE rgba start */
     background: transparent;
     filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr=#80FFFFFF,endColorstr=#80FFFFFF)"; 
@@ -39,13 +49,14 @@ header h2 {
     /* IE rgba end */
     .white();
     border-top: 3px @copper solid;
-    border-bottom: 3px @copper solid;
-    &.overlay {
-        width: 100%;
-        position: absolute;
-        left: 0px;
-        z-index: 300;
-        top: 450px; } }
+    border-bottom: 3px @copper solid; }
+
+.overlay {
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    z-index: 300;
+    top: 405px; }
 
 .shadow-wrap {
     /* IE box shadow start */
@@ -59,11 +70,11 @@ header h2 {
         background-color: @baby_blue;
         position: relative; } }
 
-ul.login-signup {
+.login-signup {
     list-style: none;
     padding: 0px;
     margin: 40px 0px;
-    margin: 120px 0px 80px 0px;
+    margin: 200px 0px 80px 0px;
     li:hover {
         background-color: darken(@baby_blue, 5%); } }
 
@@ -162,24 +173,52 @@ ul.login-signup {
     only screen and (min-device-pixel-ratio: 2) {
     body {
         background-image: image-url('linen2x.jpg'); }
-    .birdies { background-image: image-url('birds2x.png');
+    h1 {
+        background-image: image-url('brand2x.png');
+        background-size: 675px 113px; }
+    .birdies {
+        background-image: image-url('birds2x.png');
         background-size: 166px 87px; }
 }
 
 // Landscape phone to portrait tablet
 @media (max-width: 767px) {
-
+    .overlay {
+        top: 450px; }
 }
 
 // Landscape phones and down
 @media (max-width: 480px) {
+    .overlay {
+        top: 380px;
+        h1 {
+            height: 95px;
+            background-size: 460px 77px; } }
+
+    .login-signup {
+        margin-bottom: 40px;
+        margin-top: 100px; }
+
+    .stripes img {
+        width: 325px; }
+
     body {
         margin: 0px;
         padding-left: 0px;
         padding-right: 0px; }
+
     p {
         padding-left: 10px;
         padding-right: 10px; }
+
+    .slide-deck,
+    .slide-deck .slide {
+        height: 315px; }
+
+    .imac,
+    .iphone {
+        margin-top: 15px; }
+
     .imac,
     .imac-frame img {
         height: 220px;
@@ -195,10 +234,17 @@ ul.login-signup {
 
 // Portrait tablet to landscape and desktop
 @media (min-width: 768px) and (max-width: 979px) {
-
+    .overlay {
+        top: 335px;
+        h1 {
+            height: 95px;
+            background-size: 540px 90px; } }
+    .login-signup {
+        margin-top: 110px; }
 }
 
 // Large desktop
 @media (min-width: 1200px) {
-
+  .overlay {
+      top: 450px; }
 }
