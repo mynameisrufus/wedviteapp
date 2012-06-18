@@ -8,19 +8,19 @@
   <!-- No notes to seller -->
   <%= hidden_field_tag "no_note", 0 %> 
 
-  <!-- Specify a Buy Now button. --> 
-  <input type="hidden" name="cmd" value="_xclick"> 
-
-  <!-- Specify details about the item that buyers will purchase. --> 
-  <input type="hidden" name="item_name" value="<%= description %>"> 
+  <input type="hidden" name="cmd" value="_cart"> 
   <input type="hidden" name="currency_code" value="USD">
+  <input type="hidden" name="upload" value="1">
 
-  <!-- Ammount -->
-  <%= hidden_field_tag "amount", amount %>
+  <% items.each do |item| %>
+    <%= hidden_field_tag "item_number", item[:num] %>
+    <!-- Specify details about the item that buyers will purchase. --> 
+    <%= hidden_field_tag "item_name_#{item[:num]}", item[:description] %>
+    <!-- Ammount -->
+    <%= hidden_field_tag "amount_#{item[:num]}", item[:amount] %>
+  <% end %>
 
-  <!-- TODO image
-  <input type="hidden" name="image_url" value="http://">
-  -->
+  <%= hidden_field_tag "image_url", "http://wedviteapp.com/assets/birds.png" %>
 
   <!-- return fields. --> 
   <%= hidden_field_tag "return", return_url %>

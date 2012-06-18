@@ -2,7 +2,7 @@
 <div class="stationeries">
   <% @stationery.each_with_index do |stationery, index| %>
     <div class="stationery" data-id="<%= index %>">
-      <h2><%= stationery.name %></h2>
+      <h2><%= stationery.name %> <small><%= stationery.price == 0 ? "Free" : "$#{stationery.price}" %></small></h2>
       <div class="wrapper" data-src="<%= stationery.preview.url %>"></div>
       <sub>by <%= stationery.agency.name %></sub>
       <div class="actions">
@@ -44,7 +44,7 @@
         $img.attr('src', src)
         $img.each(function() {
             if (this.complete) return $(this).trigger('load')
-            if (spin !== false) return new Spinner({color: "#FFFFFF"}).spin($elem.get(0))
+            if (spin !== false) return new Spinner({color: "#000000"}).spin($elem.get(0))
             return
         })
 

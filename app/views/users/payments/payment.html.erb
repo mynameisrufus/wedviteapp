@@ -1,8 +1,23 @@
 <section class="payment placeholder">
   <div class="page-header">
-    <h1>Wedding Plan Payment $<%= Wedding::PRICE %></h1>
+    <table>
+      <tbody>
+        <tr>
+          <td><h1>Total&nbsp;&nbsp;</h1></td>
+          <td><h1>$<%= Wedding::PRICE + @wedding.stationery.price %></h1></td>
+        <tr>
+        <tr>
+          <td>Wedding Plan Payment&nbsp;&nbsp;</td>
+          <td>$<%= Wedding::PRICE %></td>
+        <tr>
+        <tr>
+          <td>Stationery&nbsp;&nbsp;</td>
+          <td>$<%= @wedding.stationery.price %></td>
+        <tr>
+      </tbody>
+    </table>
   </div>
-    <p>To send your invitations <%= @wedding.name %> please pay USD <%= Wedding::PRICE %> with PayPal.</p>
+    <p>To send your invitations for <%= @wedding.name %> please pay USD <%= Wedding::PRICE + @wedding.stationery.price %> with PayPal.</p>
     <p><strong>What you get:</strong></p>
     <ul>
       <li>All the extra features that your guests get to use to interact with your wedding after they RSVP or decline.</li>
@@ -15,8 +30,17 @@
     <hr/>
     <%= render partial: 'users/shared/paypal',
       locals: {
-        description: "Wedvite Wedding Plan Payment",
-        amount: Wedding::PRICE,
+        items: [
+          {
+            description: "Plan Payment",
+            amount: Wedding::PRICE,
+            num: 1
+          }, {
+            description: "Stationery",
+            amount: @wedding.stationery.price,
+            num: 2
+          }
+        ],
         return_url: wedding_payment_success_url(@wedding),
         cancel_url: wedding_payment_failure_url(@wedding)
       }

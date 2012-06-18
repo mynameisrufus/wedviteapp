@@ -9,7 +9,7 @@ class Stationery < ActiveRecord::Base
 
   validates_presence_of :style, :name, :agency_id
   validates_uniqueness_of :name
-  validates :price, numericality: { greater_than_or_equal_to: 29.95 }
+  validates :price, numericality: true 
   validates :commision, numericality: true
 
   COMMISION = 0.1

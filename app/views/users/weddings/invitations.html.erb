@@ -3,7 +3,9 @@
     <div class="span3">
       <ul class="nav nav-wedvite">
         <li class="active"><a href="#wording">Invitation Wording</a></li>
-        <li><a href="#stationery">Stationery</a></li>
+        <% unless @wedding.invite_process_started? %>
+          <li><a href="#stationery">Stationery</a></li>
+        <% end %>
       </ul>
     </div>
     <div class="span9">
@@ -11,9 +13,11 @@
         <div class="slide" data-position="1" data-transition="horizontal" id="wording">
           <%= render partial: 'users/weddings/invitations/wording' %>
         </div>
-        <div class="slide hide" data-position="2" data-transition="horizontal" id="stationery">
-          <%= render partial: 'users/weddings/invitations/stationery' %>
-        </div>
+        <% unless @wedding.invite_process_started? %>
+          <div class="slide hide" data-position="2" data-transition="horizontal" id="stationery">
+            <%= render partial: 'users/weddings/invitations/stationery' %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
