@@ -1,3 +1,4 @@
+<h2>Current stationeries</h2>
 <ul>
   <% current_designer.stationeries.each do |stationery| %>
     <li><%= stationery.name %> <%= link_to 'details',
@@ -6,3 +7,29 @@ build_stationery_path(stationery) %> | <%= link_to 'images',
 stationery_images_path(stationery) %></li>
   <% end %>
 </ul>
+
+<h2>Create a new one</h2>
+<%= form_for @stationery, url: stationery_index_path(@stationery) do |f| %>
+  <%= error_messages_on(@stationery) %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :style %>
+    <%= f.text_field :style %>
+  </div>
+
+  <div>
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+  </div>
+
+  <div>
+    <%= f.label :agency_id %>
+    <%= f.select :agency_id, current_designer.agencies.map {|a| [a.name, a.id] } %>
+  </div>
+
+  <%= submit_tag %>
+<% end %>

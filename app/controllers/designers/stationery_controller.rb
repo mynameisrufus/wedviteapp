@@ -1,5 +1,5 @@
 class Designers::StationeryController < Designers::BaseController
-  before_filter :find_stationery, except: :new
+  before_filter :find_stationery, except: [:new, :create]
 
   def edit
     respond_with @stationery
@@ -11,6 +11,19 @@ class Designers::StationeryController < Designers::BaseController
 
   def preview
     render inline: @stationery.render(spoof_guest), layout: false
+  end
+
+  def create
+    @stationery = Stationery.new params[:stationery]
+    respond_to do |format|
+      if @stationery.save
+        format.html { redirect_to build_stationery_path(@stationery), notice: 'Stationery was successfully created.' }
+        format.json { render json: "success".to_json  }
+      else
+        format.html { render 'designers/dashboard/home' }
+        format.json { render json: @stationery.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def update

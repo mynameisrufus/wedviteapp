@@ -1,5 +1,5 @@
 class Designers::StationeryImagesController < Designers::AttachmentsController
-  def new
+  def index
     @image = StationeryImage.new
     respond_with @image
   end

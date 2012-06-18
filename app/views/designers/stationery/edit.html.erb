@@ -1,1 +1,37 @@
-<%= render partial: 'form' %>
+<%= form_for @stationery, url: stationery_path(@stationery), html: { multipart: true } do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+  <div>
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+  </div>
+  <div>
+    <%= f.label :desktop %>
+    <%= f.check_box :desktop %>
+  </div>
+  <div>
+    <%= f.label :mobile %>
+    <%= f.check_box :mobile %>
+  </div>
+  <div>
+    <%= f.label :print %>
+    <%= f.check_box :print %>
+  </div>
+  <div>
+    <%= f.label :published %>
+    <%= f.check_box :published %>
+  </div>
+  <% if @stationery.preview? %>
+    <%= image_tag @stationery.preview.url %>
+  <% end %>
+  <div>
+    <%= f.file_field :preview %>
+  </div>
+  <%= submit_tag "Save" %>
+<% end %>

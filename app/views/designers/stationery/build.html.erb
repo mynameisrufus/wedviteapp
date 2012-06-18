@@ -23,18 +23,22 @@
 
     var HtmlScriptMode = require("ace/mode/html").Mode;
     editor.getSession().setMode(new HtmlScriptMode());
+    editor.getSession().setUseSoftTabs(true);
+    editor.getSession().setTabSize(2)
 
     var wordingEditor = ace.edit("wording");
     var MarkdownScriptMode = require("ace/mode/markdown").Mode;
     var LiquidScriptMode = require("ace/mode/liquid").Mode;
     //wordingEditor.getSession().setMode(new MarkdownScriptMode());
     wordingEditor.getSession().setMode(new LiquidScriptMode());
+    wordingEditor.getSession().setUseSoftTabs(true);
+    wordingEditor.getSession().setTabSize(2)
 
     var vim = require("ace/keyboard/vim").handler;
     editor.setKeyboardHandler(vim);
     wordingEditor.setKeyboardHandler(vim);
 
-    var save = function(code, wording) {
+    var save = function(code, wording, callback) {
         $.ajax({
             type: 'PUT',
             url: "<%= stationery_path(@stationery) %>",
@@ -44,14 +48,22 @@
                     example_wording: wording
                 }
             },
-            success: function(data) {
-              alert("Stationery saved")
-            },
+            success: callback,
             dataType: 'json'
         })
     }
+
+    var to = 0
     $('button').on('click', function(event) {
+        var $button = $(this)
+        $button.html('Saving.......')
         event.preventDefault()
-        save(editor.getValue(), wordingEditor.getValue())
+        save(editor.getValue(), wordingEditor.getValue(), function() {
+            $button.html('Saved')
+            clearTimeout(to)
+            to = setTimeout(function() {
+                $button.html('Save')
+            }, 500)
+        })
     })
 </script>

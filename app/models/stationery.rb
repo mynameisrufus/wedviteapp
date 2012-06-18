@@ -12,6 +12,12 @@ class Stationery < ActiveRecord::Base
   validates :price, numericality: { greater_than_or_equal_to: 29.95 }
   validates :commision, numericality: true
 
+  COMMISION = 0.1
+
+  before_validation on: :create do
+    self.commision = COMMISION if self.commision.nil?
+  end
+
   has_attached_file :preview,
     storage: :s3,
     s3_credentials: "#{Rails.root}/config/s3.yml",
