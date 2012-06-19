@@ -7,6 +7,10 @@ module PagesHelper
   def stationery_previews
     [
       [
+        { type: :imac, src: "stationery3-imac.png", css: 'span5 offset2 hidden-phone' },
+        { type: :iphone, src: "stationery3-iphone.png", css: 'span4' }
+      ],
+      [
         { type: :imac, src: "stationery1-imac.png", css: 'span5 offset2 hidden-phone' },
         { type: :iphone, src: "stationery1-iphone.png", css: 'span4' }
       ],
