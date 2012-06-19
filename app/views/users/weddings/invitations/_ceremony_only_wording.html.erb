@@ -1,0 +1,11 @@
+<%= invitations_form do |f| %>
+  <fieldset>
+    <%= f.text_area :ceremony_only_wording, class: 'markdown', rows: 3 %>
+
+    <p>This is optional wording if you have guests that are invited to
+the ceremony but not the reception. If everybody is comming to the reception just leave this blank</p>
+    <div class="form-actions">
+      <%= f.submit 'Save changes', class: 'btn primary' %>
+    </div>
+  </fieldset>
+<% end %>
