@@ -3,6 +3,8 @@
     <div class="span3">
       <ul class="nav nav-wedvite">
         <li class="active"><a href="#wording">Invitation Wording</a></li>
+        <li><a href="#ceremony_only_wording">Ceremony Only Wording</a></li>
+        <li><a href="#wording_example">Wording Example</a></li>
         <% unless @wedding.invite_process_started? %>
           <li><a href="#stationery">Stationery</a></li>
         <% end %>
@@ -13,8 +15,16 @@
         <div class="slide" data-position="1" data-transition="horizontal" id="wording">
           <%= render partial: 'users/weddings/invitations/wording' %>
         </div>
+        <% if @wedding.has_reception? %>
+          <div class="slide" data-position="1" data-transition="horizontal" id="ceremony_only_wording">
+            <%= render partial: 'users/weddings/invitations/ceremony_only_wording' %>
+          </div>
+        <% end %>
+        <div class="slide" data-position="2" data-transition="horizontal" id="wording_example">
+          <%= render partial: 'users/weddings/invitations/wording_example' %>
+        </div>
         <% unless @wedding.invite_process_started? %>
-          <div class="slide hide" data-position="2" data-transition="horizontal" id="stationery">
+          <div class="slide hide" data-position="10" data-transition="horizontal" id="stationery">
             <%= render partial: 'users/weddings/invitations/stationery' %>
           </div>
         <% end %>
