@@ -101,21 +101,11 @@ h2 {
         width: 100%; } }
 
 .paddle {
-    width: 70px;
-    height: 70px;
-    background-image: image-url('site/paddles.png');
-    background-size: 70px 138px;
-    background-repeat: no-repeat;
-    position: absolute;
-    z-index: 221;
     top: 190px;
-    cursor: pointer;
     &.left {
-        left: 20px;
-        background-position: 0px -70px; }
+        left: 20px; }
     &.right {
-        right: 20px;
-        background-position: 0px 0px; } }
+        right: 20px; } }
 
 .imac,
 .iphone {
@@ -182,8 +172,6 @@ h2 {
 @media 
     only screen and (-webkit-min-device-pixel-ratio: 2),
     only screen and (min-device-pixel-ratio: 2) {
-    .paddle {
-        background-image: image-url('site/paddles2x.png'); }
     h1 {
         background-image: image-url('brand2x.png');
         background-size: 675px 113px; } }

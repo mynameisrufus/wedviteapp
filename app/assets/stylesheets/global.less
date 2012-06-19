@@ -14,10 +14,28 @@ body {
     span {
         display: none; } }
 
+.paddle {
+    width: 70px;
+    height: 70px;
+    background-image: image-url('paddles.png');
+    background-size: 70px 138px;
+    background-repeat: no-repeat;
+    position: absolute;
+    z-index: 221;
+    cursor: pointer;
+    span {
+        display: none; }
+    &.left {
+        background-position: 0px -70px; }
+    &.right {
+        background-position: 0px 0px; } }
+
 @media 
     only screen and (-webkit-min-device-pixel-ratio: 2),
     only screen and (min-device-pixel-ratio: 2) {
     body {
         background-image: image-url('linen2x.jpg'); }
     .birdies {
-        background-image: image-url('birds2x.png'); } }
+        background-image: image-url('birds2x.png'); }
+    .paddle {
+        background-image: image-url('paddles2x.png'); } }

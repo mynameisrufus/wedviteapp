@@ -83,23 +83,34 @@ section {
     }
   }
   &.invitations {
+    .paddle {
+      top: 255px;
+      &.left {
+        left: 0px;
+      }
+      &.right {
+        right: 0px;
+      }
+    }
     .stationeries {
-      height: 700px;
+      height: 600px;
       overflow: hidden;
       .stationery {
+        padding: 0px 85px;
         .wrapper {
           position: relative;
           //background-color: @kalamata_olive;
-          height: 575px;
+          height: 450px;
           overflow: hidden;
+          text-align: center;
+          margin: 10px 0px 0px 0px;
           img {
-            width: 680px;
+            width: 515px;
             height: auto;
           }
         }
         .actions {
           margin: 20px 0px;
-          text-align: center;
         }
       }
     }
@@ -307,7 +318,7 @@ form {
     font-size: 15px;
     line-height: 20px;
     &.markdown {
-      width: 100%;
+      width: 670px;
       height: 500px;
     }
     &.markdown-small {
@@ -418,7 +429,7 @@ form {
   min-height: 610px;
   .slide {
     margin: 10px;
-    width: 670px;
+    width: 680px;
   }
 }
 

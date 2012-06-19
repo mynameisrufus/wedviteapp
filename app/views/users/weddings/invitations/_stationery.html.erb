@@ -1,34 +1,31 @@
 <% current_index = 0 %>
+<a class="paddle left" href="#"><span>Previous</span></a>
 <div class="stationeries">
   <% @stationery.each_with_index do |stationery, index| %>
     <div class="stationery" data-id="<%= index %>">
       <h2><%= stationery.name %> <small><%= stationery.price == 0 ? "Free" : "$#{stationery.price}" %></small></h2>
-      <div class="wrapper" data-src="<%= stationery.preview.url %>"></div>
       <sub>by <%= stationery.agency.name %></sub>
+      <div class="wrapper" data-src="<%= stationery.preview.url %>"></div>
+      <sub><%= index + 1 %> of <%= @stationery.size %></sub>
       <div class="actions">
-        <% unless index == 0 %>
-          <a class="btn previous" href="#"><i class="icon-arrow-left"></i> Previous</a>
-        <% end %>
+        <%= link_to 'Preview using your wording', wedding_stationery_preview_path(@wedding, stationery), target: '_blank', class: 'btn' %>
         <% if @wedding.stationery == stationery %>
           <% current_index = index %>
         <% else %>
           <%= link_to 'Use this stationery for your wedding', wedding_stationery_choose_path(@wedding, stationery), class: 'btn btn-success' %>
         <% end %>
-        <%= link_to 'Preview using your wording', wedding_stationery_preview_path(@wedding, stationery), target: '_blank', class: 'btn' %>
-        <% unless index == (@stationery.size - 1) %>
-          <a class="btn next" href="#">Next <i class="icon-arrow-right"></i></a>
-        <% end %>
       </div>
     </div>
   <% end %>
 </div>
+<a class="paddle right" href="#"><span>Next</span></a>
 <script>
 (function(undefined){
 
     var $stationeries = $('.stationeries'),
         $stationery   = $stationeries.find('.stationery'),
-        $next         = $stationeries.find('.btn.next'),
-        $previous     = $stationeries.find('.btn.previous'),
+        $next         = $('.paddle.right'),
+        $previous     = $('.paddle.left'),
         current       = null
 
     var load = function(elem, spin) {
@@ -44,7 +41,7 @@
         $img.attr('src', src)
         $img.each(function() {
             if (this.complete) return $(this).trigger('load')
-            if (spin !== false) return new Spinner({color: "#000000"}).spin($elem.get(0))
+            if (spin !== false) return new Spinner({color: "#2B617E"}).spin($elem.get(0))
             return
         })
 
@@ -68,12 +65,14 @@
 
     $next.on('click', function(event) {
         event.preventDefault()
-        move(current + 1)
+        var n = ((current + 1) === $stationery.length) ? 0 : (current + 1)
+        move(n)
     })
 
     $previous.on('click', function(event) {
         event.preventDefault()
-        move(current - 1)
+        var n = (current === 0) ? ($stationery.length - 1) : (current - 1)
+        move(n)
     })
 
 }).call(this);
