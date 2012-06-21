@@ -90,6 +90,8 @@ GEM
       eventmachine (>= 0.12.9)
     erubis (2.7.0)
     eventmachine (0.12.10)
+    exception_notification (2.6.1)
+      actionmailer (>= 3.0.4)
     excon (0.13.4)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -271,6 +273,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.2)
   database_cleaner
   devise (~> 2.1)
+  exception_notification (~> 2.6)
   ffaker (~> 1.14)
   friendly_id (~> 4.0.1)
   guard-livereload
