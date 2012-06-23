@@ -131,3 +131,11 @@ end
 Author.blueprint do
   # Attributes here
 end
+
+PromotionalCode.blueprint do
+  code { Faker::Name.name }
+  limit { 500 }
+  claimed { 0 }
+  discount { 0.5 }
+  expires_on { Time.now + 5.months }
+end

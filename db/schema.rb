@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120612011504) do
+ActiveRecord::Schema.define(:version => 20120623035042) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -222,6 +222,18 @@ ActiveRecord::Schema.define(:version => 20120612011504) do
   end
 
   add_index "posts", ["slug"], :name => "index_posts_on_slug", :unique => true
+
+  create_table "promotional_codes", :force => true do |t|
+    t.string   "code",                        :null => false
+    t.integer  "limit",      :default => 0,   :null => false
+    t.integer  "claimed",    :default => 0,   :null => false
+    t.float    "discount",   :default => 0.0, :null => false
+    t.datetime "expires_on",                  :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  add_index "promotional_codes", ["code"], :name => "index_promotional_codes_on_code", :unique => true
 
   create_table "rails_admin_histories", :force => true do |t|
     t.text     "message"
