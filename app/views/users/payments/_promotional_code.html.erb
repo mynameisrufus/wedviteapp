@@ -1,0 +1,14 @@
+<%= form_tag nil, method: :get do %>
+  <div class="control-group">
+  <%= content_tag :div, class: ["control-group", promotional_code_error.nil? ? nil : "error"] do %>
+    <%= label_tag :promotional_code %>
+    <div class="controls">
+      <div class="input-append">
+        <%= text_field_tag :promotional_code, promotional_code.code %><button class="btn" type="submit">Use</button>
+        <% unless promotional_code_error.nil? %>
+          <span class="help-inline"><%= promotional_code_error.message %></span>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

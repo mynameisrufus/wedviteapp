@@ -18,6 +18,10 @@
     <%= hidden_field_tag "item_name_#{item[:num]}", item[:description] %>
     <!-- Ammount -->
     <%= hidden_field_tag "amount_#{item[:num]}", item[:amount] %>
+
+    <% if item[:discount_rate] > 0 %>
+      <%= hidden_field_tag "discount_rate_#{item[:num]}", (item[:discount_rate] * 100).to_i %>
+    <% end %>
   <% end %>
 
   <%= hidden_field_tag "image_url", "http://wedviteapp.com/assets/birds.png" %>
@@ -29,6 +33,6 @@
   <%= hidden_field_tag "cbt", "Return to Wedvite" %>
 
   <!-- Display the payment button. --> 
-  <button type="submit" class="btn btn-success btn-pay-now">Pay now with PayPal &trade;</button>
+  <button type="submit" class="btn btn-large">Pay now with PayPal &trade;</button>
   <img alt="" border="0" src="https://www.paypalobjects.com/en_AU/i/scr/pixel.gif" width="1" height="1">
 <% end %>

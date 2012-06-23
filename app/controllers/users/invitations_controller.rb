@@ -37,6 +37,23 @@ class Users::InvitationsController < Users::BaseController
   end
 
   def ensure_payment
-    render 'users/payments/payment' unless @wedding.payment_made?
+    unless @wedding.payment_made?
+      set_promotional_code
+      render 'users/payments/payment'
+    end
+  end
+
+  def set_promotional_code
+    @promotional_code_error = nil
+    if params[:promotional_code].present?
+      begin
+        @promotional_code = PromotionalCode.claim params[:promotional_code]
+      rescue PromotionalCode::InvalidCodeError, PromotionalCode::LimitExcededError, PromotionalCode::ExpiredError => e
+        @promotional_code_error = e
+        @promotional_code = PromotionalCode.new discount: 0.0, code: params[:promotional_code]
+      end
+    else
+      @promotional_code = PromotionalCode.new discount: 0.0
+    end
   end
 end

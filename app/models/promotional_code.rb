@@ -2,21 +2,29 @@ class PromotionalCode < ActiveRecord::Base
   validates_presence_of :code, :limit, :discount, :expires_on
   validates_uniqueness_of :code
 
-  class InvalidCodeError < StandardError
-    def initialize code
-      @message = "The promotional code #{code} is invalid."
+  class PromotionalCodeError < StandardError
+    attr_reader :argument
+
+    def initialize argument
+      @argument = argument
     end
   end
 
-  class LimitExcededError < StandardError
-    def initialize limit
-      @message = "This promotional code is no longer valid because the limit of #{limit} has been reached."
+  class InvalidCodeError < PromotionalCodeError
+    def message
+      "The promotional code #{argument} is invalid."
     end
   end
 
-  class ExpiredError < StandardError
-    def initialize expires_on
-      @message = "This promotional code is no longer valid because it expired on #{expires_on}."
+  class LimitExcededError < PromotionalCodeError
+    def message
+      "This promotional code is no longer valid because the limit of #{argument} has been reached."
+    end
+  end
+
+  class ExpiredError < PromotionalCodeError
+    def message
+      "This promotional code is no longer valid because it expired on #{argument}."
     end
   end
 

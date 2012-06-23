@@ -1,48 +1,57 @@
 <section class="payment placeholder">
-  <div class="page-header">
-    <table>
-      <tbody>
-        <tr>
-          <td><h1>Total&nbsp;&nbsp;</h1></td>
-          <td><h1>$<%= Wedding::PRICE + @wedding.stationery.price %></h1></td>
-        <tr>
-        <tr>
+  <p>To send your invitations for <%= @wedding.name %> please pay <strong>USD <%= total.round(2) %></strong> with PayPal.</p>
+  <p><strong>What you get:</strong></p>
+  <ul>
+    <li>All the extra features that your guests get to use to interact with your wedding after they RSVP or decline.</li>
+    <li>Send unlimited invitations</li>
+    <li>Manage unlimited guests</li>
+    <li>Take as long as you want - your usage for this wedding never expires</li>
+    <li>Unlimited collaborators</li>
+    <li>Support answered within 24 hours</li>
+  </ul>
+  <p>&nbsp;</p>
+  <%= render partial: 'users/payments/promotional_code', locals: {
+    promotional_code: @promotional_code,
+    promotional_code_error: @promotional_code_error
+  } %>
+  <p>&nbsp;</p>
+  <table class="table">
+    <tbody>
+      <tr>
+        <% if @promotional_code.discount > 0.0 %>
+          <td>Wedding Plan Payment (<%= (@promotional_code.discount * 100).round %>% off) &nbsp;</td>
+        <% else %>
           <td>Wedding Plan Payment&nbsp;&nbsp;</td>
-          <td>$<%= Wedding::PRICE %></td>
-        <tr>
-        <tr>
-          <td>Stationery&nbsp;&nbsp;</td>
-          <td>$<%= @wedding.stationery.price %></td>
-        <tr>
-      </tbody>
-    </table>
-  </div>
-    <p>To send your invitations for <%= @wedding.name %> please pay USD <%= Wedding::PRICE + @wedding.stationery.price %> with PayPal.</p>
-    <p><strong>What you get:</strong></p>
-    <ul>
-      <li>All the extra features that your guests get to use to interact with your wedding after they RSVP or decline.</li>
-      <li>Send unlimited invitations</li>
-      <li>Manage unlimited guests</li>
-      <li>Take as long as you want - your usage for this wedding never expires</li>
-      <li>Unlimited collaborators</li>
-      <li>Support answered within 24 hours</li>
-    </ul>
-    <hr/>
-    <%= render partial: 'users/shared/paypal',
-      locals: {
-        items: [
-          {
-            description: "Plan Payment",
-            amount: Wedding::PRICE,
-            num: 1
-          }, {
-            description: "Stationery",
-            amount: @wedding.stationery.price,
-            num: 2
-          }
-        ],
-        return_url: wedding_payment_success_url(@wedding),
-        cancel_url: wedding_payment_failure_url(@wedding)
-      }
-    %>
+        <% end %>
+        <td>$<%= (wedding_price).round(2) %></td>
+      <tr>
+      <tr>
+        <td>Stationery&nbsp;&nbsp;</td>
+        <td>$<%= stationery_price %></td>
+      <tr>
+      <tr>
+        <td><strong>Total&nbsp;&nbsp;</strong></td>
+        <td><strong>$<%= total.round(2) %></strong></td>
+      <tr>
+    </tbody>
+  </table>
+  <%= render partial: 'users/payments/paypal',
+    locals: {
+      items: [
+        {
+          description: "Plan Payment",
+          amount: Wedding::PRICE,
+          discount_rate: @promotional_code.discount,
+          num: 1
+        }, {
+          description: "Stationery",
+          amount: @wedding.stationery.price,
+          discount_rate: 0.0,
+          num: 2
+        }
+      ],
+      return_url: wedding_payment_success_url(@wedding),
+      cancel_url: wedding_payment_failure_url(@wedding)
+    }
+  %>
 </section>
