@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe Guest do
+  it "raise 404 if not in allowed states" do
+    wedding = Wedding.make!
+    guest   = Guest.make! wedding: wedding, state: 'rejected'
+    lambda { GuestStrict.token_find(guest.token) }.should raise_error(ActiveRecord::RecordNotFound)
+  end
+
   pending "prevent guest from increasing number of adults"
 
   pending "prevent guest from increasing number of children"

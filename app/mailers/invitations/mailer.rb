@@ -12,7 +12,7 @@ class Invitations::Mailer < ActionMailer::Base
     @url     = invitation_url @guest.token, subdomain: subdomain
 
     mail to: @guest.email,
-         from: "Wedvite <noreply@wedviteapp.com>",
+         from: "WedVite <noreply@wedviteapp.com>",
          subject: "Invitation to #{@wedding.title}"
   end
 end

@@ -50,8 +50,8 @@ class Guest < ActiveRecord::Base
   }
 
   before_validation on: :create do
-    self.state    = 'review'
-    self.token    = ::FriendlyToken.make
+    self.state = 'review' if self.state.nil?
+    self.token = ::FriendlyToken.make
   end
 
   after_validation if: Proc.new { state_changed? || partner_number_changed? || new_record? } do

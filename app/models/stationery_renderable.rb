@@ -111,8 +111,7 @@ module StationeryRenderable
   end
 
   def markdown
-    Redcarpet::Markdown.new(Redcarpet::Render::HTML,
-      autolink: true, space_after_headers: true)
+    WeddingInvitorMarkdown.new
   end
 
   def uploads_to_hash items

@@ -4,7 +4,7 @@ class Invitations::BaseController < ApplicationController
   protected
 
   def find_guest
-    @guest   = GuestStrict.find_by_token params[:token]
+    @guest   = GuestStrict.token_find params[:token]
     @wedding = @guest.wedding
   end
 end
