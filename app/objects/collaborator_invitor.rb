@@ -1,4 +1,4 @@
-class CollaboratorInvitor < BaseInvitor
+class CollaboratorInvitor < Invitor::Base
 
   def initialize(options = {})
     super options
