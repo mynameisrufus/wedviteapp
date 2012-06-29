@@ -18,5 +18,6 @@
       <%= render partial: "layouts/users/flash" %>
       <%= yield %>
     </div>
+    <%= render partial: 'layouts/analytics'  if Rails.env.production? %>
   </body>
 </html>

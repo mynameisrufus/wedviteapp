@@ -18,5 +18,6 @@
   <body>
     <%= yield %>
     <p class="copyright">&copy; copyright wedviteapp.com 2012</p>
+    <%= render partial: 'layouts/analytics'  if Rails.env.production? %>
   </body>
 </html>
