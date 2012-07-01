@@ -23,7 +23,11 @@ invitation to stick on their fridge.</p>
 message. From here, attending guests can also specify any special
 requirements such as vegetarian/gluten-free diets, childrens meals, high
 chairs or wheelchairs.</p>
-
+  </div>
+</div>
+<%= render partial: 'previews', locals: { previews: invite_previews } %>
+<div class="row">
+  <div class="span8 offset2">
 <p>Confirmed guests can automatically add your wedding date to their email
 or smartphone calendar and will receive all the details for your special
 day through WedVite’s added feature - ‘Our Day’. On a dedicated WedVite
@@ -33,4 +37,3 @@ activities, transport, gift registry, meet the bridal party and much
 more.</p>
   </div>
 </div>
-<%= render partial: 'previews', locals: { previews: invite_previews } %>
