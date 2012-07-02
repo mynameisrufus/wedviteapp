@@ -12,11 +12,11 @@
 
     Make sure you preview your invitation to make sure it's how you want it.
 
-# John and Jane
+# Harry & Sally
 
 Together with their parents
 
-Peter & Melinda McMillan and David & Dale Swap
+John & Jane Doe and Dave & Dale Smith
 
 Wish to invite
 

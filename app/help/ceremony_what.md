@@ -5,6 +5,10 @@ Welcome to the example `Our day` section of **Wedvite**.
 
 ![We are getting married](http://a3.sphotos.ak.fbcdn.net/hphotos-ak-ash4/468418_10150628434226931_1917453580_o.jpg)
 
+To insert a photo simply use the following format:
+
+    ![Photo title](http://url_to_our_photo.jpg)
+
 The Bride, Herschela Francis Holdsworth.
 ------------------------------------------------
 Hershy was born in North Kansas City Missouri, raised in Smithville

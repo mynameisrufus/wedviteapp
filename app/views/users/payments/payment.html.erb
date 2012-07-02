@@ -1,5 +1,6 @@
 <section class="payment placeholder">
-  <p>To send your invitations for <%= @wedding.name %> please pay <strong>USD <%= total.round(2) %></strong> with PayPal.</p>
+  <p>To send your invitations for <%= @wedding.name %> please pay
+<strong>USD <%= "%.2f" % total.round(2) %></strong> with PayPal.</p>
   <p><strong>What you get:</strong></p>
   <ul>
     <li>All the extra features that your guests get to use to interact with your wedding after they RSVP or decline.</li>
@@ -23,15 +24,15 @@
         <% else %>
           <td>Wedding Plan Payment&nbsp;&nbsp;</td>
         <% end %>
-        <td>$<%= (wedding_price).round(2) %></td>
+        <td><%= number_to_currency (wedding_price).round(2) %></td>
       <tr>
       <tr>
         <td>Stationery&nbsp;&nbsp;</td>
-        <td>$<%= stationery_price %></td>
+        <td><%= number_to_currency stationery_price %></td>
       <tr>
       <tr>
         <td><strong>Total&nbsp;&nbsp;</strong></td>
-        <td><strong>$<%= total.round(2) %></strong></td>
+        <td><strong><%= number_to_currency total.round(2) %></strong></td>
       <tr>
     </tbody>
   </table>
@@ -54,4 +55,5 @@
       cancel_url: wedding_payment_failure_url(@wedding)
     }
   %>
+  <sub>&nbsp;PayPal also allows you to pay by credit card.</sub>
 </section>
