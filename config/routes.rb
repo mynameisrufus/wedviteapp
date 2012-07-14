@@ -100,6 +100,7 @@ WeddingInvitor::Application.routes.draw do
       match ':token/update'    => 'guests#update', as: :guest, method: :post
       match ':token/accept'    => 'guests#accept', as: :accept_invitation
       match ':token/decline'   => 'guests#decline', as: :decline_invitation
+      match ':token/thankyou'  => 'guests#after_decline', as: :after_decline
 
       match ':token/details'   => 'weddings#details', as: :guesthome
       match ':token/ical'      => 'weddings#ical', as: :ical

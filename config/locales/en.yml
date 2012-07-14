@@ -16,6 +16,8 @@ communicate all the details of your special day with guests."
       simple: "%B %e %G"
   true: "yes"
   false: "no"
+  first_person: "I"
+  third_person: "we"
   guest:
     adults: "adults"
     children: "adults"

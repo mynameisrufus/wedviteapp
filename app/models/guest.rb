@@ -67,6 +67,24 @@ class Guest < ActiveRecord::Base
               .first
   end
 
+  class Grammer
+    def initialize count
+      @count = count
+    end
+
+    def first_person?
+      @count == 1
+    end
+
+    def first_person
+      first_person? ? :first_person : :third_person
+    end
+  end
+
+  def g
+    @grammer ||= Grammer.new total_guests
+  end
+
   def total_guests
     adults + children
   end

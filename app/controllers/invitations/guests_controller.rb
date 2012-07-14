@@ -33,7 +33,11 @@ class Invitations::GuestsController < Invitations::BaseController
                            quotation: @message.text
     end
 
-    redirect_to guesthome_path, notice: 'Message added'
+    if @guest.declined?
+      redirect_to after_decline_path
+    else
+      redirect_to guesthome_path, notice: 'Message added'
+    end
   end
 
   def update
@@ -54,13 +58,17 @@ class Invitations::GuestsController < Invitations::BaseController
 
     respond_to do |format|
       if @guest.save
-        format.html { redirect_to wedding_details_path, notice: 'Your details have been updated.' }
+        format.html { redirect_to guesthome_path, notice: 'Your details have been updated.' }
         format.json { head :ok }
       else
         format.html { render controller: "weddings", action: "details" }
         format.json { render json: @wedding.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def after_decline
+    redirect_to path_for_guest_state if should_redirect_guest?
   end
 
   protected

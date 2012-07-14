@@ -2,8 +2,12 @@ class Invitations::WeddingsController < Invitations::BaseController
   before_filter :find_guest
 
   def details
-    @guests = @wedding.guests.accepted.order(:name)
-    @events = @wedding.events.eventfull(:message).order("created_at DESC").page(params[:page]).per(50)
+    if should_redirect_guest?
+      redirect_to path_for_guest_state
+    else
+      @guests = @wedding.guests.accepted.order(:name)
+      @events = @wedding.events.eventfull(:message).order("created_at DESC").page(params[:page]).per(50)
+    end
   end
 
   def ical
