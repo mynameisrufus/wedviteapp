@@ -63,7 +63,7 @@
             </div>
             <div class="actions">
               <% if can? :edit, guest %>
-                <%= link_to "move", wedding_guest_path(@wedding, guest), class: "modal-me" %>
+                <%= link_to "status", wedding_guest_path(@wedding, guest), class: "modal-me" %>
                 <%= link_to "edit", edit_wedding_guest_path(@wedding, guest), class: "modal-me" %>
                 <%= link_to "comments", wedding_guest_comments_path(@wedding, guest), class: "modal-me" %>
                 <% if @wedding.stationery && guest.state == 'approved' %>
