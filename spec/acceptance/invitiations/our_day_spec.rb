@@ -15,7 +15,7 @@ feature 'Our day feature', %q{
   scenario 'return have the correct sections available' do
     guest, wedding = *setup_guest
 
-    ['Our day', 'Directions', 'You', 'Guest list', 'Messages'].each do |nav_item|
+    ['Our Day', 'Directions', 'You', 'Guest List', 'Messages'].each do |nav_item|
       page.should have_content(nav_item)
     end
   end

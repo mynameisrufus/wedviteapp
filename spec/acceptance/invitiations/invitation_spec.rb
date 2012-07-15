@@ -35,7 +35,7 @@ feature 'Invitation feature', %q{
     fill_in 'message', with: 'Gluten free'
     click_button 'Message'
     guest.messages.first.text.should eq 'Gluten free'
-    page.should have_content('Our day')
+    page.should have_content('Our Day')
   end
 
   scenario 'decline the invitation' do
