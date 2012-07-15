@@ -23,7 +23,7 @@ feature 'Our day feature', %q{
   scenario 'show the our day content before the wedding' do
     guest, wedding = *setup_guest
 
-    page.should have_content(wedding.ceremony_what.split(/\n/).first)
+    page.should have_content(wedding.ceremony_what.split(/\n/).first.gsub(/\*/, ''))
   end
 
   scenario 'leave a message before the wedding' do

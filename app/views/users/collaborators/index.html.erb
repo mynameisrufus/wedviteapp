@@ -28,7 +28,7 @@
                   <% if can? :manage, collaborator %>
                     <div class="actions">
                       <%= link_to 'change', edit_wedding_collaborator_path(@wedding, collaborator), class: 'modal-me' %>
-                      <%= link_to 'remove', wedding_collaborator_path(@wedding, collaborator), method: :delete, confirm: "Are you sure you no longer want #{collaborator.user.name} collaborating on you wedding?" %>
+                      <%= link_to 'remove', wedding_collaborator_path(@wedding, collaborator), method: :delete, :data => { :confirm => "Are you sure you no longer want #{collaborator.user.name} collaborating on you wedding?"} %>
                     </div>
                   <% end %>
                 </div>

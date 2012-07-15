@@ -62,8 +62,8 @@ feature 'Guest feature', %q{
     page.should have_content('Bob and Roger have been updated.')
   end
 
-  def move_to state
-    click_link "move"
+  def change_status state
+    click_link "status"
     click_button state
   end
 
@@ -72,7 +72,7 @@ feature 'Guest feature', %q{
       guest       = singular
       translation = I18n.t "state.#{state}"
 
-      move_to translation[:verb]
+      change_status translation[:verb]
       page.should have_content("#{guest.name} is now #{translation[:noun]}")
     end
 
@@ -80,7 +80,7 @@ feature 'Guest feature', %q{
       guest       = plural
       translation = I18n.t "state.#{state}"
 
-      move_to translation[:verb]
+      change_status translation[:verb]
       page.should have_content("#{guest.name} are now #{translation[:noun]}")
     end
   end
