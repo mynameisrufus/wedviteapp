@@ -1,7 +1,7 @@
-Reception
-------------
+## The Reception
 
-The reception will be immediately following the wedding ceremony, and
-should begin around 8:00pm. We will be providing a snack buffet, and
-there will be a cash bar available for those who wish to drink. We hope
-to see everyone there to celebrate with us.
+Pellentesque felis velit, convallis a imperdiet vel, rhoncus at augue.
+Maecenas ut elit sapien, nec vehicula elit. Nam non eros nisl, ut congue
+augue. Vestibulum commodo odio magna, in pretium justo. Maecenas
+tincidunt sollicitudin massa, in commodo metus tempus et. Aliquam
+hendrerit fermentum diam vel consectetur. Mauris in aliquet est.
