@@ -8,7 +8,8 @@ module HelperMethods
   # the wedding. If we use this block for every test we should be
   # completely isolated. No state ruining our day.
   def wedup!
-    wedding      = Wedding.make!
+    stationery   = Stationery.make!
+    wedding      = Wedding.make! stationery: stationery
     user         = User.make!
     collaborator = Collaborator.make! user_id: user.id, wedding_id: wedding.id, role: 'invite'
 
