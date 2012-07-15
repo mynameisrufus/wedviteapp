@@ -52,7 +52,8 @@
         }
       ],
       return_url: wedding_payment_success_url(@wedding),
-      cancel_url: wedding_payment_failure_url(@wedding)
+      cancel_url: wedding_payment_failure_url(@wedding),
+      custom: "#{@wedding.id},#{current_user.id}"
     }
   %>
   <sub>&nbsp;PayPal also allows you to pay by credit card.</sub>

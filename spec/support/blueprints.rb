@@ -58,6 +58,7 @@ Stationery.blueprint do
   published { true }
   price { 29.95 }
   commision { 0.10 }
+  agency_id { Agency.make!.id }
   html {
 <<EOL
 <!DOCTYPE html>

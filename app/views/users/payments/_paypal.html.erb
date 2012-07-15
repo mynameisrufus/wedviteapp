@@ -12,6 +12,9 @@
   <input type="hidden" name="currency_code" value="USD">
   <input type="hidden" name="upload" value="1">
 
+  <!-- in this case the id of the wedding we want returned by IPN -->
+  <%= hidden_field_tag "custom", "#{custom},#{current_user.id}" %>
+
   <% items.each do |item| %>
     <%= hidden_field_tag "item_number", item[:num] %>
     <!-- Specify details about the item that buyers will purchase. --> 
@@ -29,7 +32,7 @@
   <!-- return fields. --> 
   <%= hidden_field_tag "return", return_url %>
   <%= hidden_field_tag "cancel_return", cancel_url %>
-  <%= hidden_field_tag "rm", 2 %>
+  <%= hidden_field_tag "rm", 1 %>
   <%= hidden_field_tag "cbt", "Return to Wedvite" %>
 
   <!-- Display the payment button. --> 

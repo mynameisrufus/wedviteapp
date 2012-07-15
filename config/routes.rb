@@ -19,6 +19,8 @@ WeddingInvitor::Application.routes.draw do
 
       get 'collaborate/:token', action: :collaborate, controller: :collaborators, as: :collaborate
 
+      get 'payment-notify',  controller: :payments, action: :failure, as: :payment_notify
+
       resources :weddings do
 
         get :details
@@ -34,9 +36,8 @@ WeddingInvitor::Application.routes.draw do
         get :deliver, controller: :invitations
 
         get :payment, controller: :payments
-        post 'payment-success', controller: :payments, action: :success, as: :payment_success
+        get 'payment-success', controller: :payments, action: :success, as: :payment_success
         get 'payment-failure',  controller: :payments, action: :failure, as: :payment_failure
-
 
         get 'preview/ourday'         => 'preview#ourday', as: :ourday_preview
         get 'preview/thank'          => 'preview#thank', as: :thank_preview
