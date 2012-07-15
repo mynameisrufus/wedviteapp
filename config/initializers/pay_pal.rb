@@ -110,12 +110,12 @@ end
 
 PAYPAL = unless Rails.env.production? 
   {
-    url: "https://www.sandbox.paypal.com/cgi-bin/webscr",
+    url: "https://www.sandbox.paypal.com",
     business: "rufusp_1337563286_biz@gmail.com"
   }
 else
   {
-    url: "https://www.paypal.com/cgi-bin/webscr",
+    url: "https://www.paypal.com",
     business: "rufuspost@gmail.com"
   }
 end

@@ -1,4 +1,4 @@
-<%= form_tag PAYPAL[:url] do %>
+<%= form_tag "#{PAYPAL[:url]}/cgi-bin/webscr" do %>
   <!-- Identify your business so that you can collect the payments.-->
   <%= hidden_field_tag "business", PAYPAL[:business] %> 
 

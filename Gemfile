@@ -36,6 +36,7 @@ group :development, :test do
   gem "steak",                '~> 2.0.0'
   gem "launchy"
   gem "heroku"
+  gem "webmock",              '~> 1.8'
 end
 
 group :development do

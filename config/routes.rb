@@ -19,7 +19,7 @@ WeddingInvitor::Application.routes.draw do
 
       get 'collaborate/:token', action: :collaborate, controller: :collaborators, as: :collaborate
 
-      get 'payment-notify',  controller: :payments, action: :failure, as: :payment_notify
+      post 'payment-notify',  controller: :payments, action: :failure, as: :payment_notify
 
       resources :weddings do
 
