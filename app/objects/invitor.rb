@@ -1,3 +1,0 @@
-module Invitor
-
-end

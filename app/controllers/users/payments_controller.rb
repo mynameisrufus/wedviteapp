@@ -1,59 +1,14 @@
+require 'paypal/custom_param_parser'
+require 'paypal/verify'
+
 class Users::PaymentsController < Users::BaseController
   before_filter :find_wedding, except: %w(notify)
   skip_before_filter :verify_authenticity_token, only: %w(notify)
   skip_before_filter :authenticate_user!, only: %w(notify)
 
-  class PayPalVerify
-    def initialize params, raw_post
-      @params = params
-      @raw    = raw_post
-    end
-
-    def valid?
-      uri = URI.parse(PAYPAL[:url] + '/cgi-bin/webscr?cmd=_notify-validate')
-      http = Net::HTTP.new uri.host, uri.port
-      http.open_timeout = 60
-      http.read_timeout = 60
-      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-      http.use_ssl = true
-      response = http.post(uri.request_uri, @raw,
-                           'Content-Length' => "#{@raw.size}",
-                           'User-Agent' => "Ruby Net::HTTP"
-                         ).body
-
-      raise StandardError.new("Faulty paypal result: #{response}") unless ["VERIFIED", "INVALID"].include?(response)
-      raise StandardError.new("Invalid IPN: #{response}") unless response == "VERIFIED"
-
-      true
-    end
-
-    def status
-      @params[:payment_status]
-    end
-
-    def completed?
-      status =~ /completed/i
-    end
-  end
-
-  class PayPalCustomParamParser
-    def initialize raw_param
-      @raw  = raw_param
-      @args = raw_param.split /,/
-    end
-
-    def wedding_id
-      @args[0]
-    end
-
-    def user_id
-      @args[1]
-    end
-  end
-
   def notify
-    custom          = PayPalCustomParamParser.new params[:custom]
-    paypal_response = PayPalVerify.new params, request.raw_post
+    custom          = PayPal::CustomParamParser.new params[:custom]
+    paypal_response = PayPal::Verify.new params, request.raw_post
 
     @wedding = Wedding.find custom.wedding_id
 

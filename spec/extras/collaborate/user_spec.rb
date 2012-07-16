@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CollaboratorInvitor do
+describe Collaborate::User do
   describe 'Collaborator' do
     before :all do
       @user      = User.make!
@@ -11,7 +11,7 @@ describe CollaboratorInvitor do
 
     it "should create a new collaboration token for a non existing user and send an email" do
       lambda do
-        invitor = CollaboratorInvitor.new email: 'user@example.com',
+        invitor = Collaborate::User.new email: 'user@example.com',
                                           wedding: @wedding,
                                           requestor: @requestor,
                                           role: Collaborator::ROLES.shuffle.first
@@ -21,7 +21,7 @@ describe CollaboratorInvitor do
 
     it "should create add a collaboration to an existing user and send an email" do
       lambda do
-        invitor = CollaboratorInvitor.new email: @user.email,
+        invitor = Collaborate::User.new email: @user.email,
                                           wedding: @wedding,
                                           requestor: @requestor,
                                           role: Collaborator::ROLES.shuffle.first

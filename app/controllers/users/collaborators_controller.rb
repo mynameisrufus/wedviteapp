@@ -10,7 +10,7 @@ class Users::CollaboratorsController < Users::BaseController
   end
 
   def new
-    @invitor = CollaboratorInvitor.new role: 'read'
+    @invitor = Collaborate::User.new role: 'read'
 
     respond_to do |format|
       format.html { render layout: false if request.xhr? }
@@ -28,7 +28,7 @@ class Users::CollaboratorsController < Users::BaseController
   end
 
   def create
-    @invitor = CollaboratorInvitor.new email: params[:email], wedding: @wedding, requestor: current_user, role: params[:role]
+    @invitor = Collaborate::User.new email: params[:email], wedding: @wedding, requestor: current_user, role: params[:role]
 
     message = Proc.new {
       @invitor.invite_sent? ? "An invitation to collaborate has been sent to #{@invitor.email}" : "#{@invitor.user.name} is now collaborating on this wedding"
