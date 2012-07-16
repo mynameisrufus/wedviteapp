@@ -1,6 +1,3 @@
-require 'paypal/custom_param_parser'
-require 'paypal/verify'
-
 class Users::PaymentsController < Users::BaseController
   before_filter :find_wedding, except: %w(notify)
   skip_before_filter :verify_authenticity_token, only: %w(notify)

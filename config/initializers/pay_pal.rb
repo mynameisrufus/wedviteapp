@@ -108,6 +108,9 @@ if Rails.env.test?
   }
 end
 
+require 'paypal/custom_param_parser'
+require 'paypal/verify'
+
 PAYPAL = unless Rails.env.production? 
   {
     url: "https://www.sandbox.paypal.com",
