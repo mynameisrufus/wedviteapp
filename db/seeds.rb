@@ -1,36 +1,52 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
 Admin.create!({
   email: 'rufuspost@gmail.com',
   password: 'f864r910h0w6g3AH026l4mR796Y809n3'
 })
 
+designer = Designer.create!({
+  email: 'rufuspost@gmail.com',
+  password: '4863are',
+  first_name: 'Rufus',
+  last_name: 'Post'
+})
+
+agency = Agency.create!({
+  name: "Wedvite",
+  principal_contact: designer
+})
+
+AgencyDesigner.create!({
+  designer: designer,
+  agency: agency,
+  role: 'manage'
+})
+
+Stationery.create!({
+  name: 'Plain Jane',
+  style: 'Simple',
+  agency_id: agency.id,
+  price: 0,
+  commision: 0,
+  html: <<EOL
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+  <div class="container">
+    {{ content }}
+    <div class="actions">
+      <a href="{{ urls.accept }}">Accept</a>
+      <a href="{{ urls.decline }}">Decline</a>
+    </div>
+  </div>
+</body>
+</html>
+EOL
+})
+
 unless Rails.env.production?
   require 'ffaker'
-
-  designer = Designer.create!({
-    email: 'rufuspost@gmail.com',
-    password: '4863are',
-    first_name: 'Rufus',
-    last_name: 'Post'
-  })
-
-  agency = Agency.create!({
-    name: "Wedvite",
-    principal_contact: designer
-  })
-
-  AgencyDesigner.create!({
-    designer: designer,
-    agency: agency,
-    role: 'manage'
-  })
 
   user = User.create!({
     email: 'rufuspost@gmail.com',
