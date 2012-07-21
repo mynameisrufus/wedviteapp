@@ -30,6 +30,15 @@ Production:
     heroku run rake db:migrate --remote production
     heroku restart --app wedvite
 
+### Backups
+
+Copy production data to staging:
+
+    heroku pgbackups:capture --app wedvite
+    heroku pgbackups:restore DATABASE `heroku pgbackups:url --app wedvite` --app wedvite-staging
+
+https://devcenter.heroku.com/articles/pgbackups
+
 ### Nuke
 
     heroku pg:reset SHARED_DATABASE
