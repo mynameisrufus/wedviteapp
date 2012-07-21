@@ -123,18 +123,27 @@ require 'paypal/verify'
 # )
 # redirect_to gateway.redirect_url_for(setup_response.token)
 
-PAYPAL = unless Rails.env.production? 
-  # API Username  rufuspost_api1.gmail.com
-  # API Password  3TEFRMFY9ERMNBGD
-  # Signature A.V6N9Rr7oPKJhqpELqCh7qtMpfAAL-iBM0NRTdAwn3ZAKlgaqF.0yfk
-  # Request Date  19 Jul 2012 16:43:18 AEST
-  {
+# API Username  rufuspost_api1.gmail.com
+# API Password  3TEFRMFY9ERMNBGD
+# Signature A.V6N9Rr7oPKJhqpELqCh7qtMpfAAL-iBM0NRTdAwn3ZAKlgaqF.0yfk
+# Request Date  19 Jul 2012 16:43:18 AEST
+
+PAYPAL = {
+  development: {
     url: "https://www.sandbox.paypal.com",
     business: "rufusp_1337563286_biz@gmail.com"
-  }
-else
-  {
+  },
+  test: {
+    url: "https://www.sandbox.paypal.com",
+    business: "rufusp_1337563286_biz@gmail.com"
+  },
+  staging: {
+    url: "https://www.sandbox.paypal.com",
+    business: "rufusp_1337563286_biz@gmail.com"
+  },
+  production: {
     url: "https://www.paypal.com",
     business: "rufuspost@gmail.com"
   }
-end
+}.fetch(Rails.env.to_sym)
+

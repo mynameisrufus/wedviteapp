@@ -23,7 +23,12 @@ class ApplicationController < ActionController::Base
   private
 
   def after_sign_out_path_for(resource_or_scope)
-    Rails.env.production? ? 'http://wedviteapp.com' : 'http://wedvite.dev'
+    {
+      development: 'http://wedvite.dev',
+      test:        'http://wedvite.dev',
+      staging:     'http://wedvite.net',
+      production:  'http://wedviteapp.com'
+    }.fetch(Rails.env.to_sym)
   end
 
   def markdown

@@ -1,4 +1,4 @@
-development:
+development: &development
   adapter: postgresql
   database: wedding_invitor_development
   pool: 5
@@ -10,8 +10,8 @@ test:
   pool: 5
   timeout: 5000
 
+staging:
+  <<: *development
+
 production:
-  adapter: postgresql
-  database: wedding_invitor_development
-  pool: 5
-  timeout: 5000
+  <<: *development
