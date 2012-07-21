@@ -7,15 +7,33 @@ to it__
 
 # Heroku
 
+### Deploy
+
+Push the develop branch into master on staging:
+
+    git push staging develop:master
+
+Push the master branch into master on production:
+
+    git push production master:master
+
+
+### Migrations
+
+Staging:
+
+    heroku run rake db:migrate --remote staging
+    heroku restart --app wedvite-staging
+
+Production:
+
+    heroku run rake db:migrate --remote production
+    heroku restart --app wedvite
+
 ### Nuke
 
     heroku pg:reset SHARED_DATABASE
     heroku run rake db:setup
-    heroku restart
-
-### Migrations
-
-    heroku run rake db:migrate
     heroku restart
 
 # PayPal

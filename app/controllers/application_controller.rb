@@ -7,6 +7,19 @@ class ApplicationController < ActionController::Base
     render text: "User-Agent: *\nDisallow: /", layout: false
   end
 
+  if Rails.env.staging?
+
+    before_filter :staging_authenticate
+
+    def staging_authenticate
+      authenticate_or_request_with_http_basic do |username, password|
+        username == "wedvite" && password == "password"
+      end
+      warden.custom_failure! if performed?
+    end
+
+  end
+
   private
 
   def after_sign_out_path_for(resource_or_scope)
