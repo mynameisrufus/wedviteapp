@@ -28,7 +28,7 @@ describe Stationery do
     end
 
     it "should render guest, wedding and url drops" do
-      stationery = Stationery.make html: "{{ urls.rsvp }} {{ urls.decline }} {{ guest.name }} {{ wedding.name }}"
+      stationery = Stationery.make html: "{{ urls.accept }} {{ urls.decline }} {{ guest.name }} {{ wedding.name }}"
       wedding    = Wedding.make
       guest      = Guest.make wedding: wedding
       stationery.render(guest, "#accept", "#decline").should eq "#accept #decline #{ guest.name } #{ wedding.partner_one_name } & #{ wedding.partner_two_name }"

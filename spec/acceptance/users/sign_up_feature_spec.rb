@@ -10,7 +10,7 @@ feature 'Sign up feature', %q{
     change_subdomain nil
   end
 
-  scenario 'first scenario' do
+  scenario 'sign up' do
     visit '/'
     click_link "Sign up for free"
     fill_in "user[first_name]", with: "Motso"

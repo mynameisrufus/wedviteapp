@@ -9,7 +9,7 @@ require 'machinist/active_record'
 #   end
 
 User.blueprint do
-  email { Faker::Internet.email }
+  email { "user_#{sn}@example.com" }
   password { Faker::Name.name }
   first_name { Faker::Name.first_name }
   last_name { Faker::Name.last_name }
@@ -53,7 +53,7 @@ Collaborator.blueprint do
 end
 
 Stationery.blueprint do
-  name { Faker::Name.first_name }
+  name { "Very nice stationery No. #{sn}" }
   style { "Simple" }
   published { true }
   price { 29.95 }
@@ -69,7 +69,7 @@ Stationery.blueprint do
   <div class="container">
     {{ content }}
     <div class="actions">
-      <a href="{{ urls.rsvp }}">RSVP</a>
+      <a href="{{ urls.accept }}">Accept</a>
       <a href="{{ urls.decline }}">Decline</a>
     </div>
   </div>

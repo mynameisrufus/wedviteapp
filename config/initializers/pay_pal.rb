@@ -1,3 +1,6 @@
+# http://www.codyfauser.com/2008/1/17/paypal-express-payments-with-activemerchant
+# http://railscasts.com/episodes/146-paypal-express-checkout
+#
 # Form tag api:
 #   https://merchant.paypal.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/e_howto_html_Appx_websitestandard_htmlvariables
 #
@@ -111,7 +114,20 @@ end
 require 'paypal/custom_param_parser'
 require 'paypal/verify'
 
+# setup_response = gateway.setup_purchase(200,
+#   :ip                => request.remote_ip,
+#   :items => [{:name => "Tickets", :quantity => 22, :description => "Tickets for 232323", :amount => 10}],
+#   :return_url        => url_for(:action => 'confirm', :only_path => false),
+#   :cancel_return_url => url_for(:action => 'index', :only_path => false),
+#   :notify_url => ''
+# )
+# redirect_to gateway.redirect_url_for(setup_response.token)
+
 PAYPAL = unless Rails.env.production? 
+  # API Username  rufuspost_api1.gmail.com
+  # API Password  3TEFRMFY9ERMNBGD
+  # Signature A.V6N9Rr7oPKJhqpELqCh7qtMpfAAL-iBM0NRTdAwn3ZAKlgaqF.0yfk
+  # Request Date  19 Jul 2012 16:43:18 AEST
   {
     url: "https://www.sandbox.paypal.com",
     business: "rufusp_1337563286_biz@gmail.com"

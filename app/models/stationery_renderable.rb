@@ -35,10 +35,10 @@ module StationeryRenderable
   Liquid::Template.register_tag 'image', ImageTag
 
   class UrlDrop < Liquid::Drop
-    attr_reader :rsvp, :decline
+    attr_reader :accept, :decline
 
     def initialize accept_url, decline_url
-      @rsvp    = accept_url
+      @accept  = accept_url
       @decline = decline_url
     end
   end

@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.2.6'
 
 gem 'pg'
+gem 'puma'
 
 gem 'devise',                 '~> 2.1'
 gem 'cancan',                 '~> 1.6'
@@ -30,13 +31,14 @@ end
 
 group :development, :test do
   gem 'rspec-rails',          '~> 2.10'
-  gem 'machinist',            '2.0.0.beta2'
+  gem 'machinist',            '~> 2.0'
   gem 'database_cleaner'
   gem 'awesome_print'
-  gem "steak",                '~> 2.0.0'
-  gem "launchy"
-  gem "heroku"
-  gem "webmock",              '~> 1.8'
+  gem 'steak',                '~> 2.0.0'
+  gem 'launchy'
+  gem 'heroku'
+  gem 'webmock',              '~> 1.8'
+  gem 'pry',                  '~> 0.9'
 end
 
 group :development do
@@ -52,9 +54,6 @@ group :development do
 
   # growl notify
   gem 'ruby_gntp'
-
-  # development server
-  gem 'unicorn'
 
   # silence asset logging and asset get requests
   gem 'quiet_assets'

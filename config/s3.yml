@@ -4,7 +4,12 @@ development:
   secret_access_key: 9L/OuNebiLXPlbL4VuOn03hWrEWO4lTbtMMqiN2z
 
 test:
-  bucket: wedvite.development
+  bucket: wedvite.test
+  access_key_id: AKIAIBSFKAL3RH3LUGWA
+  secret_access_key: 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
+
+staging:
+  bucket: wedvite.staging
   access_key_id: AKIAIBSFKAL3RH3LUGWA
   secret_access_key: 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
 
