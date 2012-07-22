@@ -29,7 +29,4 @@ WeddingInvitor::Application.configure do
   config.assets.debug = true
 
   config.action_mailer.default_url_options = { :host => 'wedvite.dev' }
-
-  # Enable threaded mode
-  config.threadsafe!
 end
