@@ -96,6 +96,7 @@ WeddingInvitor::Application.routes.draw do
       match 'robots.txt' => 'base#robots'
 
       match ':token'           => 'stationery#show', as: :invitation
+      match ':token/print'     => 'stationery#print', as: :print_invitation
 
       match ':token/message'   => 'guests#message', as: :guest_message, method: :post
       match ':token/update'    => 'guests#update', as: :guest, method: :post

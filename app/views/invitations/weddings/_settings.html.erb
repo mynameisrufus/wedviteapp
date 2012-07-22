@@ -10,7 +10,7 @@
       <div class="controls">
         <label class="radio">
           <%= f.radio_button :state, 'accepted' %>
-          RSVPd
+          Accepted
         </label>
         <label class="radio">
           <%= f.radio_button :state, 'declined' %>
@@ -67,3 +67,7 @@
   </fieldset>
 <% end %>
 
+<div class="page-header">
+  <h1>Print invitation</h1>
+</div>
+<%= link_to 'Download invitation in PDF format', print_invitation_path(@guest.token, format: :pdf), class: 'btn', target: '_blank' %>
