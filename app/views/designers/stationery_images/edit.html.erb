@@ -1,5 +1,5 @@
-<p><%= @image.attachment_file_name %></p>
-<%= form_for @image, url: stationery_image_path(@stationery, @image), html: { multipart: true } do |f| %>
+<p><%= @resource.attachment_file_name %></p>
+<%= form_for @resource, url: stationery_image_path(@stationery, @resource), html: { multipart: true } do |f| %>
   <%= f.file_field :attachment %>
   <%= submit_tag "Upload" %>
 <% end %>

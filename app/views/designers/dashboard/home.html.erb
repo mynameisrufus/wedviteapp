@@ -6,7 +6,8 @@
       <%= link_to 'details', edit_stationery_path(stationery) %> |
       <%= link_to 'code', build_stationery_path(stationery) %> |
       <%= link_to 'images', stationery_images_path(stationery) %> |
-      <%= link_to 'preview', preview_stationery_path(stationery), target: "blank" %>
+      <%= link_to 'preview', preview_stationery_path(stationery), target: "blank" %> |
+      <%= link_to 'pdf', preview_stationery_path(stationery, format: :pdf), target: "blank" %>
     </li>
   <% end %>
 </ul>

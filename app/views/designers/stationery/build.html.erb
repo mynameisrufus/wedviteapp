@@ -14,7 +14,8 @@
 
 <div>
   <button>Save</button>
-  <%= link_to "Preview", preview_stationery_path(@stationery), target: "blank" %>
+  <%= link_to 'preview', preview_stationery_path(@stationery), target: "blank" %>
+  <%= link_to 'pdf', preview_stationery_path(@stationery, format: :pdf), target: "blank" %>
 </div>
 
 <script>
