@@ -1,5 +1,5 @@
 class Designers::StationeryImagesController < Designers::AttachmentsController
-  def association
+  def association_name
     :images
   end
 end

@@ -15,10 +15,10 @@ class Designers::AttachmentsController < Designers::BaseController
 
     respond_to do |format|
       if @resource.save
-        format.html { redirect_to resources_path, notice: "#{association_singular} uploaded." }
+        format.html { redirect_to resources_path, notice: "#{association_name_singular} uploaded." }
         format.json { render json: @resource, status: :created, location: @image }
       else
-        format.html { redirect_to root_path, notice: "Could not upload #{association_singular}" }
+        format.html { redirect_to root_path, notice: "Could not upload #{association_name_singular}" }
         format.json { render json: @resource.errors, status: :unprocessable_entity }
       end
     end
@@ -29,7 +29,7 @@ class Designers::AttachmentsController < Designers::BaseController
 
     respond_to do |format|
       if @resource.update_attributes params[param_key]
-        format.html { redirect_to resources_path, notice: "#{association_singular} uploaded." }
+        format.html { redirect_to resources_path, notice: "#{association_name_singular} uploaded." }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -51,15 +51,19 @@ class Designers::AttachmentsController < Designers::BaseController
   protected
 
   def param_key
-    :"stationery_#{association_singular}"
+    :"stationery_#{association_name_singular}"
   end
 
   def resources_path
-    send(:"stationery_#{association}_path", @stationery)
+    send(:"stationery_#{association_name}_path", @stationery)
   end
 
-  def association_singular
-    association.to_s.singularize
+  def association_name_singular
+    association_name.to_s.singularize
+  end
+
+  def association
+    @stationery.send association_name
   end
 
   def find_stationery
