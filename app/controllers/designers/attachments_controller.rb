@@ -55,11 +55,11 @@ class Designers::AttachmentsController < Designers::BaseController
   end
 
   def resources_path
-    send(:"stationery_#{self.class.assoc}_path", @stationery)
+    send(:"stationery_#{association}_path", @stationery)
   end
 
   def association_singular
-    self.class.assoc.to_s.singularize
+    association.to_s.singularize
   end
 
   def find_stationery
