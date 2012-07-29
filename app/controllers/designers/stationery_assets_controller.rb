@@ -1,3 +1,5 @@
 class Designers::StationeryAssetsController < Designers::AttachmentsController
-  association :assets
+  def association
+    :assets
+  end
 end

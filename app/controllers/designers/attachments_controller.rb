@@ -65,18 +65,4 @@ class Designers::AttachmentsController < Designers::BaseController
   def find_stationery
     @stationery = current_designer.stationeries.find params[:stationery_id]
   end
-
-  private
-
-  def self.association assoc
-    @@assoc = assoc
-  end
-
-  def self.assoc
-    @@assoc
-  end
-
-  def association
-    @stationery.send self.class.assoc
-  end
 end
