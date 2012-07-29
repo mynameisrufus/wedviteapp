@@ -1,0 +1,19 @@
+<%= link_to "Build it", build_stationery_path(@stationery) %>
+<div>
+<% @stationery.assets.each do |asset| %>
+  <div>
+    <p><%= asset.attachment_file_name %></p>
+    <p><%= link_to asset.attachment.url, asset.attachment.url, target: 'blank' %></p>
+    <p><%= asset.attachment_content_type %></p>
+    <p><%= (asset.attachment_file_size.to_f / 1024).round(4) %> KB</p>
+    <p><%= asset.attachment_updated_at %></p>
+    <%= link_to "update", edit_stationery_asset_path(@stationery, asset) %>
+    <%= link_to "destroy", stationery_asset_path(@stationery, asset), method: :delete, confirm: "R U sure" %>
+  </div>
+<% end %>
+</div>
+<p>Upload new asset</p>
+<%= form_for StationeryAsset.new, url: stationery_assets_path(@stationery), html: { multipart: true } do |f| %>
+  <%= f.file_field :attachment %>
+  <%= submit_tag "Upload" %>
+<% end %>

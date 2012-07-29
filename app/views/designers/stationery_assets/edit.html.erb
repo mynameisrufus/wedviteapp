@@ -1,0 +1,5 @@
+<p><%= @resource.attachment_file_name %></p>
+<%= form_for @resource, url: stationery_asset_path(@stationery, @resource), html: { multipart: true } do |f| %>
+  <%= f.file_field :attachment %>
+  <%= submit_tag "Upload" %>
+<% end %>

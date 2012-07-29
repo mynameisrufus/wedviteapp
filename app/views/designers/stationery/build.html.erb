@@ -1,24 +1,64 @@
 <h1><%= @stationery.name %></h1>
 
-<ul>
-  <% @stationery.images.each do |image| %>
-    <li><%= image.attachment_file_name %></li>
-  <% end %>
-</ul>
+<style>
+  .toolbox {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: gray;
+    color: white;
+    z-index: 999;
+    padding: 20px;
+    border: 1px solid black;
+  }
+</style>
 
-<%= link_to 'manage images', stationery_images_path(@stationery) %>
+<div class="actions">
+  <button class="show-toolbox" data-toolbox="images">Images</button>
+  <button class="show-toolbox" data-toolbox="assets">Assets</button>
+  <button class="save">Save</button>
+  <%= link_to 'preview', preview_stationery_path(@stationery), target: "blank" %>
+  <%= link_to 'pdf', preview_stationery_path(@stationery, format: :pdf), target: "blank" %>
+</div>
+
+<div class="toolbox" data-toolbox="images">
+  <button class="close">&times;</button>
+  <ul>
+    <% @stationery.images.each do |image| %>
+      <li><%= image.attachment_file_name %></li>
+    <% end %>
+  </ul>
+  <%= link_to 'manage images', stationery_images_path(@stationery) %>
+</div>
+
+<div class="toolbox" data-toolbox="assets">
+  <button class="close">&times;</button>
+  <ul>
+    <% @stationery.assets.each do |asset| %>
+      <li><%= asset.attachment_file_name %></li>
+    <% end %>
+  </ul>
+  <%= link_to 'manage assets', stationery_assets_path(@stationery) %>
+</div>
 
 <div>
   <div id="editor"><%= @stationery.html %></div><div id="wording"><%= @stationery.example_wording %></div>
 </div>
 
-<div>
-  <button>Save</button>
-  <%= link_to 'preview', preview_stationery_path(@stationery), target: "blank" %>
-  <%= link_to 'pdf', preview_stationery_path(@stationery, format: :pdf), target: "blank" %>
-</div>
-
 <script>
+    $toolbox = $('.toolbox')
+    $toolbox.each(function(index, el) {
+      $(el).find('.close').on('click', function(){
+        $(el).hide()
+      })
+    })
+    $('.show-toolbox').on('click', function(){
+      $this = $(this)
+      $toolbox.each(function(index, el) {
+        if ($(el).data('toolbox') == $this.data('toolbox')) $(this).show()
+      })
+    })
+
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/vibrant_ink");
 
@@ -55,7 +95,7 @@
     }
 
     var to = 0
-    $('button').on('click', function(event) {
+    $('.actions button.save').on('click', function(event) {
         var $button = $(this)
         $button.html('Saving.......')
         event.preventDefault()
