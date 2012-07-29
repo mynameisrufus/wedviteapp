@@ -5,7 +5,7 @@
     position: absolute;
     right: 0;
     top: 0;
-    background: gray;
+    background: rgba(0, 0, 0, 0.5);
     color: white;
     z-index: 999;
     padding: 20px;
@@ -90,6 +90,9 @@
                 }
             },
             success: callback,
+            error: function(data) {
+              alert(JSON.parse(data.responseText).html[0])
+            },
             dataType: 'json'
         })
     }

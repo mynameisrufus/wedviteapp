@@ -294,6 +294,7 @@ DEPENDENCIES
   less-rails-bootstrap (~> 2.0)
   liquid (~> 2.3.0)
   machinist (~> 2.0)
+  nokogiri (~> 1.5)
   paperclip (~> 3.0)
   pdfkit (~> 0.5.2)
   pg

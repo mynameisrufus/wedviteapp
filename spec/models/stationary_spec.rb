@@ -34,4 +34,39 @@ describe Stationery do
       stationery.render(guest, "#accept", "#decline").should eq "#accept #decline #{ guest.name } #{ wedding.partner_one_name } & #{ wedding.partner_two_name }"
     end
   end
+
+  context :markup_validation do
+    it "should have valid format in blueprint" do
+      Stationery.make.should be_valid
+    end
+
+    it "should be invalid if not in the actions div" do
+      stationery = Stationery.make html: <<EOL
+<div class="invalid-div">
+  <a href="{{ urls.accept }}">Accept</a>
+  <d href="{{ urls.decline }}">Decline</a>
+</div>
+EOL
+      stationery.should_not be_valid
+    end
+
+    it "should be invalid if link missing" do
+      stationery = Stationery.make html: <<EOL
+<div class="actions">
+  <a href="{{ urls.accept }}">Accept</a>
+</div>
+EOL
+      stationery.should_not be_valid
+    end
+
+    it "should be invalid if wrong link" do
+      stationery = Stationery.make html: <<EOL
+<div class="actions">
+  <a href="{{ urls.rsvp }}">Accept</a>
+  <d href="{{ urls.decline }}">Decline</a>
+</div>
+EOL
+      stationery.should_not be_valid
+    end
+  end
 end

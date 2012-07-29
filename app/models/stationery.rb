@@ -1,3 +1,5 @@
+require 'stationery_markup_validator'
+
 class Stationery < ActiveRecord::Base
   include StationeryRenderable
 
@@ -11,6 +13,7 @@ class Stationery < ActiveRecord::Base
   validates_uniqueness_of :name
   validates :price, numericality: true 
   validates :commision, numericality: true
+  validates_with StationeryMarkupValidator, attribute: :html
 
   COMMISION = 0.1
 

@@ -20,7 +20,10 @@ gem 'paperclip',              '~> 3.0'
 gem 'ffaker',                 '~> 1.14'
 gem 'exception_notification', '~> 2.6'
 
-# gems to generate invitations in PDF format.
+# Validation of stationery markup
+gem 'nokogiri',               '~> 1.5'
+
+# Generation of invitations in PDF format.
 gem 'pdfkit',                 '~> 0.5.2'
 gem 'wkhtmltopdf-binary',     '~> 0.9.9.1'
 
