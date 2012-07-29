@@ -1,4 +1,8 @@
 class Site::PagesController < Site::BaseController
+
+  caches_action :home, cache_path: 'site/pages/home',
+                       expires_in: 1.week
+
   def home
     @lowest_possible_payment = Wedding::PRICE + lowest_stationery_price
     @higest_possible_payment = Wedding::PRICE + higest_stationery_price
