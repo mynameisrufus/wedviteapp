@@ -137,8 +137,16 @@ module StationeryRenderable
   #
   # Renders the `content` (wedding wording) then passes this html to be 
   # rendered in the {{ content }} block of the template.
+
+  def render_dev guest, accept_url = "#", decline_url = "#"
+    render! guest, accept_url, decline_url, (self.html_dev || '')
+  end
+
   def render guest, accept_url = "#", decline_url = "#"
-    template = self.html || ''
+    render! guest, accept_url, decline_url, (self.html || '')
+  end
+
+  def render! guest, accept_url, decline_url, template
     content  = markdown.render(guest.wedding.wording || '')
     drops    = HashWithIndifferentAccess.new guest: GuestDrop.new(guest),
                                              wedding: WeddingDrop.new(guest.wedding),

@@ -10,7 +10,7 @@ class Designers::StationeryController < Designers::BaseController
   end
 
   def preview
-    render inline: @stationery.render(spoof_guest), layout: false
+    render inline: @stationery.render_dev(spoof_guest), layout: false
   end
 
   def create
@@ -38,6 +38,18 @@ class Designers::StationeryController < Designers::BaseController
     end
   end
 
+  def deploy
+    respond_to do |format|
+      if @stationery.deploy!
+        format.html { redirect_to edit_stationery_path(@stationery), notice: 'Stationery was successfully deployed.' }
+        format.json { render json: "success".to_json  }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @stationery.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   protected
 
   def find_stationery
@@ -47,7 +59,7 @@ class Designers::StationeryController < Designers::BaseController
   def spoof_guest
     wedding = Wedding.new({
       name: "Preview wedding",
-      wording: @stationery.example_wording,
+      wording: @stationery.example_wording_dev,
       partner_one_name: Faker::Name.name,
       partner_two_name: Faker::Name.name,
       ceremony_when: Time.now + 10.days,

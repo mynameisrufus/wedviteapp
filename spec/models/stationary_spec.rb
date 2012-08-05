@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe Stationery do
+  it "should have valid format in blueprint" do
+    Stationery.make.should be_valid
+  end
+
   context :associations do
     it "should have many images" do
       Stationery.make.respond_to?(:images).should be_true
@@ -36,10 +40,6 @@ describe Stationery do
   end
 
   context :markup_validation do
-    it "should have valid format in blueprint" do
-      Stationery.make.should be_valid
-    end
-
     it "should be invalid if not in the actions div" do
       stationery = Stationery.make html: <<EOL
 <div class="invalid-div">
@@ -67,6 +67,20 @@ EOL
 </div>
 EOL
       stationery.should_not be_valid
+    end
+  end
+
+  context :deploying do
+    it "should copy the development code to the live code on publish" do
+      stationery = Stationery.make
+      stationery.deploy!
+      stationery.html.should eq stationery.html_dev
+    end
+
+    it "should set the published at" do
+      stationery = Stationery.make
+      stationery.deploy!
+      stationery.deployed_at.should_not be_nil
     end
   end
 end

@@ -38,4 +38,7 @@ WeddingInvitor::Application.configure do
   config.active_support.deprecation = :stderr
 
   config.action_mailer.default_url_options = { :host => 'wedvite.dev' }
+
+  # Enable threaded mode
+  config.threadsafe!
 end

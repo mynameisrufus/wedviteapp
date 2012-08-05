@@ -17,6 +17,7 @@
   <button class="show-toolbox" data-toolbox="images">Images</button>
   <button class="show-toolbox" data-toolbox="assets">Assets</button>
   <button class="save">Save</button>
+  <button class="deploy">Deploy</button>
   <%= link_to 'preview', preview_stationery_path(@stationery), target: "blank" %>
   <%= link_to 'pdf', preview_stationery_path(@stationery, format: :pdf), target: "blank" %>
 </div>
@@ -42,7 +43,7 @@
 </div>
 
 <div>
-  <div id="editor"><%= @stationery.html %></div><div id="wording"><%= @stationery.example_wording %></div>
+  <div id="editor"><%= @stationery.html_dev %></div><div id="wording"><%= @stationery.example_wording_dev %></div>
 </div>
 
 <script>
@@ -79,14 +80,14 @@
     editor.setKeyboardHandler(vim);
     wordingEditor.setKeyboardHandler(vim);
 
-    var save = function(code, wording, callback) {
+    var ajax = function(code, wording, callback, url, type) {
         $.ajax({
-            type: 'PUT',
-            url: "<%= stationery_path(@stationery) %>",
+            type: type,
+            url: url,
             data: {
                 stationery: {
-                    html: code,
-                    example_wording: wording
+                    html_dev: code,
+                    example_wording_dev: wording
                 }
             },
             success: callback,
@@ -97,17 +98,30 @@
         })
     }
 
-    var to = 0
-    $('.actions button.save').on('click', function(event) {
-        var $button = $(this)
-        $button.html('Saving.......')
-        event.preventDefault()
-        save(editor.getValue(), wordingEditor.getValue(), function() {
-            $button.html('Saved')
-            clearTimeout(to)
-            to = setTimeout(function() {
-                $button.html('Save')
-            }, 500)
-        })
-    })
+    var publish = function(code, wording, callback) {
+      if (confirm('Are you sure?')) ajax(code, wording, callback, "<%= deploy_stationery_path(@stationery) %>", 'POST')
+    }
+
+    var save = function(code, wording, callback) {
+      ajax(code, wording, callback, "<%= stationery_path(@stationery) %>", 'PUT')
+    }
+
+    var timeouts = {}
+    var manageButton = function(selector, func, before, during, after) {
+      $(selector).on('click', function(event) {
+          var $button = $(this)
+          $button.html(during)
+          event.preventDefault()
+          func(editor.getValue(), wordingEditor.getValue(), function() {
+              $button.html(after)
+              clearTimeout(timeouts[selector])
+              timeouts[selector] = setTimeout(function() {
+                  $button.html(before)
+              }, 500)
+          })
+      })
+    }
+
+    manageButton('.actions button.save', save, 'Save', 'Saving.....', 'Saved')
+    manageButton('.actions button.deploy', publish, 'Deploy', 'Deploying.....', 'Deployed')
 </script>

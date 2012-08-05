@@ -13,7 +13,7 @@ class Stationery < ActiveRecord::Base
   validates_uniqueness_of :name
   validates :price, numericality: true 
   validates :commision, numericality: true
-  validates_with StationeryMarkupValidator, attribute: :html
+  validates_with StationeryMarkupValidator, attribute: :html, if: :published
 
   COMMISION = 0.1
 
@@ -28,4 +28,10 @@ class Stationery < ActiveRecord::Base
     hash_secret: "wedvitehash"
 
   scope :published, where(published: true)
+
+  def deploy!
+    update_attributes html: html_dev,
+                      example_wording: example_wording_dev,
+                      deployed_at: Time.now
+  end
 end
