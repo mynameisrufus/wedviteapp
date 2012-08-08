@@ -21,11 +21,7 @@ class Stationery < ActiveRecord::Base
     self.commision = COMMISION if self.commision.nil?
   end
 
-  has_attached_file :preview,
-    storage: :s3,
-    s3_credentials: "#{Rails.root}/config/s3.yml",
-    path: "stationery/previews/:id/:hash.:extension",
-    hash_secret: "wedvitehash"
+  has_attached_file :preview, path: "stationery/previews/:id/:hash.:extension"
 
   scope :published, where(published: true)
 

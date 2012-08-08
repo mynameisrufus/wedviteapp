@@ -15,8 +15,8 @@ gem 'ri_cal',                 '~> 0.8.8'
 gem 'rails_admin', git: 'https://github.com/mynameisrufus/rails_admin.git', ref: '5c763c9c3d5f979e6a5f5ebf2ea36cd5f2597f91'
 gem 'friendly_id',            '~> 4.0.1'
 
-gem 'aws-sdk',                '~> 1.5'
-gem 'paperclip',              '~> 3.0'
+gem 'fog',                    '~> 1.5'
+gem 'paperclip',              '~> 3.1'
 gem 'ffaker',                 '~> 1.14'
 gem 'exception_notification', '~> 2.6'
 
