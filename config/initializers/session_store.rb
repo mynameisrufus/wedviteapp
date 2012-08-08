@@ -2,6 +2,7 @@
 
 WeddingInvitor::Application.config.session_store :cookie_store, key: 'wedvite_session', domain: {
   production: '.wedviteapp.com',
+  staging: '.wedvite.net',
   development: '.wedvite.dev',
 }.fetch(Rails.env.to_sym, :all)
 
