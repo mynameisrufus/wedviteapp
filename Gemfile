@@ -46,6 +46,8 @@ group :development, :test do
   gem 'launchy'
   gem 'heroku'
   gem 'pry',                  '~> 0.9'
+  # https://github.com/square/cane (code quality)
+  gem 'cane'
 end
 
 group :test do
