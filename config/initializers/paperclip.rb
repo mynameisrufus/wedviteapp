@@ -1,6 +1,6 @@
 Paperclip::Attachment.default_options[:hash_secret] = "wedvitehash"
 Paperclip::Attachment.default_options[:storage] = :fog
-Paperclip::Attachment.default_options[:fog_directory] = "wedvite.#{Rails.env}"
+Paperclip::Attachment.default_options[:fog_directory] = "wedviteapp-#{Rails.env}"
 Paperclip::Attachment.default_options[:fog_public] = true
 Paperclip::Attachment.default_options[:fog_credentials] ={
   provider: "AWS",
