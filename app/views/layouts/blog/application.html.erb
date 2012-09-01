@@ -3,6 +3,11 @@
   <head>
     <title>WedVite Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="en-AU" http-equiv="content-language" />
+    <meta content="IE=8,chrome=1" http-equiv="X-UA-Compatible" />
+    <meta content="invitations,ecards,stationery,paperless,post,email,weddings,holidays,organiser,guestlist,website" name="keywords" />
+    <meta content="WedVite Wedding guestlist organiser and online invitations.  Save time, money and trees." name="description" />
+    <link href="/favicon.png" rel="shortcut icon" type="image/png" />
     <%= stylesheet_link_tag "blog/application" %>
     <!--[if lt IE 9]>
       <%= javascript_include_tag "//html5shiv.googlecode.com/svn/trunk/html5.js" %>
@@ -12,7 +17,9 @@
   <body>
     <div class="container">
       <header class="masthead">
-        <h1><%= image_tag 'birds2x.png' %>WedVite Blog</h1>
+        <div class="birdies"></div>
+        <h1 class="brand"><span>WedVite Blog</span></h1>
+        <h2>blog</h2>
         <p>Want to save money, time, hastle and trees with your wedding invitations? Then head over to  <a href="http://wedviteapp.com">Wedvite</a>.</p>
       </header>
       <%= yield %>

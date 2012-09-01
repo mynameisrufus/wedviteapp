@@ -45,16 +45,6 @@ h1, h2 {
     text-align: center;
     background-color: $white; }
 
-h1 {
-    background-image: image-url('brand.png');
-    background-repeat: no-repeat;
-    background-position: center center;
-    height: 130px;
-    text-transform: uppercase;
-    margin: 0px;
-    span {
-      display: none; } }
-
 h2 {
     text-transform: uppercase;
     letter-spacing: 3px;
@@ -205,13 +195,6 @@ p {
     top: 0px;
     left: 0px;
     position: absolute; }
-
-@media 
-    only screen and (-webkit-min-device-pixel-ratio: 2),
-    only screen and (min-device-pixel-ratio: 2) {
-    h1 {
-        background-image: image-url('brand2x.png');
-        background-size: 675px 113px; } }
 
 // Landscape phone to portrait tablet
 @media (max-width: 767px) {

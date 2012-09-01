@@ -27,6 +27,17 @@ body {
     &.right {
         background-position: 0px 0px; } }
 
+h1 {
+  &.brand {
+    background-image: image-url('brand.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 130px;
+    text-transform: uppercase;
+    margin: 0px;
+    span {
+      display: none; } } }
+
 @media 
     only screen and (-webkit-min-device-pixel-ratio: 2),
     only screen and (min-device-pixel-ratio: 2) {
@@ -35,4 +46,14 @@ body {
     .birdies {
         background-image: image-url('birds2x.png'); }
     .paddle {
-        background-image: image-url('paddles2x.png'); } }
+        background-image: image-url('paddles2x.png'); }
+    h1 {
+        &.brand {
+            background-image: image-url('brand2x.png');
+            background-size: 675px 113px; } } }
+
+@media (max-width: 480px) {
+  h1 {
+      &.brand {
+          height: 95px;
+          background-size: 460px 77px; } } }

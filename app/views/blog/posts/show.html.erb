@@ -1,3 +1,6 @@
 <section class="post">
-  <%= render partial: 'article', locals: { post: @post } %>
+  <article>
+    <%= render partial: 'article_header', locals: { post: @post } %>
+    <%= render partial: 'article', locals: { post: @post } %>
+  </article>
 </section>

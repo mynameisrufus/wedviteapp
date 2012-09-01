@@ -2,7 +2,7 @@ class Post < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: :slugged
 
-  attr_accessible :title, :body, :author, :published
+  attr_accessible :title, :body, :author_id, :published
 
   belongs_to :author
 

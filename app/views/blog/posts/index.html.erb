@@ -1,6 +1,9 @@
 <section class="posts">
   <% @posts.each do |post| %>
-    <%= render partial: 'article', locals: { post: post } %>
+    <article>
+      <%= render partial: 'article_header', locals: { post: post } %>
+      <%= render partial: 'article_truncated', locals: { post: post } %>
+    </article>
   <% end %>
   <div class="row">
     <div class="span6 offset2">
