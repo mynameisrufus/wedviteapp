@@ -1,5 +1,17 @@
-@import "twitter/bootstrap";
-@import "twitter/bootstrap/responsive";
+@import "bootstrap";
+@import "bootstrap/responsive-utilities";
+
+// MEDIA QUERIES
+// ------------------
+
+// Phones to portrait tablets and narrow desktops
+@import "bootstrap/responsive-767px-max";
+
+// Tablets to regular desktops
+@import "bootstrap/responsive-768px-979px";
+
+// Large desktops
+@import "bootstrap/responsive-1200px-min";
 
 body {
   background-image: image-url("bg-cloth.png");
@@ -46,7 +58,7 @@ textarea {
 
 .tab-content {
   padding: 10px;
-  background-color: @white; 
+  background-color: $white; 
   border-left-color: #DDD;
   border-left-style: solid;
   border-left-width: 1px;
@@ -81,7 +93,7 @@ textarea {
     background-color: #000000;
     & > li > a {
       color: #FFFFFF;
-      .border-radius(0px);
+      @include border-radius(0px);
     }
   }
   .dropdown-menu a {

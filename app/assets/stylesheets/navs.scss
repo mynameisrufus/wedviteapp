@@ -1,5 +1,8 @@
+@import "bootstrap";
+@import "colors";
+
 .nav-pills > li > a {
-  color: @gray;
+  color: $gray;
 }
 
 .nav-wedvite > li > a:hover,
@@ -7,7 +10,7 @@
 }
 .nav-pills > .active > a,
 .nav-pills > .active > a:hover {
-  background-color: @blue;
+  background-color: $blue;
 }
 
 .nav-pills > .active > a {
@@ -17,21 +20,20 @@
 .nav-wedvite > .active > a:hover,
 .nav-pills > .active > a,
 .nav-pills > .active > a:hover {
-  background-color: @blue;
-  color: @white;
+  background-color: $blue;
+  color: $white;
 }
 
 .nav-wedvite {
   float: left;
   width: 220px;
-  background-color: @baby_blue;
-  .border-radius(10px);
+  background-color: $baby_blue;
+  @include border-radius(10px);
   overflow: hidden;
 }
 
 .nav-wedvite > li > a {
   padding: 10px;
-  //color: @kalamata_olive;
 }
 
 .slide-deck {
@@ -44,7 +46,7 @@
 
 .navbar {
   height: 72px;
-  background-color: @baby_blue;
+  background-color: $baby_blue;
   &.navbar-fixed-top {
     position: relative;
     margin-bottom: 10px;
@@ -59,10 +61,10 @@
   .nav {
     &> li > a {
       line-height: 50px;
-      color: @blue;
+      color: $blue;
       text-shadow: none;
       &:hover {
-        color: darken(@blue, 20%);
+        color: darken($blue, 20%);
       }
       b {
         margin-top: 23px;

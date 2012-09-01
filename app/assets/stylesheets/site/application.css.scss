@@ -1,28 +1,49 @@
-// CSS Reset
-@import "twitter/bootstrap/reset";
-
 // Core variables and mixins
-@import "twitter/bootstrap/mixins";
+@import "bootstrap/variables"; // Modify this for custom colors, font-sizes, etc
+@import "bootstrap/mixins";
 
 // Grid system and page structure
-@import "twitter/bootstrap/grid";
-@import "twitter/bootstrap/layouts";
-@import "twitter/bootstrap/responsive";
+@import "bootstrap/scaffolding";
+@import "bootstrap/grid";
+@import "bootstrap/layouts";
 
-// Base CSS
-@import "twitter/bootstrap/type";
+// RESPONSIVE CLASSES
+// ------------------
 
-// WedVite CSS files
+@import "bootstrap/responsive-utilities";
+
+// MEDIA QUERIES
+// ------------------
+
+// Phones to portrait tablets and narrow desktops
+@import "bootstrap/responsive-767px-max";
+
+// Tablets to regular desktops
+@import "bootstrap/responsive-768px-979px";
+
+// Large desktops
+@import "bootstrap/responsive-1200px-min";
+
+// CSS Reset
+@import "bootstrap/reset";
+
+// WedVite colors
+@import "colors";
+
+// WedVite global elements, images etc.
 @import "global";
 
+// WedVite global fonts.
+@import "fonts";
+
 body {
-    color: @blue;
+    color: $blue;
     padding-top: 25px;
     padding-bottom: 25px; }
 
 h1, h2 {
     text-align: center;
-    background-color: @white; }
+    background-color: $white; }
 
 h1 {
     background-image: image-url('brand.png');
@@ -30,12 +51,14 @@ h1 {
     background-position: center center;
     height: 130px;
     text-transform: uppercase;
+    margin: 0px;
     span {
       display: none; } }
 
 h2 {
     text-transform: uppercase;
     letter-spacing: 3px;
+    line-height: 36px;
     margin-bottom: 20px;
     margin-top: 20px; }
 
@@ -46,12 +69,12 @@ h2 {
 h2 {
     /* IE rgba start */
     background: transparent;
-    filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr=#80FFFFFF,endColorstr=#80FFFFFF)"; 
+    filter: "~progid:DXImageTransform.Microsoft.gradient(startColorstr=#80FFFFFF,endColorstr=#80FFFFFF)"; 
     zoom: 1;
     /* IE rgba end */
-    .white();
-    border-top: 3px @copper solid;
-    border-bottom: 3px @copper solid; }
+    @include white;
+    border-top: 3px $copper solid;
+    border-bottom: 3px $copper solid; }
 
 p {
     margin-left: 10px;
@@ -71,13 +94,13 @@ p {
 .shadow-wrap {
     /* IE box shadow start */
     background-color: rgb(68,68,68);
-    filter: ~"progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30)";
-    -ms-filter: ~"progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30)";
+    filter: "~progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30)";
+    -ms-filter: "~progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30)";
     zoom: 1;
     /* IE box shadow end */
-    .box-shadow(8px 8px 40px 0px gray);
+    @include box-shadow(8px 8px 40px 0px gray);
     .shadow-content {
-        background-color: @baby_blue;
+        background-color: $baby_blue;
         position: relative; } }
 
 .login-signup {
@@ -85,11 +108,11 @@ p {
     padding: 0px;
     margin: 40px 0px 40px 0px;
     li:hover {
-        background-color: darken(@baby_blue, 5%); } }
+        background-color: darken($baby_blue, 5%); } }
 
 .stripes {
-    border-top: 6px @white solid;
-    border-bottom: 6px @white solid;
+    border-top: 6px $white solid;
+    border-bottom: 6px $white solid;
     margin: 40px 0px;
     text-align: center;
     img {

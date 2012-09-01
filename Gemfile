@@ -29,9 +29,10 @@ gem 'wkhtmltopdf-binary',     '~> 0.9.9.1'
 
 group :assets do
   gem 'jquery-rails',         '~> 1.0.19'
-  gem 'less-rails-bootstrap', '~> 2.0'
 
-  gem 'coffee-rails',         '~> 3.2.2'
+  gem 'sass-rails',           '~> 3.2.5'
+  gem 'bootstrap-sass',       '~> 2.0.4'
+
   gem 'uglifier',             '>= 1.0.3'
   gem 'therubyracer',         '~> 0.10'
 end

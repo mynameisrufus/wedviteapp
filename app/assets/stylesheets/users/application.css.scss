@@ -1,10 +1,41 @@
-@import "twitter/bootstrap";
+@import "bootstrap";
 
 // App global stylesheets
 @import "global";
 @import "navs";
+@import "fonts";
 
 // Users stylesheets
+
+@mixin border-radius($radius: 5px) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+          border-radius: $radius;
+}
+
+@mixin border-top-left-radius($radius: 5px) {
+  -webkit-border-top-left-radius: $radius;
+     -moz-border-top-left-radius: $radius;
+          border-top-left-radius: $radius;
+}
+
+@mixin border-bottom-left-radius($radius: 5px) {
+  -webkit-border-bottom-left-radius: $radius;
+     -moz-border-bottom-left-radius: $radius;
+          border-bottom-left-radius: $radius;
+}
+
+@mixin border-top-right-radius($radius: 5px) {
+  -webkit-border-top-right-radius: $radius;
+     -moz-border-top-right-radius: $radius;
+          border-top-right-radius: $radius;
+}
+
+@mixin border-bottom-right-radius($radius: 5px) {
+  -webkit-border-bottom-right-radius: $radius;
+     -moz-border-bottom-right-radius: $radius;
+          border-bottom-right-radius: $radius;
+}
 
 body {
   padding-bottom: 30px;
@@ -58,12 +89,12 @@ section {
   &.dashboard {
     .placeholder {
       padding: 10px;
-      .border-radius();
+      @include border-radius();
     }
   }
   &.placeholder {
     padding: 10px;
-    .border-radius();
+    @include border-radius();
   }
   &.payment {
     form {
@@ -127,7 +158,7 @@ section {
         margin: 5px 0px;
       }
       .guest {
-        .border-radius();
+        @include border-radius();
         position: relative;
         padding: 9px 12px 9px;
         .state, .details {
@@ -135,14 +166,14 @@ section {
         }
 
         .details span {
-          .opacity(60);
+          @include opacity(60);
         }
         .actions {
           visibility: hidden;
         }
         &:hover, &.active {
           .details span {
-            .opacity(100);
+            @include opacity(100);
           }
           .actions {
             visibility: visible;
@@ -164,7 +195,7 @@ section {
         &.ui-sortable-helper {
           background-image: image-url("bg-parchment.png");
           border: 1px dashed gray;
-          .border-radius;
+          @include border-radius();
         }    
       }      
       .guest-placeholder {
@@ -190,7 +221,7 @@ section {
     .collaborators {
       .collaborator {
         padding: 10px;
-        .border-radius();
+        @include border-radius();
         span {
           color: gray;
         }
@@ -222,36 +253,6 @@ section {
   }
 }
 
-.border-radius(@radius: 5px) {
-  -webkit-border-radius: @radius;
-     -moz-border-radius: @radius;
-          border-radius: @radius;
-}
-
-.border-top-left-radius(@radius: 5px) {
-  -webkit-border-top-left-radius: @radius;
-     -moz-border-top-left-radius: @radius;
-          border-top-left-radius: @radius;
-}
-
-.border-bottom-left-radius(@radius: 5px) {
-  -webkit-border-bottom-left-radius: @radius;
-     -moz-border-bottom-left-radius: @radius;
-          border-bottom-left-radius: @radius;
-}
-
-.border-top-right-radius(@radius: 5px) {
-  -webkit-border-top-right-radius: @radius;
-     -moz-border-top-right-radius: @radius;
-          border-top-right-radius: @radius;
-}
-
-.border-bottom-right-radius(@radius: 5px) {
-  -webkit-border-bottom-right-radius: @radius;
-     -moz-border-bottom-right-radius: @radius;
-          border-bottom-right-radius: @radius;
-}
-
 .guest {
   .icon {
     &.state {
@@ -267,45 +268,45 @@ section {
     height: 12px;
     display: block;
     float: left;
-    .border-radius(12px);
+    @include border-radius(12px);
     text-align: center;
     padding: 5px;
     font-weight: bold;
-    color: @white;
+    color: $white;
     &.approved {
-      background-color: @approved;
+      background-color: $approved;
       font-weight: 300;
       line-height: 14px;
     }
     &.rejected {
-      background-color: @rejected;
+      background-color: $rejected;
       font-size: 20px;
       line-height: 12px;
       font-weight: 600;
     }
     &.accepted {
-      background-color: @accepted;
+      background-color: $accepted;
     }
     &.declined {
-      background-color: @declined;
+      background-color: $declined;
     }
     &.accepted, &.declined {
       line-height: 11px;
       font-weight: 500;
     }
     &.sent {
-      background-color: @sent;
+      background-color: $sent;
       font-weight: 100;
       font-size: 16px;
       line-height: 10px;
     }
     &.tentative {
-      background-color: @tentative;
+      background-color: $tentative;
       font-size: 20px;
       line-height: 10px;
     }
     &.review {
-      background-color: @review;
+      background-color: $review;
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       font-weight: 200;
       line-height: 12px;
@@ -338,7 +339,7 @@ form {
     position: fixed;
     width: 130px;
     padding: 20px 5px;
-    background-color: @baby_blue;
+    background-color: $baby_blue;
     //.magnolia_grandflora(40);
   }
   .quickie-nav {
@@ -425,7 +426,7 @@ form {
 }
 
 .slide-deck {
-  .border-radius(10px);
+  @include border-radius(10px);
   min-height: 610px;
   .slide {
     margin: 10px;

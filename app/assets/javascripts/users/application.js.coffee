@@ -5,7 +5,7 @@
 #= require ../lib/spin.js
 #= require ../lib/jquery.transit.js
 #= require ../lib/jquery.slide-deck.js
-#= require twitter/bootstrap
+#= require bootstrap
 #= require users/locations_form
 
 class window.GuestList
