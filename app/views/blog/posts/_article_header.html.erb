@@ -1,6 +1,5 @@
 <header>
   <h1><%= post.title %></h1>
   <hr/>
-  <h2>by <%= post.author.name %></h2>
-  <p><strong><%= l post.published_at, format: :simple %></strong></p>
+  <p><strong>by <%= post.author.name %> / <%= l post.published_at, format: :simple %></strong></p>
 </header>
