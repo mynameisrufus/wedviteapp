@@ -46,8 +46,14 @@ group :development, :test do
   gem 'launchy'
   gem 'heroku'
   gem 'pry',                  '~> 0.9'
-  # https://github.com/square/cane (code quality)
+
+  # Code quality.
+  # https://github.com/square/cane
   gem 'cane'
+
+  # Preview emails.
+  # https://rubygems.org/gems/mail_view
+  gem 'mail_view',            '~> 1.0.3'
 end
 
 group :test do

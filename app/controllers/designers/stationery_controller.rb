@@ -57,21 +57,7 @@ class Designers::StationeryController < Designers::BaseController
   end
 
   def spoof_guest
-    wedding = Wedding.new({
-      name: "Preview wedding",
-      wording: @stationery.example_wording_dev,
-      partner_one_name: Faker::Name.name,
-      partner_two_name: Faker::Name.name,
-      ceremony_when: Time.now + 10.days,
-      ceremony_when_end: Time.now + 10.days + 2.hours,
-      ceremony_when: Time.now + 10.days + 5.hours,
-      ceremony_when_end: Time.now + 10.days + 10.hours
-    })
-
-    guest = Guest.new({
-      wedding: wedding,
-      name: Faker::Name.name,
-      email: Faker::Internet.email
-    })
+    wedding = Spoof.wedding wording: @stationery.example_wording_dev
+    Spoof.guest wedding: wedding
   end
 end

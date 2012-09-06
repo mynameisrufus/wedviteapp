@@ -1,11 +1,47 @@
-<p>Dear <%= @guest.name %>,</p>
-
-<p>We would be honoured if you would share our wedding day with us.</p>
-
-<p>Please find your invitation and all our wedding details in the following link:</p>
-
-<%= link_to @url, @url %>
-
-<p>We look forward to celebrating with you,</p>
-
-<p><%= @wedding.partner_one_name %> and <%= @wedding.partner_two_name %></p>
+<table width="500" border="0" align="center" cellpadding="0" cellspacing="0" style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background-color:white;table-layout:fixed;overflow:hidden"> 
+  <tbody>
+    <tr> 
+      <td><span style="font-size:16px;line-height:20px;font-weight:bold;color:#333">Dear <%= @guest.name %>,</span></td> 
+    </tr> 
+    <tr valign="top"> 
+      <td height="20" style="background-color:white"></td> 
+    </tr> 
+    <tr valign="top"> 
+      <td><span style="color:#555;font-size:14px;line-height:18px">We would be honoured if you would share our wedding day with us.</span> </td> 
+    </tr> 
+    <tr valign="top"> 
+      <td height="10" style="background-color:white"></td> 
+    </tr> 
+    <tr valign="top"> 
+      <td><span style="color:#555;font-size:14px;line-height:18px">Please find your invitation and all our wedding details in the following link:</span> </td> 
+    </tr> 
+    <tr valign="top"> 
+      <td height="20" style="background-color:white"></td> 
+    </tr> 
+    <tr valign="top"> 
+      <td><span style="color:#555;font-size:14px;line-height:18px"><%= link_to @url, @url %></span></td>
+    </tr> 
+    <tr valign="top"> 
+      <td height="30" style="background-color:white"></td> 
+    </tr> 
+    <tr valign="top"> 
+      <td><span style="color:#555;font-size:14px;line-height:18px">We look forward to celebrating with you,</span></td>
+    </tr> 
+    <tr valign="top"> 
+      <td height="30" style="background-color:white"></td> 
+    </tr> 
+    <tr valign="top"> 
+      <td><span style="color:#555;font-size:14px;line-height:18px"><%= @guest.wedding.partner_one_name %> and <%= @guest.wedding.partner_two_name %></span></td>
+    </tr> 
+    <tr valign="top"> 
+      <td height="10" style="background-color:white"></td> 
+    </tr> 
+  </tbody>
+</table> 
+<table cellpadding="0" cellspacing="0" border="0" width="670" style="background-color:white"> 
+  <tbody>
+    <tr> 
+      <td> </td> 
+    </tr> 
+  </tbody>
+</table> 
