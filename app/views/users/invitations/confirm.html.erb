@@ -2,11 +2,16 @@
   <% unless @guests.empty? %>
     <h2>List of approved guests that will be emailed</h2>
     <p>The following list of approved guests will be sent an email with a private link to you wedding invitation.</p>
-    <ul>
-      <% @guests.each do |guest| %>
-        <li><%= guest.name %></li>
-      <% end %>
-    </ul>
+    <table class="table">
+      <tbody>
+        <% @guests.each do |guest| %>
+          <tr>
+            <td><%= guest.name %></td>
+            <td><%= guest.email %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
     <%= link_to wedding_deliver_path(@wedding), class: 'btn btn-danger btn-large', style: 'width: 190px;', confirm: "Are you sure? this cannot be undone." do %>
       Send!
     <% end %>
