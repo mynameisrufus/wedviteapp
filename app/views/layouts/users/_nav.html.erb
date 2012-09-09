@@ -1,14 +1,16 @@
-<div class="navbar navbar-fixed-top">
-  <div class="container">
-    <% unless user_signed_in? %>
-      <h1 class="birdies"><span>WedVite<span></h1>
-    <% else %>
-      <a class="birdies" href="/"><span>WedVite</span></a>
-      <ul class="nav pull-right">
-        <li><%= link_to 'Feedback and Support', feedback_new_path %></li>
-        <li><%= link_to current_user.name, edit_user_registration_path %></li>
-        <li><%= link_to "Sign out", destroy_user_session_path, method: 'delete' %></li>
-      </ul>
-    <% end %>
+<div class="navbar-wedvite">
+  <div class="inner">
+    <div class="content">
+      <% unless user_signed_in? %>
+        <h1 class="birdies"><span>WedVite<span></h1>
+      <% else %>
+        <a class="birdies" href="/"><span>WedVite</span></a>
+        <ul>
+          <li><%= link_to 'Feedback and Support', feedback_new_path %></li>
+          <li><%= link_to current_user.name, edit_user_registration_path %></li>
+          <li><%= link_to "Sign out", destroy_user_session_path, method: 'delete' %></li>
+        </ul>
+      <% end %>
+    </div>
   </div>
 </div>

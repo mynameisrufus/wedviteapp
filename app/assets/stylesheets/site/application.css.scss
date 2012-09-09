@@ -59,7 +59,7 @@ h2 {
 h2 {
     /* IE rgba start */
     background: transparent;
-    filter: "~progid:DXImageTransform.Microsoft.gradient(startColorstr=#80FFFFFF,endColorstr=#80FFFFFF)"; 
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#80FFFFFF,endColorstr=#80FFFFFF);
     zoom: 1;
     /* IE rgba end */
     @include white;

@@ -44,12 +44,16 @@
   }
 }
 
-.navbar {
-  height: 72px;
-  background-color: $baby_blue;
-  &.navbar-fixed-top {
-    position: relative;
-    margin-bottom: 10px;
+.navbar-wedvite {
+  height: 93px;
+  .inner {
+    height: 72px;
+    background-color: $baby_blue;
+  }
+  .content {
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .birdies {
     width: 170px;
@@ -58,18 +62,76 @@
     float: left;
     margin-top: 5px;
   }
-  .nav {
-    &> li > a {
-      line-height: 50px;
-      color: $blue;
-      text-shadow: none;
-      &:hover {
-        color: darken($blue, 20%);
-      }
-      b {
-        margin-top: 23px;
+  ul {
+    float: right;
+    list-style: none;
+    margin: 0px;
+    li {
+      float: left;
+      padding-left: 35px;
+      padding-right: 10px;
+      padding-top: 11px;
+      a {
+        line-height: 50px;
+        color: $blue;
+        text-shadow: none;
+        &:hover {
+          text-decoration: none;
+          color: darken($blue, 20%);
+        }
       }
     }
   }
 }
 
+/* Large desktop */
+@media (min-width: 1200px) {
+
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+  .navbar-wedvite {
+    .birdies {
+      width: 88px;
+      background-position: left;
+    }
+    ul {
+      li {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
+  }
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+  .navbar-wedvite {
+    height: auto;
+    .inner {
+      height: auto;
+    }
+    .birdies {
+      display: none;
+    }
+    ul {
+      float: none;
+      li {
+        float: none;
+        padding-left: 3px;
+        padding-right: 3px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        a {
+          line-height: 20px;
+        }
+      }
+    }
+  }
+}
