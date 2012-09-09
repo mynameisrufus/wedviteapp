@@ -4,6 +4,6 @@ class Users::HelpController < Users::BaseController
   skip_before_filter :authenticate_user!
 
   def page
-    render params[:page]
+    render params[:page], layout: (request.xhr? ? false : 'users/help')
   end
 end

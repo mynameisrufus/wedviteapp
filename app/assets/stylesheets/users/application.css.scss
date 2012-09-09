@@ -175,6 +175,7 @@ section {
         }
         .actions {
           visibility: hidden;
+          margin-left: 30px;
         }
         &:hover, &.active {
           .details span {

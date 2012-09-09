@@ -33,8 +33,20 @@
   </div>
 </section>
 
+<%= render partial: "layouts/users/modal" %>
+
 <script>
 (function() {
+
+    var $modal = $('#modal-from-dom')
+
+    $('a.modal-me').on('click', function(event) {
+        event.preventDefault()
+        $.get(this.href, function(data) {
+            $modal.find('.modal-body').html(data)
+            $modal.modal('show')
+        })
+    })
 
     var $container = $('.slide-deck'),
         $sections  = $container.find('.slide'),

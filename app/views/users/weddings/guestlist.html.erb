@@ -9,14 +9,7 @@
   </div>
 </section>
 
-<div id="modal-from-dom" class="modal hide fade">
-  <div class="modal-body">
-    <p>One fine body…</p>
-  </div>
-  <div class="modal-footer">
-    <a href="#" class="btn" data-dismiss="modal">Close</a>
-  </div>
-</div>
+<%= render partial: "layouts/users/modal" %>
 
 <script>
 $(function(){
@@ -79,6 +72,7 @@ $(function(){
 
     var $guests = $('.guests .guest')
     $guests.on('click', function(event) {
+        event.stopPropogation()
         $guests.removeClass('active')
         $(this).addClass('active')
     })
