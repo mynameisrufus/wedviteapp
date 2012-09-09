@@ -18,7 +18,7 @@ module HelperMethods
 
   def sign_in_with email, password
     visit '/'
-    page.should have_content('Sign in')
+    page.should have_content('Log in to your account')
     fill_in 'user_email', with: email
     fill_in 'user_password', with: password
     click_button 'Sign in'

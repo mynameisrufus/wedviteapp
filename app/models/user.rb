@@ -9,7 +9,12 @@ class User < ActiveRecord::Base
   
   has_many :collaborations, class_name: 'Collaborator', dependent: :destroy
   has_many :weddings, through: :collaborations
- 
+
+  # Remember me by default
+  def remember_me
+    true
+  end
+
   def name
     first_name.present? && last_name.present? ? "#{first_name} #{last_name}" : email
   end

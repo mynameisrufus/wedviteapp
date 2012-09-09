@@ -31,7 +31,7 @@ group :assets do
   gem 'jquery-rails',         '~> 1.0.19'
 
   gem 'sass-rails',           '~> 3.2.5'
-  gem 'bootstrap-sass',       '~> 2.0.4'
+  gem 'bootstrap-sass',       '~> 2.1.0'
 
   gem 'uglifier',             '>= 1.0.3'
   gem 'therubyracer',         '~> 0.10'
