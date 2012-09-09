@@ -27,6 +27,10 @@ gem 'nokogiri',               '~> 1.5'
 gem 'pdfkit',                 '~> 0.5.2'
 gem 'wkhtmltopdf-binary',     '~> 0.9.9.1'
 
+# Preview emails.
+# https://rubygems.org/gems/mail_view
+gem 'mail_view',            '~> 1.0.3'
+
 group :assets do
   gem 'jquery-rails',         '~> 1.0.19'
 
@@ -50,10 +54,6 @@ group :development, :test do
   # Code quality.
   # https://github.com/square/cane
   gem 'cane'
-
-  # Preview emails.
-  # https://rubygems.org/gems/mail_view
-  gem 'mail_view',            '~> 1.0.3'
 end
 
 group :test do
