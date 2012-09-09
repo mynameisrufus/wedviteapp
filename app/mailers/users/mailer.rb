@@ -38,8 +38,8 @@ class Users::Mailer < ActionMailer::Base
     @user = options[:user]
     @text = options[:text]
 
-    mail to: 'rufuspost@gmail.com',
-         from: "WedVite <noreply@wedviteapp.com>",
-         subject: 'WedVite feedback'
+    mail to: 'support@wedviteapp.com',
+         from: "#{@user.name} <#{@user.email}>",
+         subject: 'feedback'
   end
 end
