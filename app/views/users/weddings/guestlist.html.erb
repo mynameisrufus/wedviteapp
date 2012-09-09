@@ -71,10 +71,18 @@ $(function(){
     })
 
     var $guests = $('.guests .guest')
-    $guests.on('click', function(event) {
-        event.stopPropogation()
-        $guests.removeClass('active')
-        $(this).addClass('active')
-    })
+    var showGuestActions = function(event) {
+        el = this
+        $guests.each(function(index, elem) {
+            if(el != elem) $(elem).removeClass('active')
+        })
+        $(el).addClass('active')
+    }
+
+    if ('ontouchstart' in document.documentElement) {
+        $guests.on('touchstart', showGuestActions)
+    } else {
+        $guests.on('click', showGuestActions)
+    }
 });
 </script>
