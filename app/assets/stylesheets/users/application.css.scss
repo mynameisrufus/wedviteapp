@@ -119,6 +119,9 @@ section {
     }
   }
   &.invitations {
+    h2 {
+      margin: 0px;
+    }
     .paddle {
       top: 255px;
       &.left {
