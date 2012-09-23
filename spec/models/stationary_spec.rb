@@ -37,6 +37,22 @@ describe Stationery do
       guest      = Guest.make wedding: wedding
       stationery.render(guest, "#accept", "#decline").should eq "#accept #decline #{ guest.name } #{ wedding.partner_one_name } & #{ wedding.partner_two_name }"
     end
+
+    it "should render the names of partner one and two" do
+      stationery = Stationery.make
+      stationery.html << "{{ partner_one.initail }} & {{ partner_two.name }}"
+      wedding    = Wedding.make partner_one_name: "Ginni", partner_two_name: "Rufus"
+      guest      = Guest.make wedding: wedding
+      stationery.render(guest).should match /G & Rufus/
+    end
+
+    it "should render the initails of partner one and two" do
+      stationery = Stationery.make
+      stationery.html << "{{ wedding.initails }}"
+      wedding    = Wedding.make partner_one_name: "Ginni", partner_two_name: "Rufus"
+      guest      = Guest.make wedding: wedding
+      stationery.render(guest).should match /G & R/
+    end
   end
 
   context :markup_validation do

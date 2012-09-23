@@ -14,33 +14,37 @@ class Wedding < ActiveRecord::Base
   validates :partner_one_name, presence: true
   validates :partner_two_name, presence: true
   validates :name, presence: true
+  validates_with WeddingWordingValidator, attribute: :wording
+  validates_with WeddingWordingValidator, attribute: :ceremony_only_wording
 
   PRICE = 49.95
 
   before_validation on: :create do
-    self.partner_one_name = 'Bride'
-    self.partner_two_name = 'Groom'
+    self.partner_one_name = 'Bride' unless self.partner_one_name
+    self.partner_two_name = 'Groom' unless self.partner_two_name
   end
 
-  before_create do
-    self.stationery = Stationery.first
+  before_validation on: :create do
+    self.stationery = Stationery.first unless self.stationery
   end
 
-  before_create do
+  before_validation on: :create do
     %w(ceremony_when ceremony_when_end reception_when reception_when_end respond_deadline).each do |date|
-      self.send :"#{date}=", Time.now
+      self.send :"#{date}=", Time.now unless self.send :"#{date}"
     end
   end
 
   HELP_ATTRIBUTES = %w(wording ceremony_only_wording ceremony_what
 reception_what ceremony_how reception_how thank_you_wording)
+
   HELP_MARKDOWN   = HELP_ATTRIBUTES.inject({}) do |memo, help|
     memo.merge({ help => File.read(File.join(Rails.root, 'app', 'help', "#{help}.md")) })
   end
 
-  before_create do
+  before_validation on: :create do
     HELP_ATTRIBUTES.each do |help|
-      self.send :"#{help}=", HELP_MARKDOWN[help]
+      self.send :"#{help}=", HELP_MARKDOWN[help] unless
+        self.send :"#{help}"
     end
   end
 

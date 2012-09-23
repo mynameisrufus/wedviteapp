@@ -40,7 +40,7 @@ feature 'Guest feature', %q{
     fill_in 'Phone',           with: "+61 487 738 874"
     fill_in 'guest[adults]',   with: 2
     fill_in 'guest[children]', with: 0
-    choose 'Bride'
+    choose wedding.partner_one_name
     click_button 'Save'
 
     page.should have_content('Roger and Sally have been added to the list.')

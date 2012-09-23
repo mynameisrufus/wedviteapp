@@ -52,6 +52,25 @@ module StationeryRenderable
     def name
       "#{@wedding.partner_one_name} & #{@wedding.partner_two_name}"
     end
+
+    def initails
+      "#{@wedding.partner_one_name[0]} & #{@wedding.partner_two_name[0]}"
+    end
+  end
+
+  # {{ partner_one.name }}
+  class PartnerDrop < Liquid::Drop
+    def initialize name
+      @name = name
+    end
+
+    def name
+      @name
+    end
+
+    def initail
+      @name[0]
+    end
   end
 
   # {{ ceremony.when }}
@@ -148,11 +167,15 @@ module StationeryRenderable
 
   def render! guest, accept_url, decline_url, template
     content  = markdown.render(guest.wedding.wording || '')
-    drops    = HashWithIndifferentAccess.new guest: GuestDrop.new(guest),
-                                             wedding: WeddingDrop.new(guest.wedding),
-                                             reception: ReceptionDrop.new(guest.wedding),
-                                             ceremony: CeremonyDrop.new(guest.wedding),
-                                             urls: UrlDrop.new(accept_url, decline_url)
+    drops    = HashWithIndifferentAccess.new({
+      guest: GuestDrop.new(guest),
+      wedding: WeddingDrop.new(guest.wedding),
+      reception: ReceptionDrop.new(guest.wedding),
+      ceremony: CeremonyDrop.new(guest.wedding),
+      urls: UrlDrop.new(accept_url, decline_url),
+      partner_one: PartnerDrop.new(guest.wedding.partner_one_name),
+      partner_two: PartnerDrop.new(guest.wedding.partner_two_name)
+    })
 
     lq(template, drops.merge(content: lq(content, drops)), uploads)
   end

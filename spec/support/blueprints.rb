@@ -40,6 +40,8 @@ Wedding.blueprint do
   reception_when { Time.now + 5.weeks }
   partner_one_name { Faker::Name.first_name }
   partner_two_name { Faker::Name.first_name }
+  wording { "{{ guest.name }}" }
+  ceremony_only_wording { "{{ guest.name }}" }
 end
 
 Comment.blueprint do
