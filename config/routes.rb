@@ -80,7 +80,7 @@ WeddingInvitor::Application.routes.draw do
   end
 
   constraints subdomain: 'design' do
-    devise_for :designers
+    devise_for :designers, controllers: { sessions: "designers/sessions" }
 
     match 'robots.txt' => 'base#robots'
 
