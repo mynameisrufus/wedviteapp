@@ -53,7 +53,7 @@ module StationeryRenderable
       "#{@wedding.partner_one_name} & #{@wedding.partner_two_name}"
     end
 
-    def initails
+    def initials
       "#{@wedding.partner_one_name[0]} & #{@wedding.partner_two_name[0]}"
     end
   end
@@ -68,7 +68,7 @@ module StationeryRenderable
       @name
     end
 
-    def initail
+    def initial
       @name[0]
     end
   end
