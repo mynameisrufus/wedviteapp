@@ -1,6 +1,7 @@
 <section class="sessions">
   <div class="content">
-    <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+    <h1><%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook), class: 'facebook' %></h1>
+    <h1>or</h1>
     <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), html: { class: "form-accounts" }) do |f| %>
       <h1>Log in to your account</h1>
       <%= devise_error_messages! %>

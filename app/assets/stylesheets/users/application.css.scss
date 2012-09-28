@@ -255,6 +255,14 @@ section {
       h1 {
         margin-bottom: 20px;
       }
+      .facebook {
+        display: block;
+        background-image: url(/assets/users/facebook.png);
+        background-size: 82px;
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        height: 140px;
+      }
     }
     .form-accounts {
       input {
