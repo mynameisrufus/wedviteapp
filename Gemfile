@@ -5,8 +5,13 @@ gem 'rails', '3.2.8'
 gem 'pg'
 gem 'puma',                   '~> 1.4'
 
+# User auth
 gem 'devise',                 '~> 2.1'
 gem 'cancan',                 '~> 1.6'
+gem 'omniauth',               '~> 1.1'
+gem 'oauth2',                 '~> 0.8'
+gem 'omniauth-facebook',      '~> 1.4'
+
 gem 'kaminari',               '~> 0.13.0'
 gem 'sorted',                 '~> 0.4.2'
 gem 'redcarpet',              '~> 2.1.1'

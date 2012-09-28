@@ -14,8 +14,12 @@ WeddingInvitor::Application.routes.draw do
   end
 
   constraints subdomain: 'plan' do
-    devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations", passwords: "users/passwords" }
-
+    devise_for :users, controllers: {
+      sessions: "users/sessions",
+      registrations: "users/registrations",
+      passwords: "users/passwords",
+      omniauth_callbacks: "users/omniauth_callbacks"
+    }
 
     root to: 'users/dashboard#home'
     scope module: 'users' do
