@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
     first_name.present? && last_name.present? ? "#{first_name} #{last_name}" : email
   end
 
+  # Facebook omniauthable methods.
+  # See: https://github.com/plataformatec/devise/wiki/OmniAuth:-Overview
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(provider: auth.provider, uid: auth.uid).first
     unless user
