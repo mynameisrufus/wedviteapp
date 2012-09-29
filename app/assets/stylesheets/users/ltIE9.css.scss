@@ -6,3 +6,13 @@
 .btn {
   border: 1px solid #AEAEAE;
 }
+
+section {
+  &.sessions {
+    .content {
+      .facebook {
+        background-image: url(/assets/users/facebook.png);
+      }
+    }
+  }
+}
