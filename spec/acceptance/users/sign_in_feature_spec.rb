@@ -22,4 +22,11 @@ feature 'Sign in feature', %q{
     sign_out
     current_url.should eq "http://wedvite.dev/"
   end
+
+  scenario 'get redirected if signed in' do
+    user = User.make!
+    sign_in_with user.email, user.password
+    visit root_url(subdomain: nil)
+    current_url.should eq "http://plan.example.com/"
+  end
 end
