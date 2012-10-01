@@ -53,6 +53,7 @@ WeddingInvitor::Application.configure do;
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
+  ActionMailer::Base.register_interceptor(SendGrid::MailInterceptor)
   ActionMailer::Base.smtp_settings = {
     :address        => 'smtp.sendgrid.net',
     :port           => '587',

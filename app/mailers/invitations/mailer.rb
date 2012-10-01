@@ -1,5 +1,5 @@
 class Invitations::Mailer < ActionMailer::Base
-  default from: "noreply@wedviteapp.com"
+  default from: "WedVite <noreply@wedviteapp.com>"
 
   layout 'mailer'
 
@@ -8,6 +8,8 @@ class Invitations::Mailer < ActionMailer::Base
   end
 
   def invite(options)
+    category 'Invitations'
+
     @wedding = options[:wedding]
     @user = options[:user]
 
@@ -19,7 +21,6 @@ class Invitations::Mailer < ActionMailer::Base
     substitute "-guest_name-", names
 
     mail to: emails,
-         from: "WedVite <noreply@wedviteapp.com>",
          subject: "Invitation to #{@wedding.title}"
   end
 
