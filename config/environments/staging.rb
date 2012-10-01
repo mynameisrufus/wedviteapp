@@ -74,4 +74,6 @@ WeddingInvitor::Application.configure do;
 
   # Enable threaded mode
   config.threadsafe!
+
+  config.middleware.use Oink::Middleware, logger: Rails.logger
 end

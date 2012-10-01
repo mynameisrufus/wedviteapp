@@ -30,7 +30,11 @@ class Guest < ActiveRecord::Base
   end
 
   def invited!
-    sent.update_attribute(:invited_on, Time.now)
+    sent.update_attributes(invited_on: Time.now, state: :sent)
+  end
+
+  def self.invited! guests
+    update_all({ invited_on: Time.now, state: :sent }, { id: guests })
   end
 
   validates_presence_of :wedding_id, :name, :adults, :children, :token

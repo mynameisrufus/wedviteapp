@@ -112,4 +112,8 @@ reception_what ceremony_how reception_how thank_you_wording)
   def payment_due?
     (self.created_at + 10.days).to_i <= Time.now.to_i
   end
+
+  def paid!
+    update_attributes payment_made: true, payment_date: Time.now
+  end
 end

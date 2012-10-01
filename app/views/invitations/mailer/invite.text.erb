@@ -1,11 +1,11 @@
-Dear <%= @guest.name %>,
+Dear {{name}},
 
 We would be honoured if you would share our wedding day with us.
 
 Please find your invitation and all our wedding details in the following link:
 
-<%= link_to @url, @url %>
+<%= link_to '{{url}}', '{{url}}' %>
 
 We look forward to celebrating with you,
 
-<%= @guest.wedding.partner_one_name %> and <%= @guest.wedding.partner_two_name %>
+<%= @wedding.partner_one_name %> and <%= @wedding.partner_two_name %>

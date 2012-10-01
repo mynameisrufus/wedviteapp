@@ -18,10 +18,8 @@ class Users::InvitationsController < Users::BaseController
   def deliver
     @wedding.invite_process_started!
 
-    @guests.each do |guest|
-      mail = Invitations::Mailer.invite user: current_user, guest: guest, wedding: @wedding
-      guest.invited! if mail.deliver
-    end
+    mail = Invitations::Mailer.invite user: current_user, guests: @guests, wedding: @wedding
+    Guest.invited! @guests if mail.deliver
 
     @wedding.evt.create! wedding: @wedding,
                          headline: "#{@guests.size} guests were sent their invitations!"

@@ -11,7 +11,7 @@ class Users::PaymentsController < Users::BaseController
 
     if paypal_response.completed? && paypal_response.valid?
 
-      wedding_paid!
+      @wedding.paid!
 
       # Create a `transaction` - resembles double line accounting so we 
       # can make refunds etc.
@@ -50,10 +50,6 @@ class Users::PaymentsController < Users::BaseController
   end
 
   protected
-
-  def wedding_paid!
-    @wedding.update_attributes payment_made: true, payment_date: Time.now
-  end
 
   def fee item, gross, fee
     ((item.to_f / gross.to_f) * fee.to_f).round(2)
