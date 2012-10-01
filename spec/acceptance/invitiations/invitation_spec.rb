@@ -19,15 +19,7 @@ feature 'Invitation feature', %q{
     [guest, wedding]
   }
 
-  scenario 'view in invitation' do
-    guest, wedding = *setup_guest
-
-    page.should have_content(guest.name)
-    page.should have_content('Accept')
-    page.should have_content('Decline')
-  end
-
-  scenario 'RSVP to the wedding' do
+  scenario 'accept the invitation' do
     guest, wedding = *setup_guest
 
     click_link 'Accept'
@@ -39,8 +31,15 @@ feature 'Invitation feature', %q{
   end
 
   scenario 'decline the invitation' do
-    # should be able to leave a message
-    # should get a thank you message after message sent
+    guest, wedding = *setup_guest
+
+    click_link 'Decline'
+    page.should have_content('Leave us a message')
+    fill_in 'message', with: 'Gluten free'
+    click_button 'Message'
+    guest.messages.first.text.should eq 'Gluten free'
+    page.should have_content("Thank you")
+    page.should have_content("We are sorry you cannot not make it.")
   end
 
   scenario 'RSVP after previously declining' do
