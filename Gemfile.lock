@@ -265,9 +265,9 @@ GEM
       libwebsocket (~> 0.1.3)
       multi_json (~> 1.0)
       rubyzip
-    sendgrid (1.0.1)
-      json
-      json
+    sendgrid-rails (2.0.2)
+      actionmailer (>= 3.0.0)
+      activesupport (>= 2.1.0)
     slop (3.3.3)
     sorted (0.4.3)
     sprockets (2.1.3)
@@ -341,7 +341,7 @@ DEPENDENCIES
   rspec-rails (~> 2.10)
   ruby_gntp
   sass-rails (~> 3.2.5)
-  sendgrid (~> 1.0)
+  sendgrid-rails (~> 2.0)
   sorted (~> 0.4.2)
   steak (~> 2.0.0)
   therubyracer (~> 0.10)

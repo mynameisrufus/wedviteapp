@@ -25,7 +25,7 @@ gem 'paperclip',              '~> 3.1'
 gem 'ffaker',                 '~> 1.14'
 gem 'exception_notification', '~> 2.6'
 
-gem 'sendgrid',               '~> 1.0'
+gem 'sendgrid-rails',         '~> 2.0'
 
 # Validation of stationery markup
 gem 'nokogiri',               '~> 1.5'
