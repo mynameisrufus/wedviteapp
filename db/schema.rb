@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120928112453) do
+ActiveRecord::Schema.define(:version => 20121003095749) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -189,12 +189,16 @@ ActiveRecord::Schema.define(:version => 20120928112453) do
 
   create_table "messages", :force => true do |t|
     t.text     "text"
-    t.integer  "guest_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "wedding_id",       :null => false
+    t.integer  "messageable_id",   :null => false
+    t.string   "messageable_type", :null => false
   end
 
-  add_index "messages", ["guest_id"], :name => "index_messages_on_guest_id"
+  add_index "messages", ["messageable_id"], :name => "index_messages_on_messageable_id"
+  add_index "messages", ["messageable_type"], :name => "index_messages_on_messageable_type"
+  add_index "messages", ["wedding_id"], :name => "index_messages_on_wedding_id"
 
   create_table "payments", :force => true do |t|
     t.float    "gross",            :default => 0.0, :null => false
@@ -247,6 +251,19 @@ ActiveRecord::Schema.define(:version => 20120928112453) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
+
+  create_table "replies", :force => true do |t|
+    t.text     "text"
+    t.integer  "message_id",     :null => false
+    t.integer  "replyable_id",   :null => false
+    t.string   "replyable_type", :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "replies", ["message_id"], :name => "index_replies_on_message_id"
+  add_index "replies", ["replyable_id"], :name => "index_replies_on_replyable_id"
+  add_index "replies", ["replyable_type"], :name => "index_replies_on_replyable_type"
 
   create_table "stationeries", :force => true do |t|
     t.string   "name"

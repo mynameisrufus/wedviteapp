@@ -25,12 +25,8 @@ class Invitations::GuestsController < Invitations::BaseController
 
   def message
     if params[:message].present?
-      @message = @guest.messages.create! text: params[:message]
-
-      @message.evt.create! wedding: @guest.wedding,
-                           state: 'new',
-                           headline: @guest.name,
-                           quotation: @message.text
+      @message = @guest.messages.create! wedding: @guest.wedding,
+                                         text: params[:message]
     end
 
     if @guest.declined?

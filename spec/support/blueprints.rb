@@ -142,3 +142,7 @@ PromotionalCode.blueprint do
   discount { 0.5 }
   expires_on { Time.now + 5.months }
 end
+
+Reply.blueprint do
+  # Attributes here
+end

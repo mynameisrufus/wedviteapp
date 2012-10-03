@@ -4,7 +4,9 @@ class Guest < ActiveRecord::Base
   belongs_to :wedding
 
   has_many :comments, dependent: :destroy
-  has_many :messages, dependent: :destroy
+
+  has_many :messages, dependent: :destroy, as: :messageable
+  has_many :replies, dependent: :destroy, as: :replyable
 
   STATES = [
     { verb: :approve, noun: :approved },

@@ -12,6 +12,9 @@ class User < ActiveRecord::Base
   has_many :collaborations, class_name: 'Collaborator', dependent: :destroy
   has_many :weddings, through: :collaborations
 
+  has_many :messages, dependent: :destroy, as: :messageable
+  has_many :replies, dependent: :destroy, as: :replyable
+
   # Remember me by default
   def remember_me
     true

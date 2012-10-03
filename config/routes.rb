@@ -104,17 +104,21 @@ WeddingInvitor::Application.routes.draw do
     scope module: 'invitations' do
       match 'robots.txt' => 'base#robots'
 
-      match ':token'           => 'stationery#show', as: :invitation
-      match ':token/print'     => 'stationery#print', as: :print_invitation
+      scope ":token" do
+        root to: 'stationery#show', as: :invitation
+        match 'print'     => 'stationery#print', as: :print_invitation
 
-      match ':token/message'   => 'guests#message', as: :guest_message, method: :post
-      match ':token/update'    => 'guests#update', as: :guest, method: :post
-      match ':token/accept'    => 'guests#accept', as: :accept_invitation
-      match ':token/decline'   => 'guests#decline', as: :decline_invitation
-      match ':token/thankyou'  => 'guests#after_decline', as: :after_decline
+        match 'message'   => 'guests#message', as: :guest_message, method: :post
+        match 'update'    => 'guests#update', as: :guest, method: :post
+        match 'accept'    => 'guests#accept', as: :accept_invitation
+        match 'decline'   => 'guests#decline', as: :decline_invitation
+        match 'thankyou'  => 'guests#after_decline', as: :after_decline
 
-      match ':token/details'   => 'weddings#details', as: :guesthome
-      match ':token/ical'      => 'weddings#ical', as: :ical
+        match 'details'   => 'weddings#details', as: :guesthome
+        match 'ical'      => 'weddings#ical', as: :ical
+
+        resources :messages, :replies
+      end
     end
   end
 

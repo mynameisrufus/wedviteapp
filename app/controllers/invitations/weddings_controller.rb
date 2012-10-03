@@ -6,7 +6,7 @@ class Invitations::WeddingsController < Invitations::BaseController
       redirect_to path_for_guest_state
     else
       @guests = @wedding.guests.accepted.order(:name)
-      @events = @wedding.events.eventfull(:message).order("created_at DESC").page(params[:page]).per(50)
+      @messages = @wedding.messages.order("created_at DESC").page(params[:page]).per(50)
     end
   end
 

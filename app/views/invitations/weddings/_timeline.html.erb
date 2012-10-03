@@ -15,11 +15,11 @@
   </fieldset>
 <% end %>
 
-<% @events.each do |event| %>
-  <div class="well <%= event.to_css %>">
-    <p><%= event.headline %></p>
+<% @messages.each do |message| %>
+  <div class="well">
+    <p><%= message.messageable.name %></p>
     <blockquote>
-      <%= event.quotation %>
+      <%= message.text %>
     </blockquote>
   </div>
 <% end %>
