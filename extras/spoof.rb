@@ -8,7 +8,8 @@ class Spoof
       ceremony_when: Time.now + 10.days,
       ceremony_when_end: Time.now + 10.days + 2.hours,
       ceremony_when: Time.now + 10.days + 5.hours,
-      ceremony_when_end: Time.now + 10.days + 10.hours
+      ceremony_when_end: Time.now + 10.days + 10.hours,
+      respond_deadline: Time.now + 5.days + 10.hours
     }.merge(attributes))
   end
 
