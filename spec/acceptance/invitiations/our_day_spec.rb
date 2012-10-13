@@ -25,14 +25,4 @@ feature 'Our day feature', %q{
 
     page.should have_content(wedding.ceremony_what.split(/\n/).first.gsub(/\*/, ''))
   end
-
-  scenario 'leave a message before the wedding' do
-    guest, wedding = *setup_guest
-
-    fill_in 'message', with: "Hello"
-    click_button "Message"
-
-    guest.messages.first.text.should eq "Hello"
-    page.should have_content("Hello")
-  end
 end

@@ -1,6 +1,4 @@
 class Invitations::GuestsController < Invitations::BaseController
-  before_filter :find_guest
-
   def accept
     unless @guest.accepted?
       @guest.update_state :accepted

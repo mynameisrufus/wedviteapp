@@ -1,11 +1,23 @@
-class Invitations::MessagesController < Invitations::BaseController
+class Users::MessagesController < Users::BaseController
+  before_filter :find_wedding
+
+  show_subnav true
+
   def create
-    @message = @guest.messages.new text: params[:message][:text], wedding: @wedding
+    @message = current_user.messages.new text: params[:message][:text], wedding: @wedding
 
     respond_to do |format|
       if @message.save
+
+        if params[:email]
+          mail = Invitations::Mailer.message_email message: @message,
+                                                   guests: @wedding.guests.accepted,
+                                                   user: current_user
+          mail.deliver
+        end
+
         format.html do
-          redirect_to invitation_path(@guest.token), notice: 'Message added.'
+          redirect_to wedding_timeline_path(@wedding), notice: 'Message added.'
         end
       else
         format.html { render action: "index" }
@@ -18,7 +30,7 @@ class Invitations::MessagesController < Invitations::BaseController
 
     respond_to do |format|
       if @message.update_attributes text: params[:message]
-        format.html { redirect_to wedding_guestlist_path(@wedding), notice: 'Comment was successfully updated.' }
+        format.html { redirect_to wedding_timeline_path(@wedding), notice: 'Message updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

@@ -1,0 +1,58 @@
+<div class="page-header">
+  <h1>Leave a new message</h1>
+</div>
+
+<div class="well">
+  <%= form_for @guest.messages.build, url: messages_path(@guest.token) do |f| %>
+    <fieldset>
+      <div class="control-group">
+        <div class="controls">
+          <%= f.text_area :text, placeholder: "Type new message here." %>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn pull-right">Message</button>
+      </div>
+    </fieldset>
+  <% end %>
+</div>
+
+<% @messages.each do |message| %>
+  <div class="well">
+    <div class="details">
+      <p class="who"><%= message.messageable.name %></p>
+      <p class="when"><%= time_ago_in_words message.created_at %> ago</p>
+    </div>
+    <div class="message"><%= message.text %></div>
+    <div class="replies">
+      <div class="chat-bubble-arrow-border"></div>
+      <div class="chat-bubble-arrow"></div>
+      <% message.replies.each do |reply| %>
+        <div class="details">
+          <p class="who"><%= reply.replyable.name %></p>
+          <p class="when"><%= time_ago_in_words reply.created_at %> ago</p>
+        </div>
+        <div class="reply"><%= reply.text %></div>
+      <% end %>
+      <%= form_for message.replies.build, url: message_replies_path(@guest.token, message) do |f| %>
+        <fieldset>
+          <%= f.text_area :text, placeholder: "Write a comment." %>
+          <div class="form-actions">
+            <button type="submit" class="btn pull-right">Reply</button>
+          </div>
+        </fieldset>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<script>
+$(function(){
+    $('fieldset').each(function(index, el) {
+        var $fieldset = $(el)
+        $fieldset.find('textarea').on('focus', function() {
+            $fieldset.find('.form-actions').show()
+        })
+    });
+});
+</script>

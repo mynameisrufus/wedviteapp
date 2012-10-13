@@ -1,10 +1,12 @@
 class Invitations::BaseController < ApplicationController
   layout 'invitations/application'
 
+  before_filter :find_guest
+
   protected
 
   def find_guest
-    @guest   = GuestStrict.token_find params[:token]
+    @guest = GuestStrict.token_find params[:token]
     @wedding = @guest.wedding
   end
 

@@ -6,19 +6,19 @@ feature 'Update guest details feature', %q{
   So the wedding collaborators have my correct information
 } do
 
-  scenario 'change the number of adults and children' do
+  pending 'change the number of adults and children' do
 
   end
 
-  scenario 'change my name' do
+  pending 'change my name' do
 
   end
 
-  scenario 'change my email address' do
+  pending 'change my email address' do
 
   end
 
-  scenario 'change wether I am attending the reception or not' do
+  pending 'change wether I am attending the reception or not' do
 
   end
 end

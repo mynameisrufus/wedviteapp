@@ -1,13 +1,61 @@
 <section class="timeline">
+  <% if @wedding.invite_process_started? %>
+    <div class="well">
+      <%= form_for current_user.messages.build, url: wedding_messages_path(@wedding), html: { class: 'form-inline' } do |f| %>
+        <fieldset>
+          <%= f.text_area :text, placeholder: "Leave your guests a new message." %>
+          <div class="form-actions">
+            <label class="checkbox">
+              <%= check_box_tag :email %> Email all guests that have accepted the invitation with this message.
+            </label>
+            <button type="submit" class="btn pull-right">Message</button>
+          </div>
+        </fieldset>
+      <% end %>
+    </div>
+  <% end %>
+
   <% @events.each do |event| %>
     <div class="well <%= event.to_css %>">
       <p><%= event.headline %></p>
-      <% unless event.quotation.nil? %>
+      <% if event.message? && @wedding.invite_process_started? %>
+        <div class="message"><%= event.eventfull.text %></div>
+        <div class="replies">
+          <div class="chat-bubble-arrow-border"></div>
+          <div class="chat-bubble-arrow"></div>
+          <% event.eventfull.replies.each do |reply| %>
+            <div class="reply"><%= reply.text %></div>
+            <p><strong><%= time_ago_in_words reply.created_at %> ago</strong></p>
+          <% end %>
+          <%= form_for event.eventfull.replies.build, url: wedding_message_replies_path(@wedding, event.eventfull) do |f| %>
+            <fieldset>
+              <%= f.text_area :text, placeholder: "Write a comment." %>
+              <div class="form-actions">
+                <button type="submit" class="btn pull-right">Reply</button>
+              </div>
+            </fieldset>
+          <% end %>
+        </div>
+      <% end %>
+
+      <% if event.comment? %>
         <blockquote>
-          <span class="bqstart">&#8220;</span><%= event.quotation %><span class="bqend">&#8221;</span>
+          <span class="bqstart">&#8220;</span><%= event.eventfull.text %><span class="bqend">&#8221;</span>
         </blockquote>
       <% end %>
+
       <p><strong><%= time_ago_in_words event.created_at %> ago</strong></p>
     </div>
   <% end %>
 </section>
+
+<script>
+$(function(){
+    $('fieldset').each(function(index, el) {
+        var $fieldset = $(el)
+        $fieldset.find('textarea').on('focus', function() {
+            $fieldset.find('.form-actions').show()
+        })
+    });
+});
+</script>

@@ -1,12 +1,10 @@
 class Invitations::WeddingsController < Invitations::BaseController
-  before_filter :find_guest
-
   def details
     if should_redirect_guest?
       redirect_to path_for_guest_state
     else
       @guests = @wedding.guests.accepted.order(:name)
-      @messages = @wedding.messages.order("created_at DESC").page(params[:page]).per(50)
+      @messages = @wedding.messages.includes(:replies).order("created_at DESC").page(params[:page]).per(50)
     end
   end
 

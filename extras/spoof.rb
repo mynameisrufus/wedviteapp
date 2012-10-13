@@ -29,4 +29,10 @@ class Spoof
       last_name: Faker::Name.last_name
     }.merge(attributes))
   end
+
+  def self.message
+    guest.messages.new({
+      text: "tinopai... mete"
+    })
+  end
 end

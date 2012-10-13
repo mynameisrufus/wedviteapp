@@ -75,6 +75,9 @@ WeddingInvitor::Application.routes.draw do
           post 'move'
           resources :comments
         end
+        resources :messages, except: %w(show) do
+          resources :replies, except: %w(show)
+        end
       end
       match 'feedback/new' => 'feedback#new', method: :get
       match 'feedback' => 'feedback#create', method: :post
@@ -108,7 +111,9 @@ WeddingInvitor::Application.routes.draw do
         root to: 'stationery#show', as: :invitation
         match 'print'     => 'stationery#print', as: :print_invitation
 
+        # TODO remove this
         match 'message'   => 'guests#message', as: :guest_message, method: :post
+
         match 'update'    => 'guests#update', as: :guest, method: :post
         match 'accept'    => 'guests#accept', as: :accept_invitation
         match 'decline'   => 'guests#decline', as: :decline_invitation
@@ -117,7 +122,9 @@ WeddingInvitor::Application.routes.draw do
         match 'details'   => 'weddings#details', as: :guesthome
         match 'ical'      => 'weddings#ical', as: :ical
 
-        resources :messages, :replies
+        resources :messages, only: %w(create update destroy) do
+          resources :replies, only: %w(create update destroy)
+        end
       end
     end
   end

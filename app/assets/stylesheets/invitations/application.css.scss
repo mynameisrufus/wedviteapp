@@ -59,6 +59,70 @@ textarea {
   box-sizing: border-box;
 }
 
+#messages {
+  .details {
+    margin-bottom: 10px;
+    p {
+      line-height: 1em;
+      margin: 0px;
+      &.who {
+        font-weight: bold;
+      }
+      &.when {
+        font-size: 0.7em;
+        color: gray;
+      }
+    }
+  }
+  form {
+    margin: 0px;
+  }
+  textarea {
+    height: 30px;
+  }
+  .form-actions {
+    display: none;
+    margin: 0px;
+    background-color: #E3E3E3;
+  }
+  .replies {
+    position: relative;
+    background-color: rgb(234, 243, 248);
+    margin-top: 20px;
+    margin-left: 30px;
+    padding: 10px;
+    border: 1px solid #E3E3E3;
+    .reply {
+      margin-bottom: 10px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #E3E3E3;
+    }
+    .form-actions {
+      background-color: transparent;
+    }
+    .chat-bubble-arrow-border {
+      border-color: transparent transparent #E3E3E3 transparent;
+      border-style: solid;
+      border-width: 10px;
+      height:0;
+      width:0;
+      position:absolute;
+      top:-21px;
+      left:30px;
+    }
+    .chat-bubble-arrow {
+      border-color: transparent transparent rgb(234, 243, 248) transparent;
+      border-style: solid;
+      border-width: 10px;
+      height:0;
+      width:0;
+      position:absolute;
+      top:-20px;
+      left:30px;
+    }
+  }
+}
+
 .tab-content {
   padding: 10px;
   background-color: $white; 

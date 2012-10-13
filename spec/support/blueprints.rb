@@ -116,7 +116,7 @@ Location.blueprint do
 end
 
 Message.blueprint do
-  # Attributes here
+  text { Faker::Lorem.paragraph }
 end
 
 Payment.blueprint do

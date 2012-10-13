@@ -1,14 +1,15 @@
-class Invitations::RepliesController < Invitations::BaseController
+class Users::RepliesController < Users::BaseController
+  before_filter :find_wedding
   before_filter :find_message
 
   def create
-    @reply = @guest.replies.new text: params[:reply][:text], message: @message
+    @reply = current_user.replies.new text: params[:reply][:text], message: @message
 
     respond_to do |format|
       if @reply.save
         Invitations::Mailer.reply_email(@reply).deliver
         format.html do
-          redirect_to invitation_path(@guest.token), notice: 'Reply created.'
+          redirect_to wedding_timeline_path(@wedding), notice: 'Reply created.'
         end
       else
         format.html { render action: "messages/index" }
@@ -21,7 +22,7 @@ class Invitations::RepliesController < Invitations::BaseController
 
     respond_to do |format|
       if @reply.update_attributes text: params[:reply]
-        format.html { redirect_to wedding_guestlist_path(@wedding), notice: 'Comment was successfully updated.' }
+        format.html { redirect_to wedding_timeline_path(@wedding), notice: 'Comment was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

@@ -9,6 +9,14 @@ class Event < ActiveRecord::Base
     where(eventfull_type: type.to_s.classify)
   }
 
+  def message?
+    eventfull_type == Message.to_s
+  end
+
+  def comment?
+    eventfull_type == Comment.to_s
+  end
+
   def to_css
     [
       'event',

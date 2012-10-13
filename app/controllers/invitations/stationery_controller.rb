@@ -1,6 +1,4 @@
 class Invitations::StationeryController < Invitations::BaseController
-  before_filter :find_guest
-
   layout false
 
   def show
@@ -16,10 +14,6 @@ class Invitations::StationeryController < Invitations::BaseController
   end
 
   protected
-
-  def find_guest
-    @guest = Guest.find_by_token params[:token]
-  end
 
   def render_stationery
     render inline: @guest.wedding.stationery.render(@guest, accept_invitation_path, decline_invitation_path)

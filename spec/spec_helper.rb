@@ -13,7 +13,7 @@ RSpec.configure do |config|
   config.mock_with :rspec
 
   # Randomize the order the tests are run.
-  config.order = "random"
+  # config.order = "random"
 
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of

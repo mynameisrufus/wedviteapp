@@ -42,14 +42,11 @@ feature 'Invitation feature', %q{
     page.should have_content("We are sorry you cannot not make it.")
   end
 
-  scenario 'RSVP after previously declining' do
-    # should only see a page with the option to change your status
-    # should be able to leave a message
-    # should add item to timeline if change
-    # should email collaborators
+  pending 'RSVP after previously declining' do
+
   end
 
-  scenario 'become rejected after the invitation has been sent' do
+  pending 'become rejected after the invitation has been sent' do
     # should get a 4 O something
   end
 end

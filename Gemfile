@@ -36,6 +36,7 @@ gem 'wkhtmltopdf-binary',     '~> 0.9.9.1'
 
 # Preview emails.
 # https://rubygems.org/gems/mail_view
+# https://github.com/37signals/mail_view
 gem 'mail_view',            '~> 1.0.3'
 
 group :staging do

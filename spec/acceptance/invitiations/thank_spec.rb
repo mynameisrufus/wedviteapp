@@ -5,7 +5,7 @@ feature 'Thank you feature', %q{
   I want to share the thank you page with our guests after the wedding
 } do
 
-  scenario 'return have the correct sections available' do
+  pending 'return have the correct sections available' do
 
     #page.should_not have_content('Our day')
     #page.should_not have_content('Directions')
@@ -16,11 +16,11 @@ feature 'Thank you feature', %q{
     #page.should have_content('Messages')
   end
 
-  scenario 'show the thank you content after the wedding' do
+  pending 'show the thank you content after the wedding' do
 
   end
 
-  scenario 'leave a message after the wedding' do
+  pending 'leave a message after the wedding' do
 
     # should add a message
     # should add to timeline
