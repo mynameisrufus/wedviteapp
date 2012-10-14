@@ -6,7 +6,9 @@ class Invitations::RepliesController < Invitations::BaseController
 
     respond_to do |format|
       if @reply.save
-        Invitations::Mailer.reply_email(@reply).deliver
+
+        Messages::Mailer.reply(@reply).deliver
+
         format.html do
           redirect_to invitation_path(@guest.token), notice: 'Reply created.'
         end

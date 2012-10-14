@@ -28,9 +28,18 @@ Guest.blueprint do
   email { Faker::Internet.email }
   address { Faker::Address.street_address }
   phone { Faker::PhoneNumber.phone_number }
+  token { FriendlyToken.make }
   adults { rand(5) }
   children { rand(5) }
   partner_number { rand(1..2) }
+end
+
+Guest.blueprint :rejected do
+  state { 'rejected' }
+end
+
+Guest.blueprint :accepted do
+  state { 'accepted' }
 end
 
 Wedding.blueprint do

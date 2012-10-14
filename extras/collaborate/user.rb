@@ -33,16 +33,16 @@ module Collaborate
       mail = unless user.nil?
         @notify_sent = true
         @collaborator = ::Collaborator.create role: @role, wedding_id: @wedding.id, user: @user
-        Users::Mailer.notify_collaborator requestor: @requestor,
-                                          wedding: @wedding,
-                                          user: @user,
-                                          collaborator: @collaborator
+        Users::NotifyCollaboratorMailer.prepare requestor: @requestor,
+                                                wedding: @wedding,
+                                                user: @user,
+                                                collaborator: @collaborator
       else
         @invite_sent = true
-        Users::Mailer.invite_collaborator requestor: @requestor,
-                                          wedding: @wedding,
-                                          email: @email,
-                                          token: @collaboration_token.token
+        Users::InviteCollaboratorMailer.prepare requestor: @requestor,
+                                                wedding: @wedding,
+                                                email: @email,
+                                                token: @collaboration_token.token
       end
       mail.deliver
     end

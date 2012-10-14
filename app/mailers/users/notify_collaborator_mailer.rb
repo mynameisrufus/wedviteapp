@@ -1,0 +1,12 @@
+class Users::NotifyCollaboratorMailer < Users::Mailer
+  def prepare options
+    @requestor = options[:requestor]
+    @user      = options[:user]
+    @wedding   = options[:wedding]
+    @url       = wedding_url(@wedding, host: host,  subdomain: subdomain)
+
+    mail to: @user.email,
+         subject: "You are now collaborating on #{@wedding.name}",
+         template_name: 'notify_collaborator'
+  end
+end

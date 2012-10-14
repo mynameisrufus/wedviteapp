@@ -10,10 +10,7 @@ class Users::MessagesController < Users::BaseController
       if @message.save
 
         if params[:email]
-          mail = Invitations::Mailer.message_email message: @message,
-                                                   guests: @wedding.guests.accepted,
-                                                   user: current_user
-          mail.deliver
+          Message::Mailer.message(@message).deliver
         end
 
         format.html do

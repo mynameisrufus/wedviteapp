@@ -30,9 +30,20 @@ class Spoof
     }.merge(attributes))
   end
 
-  def self.message
+  def self.message attributes = {}
     guest.messages.new({
       text: "tinopai... mete"
-    })
+    }.merge(attributes))
+  end
+
+  def self.reply attributes = {}
+    guest.replies.new({
+      text: "tinopai... mete",
+      message: message
+    }.merge(attributes))
+  end
+
+  def self.text
+    Faker::Lorem.paragraph
   end
 end

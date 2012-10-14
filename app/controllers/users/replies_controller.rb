@@ -7,7 +7,10 @@ class Users::RepliesController < Users::BaseController
 
     respond_to do |format|
       if @reply.save
-        Invitations::Mailer.reply_email(@reply).deliver
+
+        Messages::Guests.reply(@reply).deliver
+        Messages::Users.reply(@reply).deliver
+
         format.html do
           redirect_to wedding_timeline_path(@wedding), notice: 'Reply created.'
         end

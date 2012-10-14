@@ -1,7 +1,7 @@
 WeddingInvitor::Application.routes.draw do
 
   if Rails.env.development?
-    mount Invitations::Mailer::Preview => 'invitation-emails'
+    mount MailPreview => 'mail-preview'
   end
 
   constraints subdomain: 'admin' do

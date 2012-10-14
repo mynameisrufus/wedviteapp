@@ -53,7 +53,10 @@ WeddingInvitor::Application.configure do;
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
+  # SendGrid API
   ActionMailer::Base.register_interceptor(SendGrid::MailInterceptor)
+
+  # SendGrid config
   ActionMailer::Base.smtp_settings = {
     :address        => 'smtp.sendgrid.net',
     :port           => '587',
@@ -62,6 +65,7 @@ WeddingInvitor::Application.configure do;
     :password       => ENV['SENDGRID_PASSWORD'],
     :domain         => 'heroku.com'
   }
+
   ActionMailer::Base.delivery_method = :smtp
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
