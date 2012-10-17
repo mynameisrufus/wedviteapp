@@ -40,6 +40,7 @@ Production:
 Copy production data to staging:
 
     heroku pgbackups:capture --app wedvite
+    heroku pg:reset SHARED_DATABASE --app wedvite-staging
     heroku pgbackups:restore SHARED_DATABASE `heroku pgbackups:url --app wedvite` --app wedvite-staging
 
 https://devcenter.heroku.com/articles/pgbackups
@@ -50,11 +51,11 @@ Import on local:
     curl -o tmp/latest.dump `heroku pgbackups:url`
     pg_restore --verbose --clean --no-acl --no-owner -d wedding_invitor_development tmp/latest.dump
 
-### Nuke
+Nuke staging:
 
-    heroku pg:reset SHARED_DATABASE
-    heroku run rake db:setup
-    heroku restart
+    heroku pg:reset SHARED_DATABASE --app wedvite-staging
+    heroku run rake db:setup --app wedvite-staging
+    heroku restart --app wedvite-staging
 
 # PayPal
 
