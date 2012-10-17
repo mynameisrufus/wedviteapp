@@ -53,7 +53,7 @@
       <% [1,2].each do |partner_number| %>
       <div class="column">
         <% ga[:guests].select{|g| g.partner_number == partner_number}.each do |guest| %>
-          <div class="guest" data-id="<%= guest.id %>">
+          <div class="guest <%= guest.viewed? ? "viewed" : nil %>" data-id="<%= guest.id %>">
             <%= state_icon guest.state %>
             <div class="details">
               <h3><%= guest.name %></h3>

@@ -232,6 +232,14 @@ section {
           visibility: hidden;
           margin-left: 30px;
         }
+        &.viewed {
+          .details {
+            background-image: image-url("users/eye.png");
+            background-size: 50px;
+            background-repeat: no-repeat;
+            background-position: top right;
+          }
+        }
         &:hover, &.active {
           .details span {
             @include opacity(100);

@@ -65,6 +65,10 @@ class Guest < ActiveRecord::Base
     self.position = guest.nil? ? 0 : (guest.position.to_i + 1)
   end
 
+  def viewed?
+    !viewed_at.nil?
+  end
+
   def last_for_partner_and_state
     self.class.where(state: state)
               .where(wedding_id: wedding_id)
