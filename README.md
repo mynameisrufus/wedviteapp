@@ -40,9 +40,15 @@ Production:
 Copy production data to staging:
 
     heroku pgbackups:capture --app wedvite
-    heroku pgbackups:restore DATABASE `heroku pgbackups:url --app wedvite` --app wedvite-staging
+    heroku pgbackups:restore SHARED_DATABASE `heroku pgbackups:url --app wedvite` --app wedvite-staging
 
 https://devcenter.heroku.com/articles/pgbackups
+
+Import on local:
+
+    rake db:drop db:create
+    curl -o tmp/latest.dump `heroku pgbackups:url`
+    pg_restore --verbose --clean --no-acl --no-owner -d wedding_invitor_development tmp/latest.dump
 
 ### Nuke
 

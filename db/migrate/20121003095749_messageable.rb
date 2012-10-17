@@ -1,9 +1,8 @@
 class Messageable < ActiveRecord::Migration
   def change
-    change_table :messages do |t|
-      t.references :wedding, null: false
-      t.references :messageable, polymorphic: true, null: false
-    end
+    add_column :messages, :wedding_id, :integer
+    add_column :messages, :messageable_id, :integer
+    add_column :messages, :messageable_type, :string
 
     execute <<EOL
 UPDATE messages AS m
@@ -14,13 +13,12 @@ FROM guests AS g
 WHERE m.guest_id = g.id
 EOL
 
-    change_table :messages do |t|
-      t.remove :guest_id
-    end
+    change_column :messages, :wedding_id, :integer, null: false
+    change_column :messages, :messageable_id, :integer, null: false
+    change_column :messages, :messageable_type, :string, null: false
 
-    change_table :guests do |t|
-      t.remove :messages_count
-    end
+    remove_column :messages, :guest_id
+    remove_column :guests, :messages_count
 
     add_index :messages, :wedding_id
     add_index :messages, :messageable_id
