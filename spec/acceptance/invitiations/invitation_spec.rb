@@ -23,11 +23,7 @@ feature 'Invitation feature', %q{
     guest, wedding = *setup_guest
 
     click_link 'Accept'
-    page.should have_content('Leave us a message')
-    fill_in 'message', with: 'Gluten free'
-    click_button 'Message'
-    guest.messages.first.text.should eq 'Gluten free'
-    page.should have_content('Our Day')
+    page.should have_content('You have RSVP\'d')
   end
 
   scenario 'decline the invitation' do

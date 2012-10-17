@@ -2,18 +2,19 @@ class Invitations::GuestsController < Invitations::BaseController
   def accept
     unless @guest.accepted?
       @guest.update_state :accepted
-      @guest.update_attribute(:replyed_on, Time.now)
+      @guest.touch :replyed_on
 
       @guest.evt.create! wedding: @guest.wedding,
                          state: 'accepted',
                          headline: "#{@guest.name} has #{t("state.accepted.noun")}"
     end
+    redirect_to guesthome_path, notice: 'You have RSVP\'d'
   end
 
   def decline
     unless @guest.declined?
       @guest.update_state :declined
-      @guest.update_attribute(:replyed_on, Time.now)
+      @guest.touch :replyed_on
 
       @guest.evt.create! wedding: @guest.wedding,
                          state: 'declined',
