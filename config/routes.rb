@@ -67,6 +67,7 @@ WeddingInvitor::Application.routes.draw do
         end
         resources :collaborators, except: %w(show)
         resources :guests do
+          get 'remind'
           post 'approve'
           post 'reject'
           post 'tentative'

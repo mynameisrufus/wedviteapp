@@ -84,4 +84,15 @@ feature 'Guest feature', %q{
       page.should have_content("#{guest.name} are now #{translation[:noun]}")
     end
   end
+
+  scenario 'remind a guest with a reminder email' do
+    wedding, user, collaborator = wedup!
+    guest = Guest.make! wedding_id: wedding.id,
+                        state: 'sent'
+    navigate_to_wedding wedding, user
+
+    click_link "remind"
+
+    page.should have_content("#{guest.name} has been sent a reminder email.")
+  end
 end
