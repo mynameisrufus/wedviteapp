@@ -7,6 +7,8 @@ class Reply < ActiveRecord::Base
   validates_presence_of :text, :message_id, :replyable_id,
                         :replyable_type
 
+  default_scope order("created_at ASC")
+
   def by? type
     replyable_type == type.to_s.humanize
   end
