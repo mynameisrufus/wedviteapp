@@ -1,0 +1,49 @@
+<table width="500" border="0" align="center" cellpadding="0" cellspacing="0" style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background-color:white;table-layout:fixed;overflow:hidden"> 
+  <tbody>
+    <tr> 
+      <td><span style="font-size:16px;line-height:20px;font-weight:bold;color:#333">Dear <%= @guest.name %>,</span></td> 
+    </tr> 
+    <tr valign="top"> 
+      <td height="20" style="background-color:white"></td> 
+    </tr> 
+    <tr valign="top"> 
+      <td height="10" style="background-color:white"></td> 
+    </tr> 
+    <tr valign="top"> 
+      <td><span style="color:#555;font-size:14px;line-height:18px">Please find below a link to our wedding invitation and all the details:</span> </td> 
+    </tr> 
+    <tr valign="top"> 
+      <td height="20" style="background-color:white"></td> 
+    </tr> 
+    <tr valign="top"> 
+      <td><span style="color:#555;font-size:14px;line-height:18px"><%= link_to @url, @url %></span></td>
+    </tr> 
+    <tr valign="top"> 
+      <td height="20" style="background-color:white"></td> 
+    </tr> 
+    <tr valign="top"> 
+      <td><span style="color:#555;font-size:14px;line-height:18px">We hope you can make it,</span></td>
+    </tr> 
+    <tr valign="top"> 
+      <td height="30" style="background-color:white"></td> 
+    </tr> 
+    <tr valign="top"> 
+      <td><span style="color:#555;font-size:14px;line-height:18px"><%= @wedding.partner_one_name %> and <%= @wedding.partner_two_name %></span></td>
+    </tr> 
+    <tr valign="top"> 
+      <td height="60" style="background-color:white"></td> 
+    </tr> 
+    <tr valign="top"> 
+      <% unless @wedding.respond_deadline.nil? %>
+      <td><span style="color:#555;font-size:14px;line-height:18px;font-style:italic;">Please RSVP by <%= @wedding.respond_deadline.strftime "%A the #{@wedding.respond_deadline.day.ordinalize} of %B %G" %></span></td>
+      <% end %>
+    </tr> 
+  </tbody>
+</table> 
+<table cellpadding="0" cellspacing="0" border="0" width="670" style="background-color:white"> 
+  <tbody>
+    <tr> 
+      <td> </td> 
+    </tr> 
+  </tbody>
+</table> 

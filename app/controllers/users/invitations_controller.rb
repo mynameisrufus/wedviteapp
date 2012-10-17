@@ -18,7 +18,9 @@ class Users::InvitationsController < Users::BaseController
   def deliver
     @wedding.invite_process_started!
 
-    mail = Invitations::Mailer.invite user: current_user, guests: @guests, wedding: @wedding
+    mail = Invitations::InviteMailer.prepare sender: current_user,
+                                             guests: @guests,
+                                             wedding: @wedding
     Guest.invited! @guests if mail.deliver
 
     @wedding.evt.create! wedding: @wedding,

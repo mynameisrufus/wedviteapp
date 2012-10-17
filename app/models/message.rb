@@ -19,10 +19,19 @@ class Message < ActiveRecord::Base
 
     def initialize message, guests = [], users = []
       @message = message
-      @guests  = guests
       @users   = users
+      @guests  = guests.select{ |guest| guest.accepted? }
       collect
+      reject
     end
+
+    def not messageable
+      @guests.delete messageable
+      @users.delete messageable
+      self
+    end
+
+    protected
 
     def collect
       case @message.messageable_type
@@ -37,10 +46,18 @@ class Message < ActiveRecord::Base
       end
     end
 
-    def not messageable
-      @guests.delete messageable
-      @users.delete messageable
-      self
+    # If a guest declines an invitation or gets rejected then they
+    # should no longer be considered a participant.
+    #
+    # Also reject users that are no longer collaborators on the wedding.
+    def reject
+      @guests.select! do |guest|
+        guest.accepted?
+      end
+
+      @users.select! do |user|
+        @message.wedding.users.include? user
+      end
     end
   end
 

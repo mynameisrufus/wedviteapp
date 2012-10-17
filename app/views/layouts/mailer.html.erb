@@ -54,7 +54,7 @@
                             <tr> 
                               <td style="width:85px"></td> 
                               <td style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;line-height:17px;color:#777;text-shadow:0 1px 0 #ffffff">
-                                <div>Email sent by <a href="http://wedviteapp.com/" style="border:none;color:#0084b4;text-decoration:none" target="_blank">wedviteapp.com</a> on behalf of <%= @sender.name %>.</div>
+                                <div>Email sent by <a href="http://wedviteapp.com/" style="border:none;color:#0084b4;text-decoration:none" target="_blank">wedviteapp.com</a><% unless @sender.nil? %>on behalf of <%= @sender.name %><% end %>.</div>
                               </td> 
                               <td style="width:85px"></td> 
                             </tr> 

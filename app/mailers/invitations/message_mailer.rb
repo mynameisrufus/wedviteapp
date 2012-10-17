@@ -1,7 +1,8 @@
 class Invitations::MessageMailer < Invitations::Mailer
   def prepare options
+
     @message = options[:message]
-    @sender  = options[:user]
+    @sender  = options[:sender]
     @wedding = options[:wedding]
     @guests  = options[:guests]
 

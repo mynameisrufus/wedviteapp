@@ -1,9 +1,32 @@
-<p>You have been invited to collaborate on <%= @wedding.name %> by <%= @requestor.name %><p>
-<p>To accept this invitation follow the link below to sign up to WedVite, or sign in if you already have an account</p>
-
-<ul>
-  <li><a href="<%= @url %>"><%= @url %></a></li>
-</ul>
-
-<p>If you don't want to accept the invitation, please ignore this email.<br />
-Your account won't be created until you access the link above and sign up.</p>
+<table width="500" border="0" align="center" cellpadding="0" cellspacing="0" style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background-color:white;table-layout:fixed;overflow:hidden"> 
+  <tbody>
+    <tr> 
+      <td><span style="font-size:16px;line-height:20px;font-weight:bold;color:#333">You have been invited to collaborate on <%= @wedding.title %> by <%= @sender.name %></span></td> 
+    </tr> 
+    <tr valign="top"> 
+      <td height="20" style="background-color:white"></td> 
+    </tr> 
+    <tr valign="top"> 
+      <td height="10" style="background-color:white"></td> 
+    </tr> 
+    <tr valign="top"> 
+      <td><span style="color:#555;font-size:14px;line-height:18px">To accept this invitation follow the link below to sign up to WedVite, or sign in if you already have an account:</span></td>
+    </tr> 
+    <tr valign="top"> 
+      <td height="20" style="background-color:white"></td> 
+    </tr> 
+    <tr valign="top"> 
+      <td><span style="color:#555;font-size:14px;line-height:18px"><a href="<%= @url %>"><%= @url %></a></span></td>
+    </tr> 
+    <tr valign="top"> 
+      <td height="20" style="background-color:white"></td> 
+    </tr> 
+    <tr valign="top"> 
+      <td><span style="color:#555;font-size:14px;line-height:18px">If you don't want to accept the invitation, please ignore this email.<br />
+Your account won't be created until you access the link above and sign up.</span></td>
+    </tr> 
+    <tr valign="top"> 
+      <td height="30" style="background-color:white"></td> 
+    </tr> 
+  </tbody>
+</table> 

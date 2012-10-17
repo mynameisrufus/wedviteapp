@@ -8,8 +8,7 @@ class Users::RepliesController < Users::BaseController
     respond_to do |format|
       if @reply.save
 
-        Messages::Guests.reply(@reply).deliver
-        Messages::Users.reply(@reply).deliver
+        send_reply_to_participants
 
         format.html do
           redirect_to wedding_timeline_path(@wedding), notice: 'Reply created.'
@@ -48,5 +47,25 @@ class Users::RepliesController < Users::BaseController
 
   def find_message
     @message = Message.find params[:message_id]
+  end
+
+  def send_reply_to_participants
+    send_reply_to_participating_users && send_reply_to_participating_guests
+  end
+
+  def send_reply_to_participating_users
+    mail = Users::ReplyMailer.prepare reply: @reply,
+                                      sender: current_user,
+                                      wedding: @wedding,
+                                      users: @message.participants.not(current_user).users
+    mail.deliver
+  end
+
+  def send_reply_to_participating_guests
+    mail = Invitations::ReplyMailer.prepare reply: @reply,
+                                            sender: current_user,
+                                            wedding: @wedding,
+                                            guests: @message.participants.guests
+    mail.deliver
   end
 end

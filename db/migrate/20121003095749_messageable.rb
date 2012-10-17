@@ -16,6 +16,9 @@ EOL
 
     change_table :messages do |t|
       t.remove :guest_id
+    end
+
+    change_table :guests do |t|
       t.remove :messages_count
     end
 

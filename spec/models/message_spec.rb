@@ -5,13 +5,29 @@ describe Message do
     Reply.make replyable: User.make
   }
 
+  let(:user_reply_two) {
+    Reply.make replyable: User.make
+  }
+
   let(:guest_reply) {
-    Reply.make replyable: Guest.make
+    Reply.make replyable: Guest.make(:accepted)
+  }
+
+  let(:guest_reply_rejected) {
+    Reply.make replyable: Guest.make(:rejected)
   }
 
   before :each do
-    @message = Message.make messageable: User.make,
-                            replies: [user_reply, guest_reply]
+    user     = User.make
+    wedding  = Wedding.make
+    replies  = [user_reply, user_reply_two, guest_reply, guest_reply_rejected]
+    @message = Message.make messageable: user,
+                            replies: replies,
+                            wedding: wedding
+
+    # Return the users here because only users that are no longer
+    # collaborating are no longer participants.
+    wedding.stub(:users).and_return [user, replies.first.replyable]
   end
 
   it 'should return all the participants that are users' do

@@ -9,7 +9,7 @@ class Invitations::ReplyMailer < Invitations::Mailer
     substitute "-invitation_url-", urls
 
     mail to: emails,
-         subject: "Invitation to #{@wedding.title}",
+         subject: "#{@sender.name} replied to a message for #{@wedding.title}",
          template_name: 'reply'
   end
 end

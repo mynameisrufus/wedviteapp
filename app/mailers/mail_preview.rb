@@ -1,19 +1,21 @@
 class MailPreview < MailView
   def invitations_invite
     Invitations::InviteMailer.prepare wedding: Spoof.wedding,
-                                      user: Spoof.user,
+                                      sender: Spoof.user,
                                       guests: [Spoof.guest]
   end
 
   def invitations_remind
-    Invitations::RemindMailer.prepare guest: Spoof.guest
+    Invitations::RemindMailer.prepare wedding: Spoof.wedding,
+                                      sender: Spoof.user,
+                                      guest: Spoof.guest
   end
 
   def invitations_message
     Invitations::MessageMailer.prepare wedding: Spoof.wedding,
                                        message: Spoof.message,
                                        guests: [Spoof.guest],
-                                       user: Spoof.user
+                                       sender: Spoof.user
   end
 
   def invitations_reply
@@ -25,7 +27,7 @@ class MailPreview < MailView
 
   def users_reply
     Users::ReplyMailer.prepare reply: Spoof.reply,
-                               sender: Spoof.user,
+                               sender: Spoof.guest,
                                wedding: Spoof.wedding,
                                users: [Spoof.user, Spoof.user]
   end
@@ -37,14 +39,15 @@ class MailPreview < MailView
 
   def users_invite_collaborator
     Users::InviteCollaboratorMailer.prepare wedding: Spoof.wedding,
-                                            user: Spoof.user,
+                                            requestor: Spoof.user,
                                             email: Spoof.email,
-                                            token: Spoof, token
+                                            token: Spoof.token
   end
 
   def users_notify_collaborator
     Users::NotifyCollaboratorMailer.prepare wedding: Spoof.wedding,
-                                            user: Spoof.user, Spoof.user
+                                            requestor: Spoof.user,
+                                            user: Spoof.user
   end
 end
 

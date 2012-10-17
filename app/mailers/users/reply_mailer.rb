@@ -3,38 +3,37 @@
 # http://docs.sendgrid.com/documentation/api/smtp-api/
 # http://paveltyk.github.com/sendgrid-rails/
 class Users::ReplyMailer < Users::Mailer
-  def subdomain
-    'plan'
-  end
+  def prepare options
 
-  def prepare reply
-    @reply = reply
-    @sender = @reply.replyable
+    @reply   = options[:reply]
+    @sender  = options[:sender]
+    @wedding = options[:wedding]
+    @users   = options[:users]
 
     category 'Messages'
-    substitute "-invitation_url-", urls
+    substitute "-respond_url-", urls
     substitute "-recipients_name-", names
 
     mail to: emails,
-         subject: "#{@message.messageable.name} has replied to your message.",
+         subject: "#{@sender.name} replied to a message for #{@wedding.title}",
          template_name: 'reply'
   end
 
   def emails
-    @guests.map do |guest|
-      guest.email
+    @users.map do |user|
+      user.email
     end
   end
 
   def urls
-    @guests.map do |guest|
-      invitation_url guest.token, subdomain: subdomain
+    @users.map do |user|
+      wedding_timeline_url @wedding, subdomain: subdomain
     end
   end
 
   def names
-    @guests.map do |guest|
-      guest.name
+    @users.map do |user|
+      user.name
     end
   end
 end

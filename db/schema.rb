@@ -163,7 +163,6 @@ ActiveRecord::Schema.define(:version => 20121003095749) do
     t.string   "token",                                  :null => false
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-    t.integer  "messages_count",       :default => 0
     t.boolean  "invited_to_reception", :default => true
   end
 

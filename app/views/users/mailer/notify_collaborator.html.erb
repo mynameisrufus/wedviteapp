@@ -1,6 +1,25 @@
-<p>You have been added as a collaborator on <%= @wedding.name %> by <%= @requestor.name %><p>
-<p>To begin collaboration just follow the link below</p>
-
-<ul>
-  <li><a href="<%= @url %>"><%= @url %></a></li>
-</ul>
+<table width="500" border="0" align="center" cellpadding="0" cellspacing="0" style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background-color:white;table-layout:fixed;overflow:hidden"> 
+  <tbody>
+    <tr> 
+      <td><span style="font-size:16px;line-height:20px;font-weight:bold;color:#333">You have been added as a collaborator on <%= @wedding.title %> by <%= @sender.name %></span></td>
+    </tr> 
+    <tr valign="top"> 
+      <td height="20" style="background-color:white"></td> 
+    </tr> 
+    <tr valign="top"> 
+      <td height="10" style="background-color:white"></td> 
+    </tr> 
+    <tr valign="top"> 
+      <td><span style="color:#555;font-size:14px;line-height:18px">To begin collaboration just follow the link below:</span></td>
+    </tr> 
+    <tr valign="top"> 
+      <td height="20" style="background-color:white"></td> 
+    </tr> 
+    <tr valign="top"> 
+      <td><span style="color:#555;font-size:14px;line-height:18px"><a href="<%= @url %>"><%= @url %></a></span></td>
+    </tr> 
+    <tr valign="top"> 
+      <td height="20" style="background-color:white"></td> 
+    </tr> 
+  </tbody>
+</table> 

@@ -9,9 +9,7 @@ class Users::MessagesController < Users::BaseController
     respond_to do |format|
       if @message.save
 
-        if params[:email]
-          Message::Mailer.message(@message).deliver
-        end
+        send_message_to_guests if params[:email]
 
         format.html do
           redirect_to wedding_timeline_path(@wedding), notice: 'Message added.'
@@ -44,5 +42,15 @@ class Users::MessagesController < Users::BaseController
       format.html { redirect_to @wedding }
       format.json { head :ok }
     end
+  end
+
+  protected
+
+  def send_message_to_guests
+    mail = Invitations::MessageMailer.prepare wedding: @wedding,
+                                              message: @message,
+                                              guests: @wedding.guests.accepted,
+                                              sender: current_user
+    mail.deliver
   end
 end

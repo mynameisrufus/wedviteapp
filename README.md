@@ -17,6 +17,11 @@ Push the master branch into master on production:
 
     git push production master:master
 
+### Mail
+
+This app sends out quite a bit of mail, you can preview the emails at
+http://wedvite.dev/mail-preview the emails are populated using
+`app/mailers/mail_preview.rb` and `extras/spoof.rb`.
 
 ### Migrations
 

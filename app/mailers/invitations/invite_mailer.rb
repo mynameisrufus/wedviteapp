@@ -2,7 +2,7 @@ class Invitations::InviteMailer < Invitations::Mailer
   def prepare options
 
     @wedding = options[:wedding]
-    @sender  = options[:user]
+    @sender  = options[:sender]
     @guests  = options[:guests]
 
     category 'Invitations'

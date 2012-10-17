@@ -4,9 +4,9 @@ describe Invitations::InviteMailer do
 
   let(:mail) {
     guests = [Guest.make, Guest.make]
-    Invitations::InviteMailer.prepare user: User.make,
-                                           wedding: Wedding.make,
-                                           guests: guests
+    Invitations::InviteMailer.prepare sender: User.make,
+                                      wedding: Wedding.make,
+                                      guests: guests
   }
 
   it 'should deliver the email' do

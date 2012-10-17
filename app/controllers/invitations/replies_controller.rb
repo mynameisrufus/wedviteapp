@@ -7,7 +7,7 @@ class Invitations::RepliesController < Invitations::BaseController
     respond_to do |format|
       if @reply.save
 
-        Messages::Mailer.reply(@reply).deliver
+        send_reply_to_participants
 
         format.html do
           redirect_to invitation_path(@guest.token), notice: 'Reply created.'
@@ -46,5 +46,25 @@ class Invitations::RepliesController < Invitations::BaseController
 
   def find_message
     @message = Message.find params[:message_id]
+  end
+
+  def send_reply_to_participants
+    send_reply_to_participating_users && send_reply_to_participating_guests
+  end
+
+  def send_reply_to_participating_users
+    mail = Users::ReplyMailer.prepare reply: @reply,
+                                      sender: @guest,
+                                      wedding: @wedding,
+                                      users: @message.participants.users
+    mail.deliver
+  end
+
+  def send_reply_to_participating_guests
+    mail = Invitations::ReplyMailer.prepare reply: @reply,
+                                            sender: @guest,
+                                            wedding: @wedding,
+                                            guests: @message.participants.not(@guest).guests
+    mail.deliver
   end
 end

@@ -1,0 +1,15 @@
+Dear <%= @guest.name %>,
+
+Please find below a link to our wedding invitation and all the details:
+
+<%= link_to @url, @url %>
+
+We hope you can make it,
+
+<%= @wedding.partner_one_name %> and <%= @wedding.partner_two_name %>
+
+<% unless @wedding.respond_deadline.nil? %>
+* * *
+
+Please RSVP by <%= @wedding.respond_deadline.strftime "%A the #{@wedding.respond_deadline.day.ordinalize} of %B %G" %>
+<% end %>

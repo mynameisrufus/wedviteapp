@@ -5,7 +5,7 @@ describe Invitations::MessageMailer do
   let(:mail) {
     guests = [Guest.make, Guest.make]
     Invitations::MessageMailer.prepare message: Message.make,
-                                       user: User.make,
+                                       sender: User.make,
                                        wedding: Wedding.make,
                                        guests: guests
   }
