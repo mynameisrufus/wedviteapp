@@ -56,7 +56,7 @@ class Invitations::GuestsController < Invitations::BaseController
         format.html { redirect_to guesthome_path, notice: 'Your details have been updated.' }
         format.json { head :ok }
       else
-        format.html { render controller: "weddings", action: "details" }
+        format.html { redirect_to guesthome_path, notice: 'Sorry we could not update your details.' }
         format.json { render json: @wedding.errors, status: :unprocessable_entity }
       end
     end
