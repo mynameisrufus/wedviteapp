@@ -25,6 +25,7 @@ communicate all the details of your special day with guests."
     address: "address"
     phone: "phone"
     state: "Status"
+    email: "email"
   state:
     approved:
       noun: "Approved"

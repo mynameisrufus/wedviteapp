@@ -38,11 +38,17 @@ class Invitations::GuestsController < Invitations::BaseController
   def update
     @guest.attributes = params[:guest_strict]
 
-    if @guest.changed?
+    if @guest.changed? && @guest.valid?
       @guest.changes.each do |change|
-        label = t "guest.#{change[0]}"
-        from  = translate_unless_fixnum change[1][0]
-        to    = translate_unless_fixnum change[1][1]
+        if change[0] == 'state'
+          label = t "guest.#{change[0]}"
+          from  = t "state.#{change[1][0]}.noun"
+          to    = t "state.#{change[1][1]}.noun"
+        else
+          label = t "guest.#{change[0]}"
+          from  = change[1][0]
+          to    = change[1][1]
+        end
         @guest.evt.create!({
           wedding: @guest.wedding,
           state: 'changed',
@@ -64,11 +70,5 @@ class Invitations::GuestsController < Invitations::BaseController
 
   def after_decline
     redirect_to path_for_guest_state if should_redirect_guest?
-  end
-
-  protected
-
-  def translate_unless_fixnum value
-    value.class == Fixnum ? value : t("state.#{value}.noun")
   end
 end
