@@ -8,7 +8,7 @@ class BaseMailer < ActionMailer::Base
   end
 
   def host
-    hosts.fetch(Rails.env, hosts.fetch(:development))
+    hosts.fetch(Rails.env.to_sym, hosts.fetch(:development))
   end
 
   def hosts
