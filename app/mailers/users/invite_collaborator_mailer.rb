@@ -5,7 +5,7 @@ class Users::InviteCollaboratorMailer < Users::Mailer
     @sender  = options[:requestor]
     @email   = options[:email]
     @token   = options[:token]
-    @url     = collaborate_url(@token, host: host, subdomain: subdomain)
+    @url     = collaborate_url(@token, subdomain: subdomain)
 
     mail to: @email,
          subject: "You are invited to collaborate on #{@wedding.title}",
