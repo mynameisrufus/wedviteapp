@@ -1,6 +1,6 @@
 <%= form_for @post do |f| %>
   <%= f.text_field :title %>
-  <div id="epiceditor"></div>
+  <div id="epiceditor"><%= @post.body %> bla bla</div>
   <%= f.hidden_field :body %>
   <%= f.submit 'save' %>
 <% end %>
@@ -10,11 +10,13 @@
     basePath: "/assets/lib/epiceditor/epiceditor"
   };
 
-  var editor = new EpicEditor(opts).load();
+  var fileName = '<%= @post.friendly_id %>';
+  var editor   = new EpicEditor(opts).load();
+  var postBody = document.getElementById('post_body');
 
-  var bodyField = document.getElementById('post_body');
+  editor.importFile(fileName, postBody.value);
 
   editor.on('save', function () {
-    bodyField.innerHTML = editor.getElement('editor').body.innerHTML;
+    postBody.value = editor.exportFile();
   });
 </script>
