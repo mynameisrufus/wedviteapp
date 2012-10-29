@@ -134,7 +134,7 @@ WeddingInvitor::Application.routes.draw do
     scope module: 'blog' do
       match 'robots.txt' => 'posts#robots'
       root to: 'posts#index'
-      resources :posts, only: %w(index) do
+      resources :posts, only: %w(index edit update) do
         get 'page/:page', action: :index, on: :collection, as: :page
       end
       match 'post/:id' => 'posts#show', as: :blog_post

@@ -1,0 +1,20 @@
+<%= form_for @post do |f| %>
+  <%= f.text_field :title %>
+  <div id="epiceditor"></div>
+  <%= f.hidden_field :body %>
+  <%= f.submit 'save' %>
+<% end %>
+<%= javascript_include_tag "lib/epiceditor/epiceditor/js/epiceditor.min" %>
+<script>
+  var opts = {
+    basePath: "/assets/lib/epiceditor/epiceditor"
+  };
+
+  var editor = new EpicEditor(opts).load();
+
+  var bodyField = document.getElementById('post_body');
+
+  editor.on('save', function () {
+    bodyField.innerHTML = editor.getElement('editor').body.innerHTML;
+  });
+</script>

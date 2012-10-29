@@ -9,6 +9,8 @@ class Post < ActiveRecord::Base
   validates :author_id, presence: true
   validates :title,     presence: true
 
+  scope :published, where(published: true)
+
   before_save do
     self.published_at = Time.now if
       self.published? && self.published_at.nil?
