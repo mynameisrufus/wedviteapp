@@ -24,6 +24,7 @@
           <div class="chat-bubble-arrow-border"></div>
           <div class="chat-bubble-arrow"></div>
           <% event.eventfull.replies.each do |reply| %>
+            <p class="who"><%= reply.replyable.name %> wrote:</p>
             <div class="reply"><%= reply.text %></div>
             <p><strong><%= time_ago_in_words reply.created_at %> ago</strong></p>
           <% end %>
