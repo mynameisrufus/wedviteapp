@@ -1,2 +1,2 @@
 <%= raw markdown.render post.body[0..400] %>
-<%= link_to "Read more.", blog_post_friendly_path(post.id, post) %>
+<%= link_to "Read more.", post_path(post) %>
