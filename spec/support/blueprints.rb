@@ -155,3 +155,11 @@ end
 Reply.blueprint do
   # Attributes here
 end
+
+GiftRegistry.blueprint do
+  # Attributes here
+end
+
+Gift.blueprint do
+  # Attributes here
+end

@@ -33,7 +33,7 @@ describe Invitations::MessageMailer do
     end
 
     it 'should have substitute values in body' do
-      mail.encoded.should have_selector 'span', content: '-invitation_url-'
+      mail.encoded.should have_xpath "//a[contains(@href,'-invitation_url-')]"
     end
 
   end

@@ -79,6 +79,9 @@ WeddingInvitor::Application.routes.draw do
         resources :messages, except: %w(show) do
           resources :replies, except: %w(show)
         end
+        resource :gift_registry, path: 'gift-registry', only: %w(show create update) do
+          resources :gifts, only: %w(create update destroy)
+        end
       end
       match 'feedback/new' => 'feedback#new', method: :get
       match 'feedback' => 'feedback#create', method: :post
@@ -125,6 +128,11 @@ WeddingInvitor::Application.routes.draw do
 
         resources :messages, only: %w(create update destroy) do
           resources :replies, only: %w(create update destroy)
+        end
+
+        resources :gifts, only: :index do
+          get :claim, on: :member
+          get :unclaim, on: :member
         end
       end
     end

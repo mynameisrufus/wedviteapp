@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121017031457) do
+ActiveRecord::Schema.define(:version => 20121124233815) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -144,6 +144,27 @@ ActiveRecord::Schema.define(:version => 20121017031457) do
   end
 
   add_index "events", ["wedding_id"], :name => "index_events_on_wedding_id"
+
+  create_table "gift_registries", :force => true do |t|
+    t.text     "details"
+    t.integer  "wedding_id", :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "gift_registries", ["wedding_id"], :name => "index_gift_registries_on_wedding_id"
+
+  create_table "gifts", :force => true do |t|
+    t.string   "description",                       :null => false
+    t.string   "url"
+    t.float    "price",            :default => 0.0
+    t.integer  "gift_registry_id",                  :null => false
+    t.integer  "guest_id"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
+
+  add_index "gifts", ["gift_registry_id"], :name => "index_gifts_on_gift_registry_id"
 
   create_table "guests", :force => true do |t|
     t.string   "state"

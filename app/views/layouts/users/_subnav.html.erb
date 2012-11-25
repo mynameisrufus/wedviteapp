@@ -12,6 +12,9 @@
   <% if can? :update, @wedding %>
     <%= nav_tab "Invitation & Stationery", wedding_invitations_path(@wedding) %>
   <% end %>
+  <% if can? :update, @wedding %>
+    <%= nav_tab "Gift Registry", wedding_gift_registry_path(@wedding) %>
+  <% end %>
   <%= nav_tab "Timeline", wedding_timeline_path(@wedding) %>
   <% if can? :send_invitations, @wedding %>
     <%= nav_tab "Invite Guests", wedding_confirm_path(@wedding) %>

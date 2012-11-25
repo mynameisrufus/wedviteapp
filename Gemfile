@@ -60,7 +60,11 @@ group :development, :test do
   gem 'machinist',            '~> 2.0'
   gem 'database_cleaner'
   gem 'awesome_print'
+
+  # Steak for acceptence tests. Needs to be removed.
   gem 'steak',                '~> 2.0.0'
+  gem 'xpath'
+
   gem 'launchy'
   gem 'heroku'
   gem 'pry',                  '~> 0.9'
@@ -84,9 +88,6 @@ group :development do
   gem 'rb-inotify', require: false
   gem 'rb-fsevent', require: false
   gem 'rb-fchange', require: false
-
-  # growl notify
-  gem 'ruby_gntp'
 
   # silence asset logging and asset get requests
   gem 'quiet_assets'

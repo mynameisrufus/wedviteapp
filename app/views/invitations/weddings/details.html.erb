@@ -4,6 +4,7 @@
   <li><a href="#settings" data-toggle="tab">You</a></li>
   <li><a href="#guestlist" data-toggle="tab">Guest List</a></li>
   <li><a href="#messages" data-toggle="tab">Messages</a></li>
+  <li><a href="#gifts" data-toggle="tab">Gift Registry</a></li>
 </ul>
  
 <div class="tab-content">
@@ -26,4 +27,10 @@
   <div class="tab-pane" id="messages">
     <%= render "messages" %>
   </div>
+
+  <% unless @wedding.gift_registry.nil? %>
+    <div class="tab-pane" id="gifts">
+      <%= render "gift_registry" %>
+    </div>
+  <% end %>
 </div>

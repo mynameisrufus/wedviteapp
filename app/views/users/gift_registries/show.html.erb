@@ -1,0 +1,61 @@
+<section class="gift-registry placeholder">
+  <div class="page-header">
+    <h1>Gift Registry</h1>
+  </div>
+  <% if @gift_registry.new_record? %>
+    <p>Enter the details of your Gift Registry to get started.</p>
+    <p>A good start is the delivery address that guests can send gifts to.</p>
+  <% end %>
+
+  <%= form_for @gift_registry, url: wedding_gift_registry_path(@wedding) do |f| %>
+    <fieldset>
+      <%= f.text_area :details, class: 'input-xlarge', rows: 3, style: "height: 100px; width: 910px;" %>
+      <div class="actions">
+        <% if @gift_registry.new_record? %>
+          <%= submit_tag 'Save and start adding gifts', class: 'btn' %>
+        <% else %>
+          <%= submit_tag 'Save', class: 'btn' %>
+        <% end %>
+      </div>
+    </fieldset>
+  <% end %>
+
+  <% unless @gift_registry.new_record? %>
+    <table class="table">
+      <tbody>
+        <% @gift_registry.gifts.each do |gift| %>
+          <tr>
+            <td><%= gift.description %></td>
+            <td>
+              <% unless gift.url.nil? %>
+                <%= link_to gift.url, gift.url, target: 'blank' %>
+              <% end %>
+            </td>
+            <td>$<%= gift.price %></td>
+            <% if gift.claimed? %>
+              <td>Claimed</td>
+            <% else %>
+              <td><%= link_to 'Remove', wedding_gift_registry_gift_path(@wedding, gift), method: :delete, class: 'btn btn-small' %></td>
+            <% end %>
+          <tr>
+        <% end %>
+      </tbody>
+    </table>
+    <hr/>
+    <%= form_for @gift_registry.gifts.build, url: wedding_gift_registry_gifts_path(@wedding) do |f| %>
+      <fieldset>
+        <div>
+          <%= f.text_field :description, placeholder: "Short description of the gift", class: 'span10' %>
+        </div>
+        <div>
+          <%= f.text_field :url, placeholder: "Web address for the gift", class: 'span10' %>
+        </div>
+        <div class="input-prepend">
+          <span class="add-on">$</span>
+          <%= f.text_field :price, placeholder: 0.00, class: 'span1' %>
+        </div>
+        <%= submit_tag 'Add gift', class: 'btn' %>
+      </fieldset>
+    <% end %>
+  <% end %>
+</section>
