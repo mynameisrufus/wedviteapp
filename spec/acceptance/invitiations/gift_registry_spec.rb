@@ -13,13 +13,29 @@ feature 'Gift Registry feature', %q{
   }
 
 
-  # scenario 'claim a gift' do
-  #   guest, wedding = *setup_guest
-  #   visit invitation_url(guest.token, subdomain: 'invitations')
-  #   click_link 'Gift Registry'
-  #   page.should have_content("Hello")
-  #   click_button 'Message'
-  #   guest.messages.first.text.should eq 'Hello'
-  #   page.should have_content("Hello")
-  # end
+  scenario 'claim a gift' do
+    guest, wedding = *setup_guest
+    gift_registry = GiftRegistry.make! wedding: wedding
+    gift = Gift.make! gift_registry: gift_registry
+
+    visit invitation_url(guest.token, subdomain: 'invitations')
+    click_link 'Gift Registry'
+    click_link 'Claim this gift.'
+
+    gift.reload.guest.should eq guest
+  end
+
+  scenario 'unclaim a gift' do
+    guest, wedding = *setup_guest
+    gift_registry = GiftRegistry.make! wedding: wedding
+    gift = Gift.make! gift_registry: gift_registry, guest: guest
+
+    visit invitation_url(guest.token, subdomain: 'invitations')
+    click_link 'Gift Registry'
+    click_link 'Un-claim this gift.'
+
+    gift.reload.guest.should be_nil
+  end
+
+  pending 'should not be able to claim gift if already claimed'
 end

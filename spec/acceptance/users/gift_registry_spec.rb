@@ -10,33 +10,37 @@ feature 'Gift Registry feature', %q{
     change_subdomain :plan
   end
 
-  # scenario 'update the gift registry details' do
-  #   wedding, user, collaborator = wedup!
-  #   navigate_to_wedding wedding, user
+  scenario 'update the gift registry details' do
+    wedding, user, collaborator = wedup!
+    navigate_to_wedding wedding, user
 
-  #   details = "Please send gifts to: #{Faker::Address.street_address}"
+    details = "Please send gifts to: #{Faker::Address.street_address}"
 
-  #   click_link "Gift Registry"
-  #   fill_in 'Details', with: details
-  #   click_button 'Save'
+    click_link "Gift Registry"
+    fill_in 'gift_registry[details]', with: details
+    click_button 'Save and start adding gifts'
 
-  #   wedding.gift_registry.details.should eq details
-  #   page.should have_content('Gift Registry details have been updated')
-  # end
+    wedding.gift_registry.details.should eq details
+    page.should have_content('Gift Registry details saved')
+  end
 
-  # scenario 'add in item to the gift registry' do
-  #   wedding, user, collaborator = wedup!
-  #   navigate_to_wedding wedding, user
+  scenario 'add in item to the gift registry' do
+    wedding, user, collaborator = wedup!
+    navigate_to_wedding wedding, user
+    GiftRegistry.make! wedding: wedding
 
-  #   click_link "Gift Registry"
-  #   
-  # end
+    click_link "Gift Registry"
 
-  # scenario 'remove an item from the gift registry' do
+    fill_in 'gift[description]', with: "Donna Hay glass cake dome"
+    fill_in 'gift[url]', with: "http://www.donnahay.com.au/cake-dome"
+    fill_in 'gift[price]', with: 29.95
+    click_button 'Add gift'
 
-  # end
+    wedding.gift_registry.gifts.count.should eq 1
+    page.should have_content('Gift added to the Registry')
+  end
 
-  # scenario 'not be able to manage the registry if wrong role' do
+  pending 'remove an item from the gift registry'
 
-  # end
+  pending 'not be able to manage the registry if wrong role'
 end

@@ -157,9 +157,11 @@ Reply.blueprint do
 end
 
 GiftRegistry.blueprint do
-  # Attributes here
+  details { "Please send gifts to: #{Faker::Address.street_address}" }
 end
 
 Gift.blueprint do
-  # Attributes here
+  description { "Donna Hay glass cake dome" }
+  url { "http://www.donnahay.com.au/cake-dome" }
+  price { 29.95 }
 end

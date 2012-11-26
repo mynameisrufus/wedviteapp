@@ -16,7 +16,7 @@ feature 'Sign in feature', %q{
     page.should have_content(user.name)
   end
 
-  scenario 'sign out' do
+  pending 'sign out' do
     user = User.make!
     sign_in_with user.email, user.password
     sign_out
