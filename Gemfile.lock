@@ -89,14 +89,6 @@ GEM
       rspec (~> 2.11)
     haml (3.1.7)
     hashie (1.2.0)
-    heroku (2.33.1)
-      heroku-api (~> 0.3.6)
-      launchy (>= 0.3.2)
-      netrc (~> 0.7.7)
-      rest-client (~> 1.6.1)
-      rubyzip
-    heroku-api (0.3.7)
-      excon (~> 0.16.10)
     hike (1.2.1)
     hodel_3000_compliant_logger (0.1.0)
     httpauth (0.2.0)
@@ -135,7 +127,6 @@ GEM
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-ssh (2.6.2)
-    netrc (0.7.7)
     nokogiri (1.5.5)
     oauth2 (0.8.0)
       faraday (~> 0.8)
@@ -221,8 +212,6 @@ GEM
       json (~> 1.4)
     redcarpet (2.1.1)
     remotipart (1.0.2)
-    rest-client (1.6.7)
-      mime-types (>= 1.16)
     ri_cal (0.8.8)
     rspec (2.12.0)
       rspec-core (~> 2.12.0)
@@ -240,7 +229,6 @@ GEM
       rspec-expectations (~> 2.12.0)
       rspec-mocks (~> 2.12.0)
     ruby-hmac (0.4.0)
-    rubyzip (0.9.9)
     sass (3.2.3)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
@@ -295,7 +283,6 @@ DEPENDENCIES
   friendly_id (~> 4.0.1)
   guard-livereload
   guard-rspec
-  heroku
   jquery-rails (~> 1.0.19)
   kaminari (~> 0.13.0)
   launchy

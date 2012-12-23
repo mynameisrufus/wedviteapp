@@ -66,7 +66,6 @@ group :development, :test do
   gem 'xpath'
 
   gem 'launchy'
-  gem 'heroku'
   gem 'pry',                  '~> 0.9'
 
   # Code quality.

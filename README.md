@@ -48,7 +48,7 @@ https://devcenter.heroku.com/articles/pgbackups
 Import on local:
 
     heroku pgbackups:capture --app wedvite
-    curl -o tmp/latest.dump `heroku pgbackups:url`
+    curl -o tmp/latest.dump `heroku pgbackups:url --app wedvite`
     rake db:drop db:create
     pg_restore --verbose --clean --no-acl --no-owner -d wedding_invitor_development tmp/latest.dump
 
