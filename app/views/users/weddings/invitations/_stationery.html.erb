@@ -3,7 +3,7 @@
 <div class="stationeries">
   <% @stationery.each_with_index do |stationery, index| %>
     <div class="stationery" data-id="<%= index %>">
-      <h2><%= stationery.name %> <small><%= stationery.price == 0 ? "Free" : "$#{stationery.price}" %></small></h2>
+      <h2><%= stationery.name %> <!-- <small><%= stationery.price == 0 ? "Free" : "$#{stationery.price}" %></small> --></h2>
       <sub>by <%= stationery.agency.name %></sub>
       <div class="wrapper" data-src="<%= stationery.preview.url %>"></div>
       <sub><%= index + 1 %> of <%= @stationery.size %></sub>

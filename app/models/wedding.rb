@@ -37,6 +37,11 @@ class Wedding < ActiveRecord::Base
     end
   end
 
+  before_validation on: :create do
+    self.payment_made = true
+    self.payment_date = Time.now
+  end
+
   HELP_ATTRIBUTES = %w(wording ceremony_only_wording ceremony_what
 reception_what ceremony_how reception_how thank_you_wording)
 

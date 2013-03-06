@@ -10,7 +10,7 @@ feature 'Payments feature', %q{
     change_subdomain :plan
   end
 
-  scenario 'use a promotional code' do
+  pending 'use a promotional code' do
     promo = PromotionalCode.make! discount: 0.5
 
     wedding, user, collaborator = wedup!
