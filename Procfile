@@ -1,1 +1,1 @@
-web: bundle exec puma -b unix://tmp/sockets/puma.sock
+web: bundle exec rails server puma -p $PORT -e $RACK_ENV
