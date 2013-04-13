@@ -1,4 +1,8 @@
 class Invitations::GuestsController < Invitations::BaseController
+  def show
+
+  end
+
   def accept
     unless @guest.accepted?
       @guest.update_state :accepted
@@ -8,7 +12,7 @@ class Invitations::GuestsController < Invitations::BaseController
                          state: 'accepted',
                          headline: "#{@guest.name} has #{t("state.accepted.noun")}"
     end
-    redirect_to guesthome_path, notice: 'You have RSVP\'d'
+    redirect_to our_day_path, notice: 'You have RSVP\'d'
   end
 
   def decline
@@ -31,7 +35,7 @@ class Invitations::GuestsController < Invitations::BaseController
     if @guest.declined?
       redirect_to after_decline_path
     else
-      redirect_to guesthome_path, notice: 'Message added'
+      redirect_to our_day_path, notice: 'Message added'
     end
   end
 

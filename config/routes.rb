@@ -115,18 +115,22 @@ WeddingInvitor::Application.routes.draw do
         root to: 'stationery#show', as: :invitation
         match 'print'     => 'stationery#print', as: :print_invitation
 
+        get 'guestlist'   => 'weddings#guestlist', as: :guestlist
+        get 'directions'  => 'weddings#directions', as: :directions
+        get 'ourday'      => 'weddings#our_day', as: :our_day
+        get 'thankyou'    => 'weddings#thank', as: :thank
+        match 'ical'      => 'weddings#ical', as: :ical
+
+
         # TODO remove this
         match 'message'   => 'guests#message', as: :guest_message, method: :post
 
-        match 'update'    => 'guests#update', as: :guest, method: :post
+        get 'you'         => 'guests#show', as: :guest
+        post 'update'     => 'guests#update', as: :update_guest
         match 'accept'    => 'guests#accept', as: :accept_invitation
         match 'decline'   => 'guests#decline', as: :decline_invitation
-        match 'thankyou'  => 'guests#after_decline', as: :after_decline
 
-        match 'details'   => 'weddings#details', as: :guesthome
-        match 'ical'      => 'weddings#ical', as: :ical
-
-        resources :messages, only: %w(create update destroy) do
+        resources :messages, only: %w(index create update destroy) do
           resources :replies, only: %w(create update destroy)
         end
 

@@ -1,5 +1,7 @@
 <div class="tab-content">
   <div class="tab-pane active" id="directions">
-    <%= render "invitations/guests/directions" %>
+    <% @guests.each do |guest| %>
+      <p><%= guest.name %></p>
+    <% end %>
   </div>
 </div>

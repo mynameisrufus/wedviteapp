@@ -11,13 +11,13 @@ class Invitations::BaseController < ApplicationController
   end
 
   def should_redirect_guest?
-    @guest.accepted? && request.fullpath != guesthome_path ||
+    @guest.accepted? && request.fullpath != our_day_path ||
     @guest.declined? && request.fullpath != after_decline_path
   end
 
   def path_for_guest_state
     case @guest.state
-      when 'accepted' then guesthome_path
+      when 'accepted' then @wedding.thank_process_started? ? thank_path : our_day_path
       when 'declined' then after_decline_path
       else invitation_path
     end

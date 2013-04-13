@@ -5,17 +5,20 @@ class Users::PreviewController < Users::BaseController
 
   def ourday
     @guest = spoof_guest
-    render 'invitations/guests/ourday'
+    @preview_mode = true
+    render 'invitations/weddings/our_day'
   end
 
   def thank
     @guest = spoof_guest
-    render 'invitations/guests/thank'
+    @preview_mode = true
+    render 'invitations/weddings/thank'
   end
 
   def directions
     @guest = spoof_guest
-    render 'invitations/guests/directions'
+    @preview_mode = true
+    render 'invitations/weddings/directions'
   end
 
   def invitation

@@ -1,3 +1,6 @@
+<div class="tab-content">
+  <div class="tab-pane active" id="directions">
+
 <div class="page-header">
   <h1>Update your details</h1>
 </div>
@@ -5,31 +8,33 @@
 <%= form_for @guest, url: guest_path, html: { class: 'form-horizontal' } do |f| %>
   <fieldset>
 
-    <div class="control-group">
-      <%= f.label :state, "You have", class: "control-label" %>
-      <div class="controls">
-        <label class="radio">
-          <%= f.radio_button :state, 'accepted' %>
-          Accepted
-        </label>
-        <label class="radio">
-          <%= f.radio_button :state, 'declined' %>
-          Declined
-        </label>
-      </div>
-    </div>
-
-    <% if @guest.invited_to_reception? %>
+    <% unless @wedding.thank_process_started? %>
       <div class="control-group">
-        <%= f.label :attending_reception, "Reception", class: "control-label" %>
+        <%= f.label :state, "You have", class: "control-label" %>
         <div class="controls">
-          <label class="checkbox">
-            <input type="checkbox" name="optionsCheckboxList1" value="option1">
-            <%= f.check_box :attending_reception %>
-            Will you be joining us for the reception?
+          <label class="radio">
+            <%= f.radio_button :state, 'accepted' %>
+            Accepted
+          </label>
+          <label class="radio">
+            <%= f.radio_button :state, 'declined' %>
+            Declined
           </label>
         </div>
       </div>
+
+      <% if @guest.invited_to_reception? %>
+        <div class="control-group">
+          <%= f.label :attending_reception, "Reception", class: "control-label" %>
+          <div class="controls">
+            <label class="checkbox">
+              <input type="checkbox" name="optionsCheckboxList1" value="option1">
+              <%= f.check_box :attending_reception %>
+              Will you be joining us for the reception?
+            </label>
+          </div>
+        </div>
+      <% end %>
     <% end %>
 
     <div class="control-group">
@@ -79,3 +84,6 @@
   <h1>Print invitation</h1>
 </div>
 <%= link_to 'Download invitation in PDF format', print_invitation_path(@guest.token, format: :pdf), class: 'btn', target: '_blank' %>
+
+  </div>
+</div>

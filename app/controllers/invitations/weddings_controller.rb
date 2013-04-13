@@ -1,11 +1,18 @@
 class Invitations::WeddingsController < Invitations::BaseController
-  def details
-    if should_redirect_guest?
-      redirect_to path_for_guest_state
-    else
-      @guests = @wedding.guests.accepted.order(:name)
-      @messages = @wedding.messages.includes(:replies).order("created_at DESC").page(params[:page]).per(50)
-    end
+  def our_day
+
+  end
+
+  def thank
+
+  end
+
+  def directions
+
+  end
+
+  def guestlist
+    @guests = @wedding.guests.accepted.order(:name)
   end
 
   def ical

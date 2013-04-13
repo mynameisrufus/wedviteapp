@@ -1,3 +1,5 @@
+<div class="tab-content">
+  <div class="tab-pane active" id="directions">
 <% if @wedding.ceremony_where %>
   <% if request.subdomain == "invitations" %>
     <p><%= link_to ical_path do %><i class="icon-calendar"></i> Add wedding to your calendar<% end %></p>
@@ -93,3 +95,5 @@ maps()
 })
 </script>
 
+  </div>
+</div>

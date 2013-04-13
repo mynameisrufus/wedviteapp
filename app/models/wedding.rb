@@ -65,6 +65,15 @@ reception_what ceremony_how reception_how thank_you_wording)
     end
   end
 
+  def thank_process_started!
+    unless !invite_process_started? || thank_process_started?
+      update_attributes({
+        thank_process_started: true,
+        thank_process_started_at: Time.now
+      })
+    end
+  end
+
   class GuestStates
     def initialize(guests)
       @guests = guests
@@ -123,5 +132,9 @@ reception_what ceremony_how reception_how thank_you_wording)
 
   def paid!
     update_attributes payment_made: true, payment_date: Time.now
+  end
+
+  def celebrated?
+    Time.now > ceremony_when_end
   end
 end

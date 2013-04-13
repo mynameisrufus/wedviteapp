@@ -1,5 +1,9 @@
 class Invitations::GiftsController < Invitations::BaseController
-  before_filter :find_gift
+  before_filter :find_gift, except: :index
+
+  def index
+
+  end
 
   def claim
     respond_to do |format|

@@ -136,9 +136,7 @@ class Users::GuestsController < Users::BaseController
   end
 
   def remind
-    mail = Invitations::RemindMailer.prepare wedding: @wedding,
-                                             sender: current_user,
-                                             guest: @guest
+    mail = wedding.celebrated? ? thank_you_remind_mail : invitation_remind_mail
     mail.deliver
     respond_to do |format|
       format.html { redirect_to wedding_guestlist_path(@wedding), notice: "#{@guest.name} has been sent a reminder email." }
@@ -147,6 +145,18 @@ class Users::GuestsController < Users::BaseController
   end
 
   protected
+
+  def invitation_remind_mail
+    Invitations::RemindMailer.prepare wedding: @wedding,
+                                      sender: current_user,
+                                      guest: @guest
+  end
+
+  def thank_you_remind_mail
+    Invitations::ThankyouRemindMailer.prepare wedding: @wedding,
+                                              sender: current_user,
+                                              guest: @guest
+  end
 
   def find_wedding
     @wedding = current_user.weddings.find params[:wedding_id]

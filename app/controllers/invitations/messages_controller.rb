@@ -1,4 +1,8 @@
 class Invitations::MessagesController < Invitations::BaseController
+  def index
+    @messages = @wedding.messages.includes(:replies).order("created_at DESC").page(params[:page]).per(50)
+  end
+
   def create
     @message = @guest.messages.new text: params[:message][:text], wedding: @wedding
 

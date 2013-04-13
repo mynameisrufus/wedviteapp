@@ -16,6 +16,9 @@
   <body>
     <div class="container">
       <%= render partial: "layouts/users/flash" %>
+      <% unless @preview_mode %>
+        <%= render "layouts/invitations/menu" %>
+      <% end %>
       <%= yield %>
     </div>
     <%= render partial: 'layouts/analytics'  if Rails.env.production? %>

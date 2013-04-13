@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121124233815) do
+ActiveRecord::Schema.define(:version => 20130413060141) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(:version => 20121124233815) do
     t.integer  "failed_attempts",                       :default => 0
     t.string   "unlock_token"
     t.datetime "locked_at"
-    t.datetime "created_at",                                            :null => false
-    t.datetime "updated_at",                                            :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "admins", ["email"], :name => "index_admins_on_email", :unique => true
@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(:version => 20121124233815) do
     t.string   "taxation_reference"
     t.string   "account_number"
     t.integer  "designer_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "agencies", ["designer_id"], :name => "index_agencies_on_designer_id"
@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(:version => 20121124233815) do
     t.integer  "agency_id",  :null => false
     t.string   "token",      :null => false
     t.datetime "claimed_on"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "agency_designer_tokens", ["agency_id"], :name => "index_agency_designer_tokens_on_agency_id"
@@ -63,8 +63,8 @@ ActiveRecord::Schema.define(:version => 20121124233815) do
     t.integer  "agency_id"
     t.integer  "designer_id"
     t.string   "role"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "agency_designers", ["agency_id"], :name => "index_agency_designers_on_agency_id"
@@ -82,8 +82,8 @@ ActiveRecord::Schema.define(:version => 20121124233815) do
     t.integer  "wedding_id", :null => false
     t.string   "token",      :null => false
     t.datetime "claimed_on"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "collaboration_tokens", ["token"], :name => "index_collaboration_tokens_on_token", :unique => true
@@ -93,8 +93,8 @@ ActiveRecord::Schema.define(:version => 20121124233815) do
     t.string   "role"
     t.integer  "user_id"
     t.integer  "wedding_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "collaborators", ["user_id"], :name => "index_collaborators_on_user_id"
@@ -104,8 +104,8 @@ ActiveRecord::Schema.define(:version => 20121124233815) do
     t.text     "text"
     t.integer  "guest_id"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "comments", ["guest_id"], :name => "index_comments_on_guest_id"
@@ -125,8 +125,8 @@ ActiveRecord::Schema.define(:version => 20121124233815) do
     t.string   "first_name"
     t.string   "last_name"
     t.text     "biography"
-    t.datetime "created_at",                                            :null => false
-    t.datetime "updated_at",                                            :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "designers", ["email"], :name => "index_designers_on_email", :unique => true
@@ -182,8 +182,8 @@ ActiveRecord::Schema.define(:version => 20121124233815) do
     t.integer  "wedding_id"
     t.integer  "position"
     t.string   "token",                                  :null => false
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.boolean  "invited_to_reception", :default => true
     t.datetime "viewed_at"
   end
@@ -204,8 +204,8 @@ ActiveRecord::Schema.define(:version => 20121124233815) do
     t.string   "google_id"
     t.decimal  "lat",                        :precision => 16, :scale => 13
     t.decimal  "lng",                        :precision => 16, :scale => 13
-    t.datetime "created_at",                                                 :null => false
-    t.datetime "updated_at",                                                 :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "messages", :force => true do |t|
@@ -299,8 +299,8 @@ ActiveRecord::Schema.define(:version => 20121124233815) do
     t.float    "price"
     t.float    "commision"
     t.integer  "agency_id"
-    t.datetime "created_at",                              :null => false
-    t.datetime "updated_at",                              :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "preview_file_name"
     t.string   "preview_content_type"
     t.integer  "preview_file_size"
@@ -318,8 +318,8 @@ ActiveRecord::Schema.define(:version => 20121124233815) do
 
   create_table "stationery_assets", :force => true do |t|
     t.integer  "stationery_id"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "attachment_file_name"
     t.string   "attachment_content_type"
     t.integer  "attachment_file_size"
@@ -330,8 +330,8 @@ ActiveRecord::Schema.define(:version => 20121124233815) do
 
   create_table "stationery_images", :force => true do |t|
     t.integer  "stationery_id"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "attachment_file_name"
     t.string   "attachment_content_type"
     t.integer  "attachment_file_size"
@@ -361,8 +361,8 @@ ActiveRecord::Schema.define(:version => 20121124233815) do
     t.string   "billing_city"
     t.integer  "chargify_subscription_id"
     t.string   "masked_card_number"
-    t.datetime "created_at",                                              :null => false
-    t.datetime "updated_at",                                              :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "provider"
     t.string   "uid"
   end
@@ -390,13 +390,15 @@ ActiveRecord::Schema.define(:version => 20121124233815) do
     t.integer  "stationery_id"
     t.integer  "ceremony_location_id"
     t.integer  "reception_location_id"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.datetime "ceremony_when_end"
     t.datetime "reception_when_end"
     t.datetime "invite_process_started_at"
     t.boolean  "invite_process_started"
     t.text     "thank_you_wording"
+    t.boolean  "thank_process_started"
+    t.datetime "thank_process_started_at"
   end
 
   add_index "weddings", ["stationery_id"], :name => "index_weddings_on_stationary_id"

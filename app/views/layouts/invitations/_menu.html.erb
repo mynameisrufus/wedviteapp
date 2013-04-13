@@ -1,0 +1,16 @@
+<ul class="nav nav-tabs">
+  <% unless @wedding.thank_process_started? %>
+    <%= nav_tab "Our Day", our_day_path(@guest.token) %>
+    <% if @wedding.ceremony_where.present? || @wedding.reception_where.present? %>
+      <%= nav_tab "Directions", directions_path(@guest.token) %>
+    <% end %>
+  <% else %>
+    <%= nav_tab "Thank You", thank_path(@guest.token) %>
+  <% end %>
+  <%= nav_tab "Guest List", guestlist_path(@guest.token) %>
+  <%= nav_tab "You", guest_path(@guest.token) %>
+  <% if @wedding.gift_registry.present? %>
+    <%= nav_tab "Gift Registry", gifts_path(@guest.token) %>
+  <% end %>
+  <%= nav_tab "Messages", messages_path(@guest.token) %>
+</ul>
