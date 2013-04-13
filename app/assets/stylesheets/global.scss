@@ -42,7 +42,8 @@ h1 {
     only screen and (-webkit-min-device-pixel-ratio: 2),
     only screen and (min-device-pixel-ratio: 2) {
     body {
-        background-image: image-url('linen2x.jpg'); }
+        background-image: image-url('linen2x.jpg');
+        background-size: 50%; }
     .birdies {
         background-image: image-url('birds2x.png'); }
     .paddle {
