@@ -97,40 +97,46 @@ module ApplicationHelper
         order: 1
       },
       {
+        state: "thanked",
+        label: "T",
+        title: "Thanked",
+        order: 2
+      },
+      {
         state: "accepted",
         label: "R",
         title: "RSVP",
-        order: 2
+        order: 3
       },
       {
         state: "sent",
         label: "&#64;",
         title: "Invitation sent",
-        order: 3
+        order: 4
       },
       {
         state: "approved",
         label: "&#10003;",
         title: "Approved for invitation",
-        order: 4
+        order: 5
       },
       {
         state: "tentative",
         label: "&#8776;",
         title: "Tentative",
-        order: 5
+        order: 6
       },
       {
         state: "declined",
         label: "D",
         title: "Invitation declined",
-        order: 6
+        order: 7
       },
       {
         state: "rejected",
         label: "&#215;",
         title: "Rejected",
-        order: 7
+        order: 8
       },
       {
         state: "default",

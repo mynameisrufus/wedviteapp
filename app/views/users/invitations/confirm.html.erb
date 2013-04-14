@@ -12,7 +12,7 @@
         <% end %>
       </tbody>
     </table>
-    <%= link_to wedding_deliver_path(@wedding), class: 'btn btn-danger btn-large', style: 'width: 190px;', confirm: "Are you sure? this cannot be undone." do %>
+    <%= link_to wedding_deliver_invitations_path(@wedding), class: 'btn btn-danger btn-large', style: 'width: 190px;', confirm: "Are you sure? this cannot be undone." do %>
       Send!
     <% end %>
   <% else %>

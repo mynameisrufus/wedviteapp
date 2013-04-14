@@ -41,7 +41,9 @@ WeddingInvitor::Application.routes.draw do
         get 'invitation-and-stationery', action: :invitations, as: :invitations
         get :timeline
         get 'invite-guests', action: :confirm, controller: :invitations, as: :confirm
-        get :deliver, controller: :invitations
+        get 'thank-guests', action: :confirm, controller: :thanks, as: :thank
+        get 'deliver-invitations', action: :deliver, controller: :invitations, as: :deliver_invitations
+        get 'deliver-thanks', action: :deliver, controller: :thanks, as: :deliver_thanks
 
         get :payment, controller: :payments
         get 'payment-success', controller: :payments, action: :success, as: :payment_success

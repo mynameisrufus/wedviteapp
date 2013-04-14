@@ -18,7 +18,7 @@
   <%= nav_tab "Timeline", wedding_timeline_path(@wedding) %>
   <% if can? :send_invitations, @wedding %>
     <% if @wedding.celebrated? %>
-      <%= nav_tab "Thank Guests", wedding_confirm_path(@wedding) %>
+      <%= nav_tab "Thank Guests", wedding_thank_path(@wedding) %>
     <% else %>
       <%= nav_tab "Invite Guests", wedding_confirm_path(@wedding) %>
     <% end %>

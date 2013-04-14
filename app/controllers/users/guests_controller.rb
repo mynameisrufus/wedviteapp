@@ -153,9 +153,9 @@ class Users::GuestsController < Users::BaseController
   end
 
   def thank_you_remind_mail
-    Invitations::ThankyouRemindMailer.prepare wedding: @wedding,
-                                              sender: current_user,
-                                              guest: @guest
+    Invitations::ThankRemindMailer.prepare wedding: @wedding,
+                                           sender: current_user,
+                                           guest: @guest
   end
 
   def find_wedding

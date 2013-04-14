@@ -10,7 +10,7 @@
       <td height="10" style="background-color:white"></td> 
     </tr> 
     <tr valign="top"> 
-      <td><span style="color:#555;font-size:14px;line-height:18px">Please find below a link to our wedding invitation and all the details:</span> </td> 
+      <td><span style="color:#555;font-size:14px;line-height:18px">Please find below a link to our thank you:</span> </td> 
     </tr> 
     <tr valign="top"> 
       <td height="20" style="background-color:white"></td> 
@@ -22,27 +22,13 @@
       <td height="10" style="background-color:white"></td> 
     </tr> 
     <tr valign="top">
-      <td><span style="color:#555;font-size:10px;line-height:18px;font-style:italic;">This a private link to your invitation, please do not share this email with anyone.</span></td>
+      <td><span style="color:#555;font-size:10px;line-height:18px;font-style:italic;">This a private link to our thank you, please do not share this email with anyone.</span></td>
     </tr> 
     <tr valign="top"> 
       <td height="20" style="background-color:white"></td> 
     </tr> 
     <tr valign="top"> 
-      <td><span style="color:#555;font-size:14px;line-height:18px">We hope you can make it,</span></td>
-    </tr> 
-    <tr valign="top"> 
-      <td height="30" style="background-color:white"></td> 
-    </tr> 
-    <tr valign="top"> 
       <td><span style="color:#555;font-size:14px;line-height:18px"><%= @wedding.partner_one_name %> and <%= @wedding.partner_two_name %></span></td>
-    </tr> 
-    <tr valign="top"> 
-      <td height="60" style="background-color:white"></td> 
-    </tr> 
-    <tr valign="top"> 
-      <% unless @wedding.respond_deadline.nil? %>
-      <td><span style="color:#555;font-size:14px;line-height:18px;font-style:italic;">Please RSVP by <%= @wedding.respond_deadline.strftime "%A the #{@wedding.respond_deadline.day.ordinalize} of %B %G" %></span></td>
-      <% end %>
     </tr> 
   </tbody>
 </table> 

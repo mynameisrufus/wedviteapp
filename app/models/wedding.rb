@@ -37,6 +37,20 @@ class Wedding < ActiveRecord::Base
     end
   end
 
+  before_validation do
+    self.ceremony_when_end = self.ceremony_when_end.change({
+      year: self.ceremony_when.year,
+      month: self.ceremony_when.month,
+      day: self.ceremony_when.day
+    })
+
+    self.reception_when_end = self.reception_when_end.change({
+      year: self.reception_when.year,
+      month: self.reception_when.month,
+      day: self.reception_when.day
+    })
+  end
+
   before_validation on: :create do
     self.payment_made = true
     self.payment_date = Time.now
@@ -123,7 +137,12 @@ reception_what ceremony_how reception_how thank_you_wording)
 
   # Julie and Rob's wedding
   def title
-    "#{self.partner_one_name} and #{self.partner_two_name}'s Wedding"
+    "#{partners_names}'s Wedding"
+  end
+
+  # Julie and Rob
+  def partners_names
+    "#{self.partner_one_name} and #{self.partner_two_name}"
   end
 
   def payment_due?
@@ -135,6 +154,6 @@ reception_what ceremony_how reception_how thank_you_wording)
   end
 
   def celebrated?
-    Time.now > ceremony_when_end
+    ceremony_when_end.past?
   end
 end

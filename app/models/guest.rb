@@ -14,6 +14,7 @@ class Guest < ActiveRecord::Base
     { verb: :accept, noun: :accepted },
     { verb: :decline, noun: :declined },
     { verb: :sent, noun: :sent },
+    { verb: :thank, noun: :thanked },
     { verb: :tentative, noun: :tentative },
     { verb: :review, noun: :review}
   ]
@@ -37,6 +38,14 @@ class Guest < ActiveRecord::Base
 
   def self.invited! guests
     update_all({ invited_on: Time.now, state: :sent }, { id: guests })
+  end
+
+  def thank!
+    sent.update_attributes(thanked_on: Time.now, state: :thanked)
+  end
+
+  def self.thanked! guests
+    update_all({ thanked_on: Time.now, state: :thanked }, { id: guests })
   end
 
   validates_presence_of :wedding_id, :name, :adults, :children, :token

@@ -1,0 +1,23 @@
+<section class="confirm-send placeholder">
+  <% unless @guests.empty? %>
+    <h2>List of RSVPd guests to thank</h2>
+    <p>The following list of RSVPd guests will be sent an email with a private link to your thank you page.</p>
+    <table class="table">
+      <tbody>
+        <% @guests.each do |guest| %>
+          <tr>
+            <td><%= guest.name %></td>
+            <td><%= guest.email %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= link_to wedding_deliver_thanks_path(@wedding), class: 'btn btn-danger btn-large', style: 'width: 190px;', confirm: "Are you sure? this cannot be undone." do %>
+      Send!
+    <% end %>
+  <% else %>
+    <h2>You have no RSVPd guests to send a thank you email to</h2>
+    <p>To send guests a thank you they need to be RSVPd, RSVPd guests have a symbol like this:</p>
+    <p><%= state_icon 'accepted' %> &nbsp;</p>
+  <% end %>
+</section>
