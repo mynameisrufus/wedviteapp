@@ -5,7 +5,7 @@
   <h1>Update your details</h1>
 </div>
 
-<%= form_for @guest, url: guest_path, html: { class: 'form-horizontal' } do |f| %>
+<%= form_for @guest, url: update_guest_path(@guest.token), html: { class: 'form-horizontal' } do |f| %>
   <fieldset>
 
     <% unless @wedding.thank_process_started? %>

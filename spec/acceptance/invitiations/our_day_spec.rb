@@ -6,7 +6,7 @@ feature 'Our day feature', %q{
 } do
 
   let(:setup_guest) {
-    wedding = Wedding.make!
+    wedding = Wedding.make! ceremony_where: Location.make!
     guest   = Guest.make! wedding: wedding, state: 'accepted'
     visit invitation_url(guest.token, subdomain: 'invitations')
     [guest, wedding]

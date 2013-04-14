@@ -9,7 +9,7 @@ class Invitations::MessagesController < Invitations::BaseController
     respond_to do |format|
       if @message.save
         format.html do
-          redirect_to invitation_path(@guest.token), notice: 'Message added.'
+          redirect_to messages_path(@guest.token), notice: 'Message added.'
         end
       else
         format.html { render action: "index" }
@@ -22,7 +22,7 @@ class Invitations::MessagesController < Invitations::BaseController
 
     respond_to do |format|
       if @message.update_attributes text: params[:message]
-        format.html { redirect_to wedding_guestlist_path(@wedding), notice: 'Comment was successfully updated.' }
+        format.html { redirect_to messages_path(@guest.token), notice: 'Comment was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

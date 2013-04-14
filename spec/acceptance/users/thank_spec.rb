@@ -17,7 +17,9 @@ feature 'Invitation feature', %q{
 
     wedding.update_attribute :ceremony_when_end, 5.days.ago
 
-    visit wedding_confirm_path(wedding)
+    navigate_to_wedding wedding, user
+
+    click_link 'Thank Guests'
 
     page.should have_content(guest.name)
     page.should have_content(guest.email)

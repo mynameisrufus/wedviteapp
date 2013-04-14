@@ -32,16 +32,15 @@ feature 'Invitation feature', %q{
 
   scenario 'reply to a message' do
     guest, wedding = *setup_guest
-    guest.messages.make! text: 'Hello', wedding: wedding
+    guest.messages.make! text: 'Hello my friend', wedding: wedding
     visit invitation_url(guest.token, subdomain: 'invitations')
     click_link 'Messages'
-    page.should have_content("Hello")
-    fill_in 'reply_text', with: 'Goodbye'
+    page.should have_content("Hello my friend")
+    fill_in 'reply_text', with: 'Goodbye my friend'
     click_button 'Reply'
-    guest.replies.first.text.should eq 'Goodbye'
-    page.should have_content("Hello")
-    page.should have_content("Goodbye")
-
+    guest.replies.first.text.should eq 'Goodbye my friend'
+    page.should have_content("Hello my friend")
+    page.should have_content("Goodbye my friend")
   end
 
   pending 'delete my own reply' do

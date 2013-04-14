@@ -1,13 +1,11 @@
 class Invitations::StationeryController < Invitations::BaseController
+  around_filter :check_redirect, only: :show
+
   layout false
 
   def show
-    if should_redirect_guest?
-      redirect_to path_for_guest_state
-    else
-      @guest.touch :viewed_at
-      render_stationery
-    end
+    @guest.touch :viewed_at
+    render_stationery
   end
 
   def print

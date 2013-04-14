@@ -70,6 +70,7 @@ WeddingInvitor::Application.routes.draw do
         resources :collaborators, except: %w(show)
         resources :guests do
           get 'remind'
+          get 'thank'
           post 'approve'
           post 'reject'
           post 'tentative'
@@ -128,7 +129,7 @@ WeddingInvitor::Application.routes.draw do
         match 'message'   => 'guests#message', as: :guest_message, method: :post
 
         get 'you'         => 'guests#show', as: :guest
-        post 'update'     => 'guests#update', as: :update_guest
+        put 'update'     => 'guests#update', as: :update_guest
         match 'accept'    => 'guests#accept', as: :accept_invitation
         match 'decline'   => 'guests#decline', as: :decline_invitation
 

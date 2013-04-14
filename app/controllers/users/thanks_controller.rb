@@ -19,7 +19,7 @@ class Users::ThanksController < Users::BaseController
     @wedding.evt.create! wedding: @wedding,
                          headline: "#{@guests.size} guests were sent thank you emails"
 
-    redirect_to wedding_timeline_path(@wedding), notice: "Thank you emails sent"
+    redirect_to wedding_timeline_path(@wedding), notice: "Thank you emails have been sent!"
   end
 
   protected

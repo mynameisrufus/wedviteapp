@@ -9,7 +9,7 @@
 wedding will be able to read this message.</p>
     <div class="form-actions">
       <button type="submit" class="btn">Message</button>
-      <%= link_to "Skip", guesthome_path, class: "btn" %>
+      <%= link_to "Skip", gifts_path(@guest.token), class: "btn" %>
     </div>
   </fieldset>
 <% end %>

@@ -12,6 +12,7 @@ class Invitations::GuestsController < Invitations::BaseController
                          state: 'accepted',
                          headline: "#{@guest.name} has #{t("state.accepted.noun")}"
     end
+    @guest.reload
     redirect_to our_day_path, notice: 'You have RSVP\'d'
   end
 
@@ -24,6 +25,7 @@ class Invitations::GuestsController < Invitations::BaseController
                          state: 'declined',
                          headline: "#{@guest.name} has #{t("state.declined.noun")}"
     end
+    @guest.reload
   end
 
   def message
@@ -33,7 +35,7 @@ class Invitations::GuestsController < Invitations::BaseController
     end
 
     if @guest.declined?
-      redirect_to after_decline_path
+      redirect_to guest_path(@guest.token), notice: "We are sorry you cannot not make it."
     else
       redirect_to our_day_path, notice: 'Message added'
     end
@@ -63,16 +65,12 @@ class Invitations::GuestsController < Invitations::BaseController
 
     respond_to do |format|
       if @guest.save
-        format.html { redirect_to guesthome_path, notice: 'Your details have been updated.' }
+        format.html { redirect_to guest_path(@guest.token), notice: 'Your details have been updated.' }
         format.json { head :ok }
       else
-        format.html { redirect_to guesthome_path, notice: 'Sorry we could not update your details.' }
+        format.html { redirect_to guest_path(@guest.token), notice: 'Sorry we could not update your details.' }
         format.json { render json: @wedding.errors, status: :unprocessable_entity }
       end
     end
-  end
-
-  def after_decline
-    redirect_to path_for_guest_state if should_redirect_guest?
   end
 end

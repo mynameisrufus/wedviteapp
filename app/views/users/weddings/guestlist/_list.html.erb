@@ -73,7 +73,9 @@
                 <% unless Rails.env.production? %>
                   <%= link_to "invitation", invitation_url(guest.token, subdomain: 'invitations'), target: "_blank" %>
                 <% end %>
-                <% if guest.sent? %>
+                <% if guest.thanked? %>
+                  <%= link_to "re-thank", wedding_guest_thank_path(@wedding, guest) %>
+                <% elsif guest.sent? %>
                   <%= link_to "remind", wedding_guest_remind_path(@wedding, guest) %>
                 <% end %>
               <% end %>

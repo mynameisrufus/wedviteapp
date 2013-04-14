@@ -3,6 +3,8 @@ class Invitations::BaseController < ApplicationController
 
   before_filter :find_guest
 
+  REDIRECT_STATES = ["accepted", "thanked", "declined"].freeze
+
   protected
 
   def find_guest
@@ -10,16 +12,20 @@ class Invitations::BaseController < ApplicationController
     @wedding = @guest.wedding
   end
 
-  def should_redirect_guest?
-    @guest.accepted? && request.fullpath != our_day_path ||
-    @guest.declined? && request.fullpath != after_decline_path
-  end
-
-  def path_for_guest_state
-    case @guest.state
-      when 'accepted' then @wedding.thank_process_started? ? thank_path : our_day_path
-      when 'declined' then after_decline_path
-      else invitation_path
+  def check_redirect
+    if REDIRECT_STATES.include?(@guest.state)
+      case @guest.state
+      when "accepted"
+        redirect_to @wedding.thank_process_started? ? thank_path : our_day_path
+      when "thanked"
+        redirect_to @wedding.thank_process_started? ? thank_path : our_day_path
+      when "declined"
+        redirect_to guest_path(@guest.token)
+      else
+        yield
+      end
+    else
+      yield
     end
   end
 end

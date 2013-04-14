@@ -395,6 +395,16 @@ section {
       font-size: 16px;
       line-height: 10px;
     }
+    &.thanked {
+      background-color: white;
+      font-size: 15px;
+      line-height: 11px;
+      border: 1px solid black;
+      width: 10px;
+      height: 10px;
+      color: black;
+      font-weight: 400;
+    }
     &.tentative {
       background-color: $tentative;
       font-size: 20px;

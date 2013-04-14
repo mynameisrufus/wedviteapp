@@ -10,7 +10,7 @@ class Invitations::RepliesController < Invitations::BaseController
         send_reply_to_participants
 
         format.html do
-          redirect_to invitation_path(@guest.token), notice: 'Reply created.'
+          redirect_to messages_path(@guest.token), notice: 'Reply created.'
         end
       else
         format.html { render action: "messages/index" }
@@ -23,7 +23,7 @@ class Invitations::RepliesController < Invitations::BaseController
 
     respond_to do |format|
       if @reply.update_attributes text: params[:reply]
-        format.html { redirect_to wedding_guestlist_path(@wedding), notice: 'Comment was successfully updated.' }
+        format.html { redirect_to messages_path(@guest.token), notice: 'Comment was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

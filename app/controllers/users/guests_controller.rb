@@ -1,6 +1,6 @@
 class Users::GuestsController < Users::BaseController
   before_filter :find_wedding
-  before_filter :find_guest, only: %w(approve reject tentative accept decline move remind)
+  before_filter :find_guest, only: %w(approve reject tentative accept decline move remind thank)
 
   def approve
     change_state :approve
@@ -136,7 +136,9 @@ class Users::GuestsController < Users::BaseController
   end
 
   def remind
-    mail = wedding.celebrated? ? thank_you_remind_mail : invitation_remind_mail
+    mail = Invitations::RemindMailer.prepare wedding: @wedding,
+                                             sender: current_user,
+                                             guest: @guest
     mail.deliver
     respond_to do |format|
       format.html { redirect_to wedding_guestlist_path(@wedding), notice: "#{@guest.name} has been sent a reminder email." }
@@ -144,19 +146,18 @@ class Users::GuestsController < Users::BaseController
     end
   end
 
+  def thank
+    mail = Invitations::ThankRemindMailer.prepare wedding: @wedding,
+                                                  sender: current_user,
+                                                  guest: @guest
+    mail.deliver
+    respond_to do |format|
+      format.html { redirect_to wedding_guestlist_path(@wedding), notice: "#{@guest.name} has been sent a thank you email." }
+      format.json { head :ok }
+    end
+  end
+
   protected
-
-  def invitation_remind_mail
-    Invitations::RemindMailer.prepare wedding: @wedding,
-                                      sender: current_user,
-                                      guest: @guest
-  end
-
-  def thank_you_remind_mail
-    Invitations::ThankRemindMailer.prepare wedding: @wedding,
-                                           sender: current_user,
-                                           guest: @guest
-  end
 
   def find_wedding
     @wedding = current_user.weddings.find params[:wedding_id]
