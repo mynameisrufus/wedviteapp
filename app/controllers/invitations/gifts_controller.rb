@@ -9,9 +9,9 @@ class Invitations::GiftsController < Invitations::BaseController
     respond_to do |format|
       if @gift.unclaimed?
         @gift.claim @guest
-        format.html { redirect_to invitation_path(@guest.token), notice: "You have claimed the gift." }
+        format.html { redirect_to gifts_path(@guest.token), notice: "You have claimed the gift." }
       else
-        format.html { redirect_to invitation_path(@guest.token), notice: "The gift has already been claimed." }
+        format.html { redirect_to gifts_path(@guest.token), notice: "The gift has already been claimed." }
       end
     end
   end
@@ -20,9 +20,9 @@ class Invitations::GiftsController < Invitations::BaseController
     respond_to do |format|
       if @gift.claimed_by @guest
         @gift.unclaim
-        format.html { redirect_to invitation_path(@guest.token), notice: "You have unclaimed the gift." }
+        format.html { redirect_to gifts_path(@guest.token), notice: "You have unclaimed the gift." }
       else
-        format.html { redirect_to invitation_path(@guest.token), notice: "The gift has been claimed by someone else." }
+        format.html { redirect_to gifts_path(@guest.token), notice: "The gift has been claimed by someone else." }
       end
     end
   end

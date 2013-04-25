@@ -32,7 +32,9 @@
               <% end %>
             </td>
             <td>$<%= gift.price %></td>
-            <% if gift.claimed? %>
+            <% if gift.claimed? && @wedding.celebrated? %>
+              <td><%= gift.guest.name %></td>
+            <% elsif gift.claimed? %>
               <td>Claimed</td>
             <% else %>
               <td><%= link_to 'Remove', wedding_gift_registry_gift_path(@wedding, gift), method: :delete, class: 'btn btn-small' %></td>
