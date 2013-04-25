@@ -71,6 +71,7 @@ WeddingInvitor::Application.routes.draw do
         resources :guests do
           get 'remind'
           get 'thank'
+          get 'link'
           post 'approve'
           post 'reject'
           post 'tentative'

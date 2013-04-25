@@ -23,6 +23,12 @@ class MailPreview < MailView
                                            guest: Spoof.guest
   end
 
+  def invitations_send_link
+    Invitations::SendLinkMailer.prepare wedding: Spoof.wedding,
+                                        sender: Spoof.user,
+                                        guest: Spoof.guest
+  end
+
   def invitations_message
     Invitations::MessageMailer.prepare wedding: Spoof.wedding,
                                        message: Spoof.message,

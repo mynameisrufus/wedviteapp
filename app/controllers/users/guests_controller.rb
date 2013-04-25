@@ -1,6 +1,6 @@
 class Users::GuestsController < Users::BaseController
   before_filter :find_wedding
-  before_filter :find_guest, only: %w(approve reject tentative accept decline move remind thank)
+  before_filter :find_guest, only: %w(approve reject tentative accept decline move remind thank link)
 
   def approve
     change_state :approve
@@ -157,6 +157,16 @@ class Users::GuestsController < Users::BaseController
     end
   end
 
+  def link
+    mail = Invitations::SendLinkMailer.prepare wedding: @wedding,
+                                               sender: current_user,
+                                               guest: @guest
+    mail.deliver
+    respond_to do |format|
+      format.html { redirect_to wedding_guestlist_path(@wedding), notice: "#{@guest.name} has been sent an email with a link to your wedding details." }
+      format.json { head :ok }
+    end
+  end
   protected
 
   def find_wedding
