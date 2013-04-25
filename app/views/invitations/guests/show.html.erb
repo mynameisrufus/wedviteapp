@@ -51,20 +51,22 @@
       </div>
     </div>
 
-    <div class="control-group">
-      <%= f.label :adults, class: "control-label" %>
-      <div class="controls">
-        <%= f.text_field :adults, class: 'input-xlarge', type: :number %>
-      </div>
-    </div>
-
-    <% if @guest.children != 0 %>
+    <% unless @wedding.respond_deadline.past? %>
       <div class="control-group">
-        <%= f.label :children, class: "control-label" %>
+        <%= f.label :adults, class: "control-label" %>
         <div class="controls">
-          <%= f.text_field :children, class: 'input-xlarge', type: :number %>
+          <%= f.text_field :adults, class: 'input-xlarge', type: :number %>
         </div>
       </div>
+
+      <% if @guest.children != 0 %>
+        <div class="control-group">
+          <%= f.label :children, class: "control-label" %>
+          <div class="controls">
+            <%= f.text_field :children, class: 'input-xlarge', type: :number %>
+          </div>
+        </div>
+      <% end %>
     <% end %>
 
     <div class="control-group">

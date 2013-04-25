@@ -77,7 +77,7 @@
                   <%= link_to "re-thank", wedding_guest_thank_path(@wedding, guest) %>
                 <% elsif guest.sent? %>
                   <%= link_to "remind", wedding_guest_remind_path(@wedding, guest) %>
-                <% elsif guest.accepted? %>
+                <% elsif guest.accepted? || guest.declined? %>
                   <%= link_to "send link", wedding_guest_link_path(@wedding, guest) %>
                 <% end %>
               <% end %>
