@@ -12,7 +12,7 @@ class Invitations::WeddingsController < Invitations::BaseController
   end
 
   def guestlist
-    @guests = @wedding.guests.accepted.order(:name)
+    @guests = @wedding.guests.where(state: ['accepted', 'thanked']).order(:name)
   end
 
   def ical
