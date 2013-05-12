@@ -1,14 +1,18 @@
 class Users::FeedbackController < Users::BaseController
+
   def create
-    respond_to do |format|
-      if params[:feedback].present?
-        Users::Mailer.feedback(user: current_user, text: params[:feedback]).deliver
-        format.html { redirect_to root_path, notice: 'Feedback sent.' }
-        format.json { head :ok }
-      else
-        format.html { render action: "new" }
-        format.json { render json: [], status: :unprocessable_entity }
-      end
+    if params[:feedback].present?
+      mail.deliver
+      redirect_to root_path, notice: "Thank you for your feedback."
+    else
+      render "new"
     end
   end
+
+  protected
+
+  def mail
+    Users::FeedbackMailer.prepare user: current_user, text: params[:feedback]
+  end
+
 end
