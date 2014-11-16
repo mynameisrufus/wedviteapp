@@ -33,7 +33,7 @@ describe Invitations::ReplyMailer do
     end
 
     it 'should have substitute values in body' do
-      mail.encoded.should have_xpath "//a[contains(@href,'-invitation_url-')]"
+      expect(mail.encoded.should).to have_xpath("//a[contains(@href,'-invitation_url-')]")
     end
 
   end

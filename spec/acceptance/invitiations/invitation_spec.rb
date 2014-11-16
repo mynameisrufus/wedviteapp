@@ -1,4 +1,3 @@
-
 require 'acceptance/acceptance_helper'
 
 feature 'Invitation feature', %q{
@@ -41,11 +40,7 @@ feature 'Invitation feature', %q{
     page.should have_content("We are sorry you cannot not make it.")
   end
 
-  pending 'RSVP after previously declining' do
+  pending 'RSVP after previously declining'
 
-  end
-
-  pending 'become rejected after the invitation has been sent' do
-    # should get a 4 O something
-  end
+  pending 'become rejected after the invitation has been sent'
 end

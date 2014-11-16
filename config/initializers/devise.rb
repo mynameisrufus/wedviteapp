@@ -1,5 +1,3 @@
-require "omniauth-facebook"
-
 # Use this hook to configure devise mailer, warden hooks and so forth. The first
 # four configuration values can also be set straight in your models.
 Devise.setup do |config|
@@ -8,6 +6,7 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
   config.mailer_sender = "admin@wedviteapp.com"
 
+  config.secret_key = '988b62b83a9001a13101c355e94ad35f1008cacb3b3aeed852ceaac781328eeeec4b787c0a19277a60f7b81ef63ab3e2c7c00cfca486477d46ab5348255379f2'
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
 

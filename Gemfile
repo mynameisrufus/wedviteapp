@@ -1,27 +1,27 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '~> 4.1.7'
 
 gem 'pg'
 gem 'puma',                   '~> 1.4'
 
 # User auth
-gem 'devise',                 '~> 2.1'
+gem 'devise',                 '~> 3.4'
 gem 'cancan',                 '~> 1.6'
-gem 'omniauth',               '~> 1.1'
-gem 'oauth2',                 '~> 0.8'
-gem 'omniauth-facebook',      '~> 1.4'
+gem 'omniauth',               '~> 1.2.2'
+gem 'oauth2',                 '~> 1.0.0'
+gem 'omniauth-facebook',      '~> 2.0'
 
-gem 'kaminari',               '~> 0.13.0'
-gem 'sorted',                 '~> 0.4.2'
+gem 'kaminari',               '~> 0.16.1'
+gem 'sorted',                 '~> 1.0.1'
 gem 'redcarpet',              '~> 2.1.1'
 gem 'liquid',                 '~> 2.3.0'
 gem 'ri_cal',                 '~> 0.8.8'
-gem 'rails_admin',            '~> 0.0.5'
+gem 'rails_admin',            '~> 0.6.5'
 gem 'friendly_id',            '~> 4.0.1'
 
 gem 'fog',                    '~> 1.5'
-gem 'paperclip',              '~> 3.1'
+gem 'paperclip',              '~> 4.2'
 gem 'ffaker',                 '~> 1.14'
 gem 'exception_notification', '~> 2.6'
 
@@ -39,24 +39,21 @@ gem 'wkhtmltopdf-binary',     '~> 0.9.9.1'
 # https://github.com/37signals/mail_view
 gem 'mail_view',            '~> 1.0.3'
 
+gem 'jquery-rails',         '~> 3.0'
+
+gem 'sass-rails',           '~> 4.0'
+gem 'bootstrap-sass',       '~> 2.1.0'
+
+gem 'uglifier',             '>= 1.0.3'
+
 group :staging do
   # Memory profiler.
   # https://github.com/noahd1/oink
   gem 'oink'
 end
 
-group :assets do
-  gem 'jquery-rails',         '~> 1.0.19'
-
-  gem 'sass-rails',           '~> 3.2.5'
-  gem 'bootstrap-sass',       '~> 2.1.0'
-
-  gem 'uglifier',             '>= 1.0.3'
-  gem 'therubyracer',         '~> 0.10'
-end
-
 group :development, :test do
-  gem 'rspec-rails',          '~> 2.10'
+  gem 'rspec-rails',          '~> 3.1'
   gem 'machinist',            '~> 2.0'
   gem 'database_cleaner'
   gem 'awesome_print'
@@ -64,6 +61,7 @@ group :development, :test do
   # Steak for acceptence tests. Needs to be removed.
   gem 'steak',                '~> 2.0.0'
   gem 'xpath'
+  gem 'webrat'
 
   gem 'launchy'
   gem 'pry',                  '~> 0.9'

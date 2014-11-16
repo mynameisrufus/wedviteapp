@@ -5,7 +5,7 @@ Admin.create!({
 
 designer = Designer.create!({
   email: 'rufuspost@gmail.com',
-  password: '4863are',
+  password: 'abcd1234',
   first_name: 'Rufus',
   last_name: 'Post'
 })

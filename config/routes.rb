@@ -1,4 +1,4 @@
-WeddingInvitor::Application.routes.draw do
+Rails.application.routes.draw do
 
   if Rails.env.development?
     mount MailPreview => 'mail-preview'
@@ -7,9 +7,9 @@ WeddingInvitor::Application.routes.draw do
   constraints subdomain: 'admin' do
     devise_for :admins
 
-    match 'robots.txt' => 'application#robots'
+    get 'robots.txt' => 'application#robots'
 
-    root to: 'rails_admin/main#dashboard'
+    root to: 'rails_admin/main#dashboard', as: :admin_root
     mount RailsAdmin::Engine => '/manage', :as => 'rails_admin'
   end
 
@@ -21,9 +21,9 @@ WeddingInvitor::Application.routes.draw do
       omniauth_callbacks: "users/omniauth_callbacks"
     }
 
-    root to: 'users/dashboard#home'
+    root to: 'users/dashboard#home', as: :plan_root
     scope module: 'users' do
-      match 'robots.txt' => 'base#robots'
+      get 'robots.txt' => 'base#robots'
 
       get 'collaborate/:token', action: :collaborate, controller: :collaborators, as: :collaborate
 
@@ -34,7 +34,6 @@ WeddingInvitor::Application.routes.draw do
         get :details
         put :update_details
 
-        get :invitations
         put :update_invitations
 
         get :guestlist
@@ -87,19 +86,19 @@ WeddingInvitor::Application.routes.draw do
           resources :gifts, only: %w(create update destroy)
         end
       end
-      match 'feedback/new' => 'feedback#new', method: :get
-      match 'feedback' => 'feedback#create', method: :post
+      get 'feedback/new' => 'feedback#new', method: :get
+      post 'feedback' => 'feedback#create', method: :post
 
-      match 'help/:page' => 'help#page', as: :help_page
+      get 'help/:page' => 'help#page', as: :help_page
     end
   end
 
   constraints subdomain: 'design' do
     devise_for :designers, controllers: { sessions: "designers/sessions" }
 
-    match 'robots.txt' => 'base#robots'
+    get 'robots.txt' => 'base#robots'
 
-    root to: 'designers/dashboard#home'
+    root to: 'designers/dashboard#home', as: :design_root
     scope module: 'designers' do
       resources :stationery do
         get :build, on: :member
@@ -113,26 +112,26 @@ WeddingInvitor::Application.routes.draw do
 
   constraints subdomain: 'invitations' do
     scope module: 'invitations' do
-      match 'robots.txt' => 'base#robots'
+      get 'robots.txt' => 'base#robots'
 
       scope ":token" do
         root to: 'stationery#show', as: :invitation
-        match 'print'     => 'stationery#print', as: :print_invitation
+        get 'print'     => 'stationery#print', as: :print_invitation
 
         get 'guestlist'   => 'weddings#guestlist', as: :guestlist
         get 'directions'  => 'weddings#directions', as: :directions
         get 'ourday'      => 'weddings#our_day', as: :our_day
         get 'thankyou'    => 'weddings#thank', as: :thank
-        match 'ical'      => 'weddings#ical', as: :ical
+        get 'ical'      => 'weddings#ical', as: :ical
 
 
         # TODO remove this
-        match 'message'   => 'guests#message', as: :guest_message, method: :post
+        post 'message'   => 'guests#message', as: :guest_message, method: :post
 
         get 'you'         => 'guests#show', as: :guest
         put 'update'     => 'guests#update', as: :update_guest
-        match 'accept'    => 'guests#accept', as: :accept_invitation
-        match 'decline'   => 'guests#decline', as: :decline_invitation
+        get 'accept'    => 'guests#accept', as: :accept_invitation
+        get 'decline'   => 'guests#decline', as: :decline_invitation
 
         resources :messages, only: %w(index create update destroy) do
           resources :replies, only: %w(create update destroy)
@@ -148,8 +147,8 @@ WeddingInvitor::Application.routes.draw do
 
   constraints subdomain: 'blog' do
     scope module: 'blog' do
-      match 'robots.txt' => 'posts#robots'
-      root to: 'posts#index'
+      get 'robots.txt' => 'posts#robots'
+      root to: 'posts#index', as: :blog_root
       resources :posts, only: %w(index edit update show) do
         get 'page/:page', action: :index, on: :collection, as: :page
       end
@@ -157,7 +156,7 @@ WeddingInvitor::Application.routes.draw do
   end
 
   scope module: 'site' do
-    match 'robots.txt' => 'base#robots'
-    root to: 'pages#home'
+    get 'robots.txt' => 'base#robots'
+    root to: 'pages#home', as: :site_root
   end
 end

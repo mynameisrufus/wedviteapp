@@ -1,4 +1,4 @@
-WeddingInvitor::Application.configure do
+Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on
@@ -29,4 +29,6 @@ WeddingInvitor::Application.configure do
   config.assets.debug = true
 
   config.action_mailer.default_url_options = { :host => 'wedvite.dev' }
+
+  config.eager_load = false
 end

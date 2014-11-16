@@ -6,14 +6,14 @@ describe Wedding do
       wedding = Wedding.make wording: <<EOL
 # This invitation is missing the guest tag
 EOL
-      wedding.should_not be_valid
+      expect(wedding).not_to be_valid
     end
 
     it "should be valid if guest name tag is present" do
       wedding = Wedding.make wording: <<EOL
 # {{ guest.name }}
 EOL
-      wedding.should be_valid
+      expect(wedding).to be_valid
     end
   end
 end

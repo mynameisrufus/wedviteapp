@@ -1,7 +1,8 @@
 class Site::PagesController < Site::BaseController
 
-  caches_action :home, cache_path: 'site/pages/home',
-                       expires_in: 1.hour
+  # FIXME this might be in a gem now
+  # caches_action :home, cache_path: 'site/pages/home',
+  #                      expires_in: 1.hour
 
   def home
     @lowest_possible_payment = Wedding::PRICE + lowest_stationery_price

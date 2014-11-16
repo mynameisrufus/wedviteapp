@@ -1,7 +1,4 @@
 class GuestStrict < Guest
-  attr_accessible :state, :attending_reception, :address, :phone,
-                  :adults, :children, :email
-
   ACCESSIBLE_STATES = [:approved, :accepted, :declined, :sent, :thanked]
 
   def self.token_find token

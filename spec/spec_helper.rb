@@ -9,6 +9,12 @@ require 'webmock/rspec'
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
+require "webrat"
+
+Webrat.configure do |config|
+  config.mode = :rails
+end
+
 RSpec.configure do |config|
   config.mock_with :rspec
 

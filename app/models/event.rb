@@ -5,9 +5,7 @@ class Event < ActiveRecord::Base
   validates :wedding_id, presence: true
   validates :headline, presence: true
 
-  scope :eventfull, lambda { |type|
-    where(eventfull_type: type.to_s.classify)
-  }
+  scope :eventfull, ->(type) { where(eventfull_type: type.to_s.classify) }
 
   def message?
     eventfull_type == Message.to_s

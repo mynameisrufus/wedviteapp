@@ -109,7 +109,7 @@ class Guest < ActiveRecord::Base
   end
 
   STATES.each do |state|
-    scope state[:noun], where(state: state[:noun].to_s)
+    scope state[:noun], -> { where(state: state[:noun].to_s) }
 
     define_method state[:verb] do
       update_state state[:noun].to_s

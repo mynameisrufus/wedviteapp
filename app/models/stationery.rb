@@ -23,7 +23,7 @@ class Stationery < ActiveRecord::Base
 
   has_attached_file :preview, path: "stationery/previews/:id/:hash.:extension"
 
-  scope :published, where(published: true)
+  scope :published, -> { where(published: true) }
 
   def deploy!
     update_attributes html: html_dev,

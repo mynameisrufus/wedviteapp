@@ -1,4 +1,4 @@
-WeddingInvitor::Application.configure do;
+Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   config.middleware.use ExceptionNotifier,
@@ -77,6 +77,5 @@ WeddingInvitor::Application.configure do;
 
   config.action_mailer.default_url_options = { :host => 'wedviteapp.com' }
 
-  # Enable threaded mode
-  config.threadsafe!
+  config.eager_load = true
 end

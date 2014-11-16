@@ -1,6 +1,4 @@
 class GiftRegistry < ActiveRecord::Base
-  attr_accessible :details
-
   belongs_to :wedding
   has_many :gifts
 

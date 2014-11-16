@@ -1,4 +1,4 @@
-WeddingInvitor::Application.configure do
+Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # The test environment is used exclusively to run your application's
@@ -42,6 +42,5 @@ WeddingInvitor::Application.configure do
 
   config.action_mailer.default_url_options = { :host => 'wedvite.dev' }
 
-  # Enable threaded mode
-  config.threadsafe!
+  config.eager_load = false
 end
