@@ -2,9 +2,9 @@
   <div class="wrapper">
       <p>
       <% c = capture do %>
-        <p>Total: <%= @guest_list.total %></p>
-        <p><strong><%= @guest_list.partner(1).total %></strong> <%= @wedding.partner_one_name %></p>
-        <p><strong><%= @guest_list.partner(2).total %></strong> <%= @wedding.partner_two_name %></p>
+        <p>Total: <%= @guest_list.likely.total %></p>
+        <p><strong><%= @guest_list.partner(1).likely.total %></strong> <%= @wedding.partner_one_name %></p>
+        <p><strong><%= @guest_list.partner(2).likely.total %></strong> <%= @wedding.partner_two_name %></p>
       <% end %>
 
       <%= content_tag :i, nil, {

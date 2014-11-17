@@ -65,7 +65,7 @@ class GuestState
   end
 
   def self.by_noun(noun)
-    DICT.detect{ |state| state.noun.to_s == noun }
+    DICT.detect{ |state| state.noun.to_s == noun.to_s }
   end
 
   def self.possibly_nouns

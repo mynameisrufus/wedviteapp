@@ -2,21 +2,21 @@
   <h1><%= @guest.name %></h1>
   <hr/>
   <%= form_tag wedding_guest_approve_path(@wedding, @guest), class: "guest-state-form" do %>
-    <button class="btn" type="submit"><%= state_icon "approved" %> Approve</button>
+    <button class="btn" type="submit"><%= state_icon GuestState.by_noun(:approved) %> Approve</button>
   <% end %>
   <%= form_tag wedding_guest_reject_path(@wedding, @guest), class: "guest-state-form" do %>
-    <button class="btn" type="submit"><%= state_icon "rejected" %> Reject</button>
+    <button class="btn" type="submit"><%= state_icon GuestState.by_noun(:rejected) %> Reject</button>
   <% end %>
   <%= form_tag wedding_guest_tentative_path(@wedding, @guest), class: "guest-state-form" do %>
-    <button class="btn" type="submit"><%= state_icon "tentative" %> Make tentative</button>
+    <button class="btn" type="submit"><%= state_icon GuestState.by_noun(:tentative) %> Make tentative</button>
   <% end %>
   <hr/>
   <p>Manually RSVP or Decline a guest if they are unable to do it themselves</p>
   <%= form_tag wedding_guest_accept_path(@wedding, @guest), class: "guest-state-form" do %>
-    <button class="btn" type="submit"><%= state_icon "accepted" %> RSVP</button>
+    <button class="btn" type="submit"><%= state_icon GuestState.by_noun(:accepted) %> RSVP</button>
   <% end %>
   <%= form_tag wedding_guest_decline_path(@wedding, @guest), class: "guest-state-form" do %>
-    <button class="btn" type="submit"><%= state_icon "declined" %> Decline</button>
+    <button class="btn" type="submit"><%= state_icon GuestState.by_noun(:declined) %> Decline</button>
   <% end %>
 </div>
 <div class="modal-footer">
