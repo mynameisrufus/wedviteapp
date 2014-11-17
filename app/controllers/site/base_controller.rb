@@ -10,6 +10,6 @@ class Site::BaseController < ApplicationController
   protected
 
   def redirect_if_current_user
-    redirect_to root_url(subdomain: 'plan') if user_signed_in?
+    redirect_to plan_root_path(subdomain: 'plan') if user_signed_in?
   end
 end

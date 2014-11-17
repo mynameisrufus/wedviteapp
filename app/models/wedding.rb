@@ -20,6 +20,8 @@ class Wedding < ActiveRecord::Base
   validates_with WeddingWordingValidator, attribute: :wording
   validates_with WeddingWordingValidator, attribute: :ceremony_only_wording
 
+  serialize :statistics
+
   PRICE = 49.95
 
   before_validation on: :create do
@@ -155,5 +157,9 @@ reception_what ceremony_how reception_how thank_you_wording)
 
   def celebrated?
     ceremony_when_end.past?
+  end
+
+  def partner_name(number)
+    { 1 => partner_one_name, 2 => partner_two_name }.fetch(number)
   end
 end

@@ -177,6 +177,10 @@ class Users::GuestsController < Users::BaseController
     @guest = @wedding.guests.find(params[:guest_id])
   end
 
+  def update_statistics
+    @wedding.statistics = GuestStatistics.new(@wedding.guests).to_hash
+  end
+
   def change_state(state)
     respond_to do |format|
       if @guest.send state

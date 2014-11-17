@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130413091525) do
+ActiveRecord::Schema.define(version: 20141116061131) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -403,6 +403,7 @@ ActiveRecord::Schema.define(version: 20130413091525) do
     t.text     "thank_you_wording"
     t.boolean  "thank_process_started"
     t.datetime "thank_process_started_at"
+    t.text     "statistics"
   end
 
   add_index "weddings", ["stationery_id"], name: "index_weddings_on_stationary_id", using: :btree

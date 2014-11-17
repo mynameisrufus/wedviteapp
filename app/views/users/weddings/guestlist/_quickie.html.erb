@@ -2,9 +2,9 @@
   <div class="wrapper">
       <p>
       <% c = capture do %>
-        <p>Total: <%= total_guests %></p>
-        <p><strong><%= total_guests_partner 1 %></strong> <%= @wedding.partner_one_name %></p>
-        <p><strong><%= total_guests_partner 2 %></strong> <%= @wedding.partner_two_name %></p>
+        <p>Total: <%= @guest_list.total %></p>
+        <p><strong><%= @guest_list.partner(1).total %></strong> <%= @wedding.partner_one_name %></p>
+        <p><strong><%= @guest_list.partner(2).total %></strong> <%= @wedding.partner_two_name %></p>
       <% end %>
 
       <%= content_tag :i, nil, {
@@ -13,43 +13,44 @@
         "data-content" => c,
         "data-original-title" => "totals"
       } %>
-      <strong><%= total_guests %></strong> Guests</p>
+      <strong><%= @guest_list.total %></strong> Guests</p>
 
-    <% guest_array.each do |ga| %>
-      <% next if ga[:guests].empty? %>
-      <%= content_tag :div, { class: ['quickie-nav', ga[:state]] } do %>
-        <%= state_icon ga[:state] %>
-        <% c = capture do %>
-          <p>Total: <%= ga[:stats][:total] %></p>
-          <sub>adults: <%= ga[:stats][:adults] %></sub>
-          <sub>children: <%= ga[:stats][:children] %></sub>
-          <p><%= @wedding.partner_one_name %>: <%= ga[:stats][:partner_one][:total] %></p>
-          <sub>adults: <%= ga[:stats][:partner_one][:adults] %></sub>
-          <sub>children: <%= ga[:stats][:partner_one][:children] %></sub>
-          <p><%= @wedding.partner_two_name %>: <%= ga[:stats][:partner_two][:total] %></p>
-          <sub>adults: <%= ga[:stats][:partner_two][:adults] %></sub>
-          <sub>children: <%= ga[:stats][:partner_two][:children] %></sub>
+    <% GuestState.each do |state| %>
+      <% @guest_list.currently(state).tap do |guest_list| %>
+        <% next if guest_list.currently(state).empty? %>
+        <%= content_tag :div, { class: ['quickie-nav', state.noun] } do %>
+          <%= state_icon state %>
+          <% c = capture do %>
+            <p>Total: <%= guest_list.total %></p>
+            <sub>adults: <%= guest_list.adults %></sub>
+            <sub>children: <%= guest_list.children %></sub>
+            <% [1,2].each do |number| %>
+              <p><%= @wedding.partner_name(number) %>: <%= guest_list.partner(number).total %></p>
+              <sub>adults: <%= guest_list.partner(number).adults %></sub>
+              <sub>children: <%= guest_list.partner(number).children %></sub>
+            <% end %>
+          <% end %>
+
+          <%= content_tag :i, nil, {
+            class: ["icon-eye-open", "toggle"],
+            "data-id" => state,
+            "title" => "show/hide",
+            "rel" => "tooltip"
+          } %>
+          <%= content_tag :i, nil, {
+            class: ["icon-info-sign"],
+            "data-id" => state,
+            rel: "popover",
+            "data-content" => c,
+            "data-original-title" => state.title
+          } %>
+          <%= content_tag :i, nil, {
+            class: ["icon-chevron-right", "goto"],
+            "data-id" => state,
+            "title" => "jump to #{state}",
+            "rel" => "tooltip"
+          } %>
         <% end %>
-
-        <%= content_tag :i, nil, {
-          class: ["icon-eye-open", "toggle"],
-          "data-id" => ga[:state],
-          "title" => "show/hide",
-          "rel" => "tooltip"
-        } %>
-        <%= content_tag :i, nil, {
-          class: ["icon-info-sign"],
-          "data-id" => ga[:state],
-          rel: "popover",
-          "data-content" => c,
-          "data-original-title" => ga[:title]
-        } %>
-        <%= content_tag :i, nil, {
-          class: ["icon-chevron-right", "goto"],
-          "data-id" => ga[:state],
-          "title" => "jump to #{ga[:state]}",
-          "rel" => "tooltip"
-        } %>
       <% end %>
     <% end %>
   <%= link_to "#", class: ['btn', 'btn-large', 'goto', 'goto-top'], "data-id" => "top" do %>

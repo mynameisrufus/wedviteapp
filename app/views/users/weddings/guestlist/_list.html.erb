@@ -2,7 +2,7 @@
   <div class="header clearfix">
     <div class="column">
       <div class="guest bride-groom">
-        <%= state_icon 'accepted' %>
+        <%= state_icon GuestState.accepted %>
         <div class="details">
           <h3><%= @wedding.partner_one_name %></h3>
           <% if can? :update, @wedding %><span><%= link_to "re-name", "#" %></span><% end %>
@@ -20,7 +20,7 @@
     </div>
     <div class="column">
       <div class="guest bride-groom">
-        <%= state_icon 'accepted' %>
+        <%= state_icon GuestState.accepted %>
         <div class="details">
           <h3><%= @wedding.partner_two_name %></h3>
           <% if can? :update, @wedding %><span><%= link_to "re-name", "#" %></span><% end %>
@@ -47,14 +47,14 @@
       })
     })
   </script>
-  <% guest_array.each do |ga| %>
-    <% next if ga[:guests].empty? %>
-    <div class="block clearfix <%= ga[:state] %>" id="<%= ga[:state] %>">
+  <% GuestState.each do |state| %>
+    <% next if @guest_list.currently(state).empty? %>
+    <div class="block clearfix <%= state %>" id="<%= state %>">
       <% [1,2].each do |partner_number| %>
       <div class="column">
-        <% ga[:guests].select{|g| g.partner_number == partner_number}.each do |guest| %>
+        <% @guest_list.currently(state).partner(partner_number).each do |guest| %>
           <div class="guest <%= guest.viewed? ? "viewed" : nil %>" data-id="<%= guest.id %>">
-            <%= state_icon guest.state %>
+            <%= state_icon GuestState.by_noun(guest.state) %>
             <div class="details">
               <h3><%= guest.name %></h3>
               <span>Adults: <%= guest.adults %></span>

@@ -18,8 +18,8 @@ class Users::WeddingsController < Users::BaseController
   end
 
   def guestlist
-    @guests = Guest::List.new @wedding.guests
-    respond_with @wedding, @guests
+    @guest_list = GuestList.new @wedding.guests
+    respond_with @wedding, @guest_list
   end
 
   def invitations
