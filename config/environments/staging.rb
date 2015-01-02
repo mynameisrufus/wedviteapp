@@ -77,6 +77,5 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { :host => 'wedvite.net' }
 
-  config.middleware.use Oink::Middleware, logger: Rails.logger
   config.eager_load = true
 end
