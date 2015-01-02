@@ -26,7 +26,7 @@ class Guest < ActiveRecord::Base
   end
 
   def self.invited! guests
-    update_all({ invited_on: Time.now, state: :sent }, { id: guests })
+    guests.update_all invited_on: Time.now, state: :sent
   end
 
   def thank!
@@ -34,7 +34,7 @@ class Guest < ActiveRecord::Base
   end
 
   def self.thanked! guests
-    update_all({ thanked_on: Time.now, state: :thanked }, { id: guests })
+    guests.update_all thanked_on: Time.now, state: :thanked
   end
 
   validates_presence_of :wedding_id, :name, :adults, :children, :token

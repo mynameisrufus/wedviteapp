@@ -58,6 +58,11 @@ Nuke staging:
     heroku run rake db:setup --app wedvite-staging
     heroku restart --app wedvite-staging
 
+### Running in development
+
+    gem install dotenv
+    gem install foreman
+    dotenv foreman start
 # PayPal
 
 Payments are made using PayPal, see

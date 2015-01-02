@@ -1,16 +1,17 @@
-require 'acceptance/acceptance_helper'
+require 'rails_helper'
+require './spec/features/support/helpers'
 
-feature 'Gift Registry feature', %q{
+describe 'Gift Registry describe', %q{
   In order to provide guests with list of gifts to choose from
   As a wedding collaborator
   I want manage a Gift Registry
 } do
 
-  background do
+  before do
     change_subdomain :plan
   end
 
-  scenario 'update the gift registry details' do
+  it 'update the gift registry details' do
     wedding, user, collaborator = wedup!
     navigate_to_wedding wedding, user
 
@@ -24,7 +25,7 @@ feature 'Gift Registry feature', %q{
     page.should have_content('Gift Registry details saved')
   end
 
-  scenario 'add in item to the gift registry' do
+  it 'add in item to the gift registry' do
     wedding, user, collaborator = wedup!
     navigate_to_wedding wedding, user
     GiftRegistry.make! wedding: wedding

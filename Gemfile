@@ -58,10 +58,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'awesome_print'
 
-  # Steak for acceptence tests. Needs to be removed.
-  gem 'steak',                '~> 2.0.0'
-  gem 'xpath'
-  gem 'webrat'
+  gem 'capybara'
 
   gem 'launchy'
   gem 'pry',                  '~> 0.9'

@@ -1,6 +1,7 @@
-require 'acceptance/acceptance_helper'
+require 'rails_helper'
+require './spec/features/support/helpers'
 
-feature 'Gift Registry feature', %q{
+describe 'Gift Registry describe', %q{
   In order to purchase a gift from the Gift Registry
   As a wedding guest
   I want view and claim a gift from the Gift Registry
@@ -13,7 +14,7 @@ feature 'Gift Registry feature', %q{
   }
 
 
-  scenario 'claim a gift' do
+  it 'claim a gift' do
     guest, wedding = *setup_guest
     gift_registry = GiftRegistry.make! wedding: wedding
     gift = Gift.make! gift_registry: gift_registry
@@ -25,7 +26,7 @@ feature 'Gift Registry feature', %q{
     gift.reload.guest.should eq guest
   end
 
-  scenario 'unclaim a gift' do
+  it 'unclaim a gift' do
     guest, wedding = *setup_guest
     gift_registry = GiftRegistry.make! wedding: wedding
     gift = Gift.make! gift_registry: gift_registry, guest: guest

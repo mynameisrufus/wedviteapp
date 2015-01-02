@@ -1,16 +1,17 @@
-require 'acceptance/acceptance_helper'
+require 'rails_helper'
+require './spec/features/support/helpers'
 
-feature 'Wedding feature', %q{
+describe 'Wedding describe', %q{
   In order to plan the wedding invitations
   As a wedding collaborator
   I want manage wedding details
 } do
 
-  background do
+  before do
     change_subdomain :plan
   end
 
-  scenario 'create a new wedding' do
+  it 'create a new wedding' do
     user = User.make!
     sign_in_with user.email, user.password
     fill_in "wedding[name]", with: "Our special day!"
@@ -18,7 +19,7 @@ feature 'Wedding feature', %q{
     page.should have_content('Wedding created.')
   end
 
-  scenario 'create another wedding' do
+  it 'create another wedding' do
     wedding, user, collaborator = wedup!
     sign_in_with user.email, user.password
     fill_in "wedding[name]", with: "Our special day!"

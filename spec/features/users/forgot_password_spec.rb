@@ -1,17 +1,18 @@
-require 'acceptance/acceptance_helper'
+require 'rails_helper'
+require './spec/features/support/helpers'
 
-feature 'Forgot password', %q{
+describe 'Forgot password', %q{
   In order to log into my account
   As a wedding collaborator
   Who has forgotten my password
   I want retrieve my password
 } do
 
-  background do
+  before do
     change_subdomain :plan
   end
 
-  scenario 'retrieve password' do
+  it 'retrieve password' do
     user = User.make!
     visit '/'
     click_link 'Forgot your password?'

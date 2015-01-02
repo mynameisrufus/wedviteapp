@@ -1,11 +1,7 @@
 class GuestState
   extend Enumerable
 
-  State = Struct.new(:verb, :noun, :label, :title) do
-    def to_s
-      noun.to_s
-    end
-  end
+  State = Struct.new(:verb, :noun, :label, :title)
 
   DICT = [
     State.new(

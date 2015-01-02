@@ -1,17 +1,18 @@
-require 'acceptance/acceptance_helper'
+require 'rails_helper'
+require './spec/features/support/helpers'
 
-feature 'Directions feature', %q{
+describe 'Directions describe', %q{
   In order to inform my guests of where my wedding is
   As a wedding collaborator
   I want manage directions
 } do
 
-  background do
+  before do
     change_subdomain :plan
   end
 
   context "ceremony" do
-    scenario 'create ceremony directions' do
+    it 'create ceremony directions' do
       wedding, user, collaborator = wedup!
       navigate_to_wedding wedding, user
 
@@ -29,7 +30,7 @@ feature 'Directions feature', %q{
       wedding.ceremony_where.name.should eq "Bombay"
     end
 
-    scenario 'update ceremony directions' do
+    it 'update ceremony directions' do
       wedding, user, collaborator = wedup!
 
       location = wedding.ceremony_where = Location.create name: "Bombay"
@@ -56,7 +57,7 @@ feature 'Directions feature', %q{
   end
 
   context "reception" do
-    scenario 'create reception directions' do
+    it 'create reception directions' do
       wedding, user, collaborator = wedup!
       navigate_to_wedding wedding, user
 
@@ -74,7 +75,7 @@ feature 'Directions feature', %q{
       wedding.reception_where.name.should eq "Bombay"
     end
 
-    scenario 'update reception directions' do
+    it 'update reception directions' do
       wedding, user, collaborator = wedup!
 
       location = wedding.reception_where = Location.create name: "Bombay"

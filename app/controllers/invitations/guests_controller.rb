@@ -42,7 +42,7 @@ class Invitations::GuestsController < Invitations::BaseController
   end
 
   def update
-    @guest.attributes = params[:guest_strict]
+    @guest.attributes = guest_strict_params
 
     if @guest.changed? && @guest.valid?
       @guest.changes.each do |change|
@@ -72,5 +72,17 @@ class Invitations::GuestsController < Invitations::BaseController
         format.json { render json: @wedding.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  protected
+
+  def guest_strict_params
+    params.require(:guest_strict).permit(:name,
+                                         :email,
+                                         :adults,
+                                         :children,
+                                         :partner_number,
+                                         :address,
+                                         :phone)
   end
 end

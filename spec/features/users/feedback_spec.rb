@@ -1,12 +1,13 @@
-require 'acceptance/acceptance_helper'
+require 'rails_helper'
+require './spec/features/support/helpers'
 
-feature 'Feedback feature', %q{
+describe 'Feedback describe', %q{
   In order give feedback on the app
   As a user
   I need to send feedback via a form
 } do
 
-  background do
+  before do
     change_subdomain :plan
   end
 

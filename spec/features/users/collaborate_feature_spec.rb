@@ -1,6 +1,7 @@
-require 'acceptance/acceptance_helper'
+require 'rails_helper'
+require './spec/features/support/helpers'
 
-feature 'Collaborate feature', %q{
+describe 'Collaborate feature', %q{
   In order to collaborate on a wedding invitation plan
   As a wedding collaborator
   I want manage collaborators
@@ -8,16 +9,16 @@ feature 'Collaborate feature', %q{
 
   def navigate_to_collaborators wedding, user
     sign_in_with user.email, user.password
-    visit root_path
+    visit plan_root_path
     click_link wedding.name
     click_link "Collaborate"
   end
 
-  background do
+  before do
     change_subdomain :plan
   end
 
-  scenario 'invite a collaborator' do
+  it 'invite a collaborator', type: :feature do
     wedding, user, collaborator = wedup!
     navigate_to_collaborators wedding, user
 
@@ -29,7 +30,7 @@ feature 'Collaborate feature', %q{
     page.should have_content 'An invitation to collaborate has been sent to user@example.com'
   end
 
-  scenario 'add an already collaborating collaborator' do
+  it 'add an already collaborating collaborator', type: :feature do
     wedding, user, collaborator = wedup!
     navigate_to_collaborators wedding, user
 
@@ -43,7 +44,7 @@ feature 'Collaborate feature', %q{
     page.should have_content "#{other_user.name} is now collaborating on this wedding"
   end
 
-  scenario 'change a collaborators role if I have the invite role' do
+  it 'change a collaborators role if I have the invite role', type: :feature do
     wedding, user, collaborator = wedup!
 
     other_user                  = User.make!
@@ -58,7 +59,7 @@ feature 'Collaborate feature', %q{
     page.should have_content "#{other_user.name} now has the 'edit' role."
   end
 
-  scenario 'not allow me manage collaborators if I do not have the invite role' do
+  it 'not allow me manage collaborators if I do not have the invite role', type: :feature do
     wedding      = Wedding.make!
     user         = User.make!
     collaborator = Collaborator.make! user_id: user.id, wedding_id: wedding.id, role: 'edit'
@@ -67,7 +68,7 @@ feature 'Collaborate feature', %q{
     page.should_not have_content 'Collaborate'
   end
 
-  scenario 'only allow editing of wedding details etc if you have the edit or invite roles' do
+  it 'only allow editing of wedding details etc if you have the edit or invite roles', type: :feature do
     wedding      = Wedding.make!
     user         = User.make!
     collaborator = Collaborator.make! user_id: user.id, wedding_id: wedding.id, role: 'comment'
@@ -77,7 +78,7 @@ feature 'Collaborate feature', %q{
     page.should_not have_content 'Invitation & Stationery'
   end
 
-  scenario 'accept an invitation to collaborate on a wedding' do
+  it 'accept an invitation to collaborate on a wedding', type: :feature do
     wedding      = Wedding.make!
     user         = User.make!
     token = CollaborationToken.make! wedding_id: wedding.id, role: 'comment'
@@ -85,7 +86,7 @@ feature 'Collaborate feature', %q{
     page.should_not have_content 'You are now collaborating on this wedding'
   end
 
-  scenario 'should not be able to send if I do not have the invite role' do
+  it 'should not be able to send if I do not have the invite role' do
     wedding      = Wedding.make!
     user         = User.make!
     collaborator = Collaborator.make! user_id: user.id, wedding_id: wedding.id, role: 'edit'
@@ -94,7 +95,7 @@ feature 'Collaborate feature', %q{
     page.should_not have_content 'Invite Guests'
   end
 
-  scenario 'remove a collaborator' do
+  it 'remove a collaborator', type: :feature do
     wedding      = Wedding.make!
     user         = User.make!
     other_user   = User.make!

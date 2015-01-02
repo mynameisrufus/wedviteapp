@@ -10,7 +10,7 @@ class Users::WeddingsController < Users::BaseController
 
   def update_details
     @wedding = current_user.weddings.find params[:wedding_id]
-    @wedding.update_attributes(params[:wedding])
+    @wedding.update_attributes(wedding_params)
     respond_to do |format|
       format.html { redirect_to wedding_details_path(@wedding), notice: 'Details updated.' }
       format.json { render json: "success".to_json  }
@@ -28,7 +28,7 @@ class Users::WeddingsController < Users::BaseController
 
   def update_invitations
     @wedding = current_user.weddings.find params[:wedding_id]
-    @wedding.update_attributes(params[:wedding])
+    @wedding.update_attributes(wedding_params)
     redirect_to wedding_invitations_path(@wedding), notice: 'Invitation wording has been updated.'
   end
 
@@ -49,7 +49,7 @@ class Users::WeddingsController < Users::BaseController
   end
 
   def create
-    @wedding = Wedding.new(params[:wedding])
+    @wedding = Wedding.new(wedding_params)
 
     respond_to do |format|
       if @wedding.save
@@ -74,7 +74,7 @@ class Users::WeddingsController < Users::BaseController
     @wedding = current_user.weddings.find(params[:id])
 
     respond_to do |format|
-      if @wedding.update_attributes(params[:wedding])
+      if @wedding.update_attributes(wedding_params)
         format.html { redirect_to wedding_guestlist_path(@wedding), notice: 'Wedding was successfully updated.' }
         format.json { head :ok }
       else
@@ -94,5 +94,25 @@ class Users::WeddingsController < Users::BaseController
       format.html { redirect_to weddings_url }
       format.json { head :ok }
     end
+  end
+
+  def wedding_params
+    params.require(:wedding).permit(:name,
+                                    :wording,
+                                    :save_the_date_wording,
+                                    :ceremony_only_wording,
+                                    :respond_deadline,
+                                    :ceremony_when,
+                                    :ceremony_how,
+                                    :ceremony_what,
+                                    :has_reception,
+                                    :reception_when,
+                                    :reception_how,
+                                    :reception_what,
+                                    :partner_one_name,
+                                    :partner_two_name,
+                                    :ceremony_when_end,
+                                    :reception_when_end,
+                                    :thank_you_wording)
   end
 end

@@ -30,7 +30,7 @@ module HelperMethods
 
   def navigate_to_wedding wedding, user
     sign_in_with user.email, user.password
-    visit root_path
+    visit plan_root_path
     click_link wedding.name
     click_link "Guest List"
   end
@@ -40,4 +40,4 @@ module HelperMethods
   end
 end
 
-RSpec.configuration.include HelperMethods, type: :acceptance
+RSpec.configuration.include HelperMethods, type: :feature

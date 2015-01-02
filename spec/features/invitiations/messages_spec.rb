@@ -1,6 +1,7 @@
-require 'acceptance/acceptance_helper'
+require 'rails_helper'
+require './spec/features/support/helpers'
 
-feature 'Invitation feature', %q{
+describe 'Invitation describe', %q{
   In order to post messages and replies
   As a wedding guest
   I want to manage posts and replies
@@ -12,7 +13,7 @@ feature 'Invitation feature', %q{
     [guest, wedding]
   }
 
-  scenario 'post a new message' do
+  it 'post a new message' do
     guest, wedding = *setup_guest
     visit invitation_url(guest.token, subdomain: 'invitations')
     click_link 'Messages'
@@ -22,15 +23,11 @@ feature 'Invitation feature', %q{
     page.should have_content("Hello")
   end
 
-  pending 'delete my own message' do
+  pending 'delete my own message'
 
-  end
+  pending 'update my own message'
 
-  pending 'update my own message' do
-
-  end
-
-  scenario 'reply to a message' do
+  it 'reply to a message' do
     guest, wedding = *setup_guest
     guest.messages.make! text: 'Hello my friend', wedding: wedding
     visit invitation_url(guest.token, subdomain: 'invitations')
@@ -43,11 +40,7 @@ feature 'Invitation feature', %q{
     page.should have_content("Goodbye my friend")
   end
 
-  pending 'delete my own reply' do
+  pending 'delete my own reply'
 
-  end
-
-  pending 'update my own reply' do
-
-  end
+  pending 'update my own reply'
 end

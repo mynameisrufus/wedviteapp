@@ -1,6 +1,7 @@
-require 'acceptance/acceptance_helper'
+require 'rails_helper'
+require './spec/features/support/helpers'
 
-feature 'Guest feature', %q{
+describe 'Guest describe', %q{
   In order to orginise my invitations
   As a wedding collaborator
   I want manage guests
@@ -24,11 +25,11 @@ feature 'Guest feature', %q{
     guest
   end
 
-  background do
+  before do
     change_subdomain :plan
   end
 
-  scenario 'add a guest to wedding' do
+  it 'add a guest to wedding' do
     wedding, user, collaborator = wedup!
     navigate_to_wedding wedding, user
 
@@ -46,7 +47,7 @@ feature 'Guest feature', %q{
     page.should have_content('Roger and Sally have been added to the list.')
   end
 
-  scenario 'edit an existing guest' do
+  it 'edit an existing guest' do
     wedding, user, collaborator = wedup!
     guest = Guest.make! wedding_id: wedding.id,
                         adults: 2,
@@ -68,7 +69,7 @@ feature 'Guest feature', %q{
   end
 
   %w(approved rejected accepted declined tentative).each do |state|
-    scenario "#{state} a guest (singular)" do
+    it "#{state} a guest (singular)" do
       guest       = singular
       translation = I18n.t "state.#{state}"
 
@@ -76,7 +77,7 @@ feature 'Guest feature', %q{
       page.should have_content("#{guest.name} is now #{translation[:noun]}")
     end
 
-    scenario "#{state} a guest (plural)" do
+    it "#{state} a guest (plural)" do
       guest       = plural
       translation = I18n.t "state.#{state}"
 
@@ -85,7 +86,7 @@ feature 'Guest feature', %q{
     end
   end
 
-  scenario 'remind a guest with a reminder email' do
+  it 'remind a guest with a reminder email' do
     wedding, user, collaborator = wedup!
     guest = Guest.make! wedding_id: wedding.id,
                         state: 'sent'

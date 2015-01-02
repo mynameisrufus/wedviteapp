@@ -1,12 +1,13 @@
-require 'acceptance/acceptance_helper'
+require 'rails_helper'
+require './spec/features/support/helpers'
 
-feature 'Payments feature', %q{
+describe 'Payments describe', %q{
   In order to send the invitations
   As a wedding collaborator
   I want pay for the service
 } do
 
-  background do
+  before do
     change_subdomain :plan
   end
 

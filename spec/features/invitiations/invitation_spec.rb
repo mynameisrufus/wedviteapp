@@ -1,6 +1,7 @@
-require 'acceptance/acceptance_helper'
+require 'rails_helper'
+require './spec/features/support/helpers'
 
-feature 'Invitation feature', %q{
+describe 'Invitation describe', %q{
   In order RSVP or decline and invitation
   As a wedding guest
   I want open an invitation and respond
@@ -18,14 +19,14 @@ feature 'Invitation feature', %q{
     [guest, wedding]
   }
 
-  scenario 'accept the invitation' do
+  it 'accept the invitation' do
     guest, wedding = *setup_guest
 
     click_link 'Accept'
     page.should have_content('You have RSVP\'d')
   end
 
-  scenario 'decline the invitation' do
+  it 'decline the invitation' do
     guest, wedding = *setup_guest
 
     click_link 'Decline'

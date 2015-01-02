@@ -79,7 +79,7 @@ class Users::GuestsController < Users::BaseController
   # POST /guests
   # POST /guests.json
   def create
-    @guest = @wedding.guests.new(params[:guest])
+    @guest = @wedding.guests.new(guest_params)
 
     respond_to do |format|
       if @guest.save
@@ -108,7 +108,7 @@ class Users::GuestsController < Users::BaseController
     @guest = @wedding.guests.find(params[:id])
 
     respond_to do |format|
-      if @guest.update_attributes(params[:guest])
+      if @guest.update_attributes(guest_params)
         format.html { redirect_to wedding_guestlist_path(@wedding), notice: "#{@guest.name} #{@guest.total_guests > 1 ? "have" : "has"} been updated."  }
         format.json { head :ok }
       else
@@ -197,5 +197,18 @@ class Users::GuestsController < Users::BaseController
         format.json { render json: @guest.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  protected
+
+  def guest_params
+    params.require(:guest).permit(:name,
+                                  :email,
+                                  :adults,
+                                  :children,
+                                  :partner_number,
+                                  :invited_to_reception,
+                                  :address,
+                                  :phone)
   end
 end

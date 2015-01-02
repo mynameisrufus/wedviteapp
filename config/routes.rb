@@ -63,8 +63,8 @@ Rails.application.routes.draw do
           get 'reception'
           post 'ceremony',   action: :create_ceremony
           post 'reception', action: :create_reception
-          put 'ceremony',    action: :update_ceremony
-          put 'reception',  action: :update_reception
+          patch 'ceremony',    action: :update_ceremony
+          patch 'reception',  action: :update_reception
         end
         resources :collaborators, except: %w(show)
         resources :guests do
@@ -129,7 +129,7 @@ Rails.application.routes.draw do
         post 'message'   => 'guests#message', as: :guest_message, method: :post
 
         get 'you'         => 'guests#show', as: :guest
-        put 'update'     => 'guests#update', as: :update_guest
+        patch 'update'     => 'guests#update', as: :update_guest
         get 'accept'    => 'guests#accept', as: :accept_invitation
         get 'decline'   => 'guests#decline', as: :decline_invitation
 

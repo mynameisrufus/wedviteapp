@@ -3,7 +3,7 @@ class Users::GiftsController < Users::BaseController
   before_filter :find_gift, only: %w(update destroy)
 
   def create
-    @gift = @wedding.gift_registry.gifts.new params[:gift]
+    @gift = @wedding.gift_registry.gifts.new gift_params
 
     respond_to do |format|
       if @gift.save
@@ -16,7 +16,7 @@ class Users::GiftsController < Users::BaseController
 
   def update
     respond_to do |format|
-      if @gift.update_attributes params[:gift]
+      if @gift.update_attributes gift_params
         format.html { redirect_to wedding_gift_registry_path(@wedding), notice: "Gift updated." }
       else
         format.html { redirect_to wedding_gift_registry_path(@wedding), notice: "Could not update the gift." }
@@ -39,5 +39,11 @@ class Users::GiftsController < Users::BaseController
 
   def find_gift
     @gift = @wedding.gift_registry.gifts.find params[:id]
+  end
+
+  def gift_params
+    params.require(:gift).permit(:description,
+                                 :url,
+                                 :price)
   end
 end

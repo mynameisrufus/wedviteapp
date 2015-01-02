@@ -1,16 +1,17 @@
-require 'acceptance/acceptance_helper'
+require 'rails_helper'
+require './spec/features/support/helpers'
 
-feature 'Deliver feature', %q{
+describe 'Deliver describe', %q{
   In order to deliver the invitation emails to guests
   As a wedding collaborator
   I want send out the emails
 } do
 
-  background do
+  before do
     change_subdomain :plan
   end
 
-  scenario 'should display a list of people who are approved' do
+  it 'should display a list of people who are approved', type: :feature do
     wedding, user, collaborator = wedup!
     wedding.paid!
 
@@ -30,7 +31,7 @@ feature 'Deliver feature', %q{
     page.should_not have_content(guest_review.email)
   end
 
-  scenario 'deliver emails to approved guests' do
+  it 'deliver emails to approved guests', type: :feature do
     wedding, user, collaborator = wedup!
     wedding.paid!
 
@@ -45,6 +46,6 @@ feature 'Deliver feature', %q{
     page.should have_content("Invitations have been sent!")
     guest_approved.reload
     guest_approved.invited_on.should_not be_nil
-    guest_approved.sent?.should be_true
+    expect(guest_approved.sent?).to equal(true)
   end
 end

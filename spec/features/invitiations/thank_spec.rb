@@ -1,6 +1,7 @@
-require 'acceptance/acceptance_helper'
+require 'rails_helper'
+require './spec/features/support/helpers'
 
-feature 'Thank you feature', %q{
+describe 'Thank you describe', %q{
   As a wedding collaborator
   I want to share the thank you page with our guests after the wedding
 } do

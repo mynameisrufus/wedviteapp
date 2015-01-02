@@ -1,12 +1,13 @@
-require 'acceptance/acceptance_helper'
+require 'rails_helper'
+require './spec/features/support/helpers'
 
-feature 'Invitation feature', %q{
+describe 'Invitation describe', %q{
   In order to post messages and replies
   As a wedding collaborator
   I want to manage posts and replies
 } do
 
-  background do
+  before do
     change_subdomain :plan
   end
 

@@ -1,16 +1,17 @@
-require 'acceptance/acceptance_helper'
+require 'rails_helper'
+require './spec/features/support/helpers'
 
-feature 'Sign up feature', %q{
+describe 'Sign up describe', %q{
   In order to use wedvite
   As a potential user
   I want sign up
 } do
 
-  background do
+  before do
     change_subdomain nil
   end
 
-  scenario 'sign up' do
+  it 'sign up' do
     visit '/'
     click_link "Sign up for free"
     fill_in "user[first_name]", with: "Motso"
