@@ -1,9 +1,11 @@
 source 'http://rubygems.org'
 
+ruby '2.1.5', engine: 'ruby', engine_version: '2.1.5'
+
 gem 'rails', '~> 4.1.7'
 
 gem 'pg'
-gem 'puma',                   '~> 1.4'
+gem 'puma',                   '~> 2.10'
 
 # User auth
 gem 'devise',                 '~> 3.4'
@@ -20,7 +22,6 @@ gem 'ri_cal',                 '~> 0.8.8'
 gem 'rails_admin',            '~> 0.6.5'
 gem 'friendly_id',            '~> 4.0.1'
 
-gem 'fog',                    '~> 1.5'
 gem 'paperclip',              '~> 4.2'
 gem 'ffaker',                 '~> 1.14'
 gem 'exception_notification', '~> 2.6'
@@ -56,10 +57,6 @@ group :development, :test do
 
   gem 'launchy'
   gem 'pry',                  '~> 0.9'
-
-  # Code quality.
-  # https://github.com/square/cane
-  gem 'cane'
 end
 
 group :test do
@@ -70,7 +67,8 @@ group :development do
   gem 'guard-rspec'
 
   # live reload for browser
-  gem 'guard-livereload'
+  # FIXME gem install error
+  # gem 'guard-livereload'
 
   # file system event gems
   gem 'rb-inotify', require: false

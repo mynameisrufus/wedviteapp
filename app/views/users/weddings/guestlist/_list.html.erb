@@ -49,7 +49,7 @@
   </script>
   <% GuestState.each do |state| %>
     <% next if @guest_list.currently(state).empty? %>
-    <div class="block clearfix <%= state %>" id="<%= state %>">
+    <div class="block clearfix <%= state.noun %>" id="<%= state.noun %>">
       <% [1,2].each do |partner_number| %>
       <div class="column">
         <% @guest_list.currently(state).partner(partner_number).each do |guest| %>

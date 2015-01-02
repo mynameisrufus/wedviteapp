@@ -33,21 +33,21 @@
 
           <%= content_tag :i, nil, {
             class: ["icon-eye-open", "toggle"],
-            "data-id" => state,
+            "data-id" => state.noun,
             "title" => "show/hide",
             "rel" => "tooltip"
           } %>
           <%= content_tag :i, nil, {
             class: ["icon-info-sign"],
-            "data-id" => state,
+            "data-id" => state.noun,
             rel: "popover",
             "data-content" => c,
             "data-original-title" => state.title
           } %>
           <%= content_tag :i, nil, {
             class: ["icon-chevron-right", "goto"],
-            "data-id" => state,
-            "title" => "jump to #{state}",
+            "data-id" => state.noun,
+            "title" => "jump to #{state.noun}",
             "rel" => "tooltip"
           } %>
         <% end %>

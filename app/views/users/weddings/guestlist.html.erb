@@ -38,6 +38,7 @@ $(function(){
     $quickie.find('.goto').on('click', function(event) {
       event.preventDefault()
       var id = $(this).data('id')
+      console.log(id);
       $('html, body').animate({scrollTop: ($("#" + id).offset().top - 50)}, 500)
     })
 
