@@ -16,18 +16,18 @@ describe 'Update guest details describe', %q{
 
   # TODO requires custom update logic on GuestStrict so you can add more adults
   # and children.
-  pending 'change the number of adults and children' do
-    guest, wedding = *setup_guest
-    adults = guest.adults + rand(10)
+  # pending 'change the number of adults and children' do
+  #   guest, wedding = *setup_guest
+  #   adults = guest.adults + rand(10)
 
-    click_link 'You'
-    fill_in 'guest_strict_adults', with: adults
-    click_button 'Update'
+  #   click_link 'You'
+  #   fill_in 'guest_strict_adults', with: adults
+  #   click_button 'Update'
 
-    page.should have_content 'Your details have been updated.'
-    guest.reload
-    guest.adults.should eq adults
-  end
+  #   page.should have_content 'Your details have been updated.'
+  #   guest.reload
+  #   guest.adults.should eq adults
+  # end
 
   pending 'change my name'
 

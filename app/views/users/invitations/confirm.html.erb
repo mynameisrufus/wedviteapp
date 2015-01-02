@@ -18,6 +18,6 @@
   <% else %>
     <h2>You have no approved guests to send invitations to</h2>
     <p>To send guests an invitation they need to be approved, approved guests have a symbol like this:</p>
-    <p><%= state_icon 'approved' %> &nbsp;</p>
+    <p><%= state_icon GuestState.approved %> &nbsp;</p>
   <% end %>
 </section>

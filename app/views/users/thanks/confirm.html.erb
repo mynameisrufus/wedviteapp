@@ -18,6 +18,6 @@
   <% else %>
     <h2>You have no RSVPd guests to send a thank you email to</h2>
     <p>To send guests a thank you they need to be RSVPd, RSVPd guests have a symbol like this:</p>
-    <p><%= state_icon 'accepted' %> &nbsp;</p>
+    <p><%= state_icon GuestState.accepted %> &nbsp;</p>
   <% end %>
 </section>

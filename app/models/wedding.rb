@@ -34,9 +34,11 @@ class Wedding < ActiveRecord::Base
   end
 
   before_validation on: :create do
-    %w(ceremony_when ceremony_when_end reception_when reception_when_end respond_deadline).each do |date|
-      self.send :"#{date}=", Time.now unless self.send :"#{date}"
-    end
+    self.ceremony_when = Time.now + 1.year
+    self.ceremony_when_end = Time.now + 1.year + 2.hours
+    self.reception_when = Time.now + 1.year + 5.hours
+    self.reception_when_end = Time.now + 1.year + 10.hours
+    self.respond_deadline = Time.now + 8.months
   end
 
   before_validation do
