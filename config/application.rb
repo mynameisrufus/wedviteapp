@@ -42,6 +42,21 @@ module WeddingInvitor
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
 
+    # http://stackoverflow.com/questions/20856247/rails4-sprockets-asset-logical-path-has-no-extension
+    initializer 'setup_asset_pipeline', group: :all  do |app|
+      # We don't want the default of everything that isn't js or css, because it pulls too many things in
+      app.config.assets.precompile.shift
+
+      # Explicitly register the extensions we are interested in compiling
+      app.config.assets.precompile.push(Proc.new do |path|
+        File.extname(path).in? [
+          '.html', '.erb', '.haml',                 # Templates
+          '.png',  '.gif', '.jpg', '.jpeg',         # Images
+          '.eot',  '.otf', '.svc', '.woff', '.ttf', # Fonts
+        ]
+      end)
+    end
+
     # https://devcenter.heroku.com/articles/rails3x-asset-pipeline-cedar#troubleshooting
     config.assets.initialize_on_precompile = false
 
