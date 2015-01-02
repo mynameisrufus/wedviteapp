@@ -46,12 +46,6 @@ gem 'bootstrap-sass',       '~> 2.1.0'
 
 gem 'uglifier',             '>= 1.0.3'
 
-group :staging do
-  # Memory profiler.
-  # https://github.com/noahd1/oink
-  gem 'oink'
-end
-
 group :development, :test do
   gem 'rspec-rails',          '~> 3.1'
   gem 'machinist',            '~> 2.0'
