@@ -28,7 +28,7 @@ gem 'exception_notification', '~> 2.6'
 gem 'sendgrid-rails',         '~> 2.0'
 
 # Validation of stationery markup
-gem 'nokogiri',               '~> 1.5'
+gem 'nokogiri',               '~> 1.6'
 
 # Generation of invitations in PDF format.
 gem 'pdfkit',                 '~> 0.5.2'

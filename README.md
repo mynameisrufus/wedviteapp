@@ -9,11 +9,15 @@ to it__
 
 ### Deploy
 
-Push the develop branch into master on staging:
+Staging:
 
-    git push staging develop:master
+    git push staging master:master
 
-Push the master branch into master on production:
+Deploy a branch to staging:
+
+    git push staging feature/foo:master
+
+Production:
 
     git push production master:master
 
@@ -63,6 +67,7 @@ Nuke staging:
     gem install dotenv
     gem install foreman
     dotenv foreman start
+
 # PayPal
 
 Payments are made using PayPal, see

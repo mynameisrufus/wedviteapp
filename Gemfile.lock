@@ -339,7 +339,7 @@ DEPENDENCIES
   liquid (~> 2.3.0)
   machinist (~> 2.0)
   mail_view (~> 1.0.3)
-  nokogiri (~> 1.5)
+  nokogiri (~> 1.6)
   oauth2 (~> 1.0.0)
   omniauth (~> 1.2.2)
   omniauth-facebook (~> 2.0)
