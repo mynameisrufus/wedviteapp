@@ -32,9 +32,9 @@ Rails.application.routes.draw do
       resources :weddings do
 
         get :details
-        put :update_details
+        patch :update_details
 
-        put :update_invitations
+        patch :update_invitations
 
         get :guestlist
         get 'invitation-and-stationery', action: :invitations, as: :invitations

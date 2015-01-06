@@ -1,0 +1,30 @@
+<% if model.errors.any? %>
+<div class="alert alert-error">
+    <div id="error_explanation">
+      <a class="close" href="#">×</a>
+      <h2>
+        <%= pluralize(model.errors.count, "error") %>
+      </h2>
+      <ul>
+        <% model.errors.full_messages.each do |msg| %>
+          <li><%= raw msg %></li>
+        <% end %>
+      </ul>
+    </div>
+</div>
+<script>
+(function() {
+    var $alert = $('.alert')
+
+    var remove = function() {
+        $alert.fadeOut('slow', function() {
+            $(this).remove()
+        })
+    }
+
+    $alert.find('.close').on('click', function(){
+        remove()
+    })
+})()
+</script>
+<% end %>

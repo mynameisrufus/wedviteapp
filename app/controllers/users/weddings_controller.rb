@@ -8,35 +8,39 @@ class Users::WeddingsController < Users::BaseController
     @reception_where = @wedding.reception_where || Location.new
   end
 
-  def update_details
-    @wedding = current_user.weddings.find params[:wedding_id]
-    @wedding.update_attributes(wedding_params)
-    respond_to do |format|
-      format.html { redirect_to wedding_details_path(@wedding), notice: 'Details updated.' }
-      format.json { render json: "success".to_json  }
-    end
-  end
-
   def guestlist
     @guest_list = GuestList.new @wedding.guests
     respond_with @wedding, @guest_list
   end
 
   def invitations
-    @stationery = Stationery.published.sorted(params[:sort], 'popularity DESC').page(params[:page]).per(50).all
+    @stationery = Stationery.published
+  end
+
+  def update_details
+    @wedding = current_user.weddings.find params[:wedding_id]
+
+    details
+
+    handle_update('Details updated.', wedding_details_path(@wedding), :details) do
+      @wedding.update_attributes(wedding_params)
+    end
   end
 
   def update_invitations
     @wedding = current_user.weddings.find params[:wedding_id]
-    @wedding.update_attributes(wedding_params)
-    redirect_to wedding_invitations_path(@wedding), notice: 'Invitation wording has been updated.'
+
+    invitations
+
+    handle_update('Invitation wording has been updated.', wedding_invitations_path(@wedding), :invitations) do
+      @wedding.update_attributes(wedding_params)
+    end
   end
 
   def timeline
     @events = @wedding.events.order("created_at DESC").page(params[:page]).per(50)
     respond_with @events
   end
-
 
   def new
     @wedding = Wedding.new
@@ -73,12 +77,18 @@ class Users::WeddingsController < Users::BaseController
   def update
     @wedding = current_user.weddings.find(params[:id])
 
+    handle_update('Wedding was successfully updated.', :edit) do
+      @wedding.update_attributes(wedding_params)
+    end
+  end
+
+  def handle_update(success_message, success_path, failure_action)
     respond_to do |format|
-      if @wedding.update_attributes(wedding_params)
-        format.html { redirect_to wedding_guestlist_path(@wedding), notice: 'Wedding was successfully updated.' }
+      if yield
+        format.html { redirect_to success_path, notice: success_message }
         format.json { head :ok }
       else
-        format.html { render action: "edit" }
+        format.html { render action: failure_action }
         format.json { render json: @wedding.errors, status: :unprocessable_entity }
       end
     end
