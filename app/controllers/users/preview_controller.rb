@@ -43,6 +43,6 @@ class Users::PreviewController < Users::BaseController
 
   def random_guest
     offset = rand @wedding.guests.count
-    @wedding.guests.first offset: offset
+    @wedding.guests.offset(offset).first
   end
 end
