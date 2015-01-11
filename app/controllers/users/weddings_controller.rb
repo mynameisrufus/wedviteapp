@@ -77,7 +77,7 @@ class Users::WeddingsController < Users::BaseController
   def update
     @wedding = current_user.weddings.find(params[:id])
 
-    handle_update('Wedding was successfully updated.', :edit) do
+    handle_update('Wedding was successfully updated.', wedding_guestlist_path(@wedding), :edit) do
       @wedding.update_attributes(wedding_params)
     end
   end
