@@ -86,7 +86,7 @@ class Users::CollaboratorsController < Users::BaseController
 
     respond_to do |format|
       if @collaboration_token.claimed?
-        format.html { redirect_to root_path, notice: 'This link has now expired.' }
+        format.html { redirect_to plan_root_path, notice: 'This link has now expired.' }
         format.json { head :ok }
       else
         @collaborator = Collaborator.new wedding: @wedding, user: current_user, role: @collaboration_token.role

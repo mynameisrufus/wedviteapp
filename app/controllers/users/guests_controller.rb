@@ -92,7 +92,7 @@ class Users::GuestsController < Users::BaseController
         format.json { render json: @guest, status: :created, location: @guest }
       else
         errors = @guest.errors.full_messages.map do |message|
-          content_tag(:li, message)
+          "<li>#{message}</li>"
         end.join
 
         format.html { redirect_to wedding_guestlist_path(@wedding), alert: "Guest had problems: <ul>#{errors}</ul>"  }
