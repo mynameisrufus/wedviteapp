@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141116061131) do
+ActiveRecord::Schema.define(version: 20150126082118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -150,9 +150,10 @@ ActiveRecord::Schema.define(version: 20141116061131) do
 
   create_table "gift_registries", force: true do |t|
     t.text     "details"
-    t.integer  "wedding_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "wedding_id",                 null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "active",     default: false, null: false
   end
 
   add_index "gift_registries", ["wedding_id"], name: "index_gift_registries_on_wedding_id", using: :btree
@@ -403,7 +404,6 @@ ActiveRecord::Schema.define(version: 20141116061131) do
     t.text     "thank_you_wording"
     t.boolean  "thank_process_started"
     t.datetime "thank_process_started_at"
-    t.text     "statistics"
   end
 
   add_index "weddings", ["stationery_id"], name: "index_weddings_on_stationary_id", using: :btree

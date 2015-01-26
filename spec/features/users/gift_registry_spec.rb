@@ -28,7 +28,7 @@ describe 'Gift Registry describe', %q{
   it 'add in item to the gift registry' do
     wedding, user, collaborator = wedup!
     navigate_to_wedding wedding, user
-    GiftRegistry.make! wedding: wedding
+    GiftRegistry.make! wedding: wedding, active: true
 
     click_link "Gift Registry"
 
@@ -44,4 +44,16 @@ describe 'Gift Registry describe', %q{
   pending 'remove an item from the gift registry'
 
   pending 'not be able to manage the registry if wrong role'
+
+  it 'should allow the feature to be turned off' do
+    wedding, user, collaborator = wedup!
+    navigate_to_wedding wedding, user
+    GiftRegistry.make! wedding: wedding, active: true
+
+    click_link 'Gift Registry'
+
+    click_button 'Turn off Gift Registry'
+
+    expect(wedding.gift_registry.active).to be(false)
+  end
 end

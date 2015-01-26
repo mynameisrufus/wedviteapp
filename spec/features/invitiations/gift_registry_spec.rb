@@ -16,7 +16,7 @@ describe 'Gift Registry describe', %q{
 
   it 'claim a gift' do
     guest, wedding = *setup_guest
-    gift_registry = GiftRegistry.make! wedding: wedding
+    gift_registry = GiftRegistry.make! wedding: wedding, active: true
     gift = Gift.make! gift_registry: gift_registry
 
     visit invitation_url(guest.token, subdomain: 'invitations')
@@ -28,7 +28,7 @@ describe 'Gift Registry describe', %q{
 
   it 'unclaim a gift' do
     guest, wedding = *setup_guest
-    gift_registry = GiftRegistry.make! wedding: wedding
+    gift_registry = GiftRegistry.make! wedding: wedding, active: true
     gift = Gift.make! gift_registry: gift_registry, guest: guest
 
     visit invitation_url(guest.token, subdomain: 'invitations')

@@ -12,7 +12,7 @@ class Wedding < ActiveRecord::Base
   belongs_to :ceremony_where, class_name: 'Location', foreign_key: 'ceremony_location_id', dependent: :destroy
   belongs_to :reception_where, class_name: 'Location', foreign_key: 'reception_location_id', dependent: :destroy
 
-  has_one :gift_registry, dependent: :destroy
+  has_one :maybe_gift_registry, dependent: :destroy, class_name: 'GiftRegistry'
 
   validates :partner_one_name, presence: true
   validates :partner_two_name, presence: true
@@ -72,6 +72,10 @@ reception_what ceremony_how reception_how thank_you_wording)
       self.send :"#{help}=", HELP_MARKDOWN[help] unless
         self.send :"#{help}"
     end
+  end
+
+  def gift_registry
+    @gift_registry ||= (maybe_gift_registry || GiftRegistry.new(wedding: self))
   end
 
   def invite_process_started!

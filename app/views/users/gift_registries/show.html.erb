@@ -2,28 +2,44 @@
   <div class="page-header">
     <h1>Gift Registry</h1>
   </div>
-  <% if @gift_registry.new_record? %>
+  <% if @wedding.gift_registry.new_record? %>
     <p>Enter the details of your Gift Registry to get started.</p>
     <p>A good start is the delivery address that guests can send gifts to.</p>
-  <% end %>
-
-  <%= form_for @gift_registry, url: wedding_gift_registry_path(@wedding) do |f| %>
-    <fieldset>
-      <%= f.text_area :details, class: 'input-xlarge', rows: 3, style: "height: 100px; width: 910px;" %>
-      <div class="actions">
-        <% if @gift_registry.new_record? %>
+    <%= form_for @wedding.gift_registry, url: wedding_gift_registry_path(@wedding) do |f| %>
+      <fieldset>
+        <%= f.text_area :details, class: 'input-xlarge', rows: 3, style: "height: 100px; width: 910px;" %>
+        <div class="actions">
+          <%= f.hidden_field :active, value: true %>
           <%= submit_tag 'Save and start adding gifts', class: 'btn' %>
-        <% else %>
-          <%= submit_tag 'Save', class: 'btn' %>
-        <% end %>
-      </div>
-    </fieldset>
+        </div>
+      </fieldset>
+    <% end %>
+  <% else %>
+    <%= form_for @wedding.gift_registry, url: wedding_gift_registry_path(@wedding) do |f| %>
+      <fieldset>
+        <%= f.hidden_field :active, value: !@wedding.gift_registry.active? %>
+        <div class="actions">
+          <%= submit_tag @wedding.gift_registry.active? ? 'Turn off Gift Registry' : 'Turn on Gift Registry', class: 'btn' %>
+        </div>
+      </fieldset>
+    <% end %>
   <% end %>
 
-  <% unless @gift_registry.new_record? %>
+  <% if @wedding.gift_registry.active? %>
+    <%= form_for @wedding.gift_registry, url: wedding_gift_registry_path(@wedding) do |f| %>
+      <fieldset>
+        <%= f.text_area :details, class: 'input-xlarge', rows: 3, style: "height: 100px; width: 910px;" %>
+        <div class="actions">
+          <%= submit_tag 'Save', class: 'btn' %>
+        </div>
+      </fieldset>
+    <% end %>
+  <% end %>
+
+  <% if @wedding.gift_registry.active? %>
     <table class="table">
       <tbody>
-        <% @gift_registry.gifts.each do |gift| %>
+        <% @wedding.gift_registry.gifts.each do |gift| %>
           <tr>
             <td><%= gift.description %></td>
             <td>
@@ -44,7 +60,7 @@
       </tbody>
     </table>
     <hr/>
-    <%= form_for @gift_registry.gifts.build, url: wedding_gift_registry_gifts_path(@wedding) do |f| %>
+    <%= form_for @wedding.gift_registry.gifts.build, url: wedding_gift_registry_gifts_path(@wedding) do |f| %>
       <fieldset>
         <div>
           <%= f.text_field :description, placeholder: "Short description of the gift", class: 'span10' %>
