@@ -23,7 +23,7 @@
         </div>
       </div>
 
-      <% if @guest.invited_to_reception? %>
+      <% if @guest.invited_to_reception? && @wedding.has_reception? %>
         <div class="control-group">
           <%= f.label :attending_reception, "Reception", class: "control-label" %>
           <div class="controls">
