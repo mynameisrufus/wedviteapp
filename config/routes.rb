@@ -86,10 +86,12 @@ Rails.application.routes.draw do
           resources :gifts, only: %w(create update destroy)
         end
       end
+
       get 'feedback/new' => 'feedback#new', method: :get
       post 'feedback' => 'feedback#create', method: :post
 
       get 'help/:page' => 'help#page', as: :help_page
+      get 'how-it-works' => 'help#how', method: :get
     end
   end
 
