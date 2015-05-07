@@ -76,7 +76,8 @@ GEM
     font-awesome-rails (4.2.0.0)
       railties (>= 3.2, < 5.0)
     formatador (0.2.5)
-    friendly_id (4.0.10)
+    friendly_id (5.1.0)
+      activerecord (>= 4.0.0)
     guard (2.10.5)
       formatador (>= 0.2.4)
       listen (~> 2.7)
@@ -279,7 +280,7 @@ DEPENDENCIES
   devise (~> 3.4)
   exception_notification (~> 2.6)
   ffaker (~> 1.14)
-  friendly_id (~> 4.0.1)
+  friendly_id (~> 5.1.0)
   guard-rspec
   jquery-rails (~> 3.0)
   kaminari (~> 0.16.1)

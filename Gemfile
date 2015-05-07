@@ -20,7 +20,7 @@ gem 'redcarpet',              '~> 2.1.1'
 gem 'liquid',                 '~> 2.3.0'
 gem 'ri_cal',                 '~> 0.8.8'
 gem 'rails_admin',            '~> 0.6.5'
-gem 'friendly_id',            '~> 4.0.1'
+gem 'friendly_id',            '~> 5.1.0'
 
 gem 'paperclip',              '~> 4.2'
 gem 'ffaker',                 '~> 1.14'
