@@ -23,6 +23,7 @@ gem 'rails_admin',            '~> 0.6.5'
 gem 'friendly_id',            '~> 5.1.0'
 
 gem 'paperclip',              '~> 4.2'
+gem 'fog-aws'
 gem 'ffaker',                 '~> 1.14'
 gem 'exception_notification', '~> 2.6'
 

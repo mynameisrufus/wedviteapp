@@ -14,7 +14,7 @@ class Designers::StationeryController < Designers::BaseController
   end
 
   def create
-    @stationery = Stationery.new params[:stationery]
+    @stationery = Stationery.new stationery_params
     respond_to do |format|
       if @stationery.save
         format.html { redirect_to build_stationery_path(@stationery), notice: 'Stationery was successfully created.' }
@@ -28,7 +28,7 @@ class Designers::StationeryController < Designers::BaseController
 
   def update
     respond_to do |format|
-      if @stationery.update_attributes params[:stationery]
+      if @stationery.update_attributes stationery_params
         format.html { redirect_to edit_stationery_path(@stationery), notice: 'Stationery was successfully updated.' }
         format.json { render json: "success".to_json  }
       else
@@ -59,5 +59,14 @@ class Designers::StationeryController < Designers::BaseController
   def spoof_guest
     wedding = Spoof.wedding wording: @stationery.example_wording_dev
     Spoof.guest wedding: wedding
+  end
+
+  def stationery_params
+    params.require(:stationery).permit(:name,
+                                       :style,
+                                       :price,
+                                       :agency_id,
+                                       :html_dev,
+                                       :example_wording_dev)
   end
 end

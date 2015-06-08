@@ -11,7 +11,7 @@ class Designers::AttachmentsController < Designers::BaseController
   end
 
   def create
-    @resource = association.new params[param_key]
+    @resource = association.new params.require(param_key).permit(:attachment)
 
     respond_to do |format|
       if @resource.save
@@ -28,7 +28,7 @@ class Designers::AttachmentsController < Designers::BaseController
     @resource = association.find params[:id]
 
     respond_to do |format|
-      if @resource.update_attributes params[param_key]
+      if @resource.update_attributes params.require(param_key).permit(:attachment)
         format.html { redirect_to resources_path, notice: "#{association_name_singular} uploaded." }
         format.json { head :ok }
       else

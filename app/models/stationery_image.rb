@@ -12,4 +12,6 @@ class StationeryImage < ActiveRecord::Base
   #
   #   :class/:attachment/:id/:style/:updated_at
   has_attached_file :attachment, path: "stationery/images/:id/:hash.:extension"
+
+  do_not_validate_attachment_file_type :attachment
 end
