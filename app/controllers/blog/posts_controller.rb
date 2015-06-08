@@ -13,12 +13,12 @@ class Blog::PostsController < ApplicationController
   end
 
   def show
-    @post = Post.published.find params[:id]
+    @post = Post.published.friendly.find params[:id]
   end
 
   def edit
     if admin_signed_in?
-      @post = Post.find params[:id]
+      @post = Post.friendly.find params[:id]
     else
       render inline: "You must be signed in"
     end
@@ -26,7 +26,7 @@ class Blog::PostsController < ApplicationController
 
   def update
     if admin_signed_in?
-      @post = Post.find params[:id]
+      @post = Post.friendly.find params[:id]
       @post.update_attributes params[:post]
     end
     redirect_to edit_post_path @post
