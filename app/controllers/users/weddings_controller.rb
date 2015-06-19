@@ -76,10 +76,10 @@ class Users::WeddingsController < Users::BaseController
   # PUT /weddings/1.json
   def update
     @wedding = current_user.weddings.find(params[:id])
-
-    handle_update('Wedding was successfully updated.', wedding_guestlist_path(@wedding), :edit) do
-      @wedding.update_attributes(wedding_params)
+    unless @wedding.update_attributes(wedding_params)
+      flash[:alert] = "Could not update wedding."
     end
+    redirect_to wedding_guestlist_path(@wedding)
   end
 
   def handle_update(success_message, success_path, failure_action)
