@@ -67,6 +67,11 @@ class Designers::StationeryController < Designers::BaseController
                                        :price,
                                        :agency_id,
                                        :html_dev,
+                                       :description,
+                                       :desktop,
+                                       :mobile,
+                                       :print,
+                                       :preview,
                                        :example_wording_dev)
   end
 end

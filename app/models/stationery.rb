@@ -23,6 +23,8 @@ class Stationery < ActiveRecord::Base
 
   has_attached_file :preview, path: "stationery/previews/:id/:hash.:extension"
 
+  do_not_validate_attachment_file_type :preview
+
   scope :published, -> { where(published: true) }
 
   def deploy!
