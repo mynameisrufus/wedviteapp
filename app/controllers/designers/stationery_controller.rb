@@ -72,6 +72,7 @@ class Designers::StationeryController < Designers::BaseController
                                        :mobile,
                                        :print,
                                        :preview,
+                                       :published,
                                        :example_wording_dev)
   end
 end
