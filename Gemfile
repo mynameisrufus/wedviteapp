@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-ruby '2.1.5', engine: 'ruby', engine_version: '2.1.5'
+ruby '2.2.2'
 
 gem 'rails', '~> 4.1.7'
 
