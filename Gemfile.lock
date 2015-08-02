@@ -128,7 +128,7 @@ GEM
       activesupport (>= 3.0.0)
     launchy (2.4.3)
       addressable (~> 2.3)
-    liquid (2.3.0)
+    liquid (3.0.6)
     listen (2.8.4)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
@@ -175,7 +175,7 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
-    pdfkit (0.5.4)
+    pdfkit (0.8.0)
     pg (0.17.1)
     pry (0.10.1)
       coderay (~> 1.1.0)
@@ -309,7 +309,7 @@ DEPENDENCIES
   jquery-rails (~> 3.0)
   kaminari (~> 0.16.1)
   launchy
-  liquid (~> 2.3.0)
+  liquid (~> 3.0.6)
   machinist (~> 2.0)
   mail_view (~> 1.0.3)
   nokogiri (~> 1.6)
@@ -317,7 +317,7 @@ DEPENDENCIES
   omniauth (~> 1.2.2)
   omniauth-facebook (~> 2.0)
   paperclip (~> 4.2)
-  pdfkit (~> 0.5.2)
+  pdfkit (~> 0.8.0)
   pg
   pry (~> 0.9)
   puma (~> 2.10)
@@ -335,4 +335,4 @@ DEPENDENCIES
   sorted (~> 1.0.1)
   uglifier (>= 1.0.3)
   webmock (~> 1.8)
-  wkhtmltopdf-binary (~> 0.9.9.1)
+  wkhtmltopdf-binary (~> 0.9.9.3)

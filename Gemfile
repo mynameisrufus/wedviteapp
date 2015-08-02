@@ -17,7 +17,7 @@ gem 'omniauth-facebook',      '~> 2.0'
 gem 'kaminari',               '~> 0.16.1'
 gem 'sorted',                 '~> 1.0.1'
 gem 'redcarpet',              '~> 2.1.1'
-gem 'liquid',                 '~> 2.3.0'
+gem 'liquid',                 '~> 3.0.6'
 gem 'ri_cal',                 '~> 0.8.8'
 gem 'rails_admin',            '~> 0.6.5'
 gem 'friendly_id',            '~> 5.1.0'
@@ -33,8 +33,8 @@ gem 'sendgrid-rails',         '~> 2.0'
 gem 'nokogiri',               '~> 1.6'
 
 # Generation of invitations in PDF format.
-gem 'pdfkit',                 '~> 0.5.2'
-gem 'wkhtmltopdf-binary',     '~> 0.9.9.1'
+gem 'pdfkit',                 '~> 0.8.0'
+gem 'wkhtmltopdf-binary',     '~> 0.9.9.3'
 
 # Preview emails.
 # https://rubygems.org/gems/mail_view
