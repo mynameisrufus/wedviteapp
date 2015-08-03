@@ -34,7 +34,7 @@ gem 'nokogiri',               '~> 1.6'
 
 # Generation of invitations in PDF format.
 gem 'pdfkit',                 '~> 0.8.0'
-gem 'wkhtmltopdf-heroku',     '~> 2.12.2.4' unless RUBY_PLATFORM =~ /darwin/
+gem 'wkhtmltopdf-heroku',     '~> 2.12.2.4'
 
 # Preview emails.
 # https://rubygems.org/gems/mail_view
