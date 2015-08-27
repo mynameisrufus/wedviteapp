@@ -70,15 +70,17 @@
                   <%= link_to "preview", wedding_guest_preview_path(@wedding, guest), target: "_blank" %>
                   <%= link_to "print", wedding_guest_preview_path(@wedding, guest, format: :pdf), target: "_blank" %>
                 <% end %>
-                <% unless Rails.env.production? %>
-                  <%= link_to "invitation", invitation_url(guest.token, subdomain: 'invitations'), target: "_blank" %>
-                <% end %>
                 <% if guest.thanked? %>
                   <%= link_to "re-thank", wedding_guest_thank_path(@wedding, guest) %>
                 <% elsif guest.sent? %>
                   <%= link_to "remind", wedding_guest_remind_path(@wedding, guest) %>
                 <% elsif guest.accepted? || guest.declined? %>
                   <%= link_to "send link", wedding_guest_link_path(@wedding, guest) %>
+                <% end %>
+                <%= link_to "ourday", wedding_guest_ourday_path(@wedding, guest, format: :pdf) %>
+                <%= link_to "invitation", wedding_guest_invitation_path(@wedding, guest, format: :pdf) %>
+                <% unless Rails.env.production? %>
+                  <%= link_to "ʕ •ᴥ•ʔ", invitation_url(guest.token, subdomain: 'invitations'), target: "_blank" %>
                 <% end %>
               <% end %>
               <!-- 

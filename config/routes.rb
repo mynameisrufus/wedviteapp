@@ -71,6 +71,8 @@ Rails.application.routes.draw do
           get 'remind'
           get 'thank'
           get 'link'
+          get 'invitation'
+          get 'ourday'
           post 'approve'
           post 'reject'
           post 'tentative'

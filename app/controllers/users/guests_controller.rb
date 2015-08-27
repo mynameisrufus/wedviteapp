@@ -1,6 +1,6 @@
 class Users::GuestsController < Users::BaseController
   before_filter :find_wedding
-  before_filter :find_guest, only: %w(approve reject tentative accept decline move remind thank link)
+  before_filter :find_guest, only: %w(approve reject tentative accept decline move remind thank link invitation ourday)
 
   def approve
     change_state :approve
@@ -74,6 +74,16 @@ class Users::GuestsController < Users::BaseController
       format.html { render layout: false if request.xhr? }
       format.json { render json: @guest }
     end
+  end
+
+  def invitation
+    @preview_mode = true
+    render inline: @wedding.stationery.render(@guest), layout: false
+  end
+
+  def ourday
+    @preview_mode = true
+    render 'invitations/weddings/our_day', layout: false
   end
 
   # POST /guests
