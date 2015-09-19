@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Install all needed packages to convert fonts
+#
+# Download http://fontforge.github.io
+#
+# https://github.com/shimarulin/otf2ttf
+# https://github.com/fontello/svg2ttf
+
+brew install fontforge --with-libspiro
+npm install -g otf2ttf
+npm install -g ttf2woff
+npm install -g ttf2eot
+npm install -g ttf2svg

@@ -68,8 +68,12 @@ Nuke staging:
     gem install foreman
     dotenv foreman start
 
-# PayPal
+# Font converters
 
-Payments are made using PayPal, see
+Ensure required deps:
 
-    config/initializers/pay_pal.rb
+    script/install_font_converters
+
+Then convert files:
+
+    ttf2woff font.ttf font.woff
