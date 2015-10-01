@@ -75,8 +75,8 @@ ActiveRecord::Schema.define(version: 20150126082118) do
 
   create_table "authors", force: true do |t|
     t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "collaboration_tokens", force: true do |t|
@@ -142,8 +142,8 @@ ActiveRecord::Schema.define(version: 20150126082118) do
     t.integer  "eventfull_id",   null: false
     t.string   "eventfull_type", null: false
     t.integer  "wedding_id",     null: false
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "events", ["wedding_id"], name: "index_events_on_wedding_id", using: :btree
@@ -151,8 +151,8 @@ ActiveRecord::Schema.define(version: 20150126082118) do
   create_table "gift_registries", force: true do |t|
     t.text     "details"
     t.integer  "wedding_id",                 null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.boolean  "active",     default: false, null: false
   end
 
@@ -164,8 +164,8 @@ ActiveRecord::Schema.define(version: 20150126082118) do
     t.float    "price",            default: 0.0
     t.integer  "gift_registry_id",               null: false
     t.integer  "guest_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "gifts", ["gift_registry_id"], name: "index_gifts_on_gift_registry_id", using: :btree
@@ -215,8 +215,8 @@ ActiveRecord::Schema.define(version: 20150126082118) do
 
   create_table "messages", force: true do |t|
     t.text     "text"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "wedding_id",       null: false
     t.integer  "messageable_id",   null: false
     t.string   "messageable_type", null: false
@@ -236,8 +236,8 @@ ActiveRecord::Schema.define(version: 20150126082118) do
     t.string   "transaction_id",                 null: false
     t.string   "gateway",                        null: false
     t.text     "gateway_response"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "posts", force: true do |t|
@@ -247,8 +247,8 @@ ActiveRecord::Schema.define(version: 20150126082118) do
     t.boolean  "published",    default: false
     t.integer  "author_id"
     t.datetime "published_at"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "posts", ["slug"], name: "index_posts_on_slug", unique: true, using: :btree
@@ -259,8 +259,8 @@ ActiveRecord::Schema.define(version: 20150126082118) do
     t.integer  "claimed",    default: 0,   null: false
     t.float    "discount",   default: 0.0, null: false
     t.datetime "expires_on",               null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "promotional_codes", ["code"], name: "index_promotional_codes_on_code", unique: true, using: :btree
@@ -272,8 +272,8 @@ ActiveRecord::Schema.define(version: 20150126082118) do
     t.string   "table"
     t.integer  "month",      limit: 2
     t.integer  "year",       limit: 8
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
@@ -283,8 +283,8 @@ ActiveRecord::Schema.define(version: 20150126082118) do
     t.integer  "message_id",     null: false
     t.integer  "replyable_id",   null: false
     t.string   "replyable_type", null: false
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "replies", ["message_id"], name: "index_replies_on_message_id", using: :btree
@@ -316,10 +316,10 @@ ActiveRecord::Schema.define(version: 20150126082118) do
     t.datetime "deployed_at"
   end
 
-  add_index "stationeries", ["agency_id"], name: "index_stationaries_on_agency_id", using: :btree
-  add_index "stationeries", ["popularity"], name: "index_stationaries_on_popularity", using: :btree
-  add_index "stationeries", ["price"], name: "index_stationaries_on_price", using: :btree
-  add_index "stationeries", ["style"], name: "index_stationaries_on_style", using: :btree
+  add_index "stationeries", ["agency_id"], name: "index_stationeries_on_agency_id", using: :btree
+  add_index "stationeries", ["popularity"], name: "index_stationeries_on_popularity", using: :btree
+  add_index "stationeries", ["price"], name: "index_stationeries_on_price", using: :btree
+  add_index "stationeries", ["style"], name: "index_stationeries_on_style", using: :btree
 
   create_table "stationery_assets", force: true do |t|
     t.integer  "stationery_id"
@@ -331,7 +331,7 @@ ActiveRecord::Schema.define(version: 20150126082118) do
     t.datetime "attachment_updated_at"
   end
 
-  add_index "stationery_assets", ["stationery_id"], name: "index_stationary_assets_on_stationary_id", using: :btree
+  add_index "stationery_assets", ["stationery_id"], name: "index_stationery_assets_on_stationery_id", using: :btree
 
   create_table "stationery_images", force: true do |t|
     t.integer  "stationery_id"
@@ -343,7 +343,7 @@ ActiveRecord::Schema.define(version: 20150126082118) do
     t.datetime "attachment_updated_at"
   end
 
-  add_index "stationery_images", ["stationery_id"], name: "index_stationary_images_on_stationary_id", using: :btree
+  add_index "stationery_images", ["stationery_id"], name: "index_stationery_images_on_stationery_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                                default: "", null: false
@@ -406,6 +406,6 @@ ActiveRecord::Schema.define(version: 20150126082118) do
     t.datetime "thank_process_started_at"
   end
 
-  add_index "weddings", ["stationery_id"], name: "index_weddings_on_stationary_id", using: :btree
+  add_index "weddings", ["stationery_id"], name: "index_weddings_on_stationery_id", using: :btree
 
 end

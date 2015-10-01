@@ -77,7 +77,7 @@ unless Rails.env.production?
         children: rand(0..2),
         partner_number: rand(1..2)
       })
-      guest.update_state Guest::STATES.shuffle.first[:noun]
+      guest.update_state GuestState.sample.noun
     end
   end
 end

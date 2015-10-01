@@ -68,6 +68,10 @@ class GuestState
     [:tentative, :accepted, :sent, :approved]
   end
 
+  def self.sample
+    DICT.sample
+  end
+
   def self.possibly
     DICT.select { |state| possibly_nouns.include?(state.noun) }
   end
