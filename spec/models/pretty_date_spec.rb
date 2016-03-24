@@ -2,11 +2,11 @@ require 'spec_helper'
 
 describe PrettyDate do
   it 'should raise error if style not present' do
-    expect(->{ PrettyDate.style(Time.now).with(99999) }).to raise_error
+    expect(->{ PrettyDate.style(Time.now).with(99999) }).to raise_error(PrettyDate::MissingStyleError)
   end
 
   it 'should raise error if style already registered' do
-    expect(->{ PrettyDate.register_style(1, proc {}) }).to raise_error
+    expect(->{ PrettyDate.register_style(1, proc {}) }).to raise_error(PrettyDate::DuplicateStyleError)
   end
 
   it 'should return style 1' do

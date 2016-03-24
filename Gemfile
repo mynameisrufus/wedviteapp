@@ -20,6 +20,8 @@ gem 'redcarpet',              '~> 2.1.1'
 gem 'liquid',                 '~> 3.0.6'
 gem 'ri_cal',                 '~> 0.8.8'
 gem 'rails_admin',            '~> 0.8.1'
+# rack-pjax required for rails admin and rails 4.1.7 remove later
+gem 'rack-pjax',              '~> 0.8.0'
 gem 'friendly_id',            '~> 5.1.0'
 
 gem 'paperclip',              '~> 4.2'
@@ -41,10 +43,11 @@ gem 'wkhtmltopdf-heroku',     '~> 2.12.2.4'
 # https://github.com/37signals/mail_view
 gem 'mail_view',            '~> 1.0.3'
 
-gem 'jquery-rails',         '~> 3.0'
-
-gem 'sass-rails',           '~> 4.0'
-gem 'bootstrap-sass',       '~> 2.1.0'
+gem 'bootstrap',            '~> 4.0.0.alpha3'
+# required for tool-tips and popovers
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.1.0'
+end
 
 gem 'uglifier',             '>= 1.0.3'
 
