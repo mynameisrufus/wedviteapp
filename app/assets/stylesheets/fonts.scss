@@ -1,3 +1,6 @@
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
 body, p {
   font-family: "Gill Sans","Gill Sans MT", sans-serif;
   font-size: 16px;
@@ -32,4 +35,10 @@ p.copyright {
   text-align: center;
   margin: 25px 0px 0px 0px;
   color: #A1917E;
+}
+
+// font awesome
+.fa {
+  text-align: center;
+  min-width: 20px;
 }

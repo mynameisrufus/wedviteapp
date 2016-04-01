@@ -1,51 +1,11 @@
+// Core variables and mixins
 @import "bootstrap";
-@import "bootstrap/responsive-utilities";
 
-// MEDIA QUERIES
-// ------------------
+// WedVite colors
+@import "colors";
 
-// Phones to portrait tablets and narrow desktops
-@import "bootstrap/responsive-767px-max";
-
-// Tablets to regular desktops
-@import "bootstrap/responsive-768px-979px";
-
-// Large desktops
-@import "bootstrap/responsive-1200px-min";
-
-body {
-  background-image: image-url("bg-cloth.png");
-}
-
-body, p {
-  font-family: "Gill Sans","Gill Sans MT", sans-serif;
-  font-size: 16px;
-  font-weight: 200;
-}
-
-p {
-  line-height: 30px;
-}
-
-h1 {
-  font-weight: 300;
-}
-
-h2 {
-  font-weight: 400;
-}
-
-h3 {
-  font-weight: 500;
-}
-
-li {
-  line-height: 30px;
-}
-
-strong {
-  font-weight: 500;
-}
+// WedVite global fonts.
+@import "fonts";
 
 a {
   color: blue;  
@@ -168,22 +128,53 @@ textarea {
   }
 }
 
-// Landscape phone to portrait tablet
-@media (max-width: 767px) {
+@media screen and (max-width: 767px) {
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all .25s ease-out;
+         -o-transition: all .25s ease-out;
+            transition: all .25s ease-out;
+  }
 
-}
+  .row-offcanvas-right {
+    right: 0;
+  }
 
-// Portrait tablet to landscape and desktop
-@media (min-width: 768px) and (max-width: 979px) {
-  body {
-    padding-top: 60px;
+  .row-offcanvas-left {
+    left: 0;
+  }
+
+  .row-offcanvas-right
+  .sidebar-offcanvas {
+    right: -50%; /* 6 columns */
+  }
+
+  .row-offcanvas-left
+  .sidebar-offcanvas {
+    left: -50%; /* 6 columns */
+    padding-right: 0px;
+  }
+
+  .row-offcanvas-right.active {
+    right: 50%; /* 6 columns */
+  }
+
+  .row-offcanvas-left.active {
+    left: 50%; /* 6 columns */
+  }
+
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 50%; /* 6 columns */
   }
 }
 
+.list-group-item:first-child {
+    border-top-right-radius: 0rem;
+    border-top-left-radius: 0rem;
+}
 
-// Large desktop
-@media (min-width: 1200px) {
-  body {
-    padding-top: 60px;
-  }
+.list-group-item {
+  border: 0 none;
 }

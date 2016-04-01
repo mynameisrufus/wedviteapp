@@ -31,4 +31,6 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => 'wedvite.dev' }
 
   config.eager_load = false
+
+  config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload
 end

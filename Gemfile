@@ -49,6 +49,8 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
 end
 
+gem 'font-awesome-sass',    '~> 4.5.0'
+
 gem 'uglifier',             '>= 1.0.3'
 
 group :development, :test do
@@ -70,9 +72,9 @@ end
 group :development do
   gem 'guard-rspec'
 
-  # live reload for browser
-  # FIXME gem install error
-  # gem 'guard-livereload'
+  gem 'guard-livereload'
+
+  gem 'rack-livereload'
 
   # file system event gems
   gem 'rb-inotify', require: false

@@ -10,21 +10,3 @@
     <p><%= raw notice %></p>
   </div>
 <% end %>
-<script>
-(function() {
-    var $alert = $('.alert')
-
-    var remove = function() {
-        $alert.fadeOut('slow', function() {
-            $(this).remove()
-        })
-    }
-
-    var to = setTimeout(remove, 5000)
-
-    $alert.find('.close').on('click', function(){
-        clearTimeout(to)
-        remove()
-    })
-})()
-</script>

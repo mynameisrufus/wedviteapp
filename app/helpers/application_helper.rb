@@ -24,8 +24,12 @@ module ApplicationHelper
   end
 
   def nav_tab title, url
-    content_tag :li, class: (current_page?(url) ? 'active' : nil) do
-      link_to title, url
+    content_tag :li, class: 'nav-item' do
+      link_to title, url, class: (current_page?(url) ? 'nav-link active' : 'nav-link')
     end
+  end
+
+  def list_group_item title, url
+    link_to raw(title), url, class: (current_page?(url) ? 'list-group-item active' : 'list-group-item')
   end
 end

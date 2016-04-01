@@ -1,5 +1,4 @@
 @import "bootstrap";
-@import "bootstrap-responsive";
 
 // App global stylesheets
 @import "global";
@@ -226,7 +225,7 @@ section {
         }
 
         .details span {
-          @include opacity(60);
+          background: opacity(60);
         }
         .actions {
           visibility: hidden;
@@ -242,7 +241,7 @@ section {
         }
         &:hover, &.active {
           .details span {
-            @include opacity(100);
+            background: opacity(100);
           }
           .actions {
             visibility: visible;
