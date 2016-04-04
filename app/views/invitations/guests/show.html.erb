@@ -1,85 +1,65 @@
-<div class="page-header">
-  <h1>Update your details</h1>
+<div class="row">
+  <div class="col-sm-12">
+    <h1 id="update" class="page-header">Your details</h1>
+  </div>
 </div>
 
-<%= form_for @guest, url: update_guest_path(@guest.token), html: { class: 'form-horizontal' } do |f| %>
-  <fieldset>
-
-    <% unless @wedding.respond_deadline.past? %>
-      <div class="control-group">
-        <%= f.label :state, "You have", class: "control-label" %>
-        <div class="controls">
+<div class="row">
+  <div class="col-sm-12">
+    <%= form_for @guest, url: update_guest_path(@guest.token) do |f| %>
+      <% unless @wedding.respond_deadline.past? %>
+        <div class="radio">
           <label class="radio">
             <%= f.radio_button :state, 'accepted' %>
             Accepted
           </label>
+        </div>
+        <div class="radio">
           <label class="radio">
             <%= f.radio_button :state, 'declined' %>
             Declined
           </label>
         </div>
-      </div>
 
-      <% if @guest.invited_to_reception? && @wedding.has_reception? %>
-        <div class="control-group">
-          <%= f.label :attending_reception, "Reception", class: "control-label" %>
-          <div class="controls">
-            <label class="checkbox">
-              <input type="checkbox" name="optionsCheckboxList1" value="option1">
-              <%= f.check_box :attending_reception %>
-              Will you be joining us for the reception?
-            </label>
-          </div>
+        <% if @guest.invited_to_reception? && @wedding.has_reception? %>
+        <div class="checkbox">
+          <label>
+            <%= f.check_box :attending_reception %> Will you be joining us for the reception?
+          </label>
         </div>
+        <% end %>
       <% end %>
-    <% end %>
 
-    <div class="control-group">
-      <%= f.label :address, class: "control-label" %>
-      <div class="controls">
-        <%= f.text_field :address, class: 'input-xlarge' %>
+      <div class="form-group">
+        <%= f.label :email, "Email address" %>
+        <%= f.email_field :email, class: "form-control" %>
       </div>
-    </div>
 
-    <div class="control-group">
-      <%= f.label :phone, class: "control-label" %>
-      <div class="controls">
-        <%= f.phone_field :phone, class: 'input-xlarge' %>
+      <div class="form-group">
+        <%= f.label :phone, "Phone number" %>
+        <%= f.email_field :phone, class: "form-control" %>
       </div>
-    </div>
 
-    <% unless @wedding.respond_deadline.past? %>
-      <div class="control-group">
-        <%= f.label :adults, class: "control-label" %>
-        <div class="controls">
-          <%= f.text_field :adults, class: 'input-xlarge', type: :number %>
+      <div class="form-group">
+        <%= f.label :address %>
+        <%= f.text_area :address, class: "form-control", rows: 3 %>
+      </div>
+
+      <% unless @wedding.respond_deadline.past? %>
+        <div class="form-group">
+          <%= f.label :adults %>
+          <%= f.number_field :adults, class: "form-control" %>
         </div>
-      </div>
 
-      <% if @guest.children != 0 %>
-        <div class="control-group">
-          <%= f.label :children, class: "control-label" %>
-          <div class="controls">
-            <%= f.text_field :children, class: 'input-xlarge', type: :number %>
+        <% if @guest.children != 0 %>
+          <div class="form-group">
+            <%= f.label :children %>
+            <%= f.number_field :children, class: "form-control" %>
           </div>
-        </div>
+        <% end %>
       <% end %>
+
+      <button type="submit" class="btn btn-secondary">Update</button>
     <% end %>
-
-    <div class="control-group">
-      <%= f.label :email, class: "control-label" %>
-      <div class="controls">
-        <%= f.email_field :email, class: 'input-xlarge' %>
-      </div>
-    </div>
-
-    <div class="form-actions">
-      <button type="submit" class="btn">Update</button>
-    </div>
-  </fieldset>
-<% end %>
-
-<div class="page-header">
-  <h1>Print invitation</h1>
+  </div>
 </div>
-<%= link_to 'Download invitation in PDF format', print_invitation_path(@guest.token, format: :pdf), class: 'btn', target: '_blank' %>

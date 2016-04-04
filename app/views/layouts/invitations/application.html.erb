@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>WedVite</title>
+    <title><%= @wedding.title %> - WedVite</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <link href="/favicon.png" rel="shortcut icon" type="image/png" />
     <%= stylesheet_link_tag    "invitations/application" %>
@@ -31,6 +31,9 @@
           <%= yield %>
         </div>
       </div>
+      <footer class="wd-footer">
+        <p><%= @wedding.title %></p>
+      </footer>
     </div>
     <%= javascript_include_tag 'http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places' %>
     <%= javascript_include_tag "invitations/application" %>

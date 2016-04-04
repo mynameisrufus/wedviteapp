@@ -65,7 +65,7 @@ class Message < ActiveRecord::Base
     Participants.new self
   end
 
-  def by? type
-    messageable_type == type.to_s.humanize
+  def by? type, id
+    messageable_type == type.to_s.humanize && messageable_id == id
   end
 end

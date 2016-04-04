@@ -14,4 +14,5 @@
     <%= list_group_item "#{icon('gift')} Gift Registry", gifts_path(@guest.token) %>
   <% end %>
   <%= list_group_item "#{icon('group')} Messages", messages_path(@guest.token) %>
+  <%= list_group_item "#{icon('print')} Print Invitation", print_invitation_path(@guest.token, format: :pdf) %>
 </div>

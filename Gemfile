@@ -43,6 +43,9 @@ gem 'wkhtmltopdf-heroku',     '~> 2.12.2.4'
 # https://github.com/37signals/mail_view
 gem 'mail_view',            '~> 1.0.3'
 
+# For generating colors in message board
+gem 'color-generator', '~> 0.0.4'
+
 gem 'bootstrap',            '~> 4.0.0.alpha3'
 # required for tool-tips and popovers
 source 'https://rails-assets.org' do

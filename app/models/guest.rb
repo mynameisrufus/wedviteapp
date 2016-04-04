@@ -1,5 +1,6 @@
 class Guest < ActiveRecord::Base
   include Eventfull
+  include Colourable
 
   belongs_to :wedding
 

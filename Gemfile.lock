@@ -30,7 +30,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.4.0)
     arel (5.0.1.20140414130214)
-    autoprefixer-rails (6.3.5)
+    autoprefixer-rails (6.3.6)
       execjs
     awesome_print (1.6.1)
     bcrypt (3.1.11)
@@ -58,6 +58,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
+    color-generator (0.0.4)
     concurrent-ruby (1.0.1)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
@@ -120,7 +121,7 @@ GEM
       guard (~> 2.8)
       guard-compat (~> 1.0)
       multi_json (~> 1.8)
-    guard-rspec (4.6.4)
+    guard-rspec (4.6.5)
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
@@ -316,6 +317,7 @@ DEPENDENCIES
   bootstrap (~> 4.0.0.alpha3)
   cancan (~> 1.6)
   capybara
+  color-generator (~> 0.0.4)
   database_cleaner
   devise (~> 3.4)
   exception_notification (~> 2.6)

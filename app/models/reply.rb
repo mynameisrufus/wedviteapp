@@ -9,7 +9,7 @@ class Reply < ActiveRecord::Base
 
   default_scope { order("created_at ASC") }
 
-  def by? type
-    replyable_type == type.to_s.humanize
+  def by? type, id
+    replyable_type == type.to_s.humanize && replyable_id == id
   end
 end

@@ -1,4 +1,8 @@
-<%= raw markdown.render(@wedding.ceremony_what || '') %>
-<% if @wedding.has_reception? && @guest.attending_reception? %>
-  <%= raw markdown.render(@wedding.reception_what || '') %>
-<% end %>
+<div class="row">
+  <div class="col-sm-12">
+    <%= raw markdown.render(@wedding.ceremony_what || '') %>
+    <% if @wedding.has_reception? && @guest.attending_reception? %>
+      <%= raw markdown.render(@wedding.reception_what || '') %>
+    <% end %>
+  </div>
+</div>

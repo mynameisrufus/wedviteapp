@@ -1,64 +1,50 @@
-<div class="tab-content">
-  <div class="tab-pane active" id="messages">
-
-<div class="page-header">
-  <h1>Leave a new message</h1>
+<div class="row">
+  <div class="col-sm-12">
+    <h1 id="messages" class="page-header">Messages</h1>
+  </div>
 </div>
 
-<div class="well">
-  <%= form_for @guest.messages.build, url: messages_path(@guest.token) do |f| %>
-    <fieldset>
-      <div class="control-group">
-        <div class="controls">
-          <%= f.text_area :text, placeholder: "Type new message here." %>
-        </div>
-      </div>
-      <div class="form-actions">
-        <button type="submit" class="btn pull-right">Message</button>
-      </div>
-    </fieldset>
+<div class="row">
+  <div class="col-sm-12">
+  <%= form_for @guest.messages.build,
+    url: messages_path(@guest.token) do |f| %>
+    <div class="form-group">
+      <%= f.text_area :text, placeholder: "New Message",
+      data: { toggle: 'autogrow' },
+      style: "height: 3rem;",
+      class: ["form-control", "autogrow-short"], rows: 1 %>
+    </div>
+    <button type="submit" class="btn btn-secondary">Post</button>
   <% end %>
+  </div>
 </div>
 
 <% @messages.each do |message| %>
-  <div class="well">
-    <div class="details">
-      <p class="who"><%= message.messageable.name %></p>
-      <p class="when"><%= time_ago_in_words message.created_at %> ago</p>
+  <div class="wd-bubble <%= message.by?(Guest, @guest.id) ? 'wd-bubble-me' : 'wd-bubble-other' %>">
+    <small class="text-muted" style="color: #<%= message.messageable.color %>"><%= message.messageable.name %></small>
+    <div class="wd-bubble-message"><%= message.text %>
+      <a data-toggle="collapse" href="#collapse-<%= message.id %>" aria-expanded="false" aria-controls="collapseExample">
+          reply
+      </a>
     </div>
-    <div class="message"><%= message.text %></div>
-    <div class="replies">
-      <div class="chat-bubble-arrow-border"></div>
-      <div class="chat-bubble-arrow"></div>
-      <% message.replies.each do |reply| %>
-        <div class="details">
-          <p class="who"><%= reply.replyable.name %></p>
-          <p class="when"><%= time_ago_in_words reply.created_at %> ago</p>
-        </div>
-        <div class="reply"><%= reply.text %></div>
-      <% end %>
-      <%= form_for message.replies.build, url: message_replies_path(@guest.token, message) do |f| %>
-        <fieldset>
-          <%= f.text_area :text, placeholder: "Write a comment." %>
-          <div class="form-actions">
-            <button type="submit" class="btn pull-right">Reply</button>
-          </div>
-        </fieldset>
-      <% end %>
-    </div>
+    <%= form_for message.replies.build,
+      url: message_replies_path(@guest.token, message),
+      html: { id: "collapse-#{message.id}", class: "collapse" } do |f| %>
+      <div class="form-group">
+        <%= f.text_area :text, placeholder: "Message",
+        data: { toggle: 'autogrow' },
+        style: "height: 3rem;",
+        class: ["form-control", "autogrow-short"], rows: 1 %>
+      </div>
+      <button type="submit" class="btn btn-secondary">Post</button>
+    <% end %>
+    <small class="text-muted"><em><%= time_ago_in_words message.created_at %> ago</em></small>
   </div>
+  <% message.replies.select(&:persisted?).each do |reply| %>
+    <div class="wd-bubble wd-bubble-reply <%= message.by?(Guest, @guest.id) ? 'wd-bubble-me' : 'wd-bubble-other' %>">
+      <small class="text-muted" style="color: #<%= reply.replyable.color %>"><%= reply.replyable.name %></small>
+      <div class="wd-bubble-message"><%= reply.text %></div>
+      <small class="text-muted"><em><%= time_ago_in_words reply.created_at %> ago</em></small>
+    </div>
+  <% end %>
 <% end %>
-
-  </div>
-</div>
-
-<script>
-$(function(){
-    $('fieldset').each(function(index, el) {
-        var $fieldset = $(el)
-        $fieldset.find('textarea').on('focus', function() {
-            $fieldset.find('.form-actions').show()
-        })
-    });
-});
-</script>

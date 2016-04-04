@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col-sm-12">
-    <p><%= raw markdown.render @wedding.gift_registry.details.to_s %></p>
+    <h1 id="gift-registry" class="page-header">Gift Registry</h1>
+    <%= raw markdown.render @wedding.gift_registry.details.to_s %>
   </div>
 </div>
 
@@ -10,13 +11,16 @@
       <div class="col-sm-6">
         <div class="card">
           <div class="card-block">
-            <h4 class="card-title"><%= gift.description %></h4>
+            <h4 class="card-title">
+              <%= gift.description %>
+              <%= gift.claimed_by(@guest) ? icon('check-circle-o', class: "text-success") : nil %>
+            </h4>
             <p>estimated price $<%= gift.price %></p>
             <% unless gift.url.nil? %>
               <p class="card-text"><%= link_to 'website', gift.url, target: 'blank' %></p>
             <% end %>
             <% if gift.unclaimed? %>
-              <%= link_to 'Claim this gift.', claim_gift_path(@guest.token, gift), class: 'btn btn-primary' %>
+              <%= link_to 'Claim this gift.', claim_gift_path(@guest.token, gift), class: 'btn btn-secondary' %>
             <% elsif gift.claimed_by @guest %>
               <%= link_to 'Un-claim this gift.', unclaim_gift_path(@guest.token, gift), class: 'btn btn-secondary' %>
             <% else %>

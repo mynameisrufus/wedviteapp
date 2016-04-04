@@ -1,6 +1,7 @@
 //= require jquery
 //= require tether
 //= require bootstrap
+//= require_tree .
 
 function makeMap(lat, lng, id) {
   var myOptions = {
@@ -55,7 +56,13 @@ $(document).ready(function () {
       remove()
   })
 
-  $.each(window.directions, function(_index, direction) {
-    makeMap(direction.lat, direction.lng, direction.id)
+  if (window.directions) {
+    $.each(window.directions, function(_index, direction) {
+      makeMap(direction.lat, direction.lng, direction.id)
+    })
+  }
+
+  $('[data-toggle="autogrow"]').each(function (_index, el) {
+    $(el).autogrow();
   })
 });
