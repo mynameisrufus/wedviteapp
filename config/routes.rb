@@ -136,6 +136,7 @@ Rails.application.routes.draw do
         patch 'update'     => 'guests#update', as: :update_guest
         get 'accept'    => 'guests#accept', as: :accept_invitation
         get 'decline'   => 'guests#decline', as: :decline_invitation
+        get 'declined' => 'guests#declined'
 
         resources :messages, only: %w(index create update destroy) do
           resources :replies, only: %w(create update destroy)

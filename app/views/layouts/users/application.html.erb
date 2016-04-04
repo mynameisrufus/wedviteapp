@@ -27,5 +27,6 @@
       <%= link_to "Legal", help_page_path(:legal), target: 'blank' %>
       &copy; copyright wedviteapp.com 2012
     </p>
+    <%= render partial: 'layouts/analytics'  if Rails.env.production? %>
   </body>
 </html>

@@ -35,10 +35,14 @@ class Invitations::GuestsController < Invitations::BaseController
     end
 
     if @guest.declined?
-      redirect_to guest_path(@guest.token), notice: "We are sorry you cannot not make it."
+      redirect_to declined_path
     else
       redirect_to our_day_path, notice: 'Message added'
     end
+  end
+
+  def declined
+
   end
 
   def update

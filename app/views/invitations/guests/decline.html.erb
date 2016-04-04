@@ -1,6 +1,8 @@
-<div class="tab-content">
-  <div class="page-header">
-    <h1>Leave us a message</h1>
-  </div>
-  <%= render partial: 'message' %>
-</div>
+<h1 id="decline">Leave a message</h1>
+<%= form_tag guest_message_path do %>
+  <%= text_area_tag 'message', nil %>
+  <p>Please note that everyone that has been invited to the
+wedding will be able to read this message.</p>
+  <button type="submit" class="btn btn-secondary">Message</button>
+  <%= link_to "Skip", declined_path(@guest.token), class: "btn btn-success" %>
+<% end %>
