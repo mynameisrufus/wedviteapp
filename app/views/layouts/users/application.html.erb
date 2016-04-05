@@ -5,7 +5,6 @@
     <link href="/favicon.png" rel="shortcut icon" type="image/png" />
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <%= stylesheet_link_tag    "users/application" %>
-    <%= javascript_include_tag "users/application" %>
     <!--[if lt IE 9]>
       <%= javascript_include_tag "//html5shiv.googlecode.com/svn/trunk/html5.js" %>
       <%= stylesheet_link_tag "users/ltIE9" %>
@@ -27,6 +26,8 @@
       <%= link_to "Legal", help_page_path(:legal), target: 'blank' %>
       &copy; copyright wedviteapp.com 2012
     </p>
+    <%= javascript_include_tag "users/application" %>
+    <%= javascript_include_tag 'http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places' %>
     <%= render partial: 'layouts/analytics'  if Rails.env.production? %>
   </body>
 </html>

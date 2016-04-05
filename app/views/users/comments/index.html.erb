@@ -18,25 +18,3 @@
 <div class="modal-footer">
   <a href="#" class="btn" data-dismiss="modal">Close</a>
 </div>
-<script>
-(function() {
-    var $modal     = $('.modal-body'),
-        $form      = $modal.find('form.new_comment'),
-        $comments  = $modal.find('.comments')
-
-    $form.on('submit', function(event) {
-        var $textarea = $(this).find('textarea')
-        event.preventDefault()
-        $.ajax({
-            type: 'POST',
-            url: $(this).attr('action'),
-            data: { comment: $textarea.val() },
-            success: function(data) {
-                $comments.prepend(data)
-                $textarea.val('')
-            },
-            dataType: 'html'
-        })
-    })
-})();
-</script>

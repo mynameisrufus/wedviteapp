@@ -37,16 +37,7 @@
       </div>
     </div>
   </div>
-  <script>
-    $('.bride-groom').each(function(index, elem) {
-      var $edit = $(elem).find('a')
-      $edit.on('click', function(event) {
-        event.preventDefault()
-        $(elem).find('.details').hide()
-        $(elem).find('form').show()
-      })
-    })
-  </script>
+
   <% GuestState.each do |state| %>
     <% next if @guest_list.currently(state).empty? %>
     <div class="block clearfix <%= state.noun %>" id="<%= state.noun %>">

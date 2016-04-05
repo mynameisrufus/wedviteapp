@@ -18,39 +18,3 @@
     </div>
   </fieldset>
 <% end %>
-<script>
-(function(undefined) {
-    var $form = $('#ourday form'),
-        $cere = $('#wedding_ceremony_what'),
-        $rece = $('#wedding_reception_what'),
-        $span = $form.find('.form-actions span'),
-        to    = null
-
-    var save = function() {
-        $span.html('Saving....')
-        $.ajax({
-            type: 'PUT',
-            url: $form.attr('action'),
-            data: {
-                wedding: {
-                    ceremony_what: $cere.val(),
-                    reception_what: $rece.val()
-                }
-            },
-            success: function(data) {
-                $span.html('')
-            },
-            dataType: 'json'
-        })
-    }
-
-    var autosave = function() {
-        clearTimeout(to)
-        to = setTimeout(save, 10000)
-    }
-
-    $cere.on('keyup', autosave)
-    $rece.on('keyup', autosave)
-
-}).call(this)
-</script>

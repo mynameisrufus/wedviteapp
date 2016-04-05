@@ -59,19 +59,3 @@
     <a href="#" class="btn" data-dismiss="modal">Close</a>
   </div>
 </div>
-
-<script>
-
-$(function(){
-    
-    var $modal = $('#modal-from-dom')
-
-    $('a.modal-me').on('click', function(event) {
-        event.preventDefault()
-        $.get(this.href, function(data) {
-            $modal.html(data).modal('show')
-        })
-    })
-
-});
-</script>

@@ -49,14 +49,3 @@
     </div>
   <% end %>
 </section>
-
-<script>
-$(function(){
-    $('fieldset').each(function(index, el) {
-        var $fieldset = $(el)
-        $fieldset.find('textarea').on('focus', function() {
-            $fieldset.find('.form-actions').show()
-        })
-    });
-});
-</script>

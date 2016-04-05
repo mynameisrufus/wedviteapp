@@ -50,6 +50,8 @@ gem 'bootstrap',            '~> 4.0.0.alpha3'
 # required for tool-tips and popovers
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
+  gem 'rails-assets-medium-editor', '~> 5.15.0'
+  gem 'rails-assets-to-markdown', '~> 3.0.0'
 end
 
 gem 'font-awesome-sass',    '~> 4.5.0'
