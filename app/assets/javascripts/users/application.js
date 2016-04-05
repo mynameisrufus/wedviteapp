@@ -3,6 +3,7 @@
 //= require bootstrap
 //= require medium-editor
 //= require to-markdown
+//= require rangy
 //= require_tree .
 
 // TODO remove me on redesign of UI
@@ -277,6 +278,15 @@
     $sections.on('entered', function(event, elem) {
         if (this.id === 'reception_directions') locations('reception_location')
     })
+
+    // WYSIWYG
+  $('[data-wysiwyg]').each(function (_index, el) {
+    var wysiwyg = new Wysiwyg({
+      markDownEl: $(el).find(".markdown").get(0),
+      editorEl: $(el).find(".editor").get(0),
+      mode: $(el).data('wysiwyg')
+    })
   });
 
+  });
 }).call(this);

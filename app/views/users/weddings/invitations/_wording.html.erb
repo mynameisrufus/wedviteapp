@@ -1,9 +1,13 @@
 <%= invitations_form do |f| %>
-  <fieldset>
-    <%= f.text_area :wording, class: 'markdown', rows: 3 %>
-    <div class="form-actions">
-      <%= f.submit 'Save changes', class: 'btn primary' %><% unless @wedding.stationery.nil? %>&nbsp;<%= link_to 'Preview', wedding_invitation_preview_path(@wedding), target: '_blank', class: 'btn' %><% end %>
-      <%= link_to "Need some help?", help_page_path(:invitation_and_stationery), class: 'modal-me btn' %>
-    </div>
-  </fieldset>
+  <div data-wysiwyg="stationery">
+    <div class="editor"><%= raw markdown.render(@wedding.wording) %></div>
+    <%= f.text_field :wording, class: 'markdown' %>
+  </div>
+  <%= f.submit 'Save changes', class: 'btn btn-secondary' %>
+  <% unless @wedding.stationery.nil? %>
+    <%= link_to 'Preview', wedding_invitation_preview_path(@wedding),
+      target: '_blank',
+      class: 'btn btn-secondary'
+    %>
+  <% end %>
 <% end %>

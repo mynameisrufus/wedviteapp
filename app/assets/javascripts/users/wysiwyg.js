@@ -1,9 +1,9 @@
 (function (root) {
-    if (typeof MediumEditor !== "function") {
-        throw new Error("Medium Editor is not loaded on the page.");
-    }
+  if (typeof MediumEditor !== "function") {
+      throw new Error("Medium Editor is not loaded on the page.");
+  }
 
-    var Wysiwyg = function (options, callback) {
+  var MediumMarkdown = function (options, callback) {
 
     if (typeof options === "function") {
         callback = options;
@@ -36,6 +36,55 @@
 
         handler();
     };
-};
-    root.Wysiwyg = Wysiwyg;
+  };
+
+  var Wysiwyg = function (options) {
+
+console.log(options)
+    var editorOptions = {
+      autoLink: true,
+      buttonLabels: 'fontawesome',
+      toolbar: {
+        /* These are the default options for the toolbar,
+           if nothing is passed this is what is used */
+        allowMultiParagraphSelection: true,
+        buttons: [ 'bold' ],
+        diffLeft: 0,
+        diffTop: -10,
+        firstButtonClass: 'medium-editor-button-first',
+        lastButtonClass: 'medium-editor-button-last',
+        standardizeSelectionStart: false,
+        static: true,
+        relativeContainer: null,
+        /* options which only apply when static is true */
+        align: 'center',
+        sticky: true,
+        updateOnEmptySelection: true
+      },
+      extensions: {
+        imageDragging: {},
+        markdown: new MediumMarkdown(function (md) {
+          options.markDownEl.textContent = md;
+        }),
+      }
+    }
+
+    if (options.mode == 'default') {
+      editorOptions.toolbar.buttons.push('anchor')
+    }
+
+    if (options.mode == 'stationery') {
+      editorOptions.autoLink = false
+      editorOptions.extensions.customHtml = new CustomHtml({
+        buttonHTML: "<i class='fa fa-user'></i>",
+        buttonTitle: "Guest name",
+        htmlToInsert: "{{ guest.name }}"
+      })
+      editorOptions.toolbar.buttons.push('customHtml')
+    }
+
+    new MediumEditor(options.editorEl, editorOptions)
+  }
+
+  root.Wysiwyg = Wysiwyg;
 })(this);
