@@ -3,6 +3,10 @@ class Users::SessionsController < Devise::SessionsController
 
   helper_method :show_subnav?
 
+  def page_title
+    'Sign in'
+  end
+
   def show_subnav?
     false
   end
