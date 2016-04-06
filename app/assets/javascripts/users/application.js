@@ -3,7 +3,6 @@
 //= require bootstrap
 //= require medium-editor
 //= require to-markdown
-//= require rangy
 //= require_tree .
 
 (function() {
@@ -156,6 +155,11 @@
 
     $cere.on('keyup', autosave)
     $rece.on('keyup', autosave)
+
+    // Off canvas
+    $('[data-toggle="offcanvas"]').click(function () {
+        $('.row-offcanvas').toggleClass('active')
+    });
 
     // WYSIWYG
     $('[data-wysiwyg]').each(function (_index, el) {

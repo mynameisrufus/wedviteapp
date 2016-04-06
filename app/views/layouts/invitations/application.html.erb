@@ -4,7 +4,7 @@
     <title><%= @wedding.title %> - WedVite</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <link href="/favicon.png" rel="shortcut icon" type="image/png" />
-    <%= stylesheet_link_tag    "invitations/application" %>
+    <%= stylesheet_link_tag "invitations/application" %>
     <!--[if lt IE 9]>
       <%= javascript_include_tag "//html5shiv.googlecode.com/svn/trunk/html5.js" %>
     <![endif]-->
@@ -14,7 +14,7 @@
   <body>
     <div class="row row-offcanvas row-offcanvas-right">
       <nav class="navbar navbar-light bg-faded navbar-fixed-top hidden-md-up">
-        <button class="navbar-toggler pull-xs-right " type="button" data-toggle="offcanvas" data-target="#exCollapsingNavbar">
+        <button class="navbar-toggler pull-xs-right " type="button" data-toggle="offcanvas" data-target="#sidebar">
           &#9776;
         </button>
         <a class="navbar-brand"><%= controller.page_title %></a>
@@ -37,12 +37,14 @@
           <%= yield %>
         </div>
       </div>
+
       <footer class="wd-footer">
         <p><%= @wedding.title %></p>
       </footer>
     </div>
-    <%= javascript_include_tag 'http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places' %>
+
     <%= javascript_include_tag "invitations/application" %>
+    <%= javascript_include_tag 'http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places' %>
     <%= render partial: 'layouts/analytics'  if Rails.env.production? %>
   </body>
 </html>

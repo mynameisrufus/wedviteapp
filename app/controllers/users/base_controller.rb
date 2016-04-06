@@ -8,6 +8,10 @@ class Users::BaseController < ApplicationController
 
   respond_to :html, :json
 
+  def page_title
+    'WedVite'
+  end
+
   def find_wedding
     @wedding = current_collaboration.wedding
   end

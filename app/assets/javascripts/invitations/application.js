@@ -36,7 +36,7 @@ function makeMap(lat, lng, id) {
   marker.setIcon(defaultImage)
 }
 
-$(document).ready(function () {
+$(function() {
   $('[data-toggle="offcanvas"]').click(function () {
       $('.row-offcanvas').toggleClass('active')
   });
