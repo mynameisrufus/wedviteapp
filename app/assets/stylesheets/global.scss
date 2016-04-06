@@ -1,60 +1,14 @@
-body {
-  background-color: rgb(233, 227, 212);
-  background-image: image-url('linen.jpg');
+.wd-avatar {
+  width: 2em;
+  height: 2em;
+  padding: 0.3em;
+  color: $white;
+  display: inline-block;
+  text-align: center;
 }
 
-.birdies {
-    background-image: image-url('birds.png');
-    background-repeat: no-repeat;
-    background-size: 166px 87px;
-    background-position: center center;
-    span {
-        display: none; } }
-
-.paddle {
-    width: 70px;
-    height: 70px;
-    background-image: image-url('paddles.png');
-    background-size: 70px 138px;
-    background-repeat: no-repeat;
-    position: absolute;
-    z-index: 221;
-    cursor: pointer;
-    span {
-        display: none; }
-    &.left {
-        background-position: 0px -70px; }
-    &.right {
-        background-position: 0px 0px; } }
-
-h1 {
-  &.brand {
-    background-image: image-url('brand.png');
-    background-repeat: no-repeat;
-    background-position: center center;
-    height: 130px;
-    text-transform: uppercase;
-    margin: 0px;
-    span {
-      display: none; } } }
-
-@media 
-    only screen and (-webkit-min-device-pixel-ratio: 2),
-    only screen and (min-device-pixel-ratio: 2) {
-    body {
-        background-image: image-url('linen2x.jpg');
-        background-size: 50%; }
-    .birdies {
-        background-image: image-url('birds2x.png'); }
-    .paddle {
-        background-image: image-url('paddles2x.png'); }
-    h1 {
-        &.brand {
-            background-image: image-url('brand2x.png');
-            background-size: 675px 113px; } } }
-
-@media (max-width: 480px) {
-  h1 {
-      &.brand {
-          height: 95px;
-          background-size: 460px 77px; } } }
+.sidebar-offcanvas {
+  .wd-avatar {
+    margin-left: 0.75rem;
+  }
+}

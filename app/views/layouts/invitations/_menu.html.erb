@@ -16,3 +16,6 @@
   <%= list_group_item "#{icon('group')} Messages", messages_path(@guest.token) %>
   <%= list_group_item "#{icon('print')} Print Invitation", print_invitation_path(@guest.token, format: :pdf) %>
 </div>
+<%= link_to guest_path(@guest.token), class: 'hidden-md-up' do %>
+  <%= avatar(@guest) %> <small class="text-truncate"><%= @guest.name %></small>
+<% end %>

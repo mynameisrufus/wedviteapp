@@ -1,14 +1,18 @@
 <div class="row">
   <div class="col-sm-12">
+    <h1 id="directions" class="page-header"><%= controller.page_title %></h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
     <% if @wedding.ceremony_where %>
       <% if request.subdomain == "invitations" %>
         <p><%= link_to ical_path do %><i class="icon-calendar"></i> Add wedding to your calendar<% end %></p>
       <% else %>
         <p><%= link_to "#" do %><i class="icon-calendar"></i> Add wedding to your calendar<% end %></p>
       <% end %>
-      <div class="page-header">
-        <h1>Ceremony</h1>
-      </div>
+      <h3>Ceremony</h3>
       <p>To be held at <%= @wedding.ceremony_where.name %>, <%= @wedding.ceremony_where.formatted_address %> at <%= @wedding.ceremony_when.strftime "%H:%M %P, %A the #{@wedding.ceremony_when.day.ordinalize} of %B %G" %></p>
 
       <p style="text-align: right;"><%= link_to "http://maps.google.com/maps?q=#{@wedding.ceremony_where.name}, #{@wedding.ceremony_where.formatted_address}", target: "blank"  do %>
@@ -27,9 +31,7 @@
     <% end %>
 
     <% if @wedding.has_reception? && @guest.attending_reception? && @wedding.reception_where %>
-      <div class="page-header">
-        <h1>Reception</h1>
-      </div>
+      <h3>Reception</h3>
       <p>To be held at <%= @wedding.reception_where.name %>, <%= @wedding.reception_where.formatted_address %> at <%= @wedding.reception_when.strftime "%H:%M %P, %A the #{@wedding.reception_when.day.ordinalize} of %B %G" %></p>
       <p style="text-align: right;"><%= link_to "http://maps.google.com/maps?q=#{@wedding.reception_where.name}, #{@wedding.reception_where.formatted_address}", target: "blank"  do %>
         open this map <i class="icon-share-alt"></i>

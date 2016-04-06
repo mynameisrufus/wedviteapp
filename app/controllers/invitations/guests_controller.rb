@@ -1,4 +1,8 @@
 class Invitations::GuestsController < Invitations::BaseController
+  def page_title
+    @guest.name
+  end
+
   def show
 
   end

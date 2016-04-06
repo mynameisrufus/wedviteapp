@@ -1,6 +1,10 @@
 class Invitations::GiftsController < Invitations::BaseController
   before_filter :find_gift, except: :index
 
+  def page_title
+    'Gift Registry'
+  end
+
   def index
 
   end

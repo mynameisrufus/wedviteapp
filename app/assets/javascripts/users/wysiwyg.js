@@ -39,8 +39,6 @@
   };
 
   var Wysiwyg = function (options) {
-
-console.log(options)
     var editorOptions = {
       autoLink: true,
       buttonLabels: 'fontawesome',

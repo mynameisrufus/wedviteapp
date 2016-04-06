@@ -12,12 +12,18 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <div class="row row-offcanvas row-offcanvas-left">
-      <nav class="navbar navbar-light bg-faded">
-        <button class="navbar-toggler hidden-md-up" type="button" data-toggle="offcanvas" data-target="#exCollapsingNavbar">
+    <div class="row row-offcanvas row-offcanvas-right">
+      <nav class="navbar navbar-light bg-faded navbar-fixed-top hidden-md-up">
+        <button class="navbar-toggler pull-xs-right " type="button" data-toggle="offcanvas" data-target="#exCollapsingNavbar">
           &#9776;
         </button>
-        <%= link_to @guest.name, guest_path(@guest.token), class: "navbar-brand pull-xs-right" %>
+        <a class="navbar-brand"><%= controller.page_title %></a>
+      </nav>
+
+      <nav class="navbar navbar-light bg-faded hidden-sm-down">
+        <%= link_to guest_path(@guest.token), class: "navbar-brand text-truncate pull-sm-right" do %>
+          <%= avatar(@guest) %> <%= @guest.name %>
+        <% end %>
       </nav>
 
       <div class="container-fluid">

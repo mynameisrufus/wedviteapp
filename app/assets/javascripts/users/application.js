@@ -6,10 +6,6 @@
 //= require rangy
 //= require_tree .
 
-// TODO remove me on redesign of UI
-//= require ../lib/jquery.slide-deck
-
-
 (function() {
   window.GuestList = (function() {
     function GuestList() {
@@ -57,20 +53,6 @@
         })
     })
 
-    var $container = $('.slide-deck'),
-        $sections  = $container.find('.slide'),
-        $navItems  = $('.nav-wedvite li')
-
-    $sections.slideDeck({
-        speed: 500,
-        easing: $.support.transition ? 'ease' : 'swing'
-    })
-
-    $container.css('height', $($sections.get(0)).height())
-    $sections.on('incomming', function(event, elem) {
-        $container.css('height', $(this).height())
-    })
-
     // Guest list
     $('.bride-groom').each(function(index, elem) {
       var $edit = $(elem).find('a')
@@ -80,21 +62,6 @@
         $(elem).find('form').show()
       })
     })
-
-    $navItems.find('a').on('click', function(event) {
-        event.preventDefault()
-
-        // toggle active states
-        $navItems.removeClass('active')
-        $(this).parent().addClass('active')
-
-        // transition
-        var id = this.hash.replace(/#/, '')
-        $sections.change(id)
-        return false
-    })
-    
-    $('*[rel=popover]').popover({placement: 'right'})
 
     $quickie = $('.quickie')
     $quickie.find("*[rel=tooltip]").tooltip({delay: { show: 1000, hide: 100 }})
@@ -157,7 +124,7 @@
         $guests.on('click', showGuestActions)
     }
 
-    // our day
+    // Details
     var $form = $('#ourday form'),
         $cere = $('#wedding_ceremony_what'),
         $rece = $('#wedding_reception_what'),
@@ -190,103 +157,14 @@
     $cere.on('keyup', autosave)
     $rece.on('keyup', autosave)
 
-    // Stationary
-    var $stationeries = $('.stationeries'),
-        $stationery   = $stationeries.find('.stationery'),
-        $next         = $('.paddle.right'),
-        $previous     = $('.paddle.left'),
-        current       = null
-
-    var load = function(elem, spin) {
-        var $elem = $(elem).find('.wrapper'),
-            src = $elem.data('src'),
-            $img = $(new Image)
-
-        var callback = function(){
-            $elem.html($img)
-        }
-
-        $img.one('load', callback)
-        $img.attr('src', src)
-        $img.each(function() {
-            if (this.complete) return $(this).trigger('load')
-            if (spin !== false) return new Spinner({color: "#2B617E"}).spin($elem.get(0))
-            return
-        })
-
-        return $img
-    }
-
-    var move = function(n, spin) {
-        $stationery.hide().each(function(index, elem) {
-            var id = $(elem).data('id')
-            if (id === n) {
-                current = id
-                $(elem).show()
-                return load(elem, spin)
-            }
-        })
-
-        return current
-    }
-
-    $next.on('click', function(event) {
-        event.preventDefault()
-        var n = ((current + 1) === $stationery.length) ? 0 : (current + 1)
-        move(n)
-    })
-
-    $previous.on('click', function(event) {
-        event.preventDefault()
-        var n = (current === 0) ? ($stationery.length - 1) : (current - 1)
-        move(n)
-    })
-
-    // Details
-    var $container = $('.slide-deck'),
-        $sections  = $container.find('.slide'),
-        $navItems  = $('.nav-wedvite li')
-
-    $sections.slideDeck({
-        speed: 500,
-        easing: $.support.transition ? 'ease' : 'swing'
-    })
-
-    $container.css('height', $($sections.get(0)).height())
-    $sections.on('incomming', function(event, elem) {
-        $container.css('height', $(this).height())
-    })
-
-
-    $navItems.find('a').on('click', function(event) {
-        event.preventDefault()
-
-        // toggle active states
-        $navItems.removeClass('active')
-        $(this).parent().addClass('active')
-
-        // transition
-        var id = this.hash.replace(/#/, '')
-        $sections.change(id)
-        return false
-    })
-
-    $sections.on('entered', function(event, elem) {
-        if (this.id === 'ceremony_directions') locations('ceremony_location')
-    })
-
-    $sections.on('entered', function(event, elem) {
-        if (this.id === 'reception_directions') locations('reception_location')
-    })
-
     // WYSIWYG
-  $('[data-wysiwyg]').each(function (_index, el) {
-    var wysiwyg = new Wysiwyg({
-      markDownEl: $(el).find(".markdown").get(0),
-      editorEl: $(el).find(".editor").get(0),
-      mode: $(el).data('wysiwyg')
-    })
-  });
+    $('[data-wysiwyg]').each(function (_index, el) {
+      var wysiwyg = new Wysiwyg({
+        markDownEl: $(el).find(".markdown").get(0),
+        editorEl: $(el).find(".editor").get(0),
+        mode: $(el).data('wysiwyg')
+      })
+    });
 
   });
 }).call(this);

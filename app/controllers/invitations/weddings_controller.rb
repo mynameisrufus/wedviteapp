@@ -1,4 +1,8 @@
 class Invitations::WeddingsController < Invitations::BaseController
+  def page_title
+    'Directions'
+  end
+
   def our_day
 
   end

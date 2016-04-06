@@ -5,6 +5,10 @@ class Invitations::BaseController < ApplicationController
 
   REDIRECT_STATES = ["accepted", "thanked", "declined"].freeze
 
+  def page_title
+    'Invitation'
+  end
+
   protected
 
   def find_guest

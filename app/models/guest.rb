@@ -130,4 +130,11 @@ class Guest < ActiveRecord::Base
       update_attribute :position, new_position.to_i
     end
   end
+
+  def initials
+    parts = name.split(/ /)
+    initials = parts[0][0].upcase
+    initials << parts[1][0].upcase if parts[1]
+    initials
+  end
 end

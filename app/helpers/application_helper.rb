@@ -32,4 +32,10 @@ module ApplicationHelper
   def list_group_item title, url
     link_to raw(title), url, class: (current_page?(url) ? 'list-group-item active' : 'list-group-item')
   end
+
+  def avatar(model)
+    content_tag :div, model.initials,
+      class: "img-circle wd-avatar",
+      style: "border-color: ##{model.color}; background-color: ##{model.color}"
+  end
 end

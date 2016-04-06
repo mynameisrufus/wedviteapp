@@ -7,7 +7,7 @@
     <p>A good start is the delivery address that guests can send gifts to.</p>
     <%= form_for @wedding.gift_registry, url: wedding_gift_registry_path(@wedding) do |f| %>
       <fieldset>
-        <%= f.text_area :details, class: 'input-xlarge', rows: 3, style: "height: 100px; width: 910px;" %>
+        <%= f.text_area :details, class: 'input-xlarge', rows: 3 %>
         <div class="actions">
           <%= f.hidden_field :active, value: true %>
           <%= submit_tag 'Save and start adding gifts', class: 'btn' %>
@@ -28,7 +28,7 @@
   <% if @wedding.gift_registry.active? %>
     <%= form_for @wedding.gift_registry, url: wedding_gift_registry_path(@wedding) do |f| %>
       <fieldset>
-        <%= f.text_area :details, class: 'input-xlarge', rows: 3, style: "height: 100px; width: 910px;" %>
+        <%= f.text_area :details, class: 'input-xlarge', rows: 3 %>
         <div class="actions">
           <%= submit_tag 'Save', class: 'btn' %>
         </div>
