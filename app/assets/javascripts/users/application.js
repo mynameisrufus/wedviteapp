@@ -1,4 +1,5 @@
 //= require jquery
+//= require jquery_ujs
 //= require tether
 //= require bootstrap
 //= require medium-editor
@@ -123,52 +124,32 @@
         $guests.on('click', showGuestActions)
     }
 
-    // Details
-    var $form = $('#ourday form'),
-        $cere = $('#wedding_ceremony_what'),
-        $rece = $('#wedding_reception_what'),
-        $span = $form.find('.form-actions span'),
-        to    = null
-
-    var save = function() {
-        $span.html('Saving....')
-        $.ajax({
-            type: 'PUT',
-            url: $form.attr('action'),
-            data: {
-                wedding: {
-                    ceremony_what: $cere.val(),
-                    reception_what: $rece.val()
-                }
-            },
-            success: function(data) {
-                $span.html('')
-            },
-            dataType: 'json'
-        })
-    }
-
-    var autosave = function() {
-        clearTimeout(to)
-        to = setTimeout(save, 10000)
-    }
-
-    $cere.on('keyup', autosave)
-    $rece.on('keyup', autosave)
-
-    // Off canvas
     $('[data-toggle="offcanvas"]').click(function () {
         $('.row-offcanvas').toggleClass('active')
     });
 
-    // WYSIWYG
-    $('[data-wysiwyg]').each(function (_index, el) {
-      var wysiwyg = new Wysiwyg({
-        markDownEl: $(el).find(".markdown").get(0),
-        editorEl: $(el).find(".editor").get(0),
-        mode: $(el).data('wysiwyg')
-      })
-    });
+    // Forms
+    $('[data-remote="true"]').each(function(_index, formEl) {
+      var to;
+
+      var submit = function() {
+        clearTimeout(to)
+        to = setTimeout(function() {
+          $(formEl).submit()
+        }, 1000)
+      }
+
+      $(formEl).on("change", submit)
+
+      $(formEl).find('[data-wysiwyg]').each(function (_index, el) {
+        var wysiwyg = new Wysiwyg({
+          markDownEl: $(el).find(".markdown").get(0),
+          editorEl: $(el).find(".editor").get(0),
+          mode: $(el).data('wysiwyg')
+        })
+        wysiwyg.subscribe('editableInput', submit)
+      });
+    })
 
   });
 }).call(this);

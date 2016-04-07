@@ -1,26 +1,20 @@
-<div class="page-header" id="top">
-  <h1><%= @wedding.name %></h1>
-</div>
-<ul class="nav nav-pills">
+<div class="list-group">
   <% if can? :update, @wedding %>
-    <%= nav_tab "Wedding Details", wedding_details_path(@wedding) %>
+    <%= list_group_item "#{icon('heart')} Our Day", wedding_our_day_path(@wedding) %>
+    <%= list_group_item "#{icon('map-marker')} Directions", wedding_directions_path(@wedding) %>
   <% end %>
+  <%= list_group_item "#{icon('list')} Guest List", wedding_guestlist_path(@wedding) %>
+  <% if can? :update, @wedding %>
+    <%= list_group_item "#{icon('gift')} Gift Registry", wedding_gift_registry_path(@wedding) %>
+  <% end %>
+  <%= list_group_item "#{icon('group')} Messages", wedding_timeline_path(@wedding) %>
+  <% if can? :update, @wedding %>
+    <%= list_group_item "#{icon('envelope')} Invitation & Stationery", wedding_invitations_path(@wedding) %>
+  <% end %>
+  <%= list_group_item "#{icon('feed')} Activity", wedding_timeline_path(@wedding) %>
   <% if can? :manage_collaborators, @wedding %>
-    <%= nav_tab "Collaborate", wedding_collaborators_path(@wedding) %>
+    <%= list_group_item "#{icon('cog')} Settings", wedding_collaborators_path(@wedding) %>
   <% end %>
-  <%= nav_tab "Guest List", wedding_guestlist_path(@wedding) %>
-  <% if can? :update, @wedding %>
-    <%= nav_tab "Invitation & Stationery", wedding_invitations_path(@wedding) %>
-  <% end %>
-  <% if can? :update, @wedding %>
-    <%= nav_tab "Gift Registry", wedding_gift_registry_path(@wedding) %>
-  <% end %>
-  <%= nav_tab "Timeline", wedding_timeline_path(@wedding) %>
-  <% if can? :send_invitations, @wedding %>
-    <% if @wedding.celebrated? %>
-      <%= nav_tab "Thank Guests", wedding_thank_path(@wedding) %>
-    <% else %>
-      <%= nav_tab "Invite Guests", wedding_confirm_path(@wedding) %>
-    <% end %>
-  <% end %>
-</ul>
+  <%= list_group_item 'How it works', how_it_works_path %>
+  <%= list_group_item 'Feedback and Support', feedback_new_path %>
+</div>

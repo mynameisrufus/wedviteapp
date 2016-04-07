@@ -32,10 +32,15 @@
       </nav>
 
       <div class="container-fluid">
-        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
-          <%= render partial: "layouts/users/nav" %>
-          <% if show_subnav? %>
-            <%= render partial: "layouts/users/subnav" %>
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas affix-top" id="sidebar">
+          <% if user_signed_in? %>
+            <%= render partial: "layouts/users/nav" %>
+            <% if show_subnav? %>
+              <%= render partial: "layouts/users/subnav" %>
+            <% end %>
+            <%= link_to edit_user_registration_path, class: 'hidden-md-up' do %>
+              <%= avatar(current_user) %> <small class="text-truncate"><%= current_user.name %></small>
+            <% end %>
           <% end %>
         </div>
         <div class="col-md-6 col-lg-9">

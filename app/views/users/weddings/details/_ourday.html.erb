@@ -1,22 +1,17 @@
-<%= details_form do |f| %>
+<div data-wysiwyg="default">
+  <div class="editor"><%= raw markdown.render(@wedding.ceremony_what) %></div>
+  <%= f.hidden_field :ceremony_what, class: 'markdown' %>
+</div>
+<% if @wedding.has_reception? %>
+  <p class="help-block"><strong>Note:</strong> everybody will see this.</p>
+<% end %>
+
+<% if @wedding.has_reception? %>
+  <hr/>
+  <%= f.label :reception_what, "Extra details for those attending the reception:" %>
   <div data-wysiwyg="default">
-    <div class="editor"><%= raw markdown.render(@wedding.ceremony_what) %></div>
-    <%= f.hidden_field :ceremony_what, class: 'markdown' %>
+    <div class="editor"><%= raw markdown.render(@wedding.reception_what) %></div>
+    <%= f.hidden_field :reception_what, class: 'markdown' %>
   </div>
-  <% if @wedding.has_reception? %>
-    <p class="help-block"><strong>Note:</strong> everybody will see this.</p>
-  <% end %>
-
-  <% if @wedding.has_reception? %>
-    <hr/>
-    <%= f.label :reception_what, "Extra details for those attending the reception:" %>
-    <div data-wysiwyg="default">
-      <div class="editor"><%= raw markdown.render(@wedding.reception_what) %></div>
-      <%= f.hidden_field :reception_what, class: 'markdown' %>
-    </div>
-    <p class="help-block"><strong>Note:</strong> people who are not attending the reception will not see this.</p>
-  <% end %>
-
-  <%= f.submit 'Save changes', class: 'btn btn-secondary' %>
-  <%= link_to 'Preview', wedding_ourday_preview_path(@wedding), target: '_blank', class: 'btn btn-secondary' %>
+  <p class="help-block"><strong>Note:</strong> people who are not attending the reception will not see this.</p>
 <% end %>

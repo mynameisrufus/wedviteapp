@@ -3,7 +3,15 @@ class Users::WeddingsController < Users::BaseController
 
   show_subnav true
 
-  def details
+  def page_title
+    'Details'
+  end
+
+  def our_day
+
+  end
+
+  def directions
     @ceremony_where  = @wedding.ceremony_where || Location.new
     @reception_where = @wedding.reception_where || Location.new
   end
@@ -19,8 +27,6 @@ class Users::WeddingsController < Users::BaseController
 
   def update_details
     @wedding = current_user.weddings.find params[:wedding_id]
-
-    details
 
     handle_update('Details updated.', wedding_details_path(@wedding), :details) do
       @wedding.update_attributes(wedding_params)

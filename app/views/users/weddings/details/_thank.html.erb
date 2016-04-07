@@ -1,4 +1,3 @@
-<%= details_form do |f| %>
   <fieldset>
     <%= f.text_area :thank_you_wording, class: 'markdown', rows: 3 %>
 
@@ -7,4 +6,3 @@
       <%= f.submit 'Save changes', class: 'btn primary' %>&nbsp;<%= link_to 'Preview', wedding_thank_preview_path(@wedding), target: '_blank', class: 'btn' %> <span></span>
     </div>
   </fieldset>
-<% end %>

@@ -1,3 +1,10 @@
+<% if can? :send_invitations, @wedding %>
+  <% if @wedding.celebrated? %>
+    <%= list_group_item "Thank Guests", wedding_thank_path(@wedding) %>
+  <% else %>
+    <%= list_group_item "Invite Guests", wedding_confirm_path(@wedding) %>
+  <% end %>
+<% end %>
 <section class="guestlist">
   <div class="row">
     <div class="span2">

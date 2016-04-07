@@ -31,7 +31,10 @@ Rails.application.routes.draw do
 
       resources :weddings do
 
-        get :details
+        get :our_day, action: :our_day, controller: :our_day
+        patch :our_day_update, action: :update, controller: :our_day
+
+        get :directions
         patch :update_details
 
         patch :update_invitations

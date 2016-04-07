@@ -55,7 +55,7 @@
         static: true,
         relativeContainer: null,
         /* options which only apply when static is true */
-        align: 'center',
+        align: 'left',
         sticky: true,
         updateOnEmptySelection: true
       },
@@ -81,7 +81,7 @@
       editorOptions.toolbar.buttons.push('customHtml')
     }
 
-    new MediumEditor(options.editorEl, editorOptions)
+    return new MediumEditor(options.editorEl, editorOptions)
   }
 
   root.Wysiwyg = Wysiwyg;

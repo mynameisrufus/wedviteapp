@@ -1,0 +1,14 @@
+<div class="row hidden-sm-down">
+  <div class="col-sm-12">
+    <h1 id="details" class="page-header"><%= controller.page_title %></h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <%= render partial: 'users/weddings/details/ceremony_directions' %>
+    <% if @wedding.has_reception? %>
+      <%= render partial: 'users/weddings/details/reception_directions' %>
+    <% end %>
+  </div>
+</div>
