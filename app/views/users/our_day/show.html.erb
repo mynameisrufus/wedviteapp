@@ -4,7 +4,7 @@
   </div>
 </div>
 
-<%= form_for(@wedding, url: wedding_our_day_update_path(@wedding), remote: true) do |f| %>
+<%= form_for(@wedding, url: wedding_our_day_path(@wedding), remote: true) do |f| %>
   <div class="row">
     <div class="col-sm-12">
       <% if @wedding.has_reception? %>

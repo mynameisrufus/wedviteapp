@@ -138,6 +138,7 @@
   window.locations = function(prefix) {
     var autocomplete, centerPoint, defaultImage, elements, infowindow, map, marker, startLat, startLng;
     elements = getElements(prefix);
+    if(!elements.lat || !elements.lng) return
     startLat = elements.lat.value === "" ? cords.lat : elements.lat.value;
     startLng = elements.lng.value === "" ? cords.lng : elements.lng.value;
     map = addMap(startLat, startLng, elements);

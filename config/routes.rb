@@ -31,11 +31,10 @@ Rails.application.routes.draw do
 
       resources :weddings do
 
-        get :our_day, action: :our_day, controller: :our_day
-        patch :our_day_update, action: :update, controller: :our_day
-
-        get :directions
-        patch :update_details
+        [:our_day, :directions].each do |item|
+          get item, action: :show, controller: item
+          patch item, action: :update, controller: item
+        end
 
         patch :update_invitations
 

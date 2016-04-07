@@ -1,0 +1,32 @@
+<%= form_for(location, as: as, url: url, remote: true) do |f| %>
+  <div data-wysiwyg="default">
+    <div class="editor"><%= raw markdown.render(@wedding.send(how) || '') %></div>
+    <%= text_area_tag how, @wedding.send(how), class: 'markdown' %>
+  </div>
+
+  <%= search_field_tag "#{as}_search", nil,
+    class: 'form-control' %>
+  <hr/>
+  <div id="<%= as %>_map" class="location-map"></div>
+
+  <%= f.hidden_field :address_components %>
+  <%= f.hidden_field :types %>
+  <%= f.hidden_field :google_id %>
+  <%= f.hidden_field :google_url %>
+  <%= f.hidden_field :lat %>
+  <%= f.hidden_field :lng %>
+  <%= f.hidden_field :vicinity %>
+  <%= f.hidden_field :formatted_phone_number %>
+
+  <%= f.label :name, "Place name" %>
+  <%= f.text_field :name, class: 'form-control' %>
+ 
+  <%= f.label :website, "The venue or locations web address" %>
+  <%= f.text_field :website, class: 'form-control' %>
+
+  <%= f.label :formatted_address, "Address" %>
+  <%= f.text_field :formatted_address, class: 'form-control' %>
+
+  <%= f.label :international_phone_number, "Phone" %>
+  <%= f.phone_field :international_phone_number, class: 'form-control' %>
+<% end %>

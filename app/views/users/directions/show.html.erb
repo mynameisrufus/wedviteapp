@@ -1,0 +1,26 @@
+<div class="row hidden-sm-down">
+  <div class="col-sm-12">
+    <h1 id="details" class="page-header"><%= controller.page_title %></h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <%= render partial: 'location', locals: {
+      location: @ceremony_where,
+      how: :ceremony_how,
+      as: :ceremony_location,
+      url: ceremony_wedding_locations_path(@wedding)
+    } %>
+
+    <% if @wedding.has_reception? %>
+    <hr/>
+    <%= render partial: 'location', locals: {
+      location: @reception_where,
+      how: :reception_how,
+      as: :reception_location,
+      url: reception_wedding_locations_path(@wedding)
+    } %>
+    <% end %>
+  </div>
+</div>

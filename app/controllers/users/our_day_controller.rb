@@ -7,7 +7,7 @@ class Users::OurDayController < Users::BaseController
     'Our Day'
   end
 
-  def our_day
+  def shoe
 
   end
 
@@ -17,7 +17,7 @@ class Users::OurDayController < Users::BaseController
         format.html { redirect_to wedding_our_day_path(@wedding), notice: 'Our Day updated' }
         format.json { head :ok }
       else
-        format.html { render action: :our_day }
+        format.html { render action: :show }
         format.json { render json: @wedding.errors, status: :unprocessable_entity }
       end
     end

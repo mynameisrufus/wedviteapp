@@ -139,7 +139,13 @@
         }, 1000)
       }
 
-      $(formEl).on("change", submit)
+      $(formEl).submit(function() { clearTimeout(to) })
+
+      $(formEl).find(':input')
+               .change(submit)
+               .blur(submit)
+               .focus(submit)
+               .keyup(submit)
 
       $(formEl).find('[data-wysiwyg]').each(function (_index, el) {
         var wysiwyg = new Wysiwyg({
@@ -150,6 +156,10 @@
         wysiwyg.subscribe('editableInput', submit)
       });
     })
+
+    // Directions
+    locations('ceremony_location')
+    locations('reception_location')
 
   });
 }).call(this);

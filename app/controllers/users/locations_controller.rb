@@ -7,7 +7,7 @@ class Users::LocationsController < Users::BaseController
     @wedding.update_attributes ceremony_where: location,
                                ceremony_how: params[:ceremony_how]
 
-    redirect_to wedding_details_path(@wedding), notice: "Ceremony directions have been added."
+    redirect_to wedding_directions_path(@wedding), notice: "Ceremony directions have been added."
   end
 
   def create_reception
@@ -16,7 +16,7 @@ class Users::LocationsController < Users::BaseController
     @wedding.update_attributes reception_where: location,
                                reception_how: params[:reception_how]
 
-    redirect_to wedding_details_path(@wedding), notice: "Reception directions have been added."
+    redirect_to wedding_directions_path(@wedding), notice: "Reception directions have been added."
   end
 
   def update_ceremony
@@ -25,7 +25,7 @@ class Users::LocationsController < Users::BaseController
 
     @wedding.update_attributes ceremony_how: params[:ceremony_how]
 
-    redirect_to wedding_details_path(@wedding), notice: "The ceremony directions have been updated."
+    redirect_to wedding_directions_path(@wedding), notice: "The ceremony directions have been updated."
   end
 
   def update_reception
@@ -34,7 +34,7 @@ class Users::LocationsController < Users::BaseController
 
     @wedding.update_attributes reception_how: params[:reception_how]
 
-    redirect_to wedding_details_path(@wedding), notice: "The reception directions have been updated."
+    redirect_to wedding_directions_path(@wedding), notice: "The reception directions have been updated."
   end
 
   protected
