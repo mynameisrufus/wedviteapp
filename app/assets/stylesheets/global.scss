@@ -36,11 +36,24 @@
 
 }
 
-@media screen and (max-width: 767px) {
-  body {
-    margin-top: 54px;
-  }
+/*
+ * Style tweaks
+ * --------------------------------------------------
+ */
+html,
+body {
+  overflow-x: hidden; /* Prevent scroll on narrow devices */
+}
 
+body {
+  padding-top: 70px;
+}
+
+/*
+ * Off Canvas
+ * --------------------------------------------------
+ */
+@media screen and (max-width: 767px) {
   .row-offcanvas {
     position: relative;
     -webkit-transition: all .25s ease-out;
@@ -64,7 +77,6 @@
   .row-offcanvas-left
   .sidebar-offcanvas {
     left: -50%; /* 6 columns */
-    padding-right: 0px;
   }
 
   .row-offcanvas-right.active {

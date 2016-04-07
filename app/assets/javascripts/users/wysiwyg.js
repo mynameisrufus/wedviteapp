@@ -46,7 +46,7 @@
         /* These are the default options for the toolbar,
            if nothing is passed this is what is used */
         allowMultiParagraphSelection: true,
-        buttons: [ 'bold', 'italic', 'h1', 'h2', 'h3', 'hr', 'undo' ],
+        buttons: [ 'bold', 'italic', 'h1', 'h2', 'h3', 'hr' ],
         diffLeft: 0,
         diffTop: -10,
         firstButtonClass: 'medium-editor-button-first',
@@ -55,8 +55,8 @@
         static: true,
         relativeContainer: null,
         /* options which only apply when static is true */
-        align: 'left',
-        sticky: true,
+        align: 'center',
+        sticky: false,
         updateOnEmptySelection: true
       },
       extensions: {

@@ -13,26 +13,26 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <div class="row row-offcanvas row-offcanvas-right">
-      <nav class="navbar navbar-light bg-faded navbar-fixed-top hidden-md-up">
-        <button class="navbar-toggler pull-xs-right " type="button" data-toggle="offcanvas" data-target="#sidebar">
-          &#9776;
-        </button>
-        <a class="navbar-brand"><%= controller.page_title %></a>
-      </nav>
+    <nav class="navbar navbar-light bg-faded navbar-fixed-top hidden-md-up">
+      <button class="navbar-toggler pull-xs-right " type="button" data-toggle="offcanvas" data-target="#sidebar">
+        &#9776;
+      </button>
+      <a class="navbar-brand"><%= controller.page_title %></a>
+    </nav>
 
-      <nav class="navbar navbar-light bg-faded hidden-sm-down">
-        <% if user_signed_in? %>
-          <%= link_to edit_user_registration_path, class: "navbar-brand text-truncate pull-sm-right" do %>
-            <%= avatar(current_user) %> <%= current_user.name %>
-          <% end %>
-        <% else %>
-          <a class="navbar-brand pull-xs-right"><%= controller.page_title %></a>
+    <nav class="navbar navbar-light bg-faded navbar-fixed-top hidden-sm-down">
+      <% if user_signed_in? %>
+        <%= link_to edit_user_registration_path, class: "navbar-brand text-truncate pull-sm-right" do %>
+          <%= avatar(current_user) %> <%= current_user.name %>
         <% end %>
-      </nav>
+      <% else %>
+        <a class="navbar-brand pull-xs-right"><%= controller.page_title %></a>
+      <% end %>
+    </nav>
 
-      <div class="container-fluid">
-        <div class="col-xs-6 col-sm-3 sidebar-offcanvas affix-top" id="sidebar">
+    <div class="container-fluid">
+      <div class="row row-offcanvas row-offcanvas-right">
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
           <% if user_signed_in? %>
             <%= render partial: "layouts/users/nav" %>
             <% if show_subnav? %>
@@ -43,18 +43,18 @@
             <% end %>
           <% end %>
         </div>
-        <div class="col-md-6 col-lg-9">
+        <div class="col-xs-12 col-sm-9">
           <%= render partial: "layouts/users/flash" %>
           <%= yield %>
         </div>
       </div>
-
-      <footer class="wd-footer">
-        <%= link_to "Privacy", help_page_path(:privacy), target: 'blank' %>
-        <%= link_to "Legal", help_page_path(:legal), target: 'blank' %>
-        &copy; copyright wedviteapp.com 2012
-      </footer>
     </div>
+
+    <footer class="wd-footer">
+      <%= link_to "Privacy", help_page_path(:privacy), target: 'blank' %>
+      <%= link_to "Legal", help_page_path(:legal), target: 'blank' %>
+      &copy; copyright wedviteapp.com 2012
+    </footer>
 
     <%= javascript_include_tag "users/application" %>
     <%= javascript_include_tag 'http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places' %>
