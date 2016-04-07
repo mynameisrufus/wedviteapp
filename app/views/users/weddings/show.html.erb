@@ -1,0 +1,27 @@
+<h1>Guest List</h1>
+<p>Total: <%= @guest_list.likely.total %></p>
+<p><%= @guest_list.partner(1).likely.total %> <%= @wedding.partner_one_name %></p>
+<p><%= @guest_list.partner(2).likely.total %> <%= @wedding.partner_two_name %></p>
+<p><%= @guest_list.total %> Guests</p>
+<% GuestState.each do |state| %>
+  <% @guest_list.currently(state).tap do |guest_list| %>
+    <% next if guest_list.currently(state).empty? %>
+      <%= state.noun %>
+      <p>Total: <%= guest_list.total %></p>
+    <% end %>
+<% end %>
+<%= link_to 'Manage guest list', wedding_guestlist_path(@wedding) %>
+
+<h1>Events</h1>
+<% @events.each do |event| %>
+  <% next if event.message? || event.comment? %>
+  <p><%= event.headline %></p>
+  <p><strong><%= time_ago_in_words event.created_at %> ago</strong></p>
+<% end %>
+
+<%= link_to "See more Activity", wedding_timeline_path(@wedding) %>
+
+<% if can? :manage_collaborators, @wedding %>
+  <h1>Colaborators</h1>
+  <%= link_to "Manage collaborators", wedding_collaborators_path(@wedding) %>
+<% end %>

@@ -4,16 +4,13 @@ class Users::WeddingsController < Users::BaseController
   show_subnav true
 
   def page_title
-    'Details'
+    'Home'
   end
 
-  def our_day
-
-  end
-
-  def directions
-    @ceremony_where  = @wedding.ceremony_where || Location.new
-    @reception_where = @wedding.reception_where || Location.new
+  def show
+    @guest_list = GuestList.new @wedding.guests
+    @events = @wedding.events.order("created_at DESC").page(1).per(10)
+    respond_with @wedding, @guest_list, @events
   end
 
   def guestlist

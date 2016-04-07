@@ -21,6 +21,9 @@ $sent: $annabel_pink;
 $tentative: $annabel_blue;
 $review: $light_gray;
 
+$wd-bubble-other: #e5e5ea;
+$wd-bubble-me: #eafecb;
+
 @mixin white ($alpha: 80) {
   background-color: rgb(249, 253, 255);
   background-color: rgba(249, 253, 255, $alpha / 100);

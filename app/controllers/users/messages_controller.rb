@@ -3,6 +3,10 @@ class Users::MessagesController < Users::BaseController
 
   show_subnav true
 
+  def index
+    @messages = @wedding.messages.includes(:replies).order("created_at DESC").page(params[:page]).per(50)
+  end
+
   def create
     @message = current_user.messages.new text: params[:message][:text], wedding: @wedding
 
@@ -12,7 +16,7 @@ class Users::MessagesController < Users::BaseController
         send_message_to_guests if params[:email]
 
         format.html do
-          redirect_to wedding_timeline_path(@wedding), notice: 'Message added.'
+          redirect_to wedding_messages_path(@wedding), notice: 'Message added.'
         end
       else
         format.html { render action: "index" }
@@ -25,7 +29,7 @@ class Users::MessagesController < Users::BaseController
 
     respond_to do |format|
       if @message.update_attributes text: params[:message]
-        format.html { redirect_to wedding_timeline_path(@wedding), notice: 'Message updated.' }
+        format.html { redirect_to wedding_messages_path(@wedding), notice: 'Message updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

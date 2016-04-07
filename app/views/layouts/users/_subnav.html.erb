@@ -1,4 +1,5 @@
 <div class="list-group">
+  <%= list_group_item "#{icon('home')} Home", wedding_path(@wedding) %>
   <% if can? :update, @wedding %>
     <%= list_group_item "#{icon('heart')} Our Day", wedding_our_day_path(@wedding) %>
     <%= list_group_item "#{icon('map-marker')} Directions", wedding_directions_path(@wedding) %>
@@ -7,14 +8,11 @@
   <% if can? :update, @wedding %>
     <%= list_group_item "#{icon('gift')} Gift Registry", wedding_gift_registry_path(@wedding) %>
   <% end %>
-  <%= list_group_item "#{icon('group')} Messages", wedding_timeline_path(@wedding) %>
+  <%= list_group_item "#{icon('group')} Messages", wedding_messages_path(@wedding) %>
   <% if can? :update, @wedding %>
-    <%= list_group_item "#{icon('envelope')} Invitation & Stationery", wedding_invitations_path(@wedding) %>
+    <%= list_group_item "#{icon('envelope')} Invitation", wedding_invitations_path(@wedding) %>
   <% end %>
-  <%= list_group_item "#{icon('feed')} Activity", wedding_timeline_path(@wedding) %>
-  <% if can? :manage_collaborators, @wedding %>
-    <%= list_group_item "#{icon('cog')} Settings", wedding_collaborators_path(@wedding) %>
+  <% if current_user.weddings.count > 1 %>
+    <%= list_group_item "#{icon('random')} Switch Wedding", plan_root_path(@wedding) %>
   <% end %>
-  <%= list_group_item 'How it works', how_it_works_path %>
-  <%= list_group_item 'Feedback and Support', feedback_new_path %>
 </div>

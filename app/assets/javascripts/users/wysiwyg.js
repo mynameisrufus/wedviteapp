@@ -46,7 +46,7 @@
         /* These are the default options for the toolbar,
            if nothing is passed this is what is used */
         allowMultiParagraphSelection: true,
-        buttons: [ 'bold' ],
+        buttons: [ 'bold', 'italic', 'h1', 'h2', 'h3', 'hr', 'undo' ],
         diffLeft: 0,
         diffTop: -10,
         firstButtonClass: 'medium-editor-button-first',
@@ -64,6 +64,11 @@
         markdown: new MediumMarkdown(function (md) {
           options.markDownEl.textContent = md;
         }),
+        hr: new CustomHtml({
+          buttonHTML: "<i class='fa fa-ellipsis-h'></i>",
+          buttonTitle: "Horizontal line",
+          htmlToInsert: "<hr/>"
+        })
       }
     }
 
@@ -73,12 +78,12 @@
 
     if (options.mode == 'stationery') {
       editorOptions.autoLink = false
-      editorOptions.extensions.customHtml = new CustomHtml({
+      editorOptions.extensions.gn = new CustomHtml({
         buttonHTML: "<i class='fa fa-user'></i>",
         buttonTitle: "Guest name",
         htmlToInsert: "{{ guest.name }}"
       })
-      editorOptions.toolbar.buttons.push('customHtml')
+      editorOptions.toolbar.buttons.push('gn')
     }
 
     return new MediumEditor(options.editorEl, editorOptions)

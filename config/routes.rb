@@ -83,7 +83,7 @@ Rails.application.routes.draw do
           post 'move'
           resources :comments
         end
-        resources :messages, except: %w(show) do
+        resources :messages do
           resources :replies, except: %w(show)
         end
         resource :gift_registry, path: 'gift-registry', only: %w(show create update) do
