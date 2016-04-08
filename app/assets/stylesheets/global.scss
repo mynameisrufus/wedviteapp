@@ -94,6 +94,30 @@ body {
   }
 }
 
+@media screen and (max-width: 480px) {
+  .row-offcanvas-right
+  .sidebar-offcanvas {
+    right: -70%; /* 6 columns */
+  }
+
+  .row-offcanvas-left
+  .sidebar-offcanvas {
+    left: -70%; /* 6 columns */
+  }
+
+  .row-offcanvas-right.active {
+    right: 70%; /* 6 columns */
+  }
+
+  .row-offcanvas-left.active {
+    left: 70%; /* 6 columns */
+  }
+
+  .sidebar-offcanvas {
+    width: 70%; /* 6 columns */
+  }
+}
+
 .list-group-item:first-child {
     border-top-right-radius: 0rem;
     border-top-left-radius: 0rem;

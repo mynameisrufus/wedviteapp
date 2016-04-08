@@ -21,7 +21,11 @@ class Stationery < ActiveRecord::Base
     self.commision = COMMISION if self.commision.nil?
   end
 
-  has_attached_file :preview, path: "stationery/previews/:id/:hash.:extension"
+  has_attached_file :preview, path: "stationery/previews/:id/:hash.:extension",
+    styles: {
+      thumb: "150x150#",
+      small: "200x200>",
+      medium: "400x400" }
 
   do_not_validate_attachment_file_type :preview
 

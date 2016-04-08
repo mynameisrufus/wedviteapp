@@ -30,20 +30,23 @@ Rails.application.routes.draw do
       post 'payment-notify',  controller: :payments, action: :failure, as: :payment_notify
 
       resources :weddings do
+        # Our Day
+        get :our_day, action: :show, controller: :our_day
+        patch :our_day, action: :update, controller: :our_day
 
-        [:our_day, :directions].each do |item|
-          get item, action: :show, controller: item
-          patch item, action: :update, controller: item
-        end
+        # Directions
+        get :directions, action: :show, controller: :directions
+        patch :directions, action: :update, controller: :directions
 
-        patch :update_invitations
-
+        # Invitations
+        get :invitations, action: :show, controller: :invitations
+        patch :invitations, action: :update, controller: :invitations
+        get :confirm, action: :confirm, controller: :invitations
+        get :deliver, action: :deliver, controller: :invitations
+        
         get :guestlist
-        get 'invitation-and-stationery', action: :invitations, as: :invitations
         get :timeline
-        get 'invite-guests', action: :confirm, controller: :invitations, as: :confirm
         get 'thank-guests', action: :confirm, controller: :thanks, as: :thank
-        get 'deliver-invitations', action: :deliver, controller: :invitations, as: :deliver_invitations
         get 'deliver-thanks', action: :deliver, controller: :thanks, as: :deliver_thanks
 
         get :payment, controller: :payments

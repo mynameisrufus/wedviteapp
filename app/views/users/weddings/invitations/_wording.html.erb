@@ -1,4 +1,4 @@
-<%= invitations_form do |f| %>
+<%= form_for(@wedding, url: wedding_details_path(@wedding), remote: true) do |f| %>
   <div data-wysiwyg="stationery">
     <div class="editor"><%= raw markdown.render(@wedding.wording) %></div>
     <%= f.text_field :wording, class: 'markdown' %>

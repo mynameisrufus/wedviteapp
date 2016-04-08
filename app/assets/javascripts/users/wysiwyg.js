@@ -64,11 +64,7 @@
         markdown: new MediumMarkdown(function (md) {
           options.markDownEl.textContent = md;
         }),
-        hr: new CustomHtml({
-          buttonHTML: "<i class='fa fa-ellipsis-h'></i>",
-          buttonTitle: "Horizontal line",
-          htmlToInsert: "<hr/>"
-        })
+        hr: new HorizontalLine() 
       }
     }
 
@@ -78,12 +74,8 @@
 
     if (options.mode == 'stationery') {
       editorOptions.autoLink = false
-      editorOptions.extensions.gn = new CustomHtml({
-        buttonHTML: "<i class='fa fa-user'></i>",
-        buttonTitle: "Guest name",
-        htmlToInsert: "{{ guest.name }}"
-      })
-      editorOptions.toolbar.buttons.push('gn')
+      editorOptions.extensions.guestName = new GuestName()
+      editorOptions.toolbar.buttons.push('guestName')
     }
 
     return new MediumEditor(options.editorEl, editorOptions)

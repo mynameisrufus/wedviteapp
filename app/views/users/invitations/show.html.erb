@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-sm-12">
+    <%= form_for(@wedding, url: wedding_invitations_path(@wedding), remote: true) do |f| %>
+      <div class="embed-responsive embed-responsive-1by1">
+        <iframe class="embed-responsive-item" src="<%= wedding_invitation_preview_path(@wedding) %>"></iframe>
+      </div>
+      <div data-wysiwyg="stationery">
+        <div class="editor"><%= raw markdown.render(@wedding.wording || '') %></div>
+        <%= f.text_area :wording, class: 'markdown' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card-deck-wrapper">
+      <% @stationery.each_slice(3) do |set| %>
+        <div class="card-deck">
+          <% set.each do |stationery| %>
+            <div class="card">
+              <img class="card-img-top wd-stationery-thumb" src="<%= stationery.preview.url %>" alt="Card image cap">
+              <div class="card-block">
+                <h4 class="card-title"><%= stationery.name %></h4>
+                <%= link_to 'Use', wedding_stationery_choose_path(@wedding, stationery), class: 'btn btn-secondary' %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

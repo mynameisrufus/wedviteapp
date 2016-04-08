@@ -125,21 +125,28 @@
     }
 
     $('[data-toggle="offcanvas"]').click(function () {
+        if (!$('.row-offcanvas').hasClass('active')) {
+          $("html, body").animate({ scrollTop: 0 }, "slow");
+        }
         $('.row-offcanvas').toggleClass('active')
     });
 
     // Forms
     $('[data-remote="true"]').each(function(_index, formEl) {
-      var to;
+      var submitTo, previewTo;
 
       var submit = function() {
-        clearTimeout(to)
-        to = setTimeout(function() {
+        clearTimeout(submitTo)
+        submitTo = setTimeout(function() {
+          clearTimeout(previewTo)
+          previewTo = setTimeout(function() {
+            $(formEl).find('iframe').each(function(_index, iframeEl) {
+              iframeEl.contentDocument.location.reload(true);
+            })
+          }, 1000)
           $(formEl).submit()
         }, 1000)
       }
-
-      $(formEl).submit(function() { clearTimeout(to) })
 
       $(formEl).find(':input')
                .change(submit)
@@ -154,6 +161,7 @@
           mode: $(el).data('wysiwyg')
         })
         wysiwyg.subscribe('editableInput', submit)
+        wysiwyg.subscribe('externalInteraction', submit)
       });
     })
 
