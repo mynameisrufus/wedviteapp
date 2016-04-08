@@ -46,7 +46,7 @@
         /* These are the default options for the toolbar,
            if nothing is passed this is what is used */
         allowMultiParagraphSelection: true,
-        buttons: [ 'bold', 'italic', 'h1', 'h2', 'h3', 'hr' ],
+        buttons: [ 'bold', 'h1', 'h2', 'p', 'hr' ],
         diffLeft: 0,
         diffTop: -10,
         firstButtonClass: 'medium-editor-button-first',

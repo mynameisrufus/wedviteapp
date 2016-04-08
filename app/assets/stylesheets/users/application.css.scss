@@ -12,6 +12,14 @@
 
 @import "medium-editor";
 
+@media screen and (max-width: 480px) {
+  .medium-editor-toolbar {
+    position: fixed;
+    bottom: 0px !important;
+    top: initial !important;
+  }
+}
+
 .markdown {
   display: none;
 }
