@@ -58,6 +58,11 @@ body {
 .scrollable {
   height: 100vh;
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.container-fluid {
+  overflow: hidden;
 }
 
 @media screen and (max-width: 767px) {
