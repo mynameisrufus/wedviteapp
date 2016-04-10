@@ -16,37 +16,26 @@
   <body>
     <div class="container-fluid">
       <div class="row row-offcanvas row-offcanvas-right" data-offcanvas-content="sidebar">
-        <nav class="navbar navbar-light bg-faded navbar-fixed-top hidden-md-up">
+        <nav class="navbar wd-navbar hidden-md-up">
           <button class="navbar-toggler pull-xs-right " type="button" data-offcanvas-toggle="sidebar">
             &#9776;
           </button>
           <a class="navbar-brand"><%= controller.page_title %></a>
         </nav>
 
-        <nav class="navbar navbar-light bg-faded navbar-fixed-top hidden-sm-down">
-          <% if user_signed_in? %>
-            <%= link_to edit_user_registration_path, class: "navbar-brand text-truncate pull-sm-right" do %>
-              <%= avatar(current_user) %> <%= current_user.name %>
-            <% end %>
-          <% else %>
-            <a class="navbar-brand pull-xs-right"><%= controller.page_title %></a>
-          <% end %>
-        </nav>
-
         <div class="col-xs-6 col-md-3 sidebar-offcanvas scrollable" id="sidebar">
-          <div class="scrollable-nav-offset"></div>
           <% if user_signed_in? %>
             <%= render partial: "layouts/users/nav" %>
             <% if show_subnav? %>
               <%= render partial: "layouts/users/subnav" %>
             <% end %>
-            <%= link_to edit_user_registration_path, class: 'hidden-md-up' do %>
+            <%= link_to edit_user_registration_path do %>
               <%= avatar(current_user) %> <small class="text-truncate"><%= current_user.name %></small>
             <% end %>
           <% end %>
         </div>
-        <div class="col-xs-12 col-md-9 scrollable">
-          <div class="scrollable-nav-offset"></div>
+
+        <div class="col-xs-12 col-md-9">
           <%= render partial: "layouts/users/flash" %>
           <%= yield %>
         </div>

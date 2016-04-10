@@ -1,36 +1,42 @@
-<div class="row hidden-sm-down">
-  <div class="col-sm-12">
-    <h1 id="details" class="page-header"><%= controller.page_title %></h1>
-  </div>
-</div>
+<div class="row">
+  <div class="col-xs-12 scrollable">
+    <div class="scrollable-nav-offset hidden-md-up"></div>
 
-<%= form_for(@wedding, url: wedding_our_day_path(@wedding), remote: true) do |f| %>
-  <div class="row">
-    <div class="col-sm-12">
-      <% if @wedding.has_reception? %>
-        <p><strong>Note:</strong> everybody will see this.</p>
-      <% end %>
-
-      <div data-wysiwyg="default">
-        <div class="editor"><%= raw markdown.render(@wedding.ceremony_what || '') %></div>
-        <%= f.text_area :ceremony_what, class: 'markdown' %>
-      </div>
-
-      <% if @wedding.has_reception? %>
-        <p><strong>Note:</strong> people who are not attending the reception will not see this.</p>
-        <%= f.label :reception_what, "Extra details for those attending the reception:" %>
-        <div data-wysiwyg="default">
-          <div class="editor"><%= raw markdown.render(@wedding.reception_what || '') %></div>
-          <%= f.text_area :reception_what, class: 'markdown' %>
-        </div>
-      <% end %>
-
-      <p><strong>Note:</strong> guests can only see this after the wedding date.</p>
-
-      <div data-wysiwyg="default">
-        <div class="editor"><%= raw markdown.render(@wedding.thank_you_wording || '') %></div>
-        <%= f.text_area :thank_you_wording, class: 'markdown' %>
+    <div class="row hidden-sm-down">
+      <div class="col-sm-12">
+        <h1 id="details" class="page-header"><%= controller.page_title %></h1>
       </div>
     </div>
+
+    <%= form_for(@wedding, url: wedding_our_day_path(@wedding), remote: true) do |f| %>
+      <div class="row">
+        <div class="col-sm-12">
+          <% if @wedding.has_reception? %>
+            <p><strong>Note:</strong> everybody will see this.</p>
+          <% end %>
+
+          <div data-wysiwyg="default">
+            <div class="editor"><%= raw markdown.render(@wedding.ceremony_what || '') %></div>
+            <%= f.text_area :ceremony_what, class: 'markdown' %>
+          </div>
+
+          <% if @wedding.has_reception? %>
+            <p><strong>Note:</strong> people who are not attending the reception will not see this.</p>
+            <%= f.label :reception_what, "Extra details for those attending the reception:" %>
+            <div data-wysiwyg="default">
+              <div class="editor"><%= raw markdown.render(@wedding.reception_what || '') %></div>
+              <%= f.text_area :reception_what, class: 'markdown' %>
+            </div>
+          <% end %>
+
+          <p><strong>Note:</strong> guests can only see this after the wedding date.</p>
+
+          <div data-wysiwyg="default">
+            <div class="editor"><%= raw markdown.render(@wedding.thank_you_wording || '') %></div>
+            <%= f.text_area :thank_you_wording, class: 'markdown' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>
