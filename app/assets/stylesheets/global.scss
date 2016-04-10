@@ -13,14 +13,6 @@
   }
 }
 
-.wd-footer {
-  padding: 4rem 0;
-  margin-top: 4rem;
-  font-size: 85%;
-  background-color: #f7f7f7;
-  text-align: center;
-}
-
 .map-wrapper {
   width: 100%;
   height: 400px;
@@ -46,7 +38,6 @@ html {
 
 body {
   overflow: hidden; /* Prevent scroll on narrow devices */
-  padding-top: 70px;
   min-height: 100vh;
 }
 
@@ -61,11 +52,20 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+
+.scrollable-nav-offset {
+  height: 64px;
+}
+
 .container-fluid {
   overflow: hidden;
 }
 
 @media screen and (max-width: 767px) {
+  .scrollable-nav-offset {
+    height: 54px;
+  }
+
   .row-offcanvas {
     position: relative;
     -webkit-transition: all .25s ease-out;
