@@ -14,9 +14,7 @@
 
 @media screen and (max-width: 480px) {
   .medium-editor-toolbar {
-    position: fixed;
-    bottom: 0px !important;
-    top: initial !important;
+    display: none;
   }
 }
 

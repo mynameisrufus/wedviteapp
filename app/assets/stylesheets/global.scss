@@ -40,19 +40,26 @@
  * Style tweaks
  * --------------------------------------------------
  */
-html,
-body {
-  overflow-x: hidden; /* Prevent scroll on narrow devices */
+html {
+  height: 100vh;
 }
 
 body {
+  overflow: hidden; /* Prevent scroll on narrow devices */
   padding-top: 70px;
+  min-height: 100vh;
 }
 
 /*
  * Off Canvas
  * --------------------------------------------------
  */
+
+.scrollable {
+  height: 100vh;
+  overflow: auto;
+}
+
 @media screen and (max-width: 767px) {
   .row-offcanvas {
     position: relative;

@@ -124,11 +124,11 @@
         $guests.on('click', showGuestActions)
     }
 
-    $('[data-toggle="offcanvas"]').click(function () {
-        if (!$('.row-offcanvas').hasClass('active')) {
-          $("html, body").animate({ scrollTop: 0 }, "slow");
-        }
-        $('.row-offcanvas').toggleClass('active')
+    $('[data-offcanvas-toggle]').each(function(_index, offcanvasToggleEl) {
+      var target ='[data-offcanvas-content="' + $(offcanvasToggleEl).data('offcanvas-toggle') + '"]'
+      $(offcanvasToggleEl).click(function() {
+        $(target).toggleClass('active')
+      })
     });
 
     // Forms

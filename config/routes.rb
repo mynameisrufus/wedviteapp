@@ -44,7 +44,7 @@ Rails.application.routes.draw do
         get :confirm, action: :confirm, controller: :invitations
         get :deliver, action: :deliver, controller: :invitations
         
-        get :guestlist
+        get :guestlist, action: :index, controller: :guests
         get :timeline
         get 'thank-guests', action: :confirm, controller: :thanks, as: :thank
         get 'deliver-thanks', action: :deliver, controller: :thanks, as: :deliver_thanks

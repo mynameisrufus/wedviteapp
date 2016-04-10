@@ -1,0 +1,82 @@
+<div class="row row-offcanvas row-offcanvas-left" data-offcanvas-content="guest">
+  <div class="col-xs-12 col-md-8 scrollable">
+    <% GuestState.each do |state| %>
+      <% next if @guest_list.currently(state).empty? %>
+      <% [1,2].each do |partner_number| %>
+        <% @guest_list.currently(state).partner(partner_number).each do |guest| %>
+          <div class="card">
+            <button data-offcanvas-toggle="guest"><%= guest.name %></button>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+    <div class="card">
+    </div>
+  </div>
+  <div class="col-xs-6 col-md-4 sidebar-offcanvas scrollable">
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+    <div class="card">foo</div>
+  </div>
+</div>

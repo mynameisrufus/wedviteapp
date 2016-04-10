@@ -2,6 +2,8 @@ class Users::GuestsController < Users::BaseController
   before_filter :find_wedding
   before_filter :find_guest, only: %w(approve reject tentative accept decline move remind thank link invitation ourday)
 
+  show_subnav true
+
   def approve
     change_state :approve
   end
@@ -22,15 +24,9 @@ class Users::GuestsController < Users::BaseController
     change_state :decline
   end
 
-  # GET /guests
-  # GET /guests.json
   def index
-    @guests = @wedding.guests.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @guests }
-    end
+    @guest_list = GuestList.new @wedding.guests
+    respond_with @wedding, @guest_list
   end
 
   # POST /guests/1/move

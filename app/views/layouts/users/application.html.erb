@@ -14,7 +14,7 @@
   </head>
   <body>
     <nav class="navbar navbar-light bg-faded navbar-fixed-top hidden-md-up">
-      <button class="navbar-toggler pull-xs-right " type="button" data-toggle="offcanvas" data-target="#sidebar">
+      <button class="navbar-toggler pull-xs-right " type="button" data-offcanvas-toggle="sidebar">
         &#9776;
       </button>
       <a class="navbar-brand"><%= controller.page_title %></a>
@@ -31,8 +31,8 @@
     </nav>
 
     <div class="container-fluid">
-      <div class="row row-offcanvas row-offcanvas-right">
-        <div class="col-xs-6 col-md-3 sidebar-offcanvas" id="sidebar">
+      <div class="row row-offcanvas row-offcanvas-right" data-offcanvas-content="sidebar">
+        <div class="col-xs-6 col-md-3 sidebar-offcanvas scrollable" id="sidebar">
           <% if user_signed_in? %>
             <%= render partial: "layouts/users/nav" %>
             <% if show_subnav? %>
@@ -43,7 +43,7 @@
             <% end %>
           <% end %>
         </div>
-        <div class="col-xs-12 col-md-9">
+        <div class="col-xs-12 col-md-9 scrollable">
           <%= render partial: "layouts/users/flash" %>
           <%= yield %>
         </div>
