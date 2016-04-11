@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-sm-12">
     <%= form_for(@wedding, url: wedding_invitations_path(@wedding), remote: true) do |f| %>
-      <div class="embed-responsive embed-responsive-1by1">
+      <div class="embed-responsive embed-responsive-1by1 wd-responsive-embed">
         <iframe class="embed-responsive-item" src="<%= wedding_invitation_preview_path(@wedding) %>"></iframe>
       </div>
       <div data-wysiwyg="stationery">

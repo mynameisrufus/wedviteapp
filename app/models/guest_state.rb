@@ -64,6 +64,14 @@ class GuestState
     DICT.detect{ |state| state.noun.to_s == noun.to_s }
   end
 
+  def self.manageable_nouns
+    [:approved, :rejected, :tentative, :accepted, :declined]
+  end
+
+  def self.manageable
+    DICT.select { |state| manageable_nouns.include?(state.noun) }
+  end
+
   def self.possibly_nouns
     [:tentative, :accepted, :sent, :approved]
   end

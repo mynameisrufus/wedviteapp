@@ -19,29 +19,37 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
+    <nav class="navbar wd-navbar hidden-md-up">
+      <button class="navbar-toggler offcanvas-toggle pull-xs-right" data-target="#offcanvas" data-toggle="offcanvas" type="button">
+        <i class="fa fa-bars"></i>
+      </button>
+      <a class="navbar-brand"><%= controller.page_title %></a>
+    </nav>
+
+    <nav class="navbar navbar-light bg-faded hidden-sm-down">
+      <%= link_to edit_user_registration_path, class: "navbar-brand text-truncate pull-sm-right" do %>
+        <%= avatar(current_user) %> <span class="text-truncate"><%= current_user.name %></span>
+      <% end %>
+    </nav>
+
     <div class="container-fluid">
-      <nav class="navbar wd-navbar hidden-md-up">
-         <button class="navbar-toggler offcanvas-toggle pull-xs-right" data-target="#offcanvas" data-toggle="offcanvas" type="button">
-           <i class="fa fa-bars"></i>
-         </button>
-         <a class="navbar-brand"><%= controller.page_title %></a>
-      </nav>
-
-      <div class="col-xs-6 col-md-3 navbar-offcanvas navbar-offcanvas-touch" id="offcanvas">
-        <% if user_signed_in? %>
-          <%= render partial: "layouts/users/nav" %>
-          <% if show_subnav? %>
-            <%= render partial: "layouts/users/subnav" %>
+      <div class="row">
+        <div class="col-xs-6 col-md-3 navbar-offcanvas navbar-offcanvas-touch" id="offcanvas">
+          <% if user_signed_in? %>
+            <%= render partial: "layouts/users/nav" %>
+            <% if show_subnav? %>
+              <%= render partial: "layouts/users/subnav" %>
+            <% end %>
           <% end %>
-          <%= link_to edit_user_registration_path do %>
-            <%= avatar(current_user) %> <small class="text-truncate"><%= current_user.name %></small>
+          <%= link_to edit_user_registration_path, class: "hidden-md-up" do %>
+            <%= avatar(current_user) %> <span class="text-truncate"><%= current_user.name %></span>
           <% end %>
-        <% end %>
-      </div>
+        </div>
 
-      <div class="col-xs-12 col-md-9">
-        <%= render partial: "layouts/users/flash" %>
-        <%= yield %>
+        <div class="col-xs-12 col-md-9">
+          <%= render partial: "layouts/users/flash" %>
+          <%= yield %>
+        </div>
       </div>
     </div>
 

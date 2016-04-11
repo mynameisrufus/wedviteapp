@@ -31,3 +31,39 @@
 .wd-stationery-thumb {
   width: 100%;
 }
+
+.wd-responsive-embed {
+  -webkit-overflow-scrolling: touch;
+}
+
+.wd-state-approved {
+  color: $approved;
+}
+
+.wd-state-rejected {
+  color: $rejected;
+}
+
+.wd-state-accepted {
+ color: $accepted;
+}
+
+.wd-state-declined {
+ color: $declined;
+}
+
+.wd-state-sent {
+ color: $sent;
+}
+
+.wd-state-thanked {
+ color: initial;
+}
+
+.wd-state-tentative {
+ color: $tentative;
+}
+
+.wd-state-review {
+ color: $review;
+}

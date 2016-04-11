@@ -1,5 +1,6 @@
 // Core variables and mixins
 @import "bootstrap";
+@import "bootstrap-offcanvas";
 
 // WedVite colors
 @import "colors";
@@ -9,20 +10,3 @@
 
 // WedVite global fonts.
 @import "fonts";
-
-// Off canvas side scroll fix
-body {
-  overflow-x: hidden;
-}
-
-a {
-  color: blue;  
-}
-
-textarea {
-  height: 100px;
-  width: 100%;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}

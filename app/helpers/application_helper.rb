@@ -14,15 +14,6 @@ module ApplicationHelper
     end
   end
 
-  def state_icon(state)
-    html_options = {
-      class: ["state", "icon", state.noun],
-      title: state.title,
-      rel: 'twipsy'
-    }
-    content_tag :span, state.label, html_options, false
-  end
-
   def nav_tab title, url
     content_tag :li, class: 'nav-item' do
       link_to title, url, class: (current_page?(url) ? 'nav-link active' : 'nav-link')

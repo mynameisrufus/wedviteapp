@@ -2,6 +2,10 @@ class Users::GuestsController < Users::BaseController
   before_filter :find_wedding
   before_filter :find_guest, only: %w(approve reject tentative accept decline move remind thank link invitation ourday)
 
+  def page_title
+    'Guest List'
+  end
+
   show_subnav true
 
   def approve

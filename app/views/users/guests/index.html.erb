@@ -1,10 +1,98 @@
-<div class="col-xs-12">
-  <% GuestState.each do |state| %>
-    <% next if @guest_list.currently(state).empty? %>
-    <% [1,2].each do |partner_number| %>
-      <% @guest_list.currently(state).partner(partner_number).each do |guest| %>
-        <p><%= guest.name %>
+<div class="row hidden-sm-down">
+  <div class="col-sm-12">
+    <h1 id="guest-list" class="page-header"><%= controller.page_title %></h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="list-group">
+      <% GuestState.each do |state| %>
+        <% next if @guest_list.currently(state).empty? %>
+        <% @guest_list.currently(state).each do |guest| %>
+          <a class="list-group-item" data-toggle="collapse" href="#collapse-<%= guest.id %>" aria-expanded="false" aria-controls="collapse-<%= guest.id %>">
+            <div class="row">
+              <div class="col-xs-4">
+                <i class="fa fa-circle-o wd-state wd-state-<%= GuestState.by_noun(guest.state).noun %>"></i>
+                <%= guest.state %>
+              </div>
+              <div class="col-xs-8">
+                <%= guest.name %>
+              </div>
+            </div>
+          </a>
+          <div class="collapse bg-faded" id="collapse-<%= guest.id %>">
+            <hr/>
+            <%= form_for(guest, url: wedding_guest_path(@wedding, guest), remote: true) do |f| %>
+              <% unless @wedding.celebrated? %>
+                <div class="btn-group" data-toggle="buttons">
+                  <% GuestState.manageable.each  do |state| %>
+                    <label class="btn btn-secondary <%= guest.state == state.noun.to_s ? 'active' : nil %>">
+                      <%= f.radio_button :state, :approved, autocomplete: "off", title: state.noun %>
+                      <i class="fa fa-circle-o wd-state wd-state-<%= state.noun %>"></i> <span class="hidden-sm-down"><%= state.noun %></span>
+                    </label>
+                  <% end %>
+                </div>
+              <% end %>
+
+              <fieldset class="form-group row">
+                <div class="col-sm-6">
+                  <%= f.label :name %>
+                  <%= f.text_field :name, class: "form-control" %>
+                </div>
+                <div class="col-sm-6">
+                  <%= f.label :email %>
+                  <%= f.email_field :email, class: "form-control" %>
+                </div>
+              </fieldset>
+
+              <fieldset class="form-group row">
+                <div class="col-sm-6">
+                  <%= f.label :adults %>
+                  <%= f.number_field :adults, class: "form-control" %>
+                </div>
+                <div class="col-sm-6">
+                  <%= f.label :children %>
+                  <%= f.number_field :children, class: "form-control" %>
+                </div>
+              </fieldset>
+
+              <fieldset class="form-group row">
+                <div class="btn-group col-sm-12 col-lg-6" data-toggle="buttons">
+                  <label class="btn btn-secondary <%= guest.partner_number == 1 ? 'active' : nil %>">
+                    <%= f.radio_button :partner_number, 1 %> <%= @wedding.partner_one_name %> side
+                  </label>
+                  <label class="btn btn-secondary <%= guest.partner_number == 2 ? 'active' : nil %>">
+                    <%= f.radio_button :partner_number, 2 %> <%= @wedding.partner_two_name %> side
+                  </label>
+                </div>
+
+                <% if @wedding.has_reception? %>
+                  <div class="btn-group col-sm-12 col-lg-6" data-toggle="buttons">
+                    <label class="btn btn-secondary <%= guest.invited_to_reception ? 'active' : nil %>">
+                      <%= f.radio_button :invited_to_reception, true %> Attending reception
+                    </label>
+                    <label class="btn btn-secondary <%= guest.invited_to_reception ? nil : 'active' %>">
+                      <%= f.radio_button :invited_to_reception, false %> Not attending
+                    </label>
+                  </div>
+                <% end %>
+              </fieldset>
+
+              <fieldset class="form-group row">
+                <div class="col-sm-6">
+                  <%= f.label :address, "Address" %>
+                  <%= f.text_field :address, class: "form-control" %>
+                </div>
+                <div class="col-sm-6">
+                  <%= f.label :phone, "Phone" %>
+                  <%= f.phone_field :phone, class: "form-control" %>
+                </div>
+              </fieldset>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
-  <% end %>
+    </div>
+  </div>
 </div>

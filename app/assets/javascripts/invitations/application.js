@@ -1,6 +1,7 @@
 //= require jquery
 //= require tether
 //= require bootstrap
+//= require bootstrap-offcanvas
 //= require_tree .
 
 function makeMap(lat, lng, id) {
