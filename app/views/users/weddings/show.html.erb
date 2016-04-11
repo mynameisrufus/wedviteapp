@@ -1,27 +1,90 @@
-<h1>Guest List</h1>
-<p>Total: <%= @guest_list.likely.total %></p>
-<p><%= @guest_list.partner(1).likely.total %> <%= @wedding.partner_one_name %></p>
-<p><%= @guest_list.partner(2).likely.total %> <%= @wedding.partner_two_name %></p>
-<p><%= @guest_list.total %> Guests</p>
-<% GuestState.each do |state| %>
-  <% @guest_list.currently(state).tap do |guest_list| %>
-    <% next if guest_list.currently(state).empty? %>
-      <%= state.noun %>
-      <p>Total: <%= guest_list.total %></p>
+<h1 id="welcome">Welcome to WedVite, <%= current_user.first_name %>.</h1>
+
+<% unless @wedding.celebrated? %>
+  <div class="card">
+    <div class="card-block">
+      <h4 class="card-title"><%= icon('calendar') %> <%= @wedding.days_to_celebration %> days to your big day</h4>
+      
+      <a data-toggle="collapse" href="#date-and-time" aria-expanded="false" aria-controls="date-and-time">
+        Change wedding date
+      </a>
+    </div>
+
+    <div class="card-block collapse" id="date-and-time">
+      <%= form_for(@wedding, url: wedding_date_and_time_path(@wedding), remote: true) do |f| %>
+        <%= f.label :ceremony_when, "Ceremony" %>
+        <div class="form-group row">
+          <div class="col-xs-12 col-md-6">
+            <%= f.date_select :ceremony_when, {}, class: 'span2' %>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <%= f.time_select :ceremony_when, { ignore_date: true }, { class: 'span1' } %><strong>to</strong> <%= f.time_select :ceremony_when_end, {}, class: 'span1' %>
+          </div>
+        </div>
+
+        <% if @wedding.has_reception? %>
+          <%= f.label :reception_when, "Reception" %>
+          <div class="form-group row">
+            <div class="col-xs-12 col-md-6">
+              <%= f.date_select :reception_when, {}, class: 'span2' %>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <%= f.time_select :reception_when, { ignore_date: true }, { class: 'span1' } %><strong>to</strong> <%= f.time_select :reception_when_end, {}, class: 'span1' %>
+            </div>
+          </div>
+        <% end %>
+
+        <%= f.label :respond_deadline, "RSVP deadline" %>
+        <div class="form-group row">
+          <div class="col-xs-12 col-md-6">
+            <%= f.date_select :respond_deadline, {}, class: 'span2' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<div class="card">
+  <div class="card-block">
+    <h4 class="card-title"><%= icon('list') %> You have <%= @guest_list.total %> guests in you guest list</h4>
+    <p><%= @guest_list.likely.total %> likely to attend</p>
+    <p><%= @guest_list.partner(1).likely.total %> <%= @wedding.partner_one_name %> side</p>
+    <p><%= @guest_list.partner(2).likely.total %> <%= @wedding.partner_two_name %> side</p>
+    <% GuestState.each do |state| %>
+      <% @guest_list.currently(state).tap do |guest_list| %>
+        <% next if guest_list.currently(state).empty? %>
+        <p>
+          <i class="fa fa-circle-o wd-state wd-state-<%= state.noun %>"></i> <%= state.noun %>
+          <%= guest_list.total %>
+        </p>
+      <% end %>
     <% end %>
-<% end %>
-<%= link_to 'Manage guest list', wedding_guestlist_path(@wedding) %>
-
-<h1>Events</h1>
-<% @events.each do |event| %>
-  <% next if event.message? || event.comment? %>
-  <p><%= event.headline %></p>
-  <p><strong><%= time_ago_in_words event.created_at %> ago</strong></p>
-<% end %>
-
-<%= link_to "See more Activity", wedding_timeline_path(@wedding) %>
+    <%= link_to 'Manage guest list', wedding_guestlist_path(@wedding) %>
+  </div>
+</div>
 
 <% if can? :manage_collaborators, @wedding %>
-  <h1>Colaborators</h1>
-  <%= link_to "Manage collaborators", wedding_collaborators_path(@wedding) %>
+  <div class="card">
+    <div class="card-block">
+      <% if (@wedding.collaborators.count - 1) == 0 %>
+        <h4>Invite your partner to collaborate</h4>
+      <% else %>
+        <h4 class="card-title"> You have <%= @wedding.collaborators.count - 1 %> colaborators</h4>
+      <% end %>
+      <%= link_to "Manage collaborators", wedding_collaborators_path(@wedding) %>
+    </div>
+  </div>
 <% end %>
+
+<div class="card">
+  <div class="card-block">
+    <h4 class="card-title">Latest events</h4>
+    <% @events.each do |event| %>
+      <% next if event.message? || event.comment? %>
+      <p><%= event.headline %></p>
+      <p><strong><%= time_ago_in_words event.created_at %> ago</strong></p>
+    <% end %>
+  </div>
+</div>
+

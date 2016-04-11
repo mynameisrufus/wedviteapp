@@ -165,6 +165,10 @@ reception_what ceremony_how reception_how thank_you_wording)
     ceremony_when_end.past?
   end
 
+  def days_to_celebration
+    ((ceremony_when - Time.new) / 86400).floor
+  end
+
   def partner_name(number)
     { 1 => partner_one_name, 2 => partner_two_name }.fetch(number)
   end

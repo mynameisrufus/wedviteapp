@@ -38,6 +38,9 @@ Rails.application.routes.draw do
         get :directions, action: :show, controller: :directions
         patch :directions, action: :update, controller: :directions
 
+        # Date and time
+        patch :date_and_time, action: :update, controller: :date_and_time
+
         # Invitations
         get :invitations, action: :show, controller: :invitations
         patch :invitations, action: :update, controller: :invitations
