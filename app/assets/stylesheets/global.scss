@@ -7,16 +7,18 @@
   text-align: center;
 }
 
-.sidebar-offcanvas {
-  .wd-avatar {
-    margin-left: 0.75rem;
-  }
-}
-
 .map-wrapper {
   width: 100%;
   height: 400px;
   margin-bottom: 20px;
+}
+
+.navbar-offcanvas {
+  background-color: $white;
+  &.in {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 // Landscape phones and down
@@ -25,124 +27,6 @@
     width: 100%;
     height: 100px;
   }
-
-}
-
-/*
- * Style tweaks
- * --------------------------------------------------
- */
-html {
-  height: 100vh;
-}
-
-body {
-  overflow: hidden; /* Prevent scroll on narrow devices */
-  min-height: 100vh;
-}
-
-/*
- * Off Canvas
- * --------------------------------------------------
- */
-
-.wd-navbar {
-  position: absolute;
-  z-index: 1;
-  width: 100%;
-  background-color: white;
-}
-
-.scrollable {
-  height: 100vh;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.scrollable-nav-offset {
-  height: 64px;
-}
-
-.container-fluid {
-  overflow: hidden;
-}
-
-@media screen and (max-width: 767px) {
-  .scrollable-nav-offset {
-    height: 54px;
-  }
-
-  .row-offcanvas {
-    position: relative;
-    -webkit-transition: all .25s ease-out;
-         -o-transition: all .25s ease-out;
-            transition: all .25s ease-out;
-  }
-
-  .row-offcanvas-right {
-    right: 0;
-  }
-
-  .row-offcanvas-left {
-    left: 0;
-  }
-
-  .row-offcanvas-right
-  .sidebar-offcanvas {
-    right: -50%; /* 6 columns */
-  }
-
-  .row-offcanvas-left
-  .sidebar-offcanvas {
-    left: -50%; /* 6 columns */
-  }
-
-  .row-offcanvas-right.active {
-    right: 50%; /* 6 columns */
-  }
-
-  .row-offcanvas-left.active {
-    left: 50%; /* 6 columns */
-  }
-
-  .sidebar-offcanvas {
-    position: absolute;
-    top: 0;
-    width: 50%; /* 6 columns */
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .row-offcanvas-right
-  .sidebar-offcanvas {
-    right: -70%; /* 6 columns */
-  }
-
-  .row-offcanvas-left
-  .sidebar-offcanvas {
-    left: -70%; /* 6 columns */
-  }
-
-  .row-offcanvas-right.active {
-    right: 70%; /* 6 columns */
-  }
-
-  .row-offcanvas-left.active {
-    left: 70%; /* 6 columns */
-  }
-
-  .sidebar-offcanvas {
-    width: 70%; /* 6 columns */
-  }
-}
-
-.list-group-item:first-child {
-    border-top-right-radius: 0rem;
-    border-top-left-radius: 0rem;
-}
-
-.list-group-item {
-  border: 0 none;
 }
 
 .wd-bubble-message {

@@ -2,6 +2,7 @@
 //= require jquery_ujs
 //= require tether
 //= require bootstrap
+//= require bootstrap-offcanvas
 //= require medium-editor
 //= require to-markdown
 //= require_tree .
@@ -123,13 +124,6 @@
     } else {
         $guests.on('click', showGuestActions)
     }
-
-    $('[data-offcanvas-toggle]').each(function(_index, offcanvasToggleEl) {
-      var target ='[data-offcanvas-content="' + $(offcanvasToggleEl).data('offcanvas-toggle') + '"]'
-      $(offcanvasToggleEl).click(function() {
-        $(target).toggleClass('active')
-      })
-    });
 
     // Forms
     $('[data-remote="true"]').each(function(_index, formEl) {

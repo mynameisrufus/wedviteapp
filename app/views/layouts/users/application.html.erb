@@ -1,44 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>WedVite</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
     <link href="/favicon.png" rel="shortcut icon" type="image/png" />
+
+    <title>WedVite</title>
+
     <%= stylesheet_link_tag "users/application" %>
     <!--[if lt IE 9]>
       <%= javascript_include_tag "//html5shiv.googlecode.com/svn/trunk/html5.js" %>
       <%= stylesheet_link_tag "users/ltIE9" %>
     <![endif]-->
-    <%= yield :head %>
     <%= csrf_meta_tags %>
   </head>
   <body>
     <div class="container-fluid">
-      <div class="row row-offcanvas row-offcanvas-right" data-offcanvas-content="sidebar">
-        <nav class="navbar wd-navbar hidden-md-up">
-          <button class="navbar-toggler pull-xs-right " type="button" data-offcanvas-toggle="sidebar">
-            &#9776;
-          </button>
-          <a class="navbar-brand"><%= controller.page_title %></a>
-        </nav>
+      <nav class="navbar wd-navbar hidden-md-up">
+         <button class="navbar-toggler offcanvas-toggle pull-xs-right" data-target="#offcanvas" data-toggle="offcanvas" type="button">
+           <i class="fa fa-bars"></i>
+         </button>
+         <a class="navbar-brand"><%= controller.page_title %></a>
+      </nav>
 
-        <div class="col-xs-6 col-md-3 sidebar-offcanvas scrollable" id="sidebar">
-          <% if user_signed_in? %>
-            <%= render partial: "layouts/users/nav" %>
-            <% if show_subnav? %>
-              <%= render partial: "layouts/users/subnav" %>
-            <% end %>
-            <%= link_to edit_user_registration_path do %>
-              <%= avatar(current_user) %> <small class="text-truncate"><%= current_user.name %></small>
-            <% end %>
+      <div class="col-xs-6 col-md-3 navbar-offcanvas navbar-offcanvas-touch" id="offcanvas">
+        <% if user_signed_in? %>
+          <%= render partial: "layouts/users/nav" %>
+          <% if show_subnav? %>
+            <%= render partial: "layouts/users/subnav" %>
           <% end %>
-        </div>
+          <%= link_to edit_user_registration_path do %>
+            <%= avatar(current_user) %> <small class="text-truncate"><%= current_user.name %></small>
+          <% end %>
+        <% end %>
+      </div>
 
-        <div class="col-xs-12 col-md-9">
-          <%= render partial: "layouts/users/flash" %>
-          <%= yield %>
-        </div>
+      <div class="col-xs-12 col-md-9">
+        <%= render partial: "layouts/users/flash" %>
+        <%= yield %>
       </div>
     </div>
 
