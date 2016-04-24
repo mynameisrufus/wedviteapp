@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   has_many :collaborations, class_name: 'Collaborator', dependent: :destroy
   has_many :weddings, through: :collaborations
 
+  belongs_to :collaborator
+
   has_many :messages, dependent: :destroy, as: :messageable
   has_many :replies, dependent: :destroy, as: :replyable
 
@@ -54,5 +56,9 @@ class User < ActiveRecord::Base
         user.email = data["email"] if user.email.blank?
       end
     end
+  end
+
+  def other_weddings
+    weddings.where.not(id: collaborator.wedding_id)
   end
 end

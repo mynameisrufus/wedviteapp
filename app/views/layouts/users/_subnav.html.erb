@@ -12,7 +12,7 @@
   <% if can? :update, @wedding %>
     <%= list_group_item "#{icon('envelope')} Invitation", wedding_invitations_path(@wedding) %>
   <% end %>
-  <% if current_user.weddings.count > 1 %>
-    <%= list_group_item "#{icon('random')} Switch Wedding", plan_root_path(@wedding) %>
+  <% current_user.other_weddings.each do |wedding| %>
+    <%= list_group_item "#{icon('random')} #{wedding.name}", wedding_path(wedding) %>
   <% end %>
 </div>

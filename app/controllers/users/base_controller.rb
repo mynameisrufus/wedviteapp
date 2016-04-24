@@ -21,7 +21,11 @@ class Users::BaseController < ApplicationController
   end
 
   def current_collaboration
-    @current_collaboration ||= current_user.collaborations.where(wedding_id: wedding_id).first!
+    @current_collaboration ||= current_user_current_collaboration
+  end
+
+  def current_user_current_collaboration
+    UserCurrentCollaboration.new(current_user, wedding_id).get
   end
 
   def self.show_subnav on_or_off = nil

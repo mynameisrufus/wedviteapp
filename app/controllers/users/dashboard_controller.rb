@@ -1,5 +1,5 @@
 class Users::DashboardController < Users::BaseController
   def home
-    @wedding = Wedding.new
+    redirect_to wedding_path(current_collaboration.wedding)
   end
 end
